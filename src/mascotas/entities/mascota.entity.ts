@@ -6,7 +6,7 @@ export class Mascota {
       public idMascota: number;
 
       @ApiProperty()
-      public rutUsuario: number;
+      public rutUsuario: string;
 
       @ApiProperty()
       public nombre: string;

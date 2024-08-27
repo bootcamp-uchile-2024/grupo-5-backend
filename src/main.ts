@@ -14,23 +14,27 @@ const config1 = new DocumentBuilder()
 .addTag('Buscar Usuarios')
 .addTag('Crear Usuarios')
 .addTag('Actualizar Usuarios')
- .addTag('Eliminar Usuarios')
+.addTag('Eliminar Usuarios')
 .build();
 
 const config2 = new DocumentBuilder()
 .setTitle('API Proyecto Petropolis - Mascotas')
 .setDescription('Esta API describe los métodos para la Gestión de Mascotas')
 .setVersion('1.0.0')
-.addTag('Mascotas')
-.addTag('API-Creación y Modificación')
+.addTag('Buscar Mascotas')
+.addTag('Crear Mascotas')
+.addTag('Actualizar Mascotas')
+.addTag('Eliminar Mascotas')
 .build();
 
 const config3 = new DocumentBuilder()
 .setTitle('API Proyecto Petropolis - Productos')
 .setDescription('Esta API describe los métodos para la Gestión de Productos')
 .setVersion('1.0.0')
-.addTag('Productos')
-.addTag('API-Creación y Modificación')
+.addTag('Buscar Productos')
+.addTag('Crear Productos')
+.addTag('Actualizar Productos')
+ .addTag('Eliminar Productos')
 .build();
 
 const document1 = SwaggerModule.createDocument(app, config1,{include: [AppModule, UsuariosModule]});

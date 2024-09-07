@@ -4,6 +4,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { MascotasModule } from './mascotas/mascotas.module';
 import { ProductosModule } from './productos/productos.module';
+//import { DetalleproductoModule } from './detalleproducto/detalleproducto.module';
+
 async function bootstrap() {
 const app = await NestFactory.create(AppModule);
 
@@ -32,9 +34,13 @@ const config3 = new DocumentBuilder()
 .setDescription('Esta API describe los métodos para la Gestión de Productos')
 .setVersion('1.0.0')
 .addTag('Buscar Productos')
+.addTag('Buscar Detalle Productos')
 .addTag('Crear Productos')
+.addTag('Crear Detalle del Productos')
 .addTag('Actualizar Productos')
- .addTag('Eliminar Productos')
+.addTag('Actualizar Detalle del Productos')
+.addTag('Eliminar Productos')
+.addTag('Eliminar Detalle del Productos')
 .build();
 
 const document1 = SwaggerModule.createDocument(app, config1,{include: [AppModule, UsuariosModule]});
@@ -46,4 +52,5 @@ SwaggerModule.setup('API/producto', app, document3);
 
 await app.listen(3000);
 }
+
 bootstrap();

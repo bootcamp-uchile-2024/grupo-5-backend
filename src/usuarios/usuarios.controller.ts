@@ -34,7 +34,7 @@ export class UsuariosController {
       apeMaterno: 'Abarza',
       correoElectronico: 'paola.navia@example.com',
       telefono: '+5684538299',
-      rolUsuario: UserRole.AMINISTRADOR,
+      rolUsuario: UserRole.ADMINISTRADOR,
     }];
   }
 

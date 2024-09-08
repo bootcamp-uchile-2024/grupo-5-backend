@@ -1,11 +1,10 @@
 import {   Controller,   Get,   Post,   Body,   Patch,   Param,   Delete,   Put , NotFoundException} from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
-import { UpdateProductoDto } from './dto/update-producto.dto';
-import { ProductoDetalleDto } from './dto/create-producto-detalle.dto';
+import { ActualizarProductoDto } from './dto/update-producto.dto';
 import {   ApiBody,   ApiOperation,   ApiParam,   ApiResponse,   ApiTags } from '@nestjs/swagger';
 import { Producto } from './entities/producto.entity';
-import { CatalogoProductoDto } from './dto/read-catalogoProductos.dto';
+import { CatalogoProductoDto } from './dto/read-catalogo-productos.dto';
 import { DetalleProductoDto } from './dto/read-detalleProducto.dto';
 
 
@@ -15,7 +14,7 @@ export class ProductosController {
    // constructor(private readonly productosService: ProductosService) {}
 
 
-  @ApiTags('Buscar Productos')
+  @ApiTags('Buscar Catálogo de Productos')
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
   @ApiOperation({ summary: 'Obtener el catalogo de los productos' })
@@ -40,107 +39,62 @@ export class ProductosController {
   }
 
 
-  @ApiTags('Buscar Productos')
+  @ApiTags('Buscar Detalle de Producto')
   @ApiParam({ name: 'id', description: 'Id del producto' })
   @ApiResponse({ status: 200, description: 'Producto encontrado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Obtener producto por Id' })
   @Get(':id')
-  findOne(@Param('id') id: string): CreateProductoDto[] {
-    return [
-      {
-        nombre: 'Royal Canin Medium Puppy Alimento para Perro',
-        marca: 'Royal Canin',
-        descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
-        precio: 86990,
-        imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg'],
-        etiquetas: ['Royal Canin', 'Cachorros', 'Razas medianas', 'Prebióticos'],
-        categoria: 'Alimento Seco Perros',
-        stock: 150,
-        ingredientes: 'Maíz, harina de subproductos de pollo, grasas animales, proteína vegetal purificada, arroz, harina de trigo, pulpa de remolacha, vitaminas, aceite de pescado.',
-        tamanio: '15 Kg',
-        origen: 'Francia',
-        vidaUtil: '12 meses',
-        recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
-      },
-      {
-        nombre: 'Royal Canin Adulto Raza Grande',
-        marca: 'Royal Canin',
-        descripcion: 'Royal Canin Adulto Raza Grande es un alimento para perros adultos de razas grandes (26 a 44 Kg) con necesidades energéticas moderadas. Contiene nutrientes que ayudan a mantener las articulaciones saludables y una digestión óptima.',
-        precio: 97990,
-        imagenes: ['images/2654_001.jpg', 'images/2654_002.jpg'],
-        etiquetas: ['Royal Canin', 'Adulto', 'Razas grandes', 'Articulaciones saludables'],
-        categoria: 'Alimento Seco Perros',
-        stock: 200,
-        ingredientes: 'Arroz, harina de subproductos de pollo, grasa de pollo, proteína de ave deshidratada, gluten de maíz, fibra vegetal.',
-        tamanio: '18 Kg',
-        origen: 'Francia',
-        vidaUtil: '18 meses',
-        recomendacionesUso: 'Para perros adultos de razas grandes con actividad moderada'
-      }
-  ];
-  }
-
-  @ApiTags('Buscar Detalle Producto')
-  @ApiParam({ name: 'id', description: 'Id del producto' })
-  @ApiResponse({ status: 200, description: 'Detalle producto encontrado.' })
-  @ApiResponse({ status: 404, description: 'El producto no posee detalle.' })
-  @ApiOperation({ summary: 'Obtener producto por Id' })
-  @Get(':id')
-  findOneDetail(@Param('id') id: number): DetalleProductoDto {
-    return {
-        id: 2653,
-        nombre: 'Royal Canin Medium Puppy Alimento para Perro',
-        marca: 'Royal Canin',
-        descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
-        precio: 86990,
-        imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg'],
-        etiquetas: ['Royal Canin', 'Cachorros', 'Razas medianas', 'Prebióticos'],
-        categoria: 'Alimento Seco Perros',
-        stock: 150,
-        ingredientes: 'Maíz, harina de subproductos de pollo, grasas animales, proteína vegetal purificada, arroz, harina de trigo, pulpa de remolacha, vitaminas, aceite de pescado.',
-        tamanio: '15 Kg',
-        origen: 'Francia',
-        vidaUtil: '12 meses',
-        recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
-      }
-  ;
+  buscarDetalleProducto(@Param('id') id: string): string { //DetalleProductoDto {
+    return `{
+      id:${id} ,
+      nombre: 'Royal Canin Medium Puppy Alimento para Perro',
+      marca: 'Royal Canin',
+      descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
+      precio: 86990,
+      imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg'],
+      etiquetas: ['Royal Canin', 'Cachorros', 'Razas medianas', 'Prebióticos'],
+      categoria: 'Alimento Seco Perros',
+      stock: 150,
+      ingredientes: 'Maíz, harina de subproductos de pollo, grasas animales, proteína vegetal purificada, arroz, harina de trigo, pulpa de remolacha, vitaminas, aceite de pescado.',
+      tamanio: '15 Kg',
+      origen: 'Francia',
+      vidaUtil: '12 meses',
+      recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
+      }`;
   }
 
 
-  @ApiTags('Crear Productos')
+  @ApiTags('Crear Producto')
   @ApiBody({ type: CreateProductoDto })
   @ApiResponse({ status: 200, description: 'Producto creado con éxito' })
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
   @ApiOperation({ summary: 'Crear nuevo producto' })
   @Post()
-  createProduct(@Body() CreateProductoDto: any): string {
-    return 'Producto ingresado con exito.';
+  createProduct(@Body() createProductoDto: CreateProductoDto): string {
+    return 'Producto creado con éxito.';
   }
 
 
-
-
-
-  @ApiTags('Actualizar Productos')
-  @ApiBody({ type: UpdateProductoDto })
+  @ApiTags('Actualizar Producto')
+  @ApiBody({ type: ActualizarProductoDto })
   @ApiResponse({ status: 200, description: 'Producto actualizado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Actualizar producto por Id' })
   @ApiParam({ name: 'id', required: true, description: 'Id del producto' })
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateItemDto: UpdateProductoDto): string {
-    return `Fue actualizado con exito el producto ${id}`;
+  update(@Param('id') id: string, @Body() actualizarProductoDto: ActualizarProductoDto): string {
+    return `El producto ${id} fue actualizado con éxito.`;
   }
 
-  @ApiTags('Eliminar Productos')
-  @ApiResponse({ status: 200, description: 'Producto eliminado.' })
+  @ApiTags('Eliminar Producto')
+  @ApiResponse({ status: 200, description: 'Producto eliminado con éxito.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Eliminar producto por Id' })
   @ApiParam({ name: 'id', required: true, description: 'Id del producto.' })
   @Delete(':id')
   remove(@Param('id') id: string): string {
-    return `Fue eliminado con exito el producto ${id}`;
+    return `El producto ${id} fue eliminado con éxito.`;
   }
 
 

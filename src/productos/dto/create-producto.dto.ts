@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { ArrayNotEmpty, IsArray, IsNotEmpty, IsNumber, IsString, Length, Max, Min } from "class-validator";
-import { isString } from "util";
+
 
 export class CreateProductoDto {
 

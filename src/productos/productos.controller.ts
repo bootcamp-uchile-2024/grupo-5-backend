@@ -1,11 +1,12 @@
-import {   Controller,   Get,   Post,   Body,   Patch,   Param,   Delete,   Put , NotFoundException, UsePipes, ValidationPipe} from '@nestjs/common';
+import {   Controller,   Get,   Post,   Body,   Patch,   Param,   Delete,   Put , NotFoundException, UsePipes, ValidationPipe, Query, ParseIntPipe} from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { ActualizarProductoDto } from './dto/update-producto.dto';
-import {   ApiBody,   ApiOperation,   ApiParam,   ApiResponse,   ApiTags } from '@nestjs/swagger';
+import {   ApiBody,   ApiOperation,   ApiParam,   ApiQuery,   ApiResponse,   ApiTags } from '@nestjs/swagger';
 import { Producto } from './entities/producto.entity';
 import { CatalogoProductoDto } from './dto/read-catalogo-productos.dto';
 import { DetalleProductoDto } from './dto/read-detalle-producto.dto';
+import { query } from 'express';
 
 
 
@@ -15,37 +16,59 @@ export class ProductosController {
 
 
   @ApiTags('Buscar Catálogo de Productos')
+  @ApiOperation({ summary: 'Obtener el catalogo de los productos' })
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
-  @ApiOperation({ summary: 'Obtener el catalogo de los productos' })
+  @ApiQuery({ name: 'marca', required: false, description: 'Marca del producto' })
+  @ApiQuery({ name: 'precio', required: false, description: 'Precio del producto' })
   @Get()
-  obtenerCatalogo(): CatalogoProductoDto[] {
-    return [
-      {
-          id: 2431,
-          nombre: 'Proplan Cachorro',
-          marca: 'Proplan',
-          precio: 30000,
-          imagenes: ['images/proplan1.jpg', 'images/proplan2.jpg']
-      },
-      {
-        id: 2653,
-        nombre: 'Royal Canin Adulto',
-        marca: 'Royal Canin',
-        precio: 85000,
-        imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg']
-    },
-    ];
-  }
+  obtenerCatalogo(
+    @Query('marca') marca: string, 
+    @Query('precio', new ParseIntPipe({errorHttpStatusCode: 400 })) precio: number): string{ // CatalogoProductoDto[] {
+      // Preguntar al profe cómo obtener resultados si el precio está vacio
+      //  y usando el ParseIntPipe
+      
+      const productos = [
+        {
+       id: 2431,
+       nombre: 'Proplan Cachorro',
+       marca: 'Proplan',
+       precio: 30000,
+       imagenes: ['images/proplan1.jpg', 'images/proplan2.jpg']
+   },
+   {
+     id: 2653,
+     nombre: 'Royal Canin Adulto',
+     marca: 'Royal Canin',
+     precio: 85000,
+     imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg']
+ },
+   // Otros productos pueden añadirse aquí
+ ];
+
+ // Filtrar por marca y precio si están presentes
+ const resultado = productos.filter(producto => {
+   return (
+     (!marca || producto.marca === marca) && 
+     (!precio || producto.precio === precio)
+   );
+ });
+
+ if (resultado.length === 0) {
+   throw new NotFoundException('Producto no encontrado.');
+ }
+
+ return JSON.stringify(resultado);
+}
 
 
   @ApiTags('Buscar Detalle de Producto')
-  @ApiParam({ name: 'id', description: 'Id del producto' })
+  @ApiParam({ name: 'id', description: 'Id del Producto' })
   @ApiResponse({ status: 200, description: 'Producto encontrado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Obtener producto por Id' })
   @Get(':id')
-  buscarDetalleProducto(@Param('id') id: string): string { //DetalleProductoDto {
+  buscarDetalleProducto(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): string { //DetalleProductoDto {
     return `{
       id:${id} ,
       nombre: 'Royal Canin Medium Puppy Alimento para Perro',
@@ -84,7 +107,9 @@ export class ProductosController {
   @ApiOperation({ summary: 'Actualizar producto por Id' })
   @ApiParam({ name: 'id', required: true, description: 'Id del producto' })
   @Put(':id')
-  update(@Param('id') id: string, @Body() actualizarProductoDto: ActualizarProductoDto): string {
+  @UsePipes(new ValidationPipe())
+  update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number, 
+         @Body() actualizarProductoDto: ActualizarProductoDto): string {
     return `El producto ${id} fue actualizado con éxito.`;
   }
 
@@ -94,7 +119,7 @@ export class ProductosController {
   @ApiOperation({ summary: 'Eliminar producto por Id' })
   @ApiParam({ name: 'id', required: true, description: 'Id del producto.' })
   @Delete(':id')
-  remove(@Param('id') id: string): string {
+  remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): string {
     return `El producto ${id} fue eliminado con éxito.`;
   }
 

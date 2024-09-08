@@ -1,11 +1,11 @@
-import {   Controller,   Get,   Post,   Body,   Patch,   Param,   Delete,   Put , NotFoundException} from '@nestjs/common';
+import {   Controller,   Get,   Post,   Body,   Patch,   Param,   Delete,   Put , NotFoundException, UsePipes, ValidationPipe} from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { ActualizarProductoDto } from './dto/update-producto.dto';
 import {   ApiBody,   ApiOperation,   ApiParam,   ApiResponse,   ApiTags } from '@nestjs/swagger';
 import { Producto } from './entities/producto.entity';
 import { CatalogoProductoDto } from './dto/read-catalogo-productos.dto';
-import { DetalleProductoDto } from './dto/read-detalleProducto.dto';
+import { DetalleProductoDto } from './dto/read-detalle-producto.dto';
 
 
 
@@ -71,6 +71,7 @@ export class ProductosController {
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
   @ApiOperation({ summary: 'Crear nuevo producto' })
   @Post()
+  @UsePipes(new ValidationPipe())
   createProduct(@Body() createProductoDto: CreateProductoDto): string {
     return 'Producto creado con éxito.';
   }

@@ -1,13 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreateProductoDto {
+export class DetalleProductoDto {
 
-    // @ApiProperty({
-    //     type: 'number', 
-    //     title: 'Id del Producto',
-    //     description: 'Identificador del Producto',
-    //     required: true,example: 23})
-    // public id: number;
+    @ApiProperty({
+        type: 'number', 
+        title: 'Id del Producto',
+        description: 'Identificador del Producto',
+        required: true,example: 23})
+    public id: number;
    
    @ApiProperty({
         type: 'string', 

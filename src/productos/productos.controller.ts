@@ -1,10 +1,12 @@
 import {   Controller,   Get,   Post,   Body,   Patch,   Param,   Delete,   Put , NotFoundException} from '@nestjs/common';
 import { ProductosService } from './productos.service';
-import { ProductoDto } from './dto/create-producto.dto';
+import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
 import { ProductoDetalleDto } from './dto/create-producto-detalle.dto';
 import {   ApiBody,   ApiOperation,   ApiParam,   ApiResponse,   ApiTags } from '@nestjs/swagger';
 import { Producto } from './entities/producto.entity';
+import { CatalogoProductoDto } from './dto/read-catalogoProductos.dto';
+import { DetalleProductoDto } from './dto/read-detalleProducto.dto';
 
 
 
@@ -12,33 +14,31 @@ import { Producto } from './entities/producto.entity';
 export class ProductosController {
    // constructor(private readonly productosService: ProductosService) {}
 
+
   @ApiTags('Buscar Productos')
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
-  @ApiOperation({ summary: 'Obtener el listado de todos los productos' })
+  @ApiOperation({ summary: 'Obtener el catalogo de los productos' })
   @Get()
-  findAll(): ProductoDto[] {
+  obtenerCatalogo(): CatalogoProductoDto[] {
     return [
       {
           id: 2431,
-          nombre: 'Firulais - Cachorro',
-          descripcion: '10 Kilos - Carne de Salmon',
+          nombre: 'Proplan Cachorro',
+          marca: 'Proplan',
           precio: 30000,
-          etiquetas: ['Cachorro'],
-          categoria: 'Comida para cachorros',
-          stock: 3
+          imagenes: ['images/proplan1.jpg', 'images/proplan2.jpg']
       },
       {
-          id: 111,
-          nombre: 'Royal Canin',
-          descripcion: 'Royal Canin Adulto Chihuahua 1Kg',
-          precio: 10600,
-          etiquetas: ['Perro Adulto'],
-          categoria: 'Comida para perros Chihuahua',
-          stock: 10
-      }
-  ];
+        id: 2653,
+        nombre: 'Royal Canin Adulto',
+        marca: 'Royal Canin',
+        precio: 85000,
+        imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg']
+    },
+    ];
   }
+
 
   @ApiTags('Buscar Productos')
   @ApiParam({ name: 'id', description: 'Id del producto' })
@@ -46,34 +46,84 @@ export class ProductosController {
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Obtener producto por Id' })
   @Get(':id')
-  findOne(@Param('id') id: string): ProductoDto[] {
+  findOne(@Param('id') id: string): CreateProductoDto[] {
     return [
       {
-          id: 2431,
-          nombre: 'Proplan',
-          descripcion: '10 Kilos - Carne de Salmon',
-          precio: 30000,
-          etiquetas: ['Perro', 'Cachorro'],
-          categoria: 'Comida para perros',
-          stock: 3
+        nombre: 'Royal Canin Medium Puppy Alimento para Perro',
+        marca: 'Royal Canin',
+        descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
+        precio: 86990,
+        imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg'],
+        etiquetas: ['Royal Canin', 'Cachorros', 'Razas medianas', 'Prebióticos'],
+        categoria: 'Alimento Seco Perros',
+        stock: 150,
+        ingredientes: 'Maíz, harina de subproductos de pollo, grasas animales, proteína vegetal purificada, arroz, harina de trigo, pulpa de remolacha, vitaminas, aceite de pescado.',
+        tamanio: '15 Kg',
+        origen: 'Francia',
+        vidaUtil: '12 meses',
+        recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
       },
-    ];
+      {
+        nombre: 'Royal Canin Adulto Raza Grande',
+        marca: 'Royal Canin',
+        descripcion: 'Royal Canin Adulto Raza Grande es un alimento para perros adultos de razas grandes (26 a 44 Kg) con necesidades energéticas moderadas. Contiene nutrientes que ayudan a mantener las articulaciones saludables y una digestión óptima.',
+        precio: 97990,
+        imagenes: ['images/2654_001.jpg', 'images/2654_002.jpg'],
+        etiquetas: ['Royal Canin', 'Adulto', 'Razas grandes', 'Articulaciones saludables'],
+        categoria: 'Alimento Seco Perros',
+        stock: 200,
+        ingredientes: 'Arroz, harina de subproductos de pollo, grasa de pollo, proteína de ave deshidratada, gluten de maíz, fibra vegetal.',
+        tamanio: '18 Kg',
+        origen: 'Francia',
+        vidaUtil: '18 meses',
+        recomendacionesUso: 'Para perros adultos de razas grandes con actividad moderada'
+      }
+  ];
+  }
+
+  @ApiTags('Buscar Detalle Producto')
+  @ApiParam({ name: 'id', description: 'Id del producto' })
+  @ApiResponse({ status: 200, description: 'Detalle producto encontrado.' })
+  @ApiResponse({ status: 404, description: 'El producto no posee detalle.' })
+  @ApiOperation({ summary: 'Obtener producto por Id' })
+  @Get(':id')
+  findOneDetail(@Param('id') id: number): DetalleProductoDto {
+    return {
+        id: 2653,
+        nombre: 'Royal Canin Medium Puppy Alimento para Perro',
+        marca: 'Royal Canin',
+        descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
+        precio: 86990,
+        imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg'],
+        etiquetas: ['Royal Canin', 'Cachorros', 'Razas medianas', 'Prebióticos'],
+        categoria: 'Alimento Seco Perros',
+        stock: 150,
+        ingredientes: 'Maíz, harina de subproductos de pollo, grasas animales, proteína vegetal purificada, arroz, harina de trigo, pulpa de remolacha, vitaminas, aceite de pescado.',
+        tamanio: '15 Kg',
+        origen: 'Francia',
+        vidaUtil: '12 meses',
+        recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
+      }
+  ;
   }
 
 
   @ApiTags('Crear Productos')
-  @ApiBody({ type: ProductoDto })
-  @ApiResponse({ status: 200, description: 'Producto creado.' })
+  @ApiBody({ type: CreateProductoDto })
+  @ApiResponse({ status: 200, description: 'Producto creado con éxito' })
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
   @ApiOperation({ summary: 'Crear nuevo producto' })
   @Post()
-  create(@Body() createItemDto: any): string {
+  createProduct(@Body() CreateProductoDto: any): string {
     return 'Producto ingresado con exito.';
   }
 
 
+
+
+
   @ApiTags('Actualizar Productos')
-  @ApiBody({ type: ProductoDto })
+  @ApiBody({ type: UpdateProductoDto })
   @ApiResponse({ status: 200, description: 'Producto actualizado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Actualizar producto por Id' })
@@ -95,39 +145,7 @@ export class ProductosController {
 
 
 
-  @ApiTags('Crear Detalle del Productos')
-  @ApiBody({ type: ProductoDetalleDto })
-  @ApiResponse({ status: 200, description: 'Detalle creado.' })
-  @ApiResponse({ status: 404, description: 'Producto no existe.' })
-  @ApiResponse({ status: 409, description: 'Detalle de producto ya existe.' })
-  @ApiOperation({ summary: 'Asignar un detalle a un producto' })
-  @Post()
-  createDetail(@Body() ProductoDetalleDto: any): string {
-    return 'Este método crea un nuevo detalle producto.';
-  }
 
-
-  @ApiTags('Buscar Detalle Productos')
-  @ApiParam({ name: 'id', description: 'Id del producto' })
-  @ApiResponse({ status: 200, description: 'Detalle producto encontrado.' })
-  @ApiResponse({ status: 404, description: 'El producto no posee detalle.' })
-  @ApiOperation({ summary: 'Obtener producto por Id' })
-  @Get(':id')
-  findOneDetail(@Param('id') id: number): ProductoDetalleDto {
-    return 
-      {
-          id: 2431;
-          ingredientes: ['Pollo', 'Maiz'];
-          tamanio: '10 Kilos';
-          marca: 'Firulais';
-          origen: 'Checoslovaco';
-          vidaUtil: '12 meses';
-          recomendacionesUso: 'Solo para cachorros';
-          contenidoNeto: '10020 gramos';
-          instruccionesAlmacenamiento: 'Dejar en lugar fresco';
-          codigoBarras: '8757420684'
-      }
-  }
 
 
 }

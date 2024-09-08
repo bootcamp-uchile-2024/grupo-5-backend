@@ -5,6 +5,7 @@ import { CreateUsuarioDtoSal } from './dto/create-usuario-sal.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import {   ApiBody,   ApiOperation,   ApiParam,   ApiResponse,   ApiTags } from '@nestjs/swagger';
 import { Usuario } from './entities/usuario.entity';
+import { UserRole } from './entities/rol';
 
 @Controller('Usuarios')
 export class UsuariosController {
@@ -24,6 +25,7 @@ export class UsuariosController {
       apeMaterno: 'González',
       correoElectronico: 'juan.perez@example.com',
       telefono: '+56912345678',
+      rolUsuario: UserRole.CLIENTE,
     },
     {rutUsuario: '13257114-1',
       contrasena: 'laterribleclave',
@@ -32,13 +34,14 @@ export class UsuariosController {
       apeMaterno: 'Abarza',
       correoElectronico: 'paola.navia@example.com',
       telefono: '+5684538299',
+      rolUsuario: UserRole.AMINISTRADOR,
     }];
   }
 
   @ApiTags('Buscar Usuarios')
-  @ApiOperation({ summary: 'Obtener usuario por Rut' })
-  @ApiParam({ name: 'rut', description: 'Rut del usuario' })
-  @ApiResponse({ status: 200, description: 'Usuario encontrado' })
+  @ApiOperation({ summary: 'Obtener usuario por RUT' })
+  @ApiParam({ name: 'rut', description: 'RUT del usuario' })
+  @ApiResponse({ status: 200, description: 'Usuario encontrado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @Get(':rut')
   findOne(@Param('rut') rut: string): string {
@@ -56,7 +59,7 @@ export class UsuariosController {
   @ApiTags('Crear Usuarios')
   @ApiOperation({ summary: 'Crear nuevo usuario' })
   @ApiBody({ type: CreateUsuarioDto })
-  @ApiResponse({ status: 200, description: 'Usuario creado' })
+  @ApiResponse({ status: 200, description: 'Usuario creado.' })
   @ApiResponse({ status: 409, description: 'Usuario ya existe.' })
   @Post()
   create(@Body() createItemDto: any): string {
@@ -64,21 +67,21 @@ export class UsuariosController {
   }
 
   @ApiTags('Actualizar Usuarios')
-  @ApiOperation({ summary: 'Actualizar usuario por Rut' })
+  @ApiOperation({ summary: 'Actualizar usuario por RUT' })
   @ApiBody({ type: CreateUsuarioDto })
-  @ApiResponse({ status: 200, description: 'Usuario actualizado' })
+  @ApiResponse({ status: 200, description: 'Usuario actualizado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  @ApiParam({ name: 'rut', required: true, description: 'Rut del usuario' })
+  @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
   @Put(':rut')
   update(@Param('rut') rut: string, @Body() updateItemDto: UpdateUsuarioDto): string {
-    return `Se actualiza el usuario con rut: ${rut} con exito.`;
+    return `Se actualiza el usuario con rut: ${rut} con éxito.`;
   }
 
   @ApiTags('Eliminar Usuarios')
-  @ApiOperation({ summary: 'Eliminar usuario por su Rut' })
-  @ApiResponse({ status: 200, description: 'Usuario eliminado' })
+  @ApiOperation({ summary: 'Eliminar usuario por su RUT' })
+  @ApiResponse({ status: 200, description: 'Usuario eliminado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  @ApiParam({ name: 'rut', required: true, description: 'Rut del usuario' })
+  @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
   @Delete(':rut')
   remove(@Param('rut') rut: string): string {
     return `Este método elimina un usuario por su rut: ${rut}`;
@@ -88,8 +91,8 @@ export class UsuariosController {
 
   @ApiTags('Buscar Usuarios')
   @ApiOperation({ summary: 'Obtener el listado de todos los usuarios' })
-  @ApiResponse({ status: 200, description: 'Obtiene todos los usuarios', type: CreateUsuarioDtoSal, }) // Referencia al DTO de salida
-  @ApiResponse({ status: 404, description: 'No se encontraron usuarios' })
+  @ApiResponse({ status: 200, description: 'Obtiene todos los usuarios.', type: CreateUsuarioDtoSal, }) // Referencia al DTO de salida
+  @ApiResponse({ status: 404, description: 'No se encontraron usuarios.' })
   @Get()
   findAllOut(): CreateUsuarioDtoSal[] {
     // Simulación de retorno de datos (debería ser reemplazado por la lógica real)
@@ -109,9 +112,9 @@ export class UsuariosController {
   }
 
   @ApiTags('Buscar Usuarios')
-  @ApiOperation({ summary: 'Obtener usuario por Rut' })
-  @ApiParam({ name: 'rut', description: 'Rut del usuario' })
-  @ApiResponse({    status: 200,    description: 'Usuario encontrado',    type: CreateUsuarioDtoSal,  }) // Referencia al DTO de salida
+  @ApiOperation({ summary: 'Obtener usuario por RUT' })
+  @ApiParam({ name: 'rut', description: 'RUT del usuario' })
+  @ApiResponse({    status: 200,    description: 'Usuario encontrado.',    type: CreateUsuarioDtoSal,  }) // Referencia al DTO de salida
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @Get(':rut')
   findOneOut(@Param('rut') rut: string): CreateUsuarioDtoSal {
@@ -134,7 +137,7 @@ export class UsuariosController {
   @ApiTags('Crear Usuarios')
   @ApiOperation({ summary: 'Crear nuevo usuario' })
   @ApiBody({ type: CreateUsuarioDto })
-  @ApiResponse({ status: 200, description: 'Usuario creado', type: CreateUsuarioDtoSal,   }) // Referencia al DTO de salida
+  @ApiResponse({ status: 200, description: 'Usuario creado.', type: CreateUsuarioDtoSal,   }) // Referencia al DTO de salida
   @ApiResponse({ status: 409, description: 'Usuario ya existe.' })
   @Post()
   createOut(@Body() createItemDtoSal: CreateUsuarioDtoSal): CreateUsuarioDtoSal {
@@ -163,8 +166,8 @@ export class UsuariosController {
 //  })
 
   // @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  // @ApiOperation({ summary: 'Actualizar usuario por Rut' })
-  // @ApiParam({ name: 'rut', required: true, description: 'Rut del usuario' })
+  // @ApiOperation({ summary: 'Actualizar usuario por RUT' })
+  // @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
   // @Put(':rut')
   // updateOut(@Param('rut') rut: string, @Body() updateItemDto: UpdateUsuarioDto): CreateUsuarioDtoSal {
     // // Simulación de retorno de datos (debería ser reemplazado por la lógica real)
@@ -186,8 +189,8 @@ export class UsuariosController {
   @ApiTags('Eliminar Usuarios')
   @ApiResponse({ status: 200, description: 'Usuario eliminado' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  @ApiOperation({ summary: 'Eliminar usuario por su Rut' })
-  @ApiParam({ name: 'rut', required: true, description: 'Rut del usuario' })
+  @ApiOperation({ summary: 'Eliminar usuario por su RUT' })
+  @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
   @Delete(':rut')
   removeOut(@Param('rut') rut: string): string {
     return `Este método elimina un usuario por su rut: ${rut}`;

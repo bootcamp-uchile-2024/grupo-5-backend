@@ -6,8 +6,8 @@ export class ProductoDetalleDto {
     @ApiProperty({type: 'number', title: 'Id del Producto',description: 'Identificador del Producto',required: true,example: 23})
      public id: number;
     
-    @ApiProperty({type: 'string[]', title: 'Ingredientes del Producto',description: 'Ingredientes del Producto',required: true,example: ['Maiz','Pollo']}) 
-    public ingredientes: string[];
+    @ApiProperty({type: 'string', title: 'Ingredientes del Producto',description: 'Ingredientes del Producto',required: true,example: ['Maiz','Pollo']}) 
+    public ingredientes: string;
     
     
     @ApiProperty({type: 'string', title: 'Tamaño',description: 'Tamaño del Producto', required: true, example: '10 Kg'}) 

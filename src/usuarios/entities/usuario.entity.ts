@@ -1,3 +1,4 @@
+import { UserRole } from "./rol";
 
 export class Usuario {  
 
@@ -14,6 +15,8 @@ export class Usuario {
       public correoElectronico: string;
 
       public telefono: string;
+
+      public rolUsuario: UserRole;
 
       //public preferencias: Preferencia[];
 

@@ -1,10 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { UserRole } from '../entities/rol';
 
 export class CreateUsuarioDto {  
 
     @ApiProperty({
         type: 'string',
-        title: 'Rut del Usuario',
+        title: 'RUT del Usuario',
         description: 'Identificación única del usuario',
         example: '10234945-K',
         minLength: 9,                   // Tamaño minimo
@@ -110,6 +111,18 @@ export class CreateUsuarioDto {
         deprecated: false,                                              // Indica si la propiedad está obsoleta
       })
       public telefono: string;
+
+      @ApiProperty({
+        type: 'string',
+        title: 'Rol del Usuario',
+        description: 'Rol del usuario en el sistema',
+        example: 'Cliente',
+        enum: UserRole,                 // Especifica que es un campo de un conjunto de valores
+
+      })
+      public rolUsuario: string;
+
+
     
 
        //  @ApiProperty({

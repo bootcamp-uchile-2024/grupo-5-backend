@@ -5,7 +5,7 @@
       
         @ApiProperty({
             type: 'string',
-            title: 'Rut del Usuario',
+            title: 'RUT del Usuario',
             description: 'Identificación única del usuario en formato chileno de RUT',
             example: '10234945-K',
           })
@@ -14,7 +14,7 @@
           @ApiProperty({
             type: 'string',
             title: 'Contraseña',
-            description: 'Contraseña del usuario, debe tener al menos 8 caracteres y 20 caracteres maximo',
+            description: 'Contraseña del usuario, debe tener al menos 8 caracteres y 20 caracteres máximo',
             example: 'password123',
           })
           public contrasena: string;

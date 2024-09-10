@@ -82,18 +82,64 @@ return JSON.stringify(resultado);
   @ApiResponse({ status: 200, description: 'Usuario encontrado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @Get(':rut')
-  findOne(@Param('rut') rut: string): string {
-    return `[{
-      rutUsuario: ${rut},
-      contrasena: 'atila123',
-      nombre: 'Atila',
-      apePaterno: 'El',
-      apeMaterno: 'Grande',
-      correoElectronico: 'atila.el.grande@example.com',
-      telefono: '+56911111111',
-      rolUsuario: UserRole.CLIENTE
-    }]`;
+  obtenerUsuariosRut(
+    @Param('rut') rut: string,
+  ):string{//}: Usuario[] {
+    //return 'Este método retorna todos los usuarios';
+    const usuarios = [
+      {
+      rutUsuario: '10234945-K',
+      contrasena: 'password123',
+      nombre: 'Juan',
+      apePaterno: 'Pérez',
+      apeMaterno: 'González',
+      correoElectronico: 'juan.perez@example.com',
+      telefono: '+56912345678',
+      rolUsuario: UserRole.CLIENTE,
+    },
+    {rutUsuario: '13257114-1',
+      contrasena: 'laterribleclave',
+      nombre: 'Paola',
+      apePaterno: 'Navia',
+      apeMaterno: 'Abarza',
+      correoElectronico: 'paola.navia@example.com',
+      telefono: '+5684538299',
+      rolUsuario: UserRole.ADMINISTRADOR,
+    },
+    {rutUsuario: '11111111-1',
+      contrasena: 'tiger',
+      nombre: 'Jhon',
+      apePaterno: 'Smith',
+      apeMaterno: 'Brown',
+      correoElectronico: 'Jhon.Smith@example.com',
+      telefono: '+58912563278',
+      rolUsuario: UserRole.MANAGER,
+    },
+    {rutUsuario: '1-1',
+      contrasena: '',
+      nombre: '',
+      apePaterno: '',
+      apeMaterno: '',
+      correoElectronico: '',
+      telefono: '',
+      rolUsuario: UserRole.INVITADO,
+    }
+  ];
+ // Filtrar por marca y precio si están presentes
+ const resultado = usuarios.filter(usuarios => {
+  return (
+    (!rut || usuarios.rutUsuario == rut)
+  );
+});
+
+if (resultado.length == 0) {
+  throw new NotFoundException('Usuario(s) no encontrado(s).');
+}
+
+return JSON.stringify(resultado);
+
   }
+
 
   @ApiTags('Crear Usuarios')
   @ApiOperation({ summary: 'Crear nuevo usuario' })

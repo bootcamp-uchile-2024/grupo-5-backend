@@ -76,7 +76,7 @@ export class CreateProductoDto {
         example: ['images/2653_001.jpg', 'images/2653_002.jpg']}) 
         @IsArray({message: 'La Ruta de las Imágenes del Producto deben ser un arreglo de strings'})
         // @Length(1, 255, { message: 'El tamaño de la Ruta de las Imágenes debe tener entre 1 y 255 caracteres.' })
-        @ArrayNotEmpty({ message: 'El array de rutas de imágenes no puede estar vacío.' })
+        @ArrayNotEmpty({ message: 'El arreglo de rutas de imágenes no puede estar vacío.' })
         @IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
    public imagenes: string[];
 

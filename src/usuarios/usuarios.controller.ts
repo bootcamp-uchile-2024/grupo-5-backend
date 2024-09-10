@@ -1,23 +1,29 @@
-import {   Controller,   Get,   Post,   Body,   Param,   Delete,   Put } from '@nestjs/common';
+import {   Controller,   Get,   Post,   Body,   Param,   Delete,   Put, Query, NotFoundException, UsePipes, ValidationPipe, BadRequestException } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
-import { CreateUsuarioDtoSal } from './dto/create-usuario-sal.dto';
-import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-import {   ApiBody,   ApiOperation,   ApiParam,   ApiResponse,   ApiTags } from '@nestjs/swagger';
+import { UsuarioDto } from './dto/read-usuario.dto';
+import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
+import {   ApiBody,   ApiOperation,   ApiParam,   ApiQuery,   ApiResponse,   ApiTags } from '@nestjs/swagger';
 import { Usuario } from './entities/usuario.entity';
 import { UserRole } from './entities/rol';
+import { CreateProductoDto } from 'src/productos/dto/create-producto.dto';
+import { EliminaUsuarioDto } from './dto/delete-usuario.dto';
 
-@Controller('Usuarios')
+@Controller('usuarios')
 export class UsuariosController {
 
   @ApiTags('Buscar Usuarios')
   @ApiOperation({ summary: 'Obtener el listado de todos los usuarios' })
   @ApiResponse({ status: 200, description: 'Obtiene todos los usuarios' })
   @ApiResponse({ status: 404, description: 'No se encontraron usuarios' })
+  @ApiQuery({ name: 'rolUsuario', required: false, description: 'Rol del Usuario', enum: UserRole })
   @Get()
-  findAll(): Usuario[] {
+  obtenerUsuarios(
+    @Query('rolUsuario') rolUsuario: UserRole,
+  ):string{//}: Usuario[] {
     //return 'Este método retorna todos los usuarios';
-    return [{
+    const usuarios = [
+      {
       rutUsuario: '10234945-K',
       contrasena: 'password123',
       nombre: 'Juan',
@@ -35,7 +41,39 @@ export class UsuariosController {
       correoElectronico: 'paola.navia@example.com',
       telefono: '+5684538299',
       rolUsuario: UserRole.ADMINISTRADOR,
-    }];
+    },
+    {rutUsuario: '11111111-1',
+      contrasena: 'tiger',
+      nombre: 'Jhon',
+      apePaterno: 'Smith',
+      apeMaterno: 'Brown',
+      correoElectronico: 'Jhon.Smith@example.com',
+      telefono: '+58912563278',
+      rolUsuario: UserRole.MANAGER,
+    },
+    {rutUsuario: '1-1',
+      contrasena: '',
+      nombre: '',
+      apePaterno: '',
+      apeMaterno: '',
+      correoElectronico: '',
+      telefono: '',
+      rolUsuario: UserRole.INVITADO,
+    }
+  ];
+ // Filtrar por marca y precio si están presentes
+ const resultado = usuarios.filter(usuarios => {
+  return (
+    (!rolUsuario || usuarios.rolUsuario == rolUsuario)
+  );
+});
+
+if (resultado.length === 0) {
+  throw new NotFoundException('Usuario(s) no encontrado(s).');
+}
+
+return JSON.stringify(resultado);
+
   }
 
   @ApiTags('Buscar Usuarios')
@@ -53,6 +91,7 @@ export class UsuariosController {
       apeMaterno: 'Grande',
       correoElectronico: 'atila.el.grande@example.com',
       telefono: '+56911111111',
+      rolUsuario: UserRole.CLIENTE
     }]`;
   }
 
@@ -62,137 +101,38 @@ export class UsuariosController {
   @ApiResponse({ status: 200, description: 'Usuario creado.' })
   @ApiResponse({ status: 409, description: 'Usuario ya existe.' })
   @Post()
-  create(@Body() createItemDto: any): string {
-    return 'Usuario ingresado con exito.';
+  create(@Body() createUsuarioDto: CreateUsuarioDto): string {
+    const { rutUsuario } = createUsuarioDto;
+    // Validar que el RUT no contenga solo espacios
+    if (!rutUsuario.trim()) {
+      throw new BadRequestException('El RUT no puede estar vacío o contener solo espacios en blanco');
+    }
+
+    return `Usuario con RUT: ${rutUsuario} creado con éxito.`;
   }
 
   @ApiTags('Actualizar Usuarios')
   @ApiOperation({ summary: 'Actualizar usuario por RUT' })
-  @ApiBody({ type: CreateUsuarioDto })
+  @ApiBody({ type: ActualizaUsuarioDto })
   @ApiResponse({ status: 200, description: 'Usuario actualizado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
   @Put(':rut')
-  update(@Param('rut') rut: string, @Body() updateItemDto: UpdateUsuarioDto): string {
-    return `Se actualiza el usuario con rut: ${rut} con éxito.`;
+  @UsePipes(new ValidationPipe())
+  update(@Param('rut') rut: string, @Body() actualizaUsuarioDto: ActualizaUsuarioDto): string {
+    return `El usuario con rut: ${rut} se actualizó con éxito.`;
   }
 
   @ApiTags('Eliminar Usuarios')
   @ApiOperation({ summary: 'Eliminar usuario por su RUT' })
+  @ApiBody({ type: EliminaUsuarioDto })
   @ApiResponse({ status: 200, description: 'Usuario eliminado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
   @Delete(':rut')
-  remove(@Param('rut') rut: string): string {
-    return `Este método elimina un usuario por su rut: ${rut}`;
+  remove(@Param() eliminaUsuarioDto: EliminaUsuarioDto): string {
+    const { rut } = eliminaUsuarioDto;
+    return `El  usuario  RUT: ${rut} fue eliminado con exito.`;
   }
 
-// Dto de Salida
-
-  @ApiTags('Buscar Usuarios')
-  @ApiOperation({ summary: 'Obtener el listado de todos los usuarios' })
-  @ApiResponse({ status: 200, description: 'Obtiene todos los usuarios.', type: CreateUsuarioDtoSal, }) // Referencia al DTO de salida
-  @ApiResponse({ status: 404, description: 'No se encontraron usuarios.' })
-  @Get()
-  findAllOut(): CreateUsuarioDtoSal[] {
-    // Simulación de retorno de datos (debería ser reemplazado por la lógica real)
-    return [{
-      rutUsuario: '10234945-K',
-      contrasena: 'password123',
-      nombre: 'Juan',
-      apePaterno: 'Pérez',
-      apeMaterno: 'González',
-      correoElectronico: 'juan.perez@example.com',
-      telefono: '+56912345678',
-      // preferencias: [],
-      // historialCompras: [],
-      // mascotas: [],
-      // notificaciones: [],
-    }];
-  }
-
-  @ApiTags('Buscar Usuarios')
-  @ApiOperation({ summary: 'Obtener usuario por RUT' })
-  @ApiParam({ name: 'rut', description: 'RUT del usuario' })
-  @ApiResponse({    status: 200,    description: 'Usuario encontrado.',    type: CreateUsuarioDtoSal,  }) // Referencia al DTO de salida
-  @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  @Get(':rut')
-  findOneOut(@Param('rut') rut: string): CreateUsuarioDtoSal {
-    // Simulación de retorno de datos (debería ser reemplazado por la lógica real)
-    return {
-      rutUsuario: rut,
-      contrasena: 'password123',
-      nombre: 'Juan',
-      apePaterno: 'Pérez',
-      apeMaterno: 'González',
-      correoElectronico: 'juan.perez@example.com',
-      telefono: '+56912345678',
-      // preferencias: [],
-      // historialCompras: [],
-      // mascotas: [],
-      // notificaciones: [],
-    };
-  }
-
-  @ApiTags('Crear Usuarios')
-  @ApiOperation({ summary: 'Crear nuevo usuario' })
-  @ApiBody({ type: CreateUsuarioDto })
-  @ApiResponse({ status: 200, description: 'Usuario creado.', type: CreateUsuarioDtoSal,   }) // Referencia al DTO de salida
-  @ApiResponse({ status: 409, description: 'Usuario ya existe.' })
-  @Post()
-  createOut(@Body() createItemDtoSal: CreateUsuarioDtoSal): CreateUsuarioDtoSal {
-    // Simulación de retorno de datos (debería ser reemplazado por la lógica real)
-    return {
-      rutUsuario: '10234945-K',
-      contrasena: 'password123',
-      nombre: 'Juan',
-      apePaterno: 'Pérez',
-      apeMaterno: 'González',
-      correoElectronico: 'juan.perez@example.com',
-      telefono: '+56912345678',
-      // preferencias: [],
-      // historialCompras: [],
-      // mascotas: [],
-      // notificaciones: [],
-    };
-  }
-
-//  @ApiTags('Actualizar Usuarios')
-//  @ApiBody({ type: UpdateUsuarioDto })
-//  @ApiResponse({
-//    status: 200,
-//    description: 'Usuario actualizado',
-//    type: CreateUsuarioDtoSal, // Referencia al DTO de salida
-//  })
-
-  // @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  // @ApiOperation({ summary: 'Actualizar usuario por RUT' })
-  // @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
-  // @Put(':rut')
-  // updateOut(@Param('rut') rut: string, @Body() updateItemDto: UpdateUsuarioDto): CreateUsuarioDtoSal {
-    // // Simulación de retorno de datos (debería ser reemplazado por la lógica real)
-    // return {
-      // rutUsuario: rut,
-      // contrasena: updateItemDto.contrasena,
-      // nombre: updateItemDto.nombre,
-      // apePaterno: updateItemDto.apePaterno,
-      // apeMaterno: updateItemDto.apeMaterno,
-      // correoElectronico: updateItemDto.correoElectronico,
-      // telefono: updateItemDto.telefono,
-      //  preferencias: [],
-      //  historialCompras: [],
-      //  mascotas: [],
-      //  notificaciones: [],
-    // };
-  // }
-
-  @ApiTags('Eliminar Usuarios')
-  @ApiResponse({ status: 200, description: 'Usuario eliminado' })
-  @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  @ApiOperation({ summary: 'Eliminar usuario por su RUT' })
-  @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
-  @Delete(':rut')
-  removeOut(@Param('rut') rut: string): string {
-    return `Este método elimina un usuario por su rut: ${rut}`;
-  }
 }

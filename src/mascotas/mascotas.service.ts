@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMascotaDto } from './dto/create-mascota.dto';
-import { UpdateMascotaDto } from './dto/update-mascota.dto';
+import { MascotaDto } from './dto/read-mascota.dto';
+import { ActualizarMascotaDto } from './dto/update-mascota.dto';
 
 @Injectable()
 export class MascotasService {
-  create(createMascotaDto: CreateMascotaDto) {
+  create(createMascotaDto: MascotaDto) {
     return 'This action adds a new mascota';
   }
 
@@ -16,7 +16,7 @@ export class MascotasService {
     return `This action returns a #${id} mascota`;
   }
 
-  update(id: number, updateMascotaDto: UpdateMascotaDto) {
+  update(id: number, actualizarMascotaDto: ActualizarMascotaDto) {
     return `This action updates a #${id} mascota`;
   }
 

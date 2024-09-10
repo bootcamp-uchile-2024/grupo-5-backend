@@ -24,8 +24,9 @@ export class ProductosController {
   @Get()
   obtenerCatalogo(
     @Query('marca') marca: string, 
-    @Query('precio', new ParseIntPipe({errorHttpStatusCode: 400 })) precio: number): string{ // CatalogoProductoDto[] {
-      // Preguntar al profe cómo obtener resultados si el precio está vacio
+   // @Query('precio', new ParseIntPipe({errorHttpStatusCode: 400 })) precio: number): string{ // CatalogoProductoDto[] {
+    @Query('precio') precio?: number): string { // CatalogoProductoDto[] {         //MODIFIQUE ACA
+   // Preguntar al profe cómo obtener resultados si el precio está vacio
       //  y usando el ParseIntPipe
       
       const productos = [
@@ -42,20 +43,19 @@ export class ProductosController {
      marca: 'Royal Canin',
      precio: 85000,
      imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg']
- },
-   // Otros productos pueden añadirse aquí
+   },
  ];
 
  // Filtrar por marca y precio si están presentes
  const resultado = productos.filter(producto => {
    return (
-     (!marca || producto.marca === marca) && 
-     (!precio || producto.precio === precio)
+     (!marca || producto.marca.toLowerCase() === marca.toLowerCase()) &&   //MODIFIQUE ACA 
+     (!precio || producto.precio == precio)                                //MODIFIQUE ACA
    );
  });
 
  if (resultado.length === 0) {
-   throw new NotFoundException('Producto no encontrado.');
+   throw new NotFoundException('Producto(s) no encontrado(s).');
  }
 
  return JSON.stringify(resultado);
@@ -89,10 +89,10 @@ export class ProductosController {
 
 
   @ApiTags('Crear Producto')
+  @ApiOperation({ summary: 'Crear nuevo producto' })
   @ApiBody({ type: CreateProductoDto })
   @ApiResponse({ status: 200, description: 'Producto creado con éxito' })
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
-  @ApiOperation({ summary: 'Crear nuevo producto' })
   @Post()
   @UsePipes(new ValidationPipe())
   createProduct(@Body() createProductoDto: CreateProductoDto): string {
@@ -122,10 +122,6 @@ export class ProductosController {
   remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): string {
     return `El producto ${id} fue eliminado con éxito.`;
   }
-
-
-
-
 
 
 }

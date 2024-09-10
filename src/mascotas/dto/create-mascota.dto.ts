@@ -1,141 +1,122 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsArray, IsNotEmpty, IsNumber, IsString, Length, Max, Min } from 'class-validator';
 
 export class CreateMascotaDto {
 
-     // @ApiProperty()
-     // public idMascota: number;
-  
 
-     @ApiProperty({
-      type: 'string',
-      title: 'Rut del Usuario',
-      description: 'Identificación única del usuario dueno de la mascota',
-      example: '10234945-K',
-      minLength: 9,                   // Tamaño minimo
-      maxLength: 10,                  // Tamaño maximo
-      pattern: '^\\d{7,8}-[\\dkK]$',  // Valida el formato del RUT chileno
-      required: true,                 // Indica si es obligatorio
-      nullable: false,                // Indica si el valor puede ser nulo
-      readOnly: false,                // Indica si el valor es de solo lectura
-      writeOnly: true,                // Indica si el valor es de solo escritura
-      deprecated: false,})            // Indica si el valor esta obsoleto
+      @ApiProperty({
+                    type: 'string', 
+                    title: 'Rut de Usuario',
+                    description: 'Identificación única del dueño de la mascota en formato chileno de RUT',
+                    example: '10234945-K',
+                    minLength: 9,
+                    maxLength: 10,
+                    pattern: '^\\d{7,8}-[\\dkK]$',
+                    required: true})
+                    @IsString({message: 'El Rut del Usuario debe ser un string'})
+                    @Length(9, 10, { message: 'El Rut del Producto debe tener entre 9 y 10 caracteres. (Incluyendo - y DV)' })            
       public rutUsuario: string;
 
       @ApiProperty({
-         type: 'number',
-         title: 'Id de la mascota',
-         description: 'Identificador de la Mascota',
-         example: 23535,
-         minLength: 1,                   // Tamaño minimo
-         maxLength: 1000000000,          // Tamaño maximo
-         pattern: '/^\d+$/',             // Valida el formato numerico
-         required: true,                 // Indica si es obligatorio
-         nullable: false,                // Indica si el valor puede ser nulo
-         readOnly: true,                // Indica si el valor es de solo lectura
-         writeOnly: false,                // Indica si el valor es de solo escritura
-         deprecated: false,})            // Indica si el valor esta obsoleto
+                    type: 'number', 
+                    title: 'Id Mascota',
+                    description: 'Identificación unica de la Mascota',
+                    minLength: 2,
+                    maxLength: 6,
+                    required: true,
+                    example: 23535})
+                    @IsNumber({}, {message: 'El Identificador de la Mascota debe ser un número'})
+                    @IsNotEmpty({message: 'El Identificador de la Mascota no puede estar vacío'})
+                    @Min(1, { message: 'El Identificador de la Mascota debe ser al menos 1.' })
+                    @Max(999999, { message: 'El Identificador de la Mascota no debe exceder los 999999.' })
       public idMascota: number;
 
       @ApiProperty({
-         type: 'string',
-         title: 'Nombre Mascota',
-         description: 'Nombre de la Mascota',
-         example: 'Snoopy',
-         minLength: 2,                   // Tamaño minimo
-         maxLength: 10,                  // Tamaño maximo
-         required: true,                 // Indica si es obligatorio
-         nullable: false,                // Indica si el valor puede ser nulo
-         readOnly: false,                // Indica si el valor es de solo lectura
-         writeOnly: true,                // Indica si el valor es de solo escritura
-         deprecated: false,})            // Indica si el valor esta obsoleto
+                    type: 'string',
+                    title: 'Nombre Mascota',
+                    description: 'Nombre de la Mascota',
+                    required: true,
+                    minLength: 2,
+                    maxLength: 50,  
+                    nullable: false,
+                    example: 'Snoopy'})
+                    @IsString({message: 'El Nombre de la Mascota debe ser un string'})
+                    @Length(2, 50, { message: 'El Nombre de la Mascota debe tener entre 2 y 50 caracteres.' })
+                    @IsNotEmpty({message: 'El Nombre de la Mascota no puede estar vacía'})
       public nombre: string;
 
+      @ApiProperty({type: 'string',
+            title: 'Categoría Mascota',
+            description: 'Categóría de la Mascota',
+            required: true,
+            minLength: 2,
+            maxLength: 50, 
+            example: 'Perro'})
+            @IsString({message: 'La Categoría de la Mascota debe ser un string'})
+            @IsNotEmpty({message: 'La Categoría de la Mascota no puede estar vacía'})
+            @Length(2, 50, { message: 'La Categoría de la Mascota debe tener entre 2 y 50 caracteres.' })
+      public categoria: string;
+      
       @ApiProperty({
-         type: 'number',
-         title: 'Edad de la Mascota',
-         description: 'Edad en años de la Mascota',
-         example: 3,
-         minLength: 1,                   // Tamaño minimo
-         maxLength: 2,                   // Tamaño maximo
-         pattern: '/^\d+$/',             // Valida el formato numerico
-         required: false,                 // Indica si es obligatorio
-         nullable: true,                // Indica si el valor puede ser nulo
-         readOnly: false,                // Indica si el valor es de solo lectura
-         writeOnly: true,                // Indica si el valor es de solo escritura
-         deprecated: false,})            // Indica si el valor esta obsoleto
+                   type: 'string', 
+                   title: 'Raza de la Mascota',
+                   description: 'Raza de la Mascota',
+                   required: true,
+                   minLength: 2,
+                   maxLength: 50, 
+                   example: 'Beagle'})
+                   @IsString({message: 'La Raza de la Mascota debe ser un string'})
+                   @IsNotEmpty({message: 'La Raza de la Mascota no puede estar vacía'})
+                   @Length(2, 50, { message: 'La Raza de la Mascota debe tener entre 2 y 50 caracteres.' })
+      public raza: string;
+
+      @ApiProperty({
+                    type: 'number',
+                    title: 'Edad de la Mascota',
+                    description: 'Edad en años de la Mascota',
+                    required: true,
+                    minLength: 1,
+                    maxLength: 3, 
+                    example: 3})
+                    @IsNumber({}, {message: 'La Edad de la Mascota debe ser un número'})
+                    @IsNotEmpty({message: 'La Edad de la Mascota no puede estar vacío'})
+                    @Min(1, { message: 'La Edad de la Mascota debe ser al menos 1.' })
+                    @Max(999, { message: 'La Edad de la Mascota no debe exceder los 999 años.' })
       public edad: number;
 
 
       @ApiProperty({
-         type: 'string',
-         title: 'Raza de la Mascota',
-         description: 'Raza de la Mascota',
-         example: 'Beagle',
-         minLength: 2,                   // Tamaño minimo
-         maxLength: 30,                  // Tamaño maximo
-         required: false,                // Indica si es obligatorio
-         nullable: true,                 // Indica si el valor puede ser nulo
-         readOnly: false,                // Indica si el valor es de solo lectura
-         writeOnly: true,                // Indica si el valor es de solo escritura
-         deprecated: false,})            // Indica si el valor esta obsoleto
-      public raza: string;
-
-      
-      @ApiProperty({
-         type: 'string',
-         title: 'Imagen de la Mascota',
-         description: 'Ruta del archivo imagen',
-         example: './images/Snoopy.jpg',
-         minLength: 50,                   // Tamaño minimo
-         maxLength: 100,                  // Tamaño maximo
-         required: false,                // Indica si es obligatorio
-         nullable: true,                 // Indica si el valor puede ser nulo
-         readOnly: false,                // Indica si el valor es de solo lectura
-         writeOnly: true,                // Indica si el valor es de solo escritura
-         deprecated: false,})            // Indica si el valor esta obsoleto
+                    type: 'string', 
+                    title: 'Imagen de la Mascota',
+                    description: 'Ruta del archivo imagen',
+                    required: false,
+                    maxLength: 255,
+                    example: './images/Snoopy.jpg'})
+                    @IsString({message: 'La Ruta de la Imagen de la Mascota debe ser un string'})
+                    @Length(0, 255, { message: 'La Ruta de la Imagen de la Mascota no debe ser superior a los 255 caracteres.' })
       public imagen?: string;
 
-  
-      @ApiProperty({
-         type: 'string[]',
-         title: 'Afeccciones de la Mascota',
-         description: 'Listado de afeccciones de la Mascota',
-         example: ['Rabia','Tiña'],
-         minLength: 50,                   // Tamaño minimo
-         maxLength: 100,                  // Tamaño maximo
-         required: false,                // Indica si es obligatorio
-         nullable: true,                 // Indica si el valor puede ser nulo
-         readOnly: false,                // Indica si el valor es de solo lectura
-         writeOnly: true,                // Indica si el valor es de solo escritura
-         deprecated: false,})            // Indica si el valor esta obsoleto
+      @ApiProperty(
+                   {type: 'string[]', 
+                   title: 'Afeccciones de la Mascota',
+                   description: 'Listado de afeccciones de la Mascota',
+                   required: false,
+                   maxLength: 30,
+                   example: ['Rabia','Tiña']})
+                   @IsArray({message: 'El Listado de afeccciones de la Mascota deben ser un arreglo de strings'})
+                   @IsString({ each: true, message: 'Cada una de las afecciones debe ser una cadena de texto.' })
       public afeccionesSalud?: string[];
 
-      
-      @ApiProperty({
-         type: 'string[]',
-         title: 'Preferencias de la Mascota',
-         description: 'Listado de preferencias de la Mascota',
-         example: ['ProPlan','RoyalCanin'],
-         minLength: 50,                   // Tamaño minimo
-         maxLength: 200,                  // Tamaño maximo
-         required: true,                // Indica si es obligatorio
-         nullable: true,                 // Indica si el valor puede ser nulo
-         readOnly: false,                // Indica si el valor es de solo lectura
-         writeOnly: true,                // Indica si el valor es de solo escritura
-         deprecated: false,})            // Indica si el valor esta obsoleto
+      @ApiProperty({type: 'string[]', 
+                    title: 'Preferencias de la Mascota',
+                    description: 'Listado de preferencias de la Mascota',
+                    required: false,
+                    maxLength: 50,
+                    example: ['ProPlan','RoyalCanin']})
+                    @IsArray({message: 'El Listado de Preferencias de la Mascota deben ser un arreglo de strings'})
+                    @IsString({ each: true, message: 'Cada una de las preferencia de la Mascota debe ser una cadena de texto.' })
       public preferencias?: string[];
       
       //@ApiProperty()
-      // type: 'HistorialClinico[]',
-      // title: 'Historial Clinico',
-      // description: 'Listado de las atenciones medicas Mascota',
-      // example: ['Picadura Insecto','Cortar la cola'],
-      // minLength: 50,                   // Tamaño minimo
-      // maxLength: 200,                  // Tamaño maximo
-      // required: false,                // Indica si es obligatorio
-      // nullable: true,                 // Indica si el valor puede ser nulo
-      // readOnly: false,                // Indica si el valor es de solo lectura
-      // writeOnly: true,                // Indica si el valor es de solo escritura
-      // deprecated: false,})            // Indica si el valor esta obsoleto
      // public historialClinico: HistorialClinico[];
   }

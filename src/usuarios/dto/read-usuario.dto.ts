@@ -1,7 +1,8 @@
 
       import { ApiProperty } from '@nestjs/swagger';
+      import { UserRole } from '../entities/rol';
 
-      export class CreateUsuarioDtoSal {  
+      export class UsuarioDto {  
       
         @ApiProperty({
             type: 'string',
@@ -58,6 +59,14 @@
             example: '+56912345678',          
           })
           public telefono: string;
+
+          @ApiProperty({
+            type: 'string',
+            enum: UserRole, // Aquí se especifica el enum
+            description: 'Rol del usuario en el sistema',
+            example: UserRole.CLIENTE,
+          })
+          public rolUsuario: UserRole;
       
         //  @ApiProperty({
         //    type: 'array',

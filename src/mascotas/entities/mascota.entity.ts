@@ -9,6 +9,8 @@ export class Mascota {
 
       public edad: number;
 
+      public categoria: string;
+
       public raza: string;
 
       public imagen: string;

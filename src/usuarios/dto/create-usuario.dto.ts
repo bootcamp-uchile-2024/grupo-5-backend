@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { UserRole } from '../entities/rol';
-import { IsNotEmpty, IsString, Length, Matches } from 'class-validator';
+import { IsNotEmpty, IsString, Length, Matches, Validate } from 'class-validator';
+import { IsRut } from 'src/commons/validator/is-rut.decorator';
+import { IsRutConstraint } from 'src/commons/validator/is-rut.constraint';
 
 export class CreateUsuarioDto {  
 
@@ -14,9 +16,12 @@ export class CreateUsuarioDto {
         pattern: "^\\d{7,8}-[\\dkK]$",  // Valida el formato del RUT chileno
         required: true,                 // Indica si es obligatorio
         nullable: false})                // Indica si el valor puede ser nulo
+        @IsRut({ message: 'El RUT ingresado no es válido.' })
+        //@Validate (IsRutConstraint,{ message: 'El RUT ingresado no es válido.'})
         @IsNotEmpty({ message: 'El RUT no puede ser vacío' })
         @IsString({message: 'El Rut del Usuario debe ser un string'})
         @Length(9, 10, { message: 'El Rut del Usuario debe tener entre 9 y 10 caracteres.' })
+        
       public rutUsuario: string;
       
     @ApiProperty({

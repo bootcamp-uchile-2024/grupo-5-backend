@@ -25,7 +25,7 @@ import { Response } from 'express';
         statusCode: status,
         message,
       });
-      console.log('######################### FINBAL FILTRO DE EXCEPCIONES #######################\n');
+      console.log('######################### FINAL FILTRO DE EXCEPCIONES #######################\n');
     }
   }
 

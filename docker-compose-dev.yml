@@ -1,0 +1,10 @@
+version: '1.0.0'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    env_file:
+      - .env.desarrollo
+    ports:
+      - "${PORT}:${PORT}"

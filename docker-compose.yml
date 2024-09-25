@@ -1,0 +1,8 @@
+version: '1.0.0'
+services:
+  app:
+    image: rodrigo74/grupo-5-backend:1.0.0
+    env_file:
+      - .env.produccion
+    ports:
+      - "${PORT}:${PORT}"

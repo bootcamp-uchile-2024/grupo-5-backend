@@ -68,9 +68,9 @@ export class ProductosController {
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Obtener producto por Id' })
   @Get(':id')
-  buscarDetalleProducto(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): string { //DetalleProductoDto {
-    return `{
-      id:${id} ,
+  buscarDetalleProducto(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number) { //DetalleProductoDto {
+    return {
+      id: {id} ,
       nombre: 'Royal Canin Medium Puppy Alimento para Perro',
       marca: 'Royal Canin',
       descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
@@ -84,8 +84,8 @@ export class ProductosController {
       origen: 'Francia',
       vidaUtil: '12 meses',
       recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
-      }`;
-  }
+      };
+  }
 
 
   @ApiTags('Crear Producto')

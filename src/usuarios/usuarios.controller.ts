@@ -83,7 +83,7 @@ return JSON.stringify(resultado);
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @Get(':rut')
   obtenerUsuariosRut(
-    @Param('rut') rut: string,
+    @Query('rut') rut: string,
   ):string{//}: Usuario[] {
     //return 'Este método retorna todos los usuarios';
     const usuarios = [
@@ -132,7 +132,7 @@ return JSON.stringify(resultado);
   );
 });
 
-if (resultado.length == 0) {
+if (resultado.length === 0) {
   throw new NotFoundException('Usuario(s) no encontrado(s).');
 }
 
@@ -147,6 +147,7 @@ return JSON.stringify(resultado);
   @ApiResponse({ status: 200, description: 'Usuario creado.' })
   @ApiResponse({ status: 409, description: 'Usuario ya existe.' })
   @Post()
+  @UsePipes(new ValidationPipe())
   create(@Body() createUsuarioDto: CreateUsuarioDto): string {
     const { rutUsuario } = createUsuarioDto;
     // Validar que el RUT no contenga solo espacios

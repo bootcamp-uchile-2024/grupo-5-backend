@@ -22,19 +22,15 @@ Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Hay
 ### Ejemplo de archivo `.env.dev`
 
 ```plaintext
-NODE_ENV=development
+NODE_ENV=desarrollo
 PORT=3000
-DATABASE_URL=mongodb://localhost:27017/dev_db
-JWT_SECRET=desarrollo_supersecreto
 ```
 
 ### Ejemplo de archivo `.env.prod`
 
 ```plaintext
-NODE_ENV=production
+NODE_ENV=producción
 PORT=8080
-DATABASE_URL=mongodb://localhost:27017/prod_db
-JWT_SECRET=produccion_supersecreto
 ```
 
 ## Configuración y ejecución del proyecto

@@ -16,21 +16,21 @@ Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu
 
 Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Hay dos archivos de configuración que puedes utilizar dependiendo del entorno:
 
-- `.env.dev`: Variables de entorno para el ambiente de **desarrollo**.
-- `.env.prod`: Variables de entorno para el ambiente de **producción**.
+- `.env.desarrollo`: Variables de entorno para el ambiente de **desarrollo**.
+- `.env.produccion`: Variables de entorno para el ambiente de **producción**.
 
-### Ejemplo de archivo `.env.dev`
+### Ejemplo de archivo `.env.desarrollo`
 
 ```plaintext
 NODE_ENV=desarrollo
 PORT=3000
 ```
 
-### Ejemplo de archivo `.env.prod`
+### Ejemplo de archivo `.env.produccion`
 
 ```plaintext
 NODE_ENV=producción
-PORT=8080
+PORT=80
 ```
 
 ## Configuración y ejecución del proyecto
@@ -48,9 +48,9 @@ cd grupo-5-backend
 
 Para levantar el proyecto en un ambiente de **desarrollo**, sigue los siguientes pasos:
 
-#### a. Crear el archivo `.env.dev`
+#### a. Crear el archivo `.env.desarrollo`
 
-Copia el contenido del ejemplo de `.env.dev` y guárdalo como `.env.dev` en la raíz del proyecto. Asegúrate de ajustar las variables según tu configuración local.
+Copia el contenido del ejemplo de `.env.desarrollo` y guárdalo como `.env.desarrollo` en la raíz del proyecto. Asegúrate de ajustar las variables según tu configuración local.
 
 #### b. Construir y levantar los contenedores
 
@@ -87,7 +87,7 @@ Para levantar el proyecto en un ambiente de **producción**, sigue los siguiente
 
 #### a. Crear el archivo `.env.prod`
 
-Copia el contenido del ejemplo de `.env.prod` y guárdalo como `.env.prod` en la raíz del proyecto. Asegúrate de ajustar las variables según tu configuración de producción.
+Copia el contenido del ejemplo de `.env.produccion` y guárdalo como `.env.produccion` en la raíz del proyecto. Asegúrate de ajustar las variables según tu configuración de producción.
 
 #### b. Construir y levantar los contenedores
 
@@ -156,7 +156,7 @@ docker login
 ### b. Crear la imagen
 
 ```bash
-docker build -t tu_usuario/tu_proyecto_backend:latest .
+docker build -t tu_usuario/tu_proyecto_backend:lates .
 ```
 
 ### c. Subir la imagen a Docker Hub

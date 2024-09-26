@@ -85,7 +85,7 @@ docker-compose -f docker-compose.dev.yml down
 
 Para levantar el proyecto en un ambiente de **producción**, sigue los siguientes pasos:
 
-#### a. Crear el archivo `.env.prod`
+#### a. Crear el archivo `.env.produccion`
 
 Copia el contenido del ejemplo de `.env.produccion` y guárdalo como `.env.produccion` en la raíz del proyecto. Asegúrate de ajustar las variables según tu configuración de producción.
 
@@ -97,7 +97,7 @@ Utiliza el archivo `docker-compose.prod.yml` para levantar los servicios de prod
 docker-compose -f docker-compose.prod.yml up --build -d
 ```
 
-Este comando levantará los servicios en segundo plano (`-d` flag) y expondrá la aplicación en el puerto configurado para producción, generalmente `8080`.
+Este comando levantará los servicios en segundo plano (`-d` flag) y expondrá la aplicación en el puerto configurado para producción, generalmente `80`.
 
 #### c. Verificar los contenedores
 
@@ -123,9 +123,9 @@ Si prefieres ejecutar el backend sin Docker en desarrollo, asegúrate de tener N
 npm install
 ```
 
-#### b. Crear archivo `.env.dev`
+#### b. Crear archivo `.env.desarrollo`
 
-Asegúrate de crear un archivo `.env.dev` en la raíz del proyecto con las variables necesarias.
+Asegúrate de crear un archivo `.env.desarrollo` en la raíz del proyecto con las variables necesarias.
 
 #### c. Ejecutar la aplicación
 

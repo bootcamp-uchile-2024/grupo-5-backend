@@ -143,7 +143,7 @@ Esto levantará el servidor en el puerto 3000 por defecto.
 La documentación de la API está disponible en la ruta `/api-docs` si Swagger está habilitado. Visita:
 
 ```
-http://localhost:3000/api-docs
+http://localhost:3000/api
 ```
 
 ## 📦 Publicación de la Imagen en Docker Hub

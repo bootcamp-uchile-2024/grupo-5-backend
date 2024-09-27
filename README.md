@@ -1,18 +1,22 @@
+# 🐾 Petrópolis Backend
 
-# Petrópolis Backend
+[![Node.js](https://img.shields.io/badge/Node.js-14.15.1-green?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/Docker-20.10.7-blue?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Docker Compose](https://img.shields.io/badge/Docker--Compose-1.29.2-blue?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
+[![Swagger](https://img.shields.io/badge/Swagger-API-green?logo=swagger&logoColor=white)](https://swagger.io/)
 
 Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorno para desarrollo y producción utilizando Docker y Docker Compose.
 
-## Requisitos previos
+## 🚀 Requisitos previos
 
 Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu máquina local:
 
 - [Node.js](https://nodejs.org/) (para desarrollo local sin Docker)
 - [Docker](https://www.docker.com/get-started) (para entornos Dockerizados)
 - [Docker Compose](https://docs.docker.com/compose/install/) (para gestionar los servicios Docker)
-- Un editor de texto como Visual Studio Code o similar.
+- Un editor de texto como [Visual Studio Code](https://code.visualstudio.com/) o similar.
 
-## Configuración de las variables de entorno
+## ⚙️ Configuración de las variables de entorno
 
 Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Hay dos archivos de configuración que puedes utilizar dependiendo del entorno:
 
@@ -24,8 +28,8 @@ Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Hay
 ```plaintext
 NODE_ENV=desarrollo
 PORT=3000
-```
 
+```
 ### Ejemplo de archivo `.env.produccion`
 
 ```plaintext
@@ -33,9 +37,8 @@ NODE_ENV=producción
 PORT=80
 ```
 
-## Configuración y ejecución del proyecto
-
-### 1. Clonar el repositorio
+### 🛠️ Configuración y ejecución del proyecto
+### 1️⃣ Clonar el repositorio
 
 Clona este repositorio a tu máquina local:
 
@@ -44,7 +47,7 @@ git clone https://github.com/bootcamp-uchile-2024/grupo-5-backend.git
 cd grupo-5-backend
 ```
 
-### 2. Configuración para Desarrollo
+### 2️⃣ Configuración para Desarrollo
 
 Para levantar el proyecto en un ambiente de **desarrollo**, sigue los siguientes pasos:
 
@@ -81,7 +84,7 @@ Para detener los contenedores cuando termines, ejecuta:
 docker-compose -f docker-compose.dev.yml down
 ```
 
-### 3. Configuración para Producción
+### 3️⃣ Configuración para Producción
 
 Para levantar el proyecto en un ambiente de **producción**, sigue los siguientes pasos:
 
@@ -113,7 +116,7 @@ Para detener los contenedores cuando termines, ejecuta:
 docker-compose -f docker-compose.prod.yml down
 ```
 
-### 4. Ejecución local sin Docker (Opcional)
+### 4️⃣ Ejecución local sin Docker (Opcional)
 
 Si prefieres ejecutar el backend sin Docker en desarrollo, asegúrate de tener Node.js instalado y sigue estos pasos:
 
@@ -135,7 +138,7 @@ npm run start:dev
 
 Esto levantará el servidor en el puerto 3000 por defecto.
 
-### 5. Documentación de la API (Swagger)
+### 5️⃣ Documentación de la API (Swagger)
 
 La documentación de la API está disponible en la ruta `/api-docs` si Swagger está habilitado. Visita:
 
@@ -143,7 +146,7 @@ La documentación de la API está disponible en la ruta `/api-docs` si Swagger e
 http://localhost:3000/api-docs
 ```
 
-## Publicación de la Imagen en Docker Hub
+## 📦 Publicación de la Imagen en Docker Hub
 
 Para crear y subir una imagen en Docker Hub, sigue estos pasos:
 
@@ -171,7 +174,7 @@ No olvides actualizar la descripción y documentación de la imagen en Docker Hu
 
 ---
 
-## Notas adicionales
+## 📝 Notas adicionales
 
 - Si tienes algún problema o pregunta, no dudes en abrir un **issue** en el repositorio.
 - Asegúrate de mantener las dependencias actualizadas con `npm install` en cada actualización del proyecto.

@@ -28,13 +28,12 @@ Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Hay
 ```plaintext
 NODE_ENV=desarrollo
 PORT=3000
-
 ```
 ### Ejemplo de archivo `.env.produccion`
 
 ```plaintext
 NODE_ENV=producción
-PORT=80
+PORT=8080
 ```
 
 ### 🛠️ Configuración y ejecución del proyecto

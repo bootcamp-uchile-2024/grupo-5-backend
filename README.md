@@ -100,7 +100,7 @@ Utiliza el archivo `docker-compose.prod.yml` para levantar los servicios de prod
 docker-compose -f docker-compose.prod.yml up --build -d
 ```
 
-Este comando levantará los servicios en segundo plano (`-d` flag) y expondrá la aplicación en el puerto configurado para producción, generalmente `80`.
+Este comando levantará los servicios en segundo plano (`-d` flag) y expondrá la aplicación en el puerto configurado para producción, generalmente `8080`.
 
 #### c. Verificar los contenedores
 

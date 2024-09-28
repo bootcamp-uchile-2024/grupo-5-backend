@@ -32,14 +32,13 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
    - 7.2. [Branch Principal](#72-branch-principal)
    - 7.3. [Creación de Branches para Desarrollo](#73-creación-de-branches-para-desarrollo)
    - 7.4. [Nomenclatura de las Ramas](#74-nomenclatura-de-las-ramas)
-8. 📞 [Contacto](#8---contacto)
-9. 📝 [Notas adicionales](#9---notas-adicionales)
+8. 📞 [Contacto](#8--contacto)
+9. 📝 [Notas adicionales](#9--notas-adicionales)
 
 
 [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#--Tabla-de-Contenidos)
 
 ## 1. 📋 Requisitos previos [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#--Tabla-de-Contenidos)
-
 
 Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu máquina local:
 

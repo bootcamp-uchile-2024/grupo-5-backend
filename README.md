@@ -7,6 +7,22 @@
 
 Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorno para desarrollo y producción utilizando Docker y Docker Compose.
 
+## 📝 Tabla de Contenidos
+
+- [📚 Petrópolis - API](#-plantopia---api)
+  - [📝 Tabla de Contenidos](#-tabla-de-contenidos)
+  - [🔗 Links](#-links)
+  - [👨🏻‍💻 Autores](#-autores)
+  - [💻 Requisitos Previos (Para Desarrollo)](#-requisitos-previos-para-desarrollo)
+  - [🚀 Levantar la Imagen de Docker](#-levantar-la-imagen-de-docker)
+  - [💻 Instalacion del proyecto](#-instalacion-del-proyecto)
+  - [🏃‍♂️ Ejecutar la APP](#️-ejecutar-la-app)
+  - [📖 Documentacion API 🌎](#-documentacion-api-)
+  - [🌍 Variables de Entorno](#-variables-de-entorno)
+  - [🏛️ Estructura del Proyecto](#️-estructura-del-proyecto)
+  - [📈 Estado del Proyecto](#-estado-del-proyecto)
+  - [📝 License](#-license)
+
 ## 🚀 Requisitos previos
 
 Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu máquina local:

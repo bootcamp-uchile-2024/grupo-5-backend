@@ -4,7 +4,6 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 
 ## 📝 Tabla de Contenidos
 
-- [🐾 Petrópolis - API](#-petropolis---api)
 1. 📋 [Requisitos previos](#1--requisitos-previos-)
 2. 🛠️ [Instalación](#2-%EF%B8%8F-instalación-)
    - 2.1. [Clona el repositorio](#21-clona-el-repositorio)
@@ -12,7 +11,7 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
    - 2.3. [Instala las dependencias](#23-instala-las-dependencias)
 3. ⚙️ [Configuración](#3-%EF%B8%8F-configuración-)
 4. 🛠️ [Ejecución](#4-%EF%B8%8F-ejecución-)
-   - 4.1. 👨‍💻 [Modo Desarrollo](#41-modo-desarrollo)
+   - 4.1. 👨‍💻 [Modo Desarrollo](#41--modo-desarollo)
      - a. [Crear el archivo `.env.desarrollo`](#a-crear-el-archivo-envdesarrollo)
      - b. [Construir y levantar los contenedores](#b-construir-y-levantar-los-contenedores)
      - c. [Verificar los contenedores](#c-verificar-los-contenedores)
@@ -22,7 +21,6 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
      - b. [Construir y levantar los contenedores](#b-construir-y-levantar-los-contenedores-1)
      - c. [Verificar los contenedores](#c-verificar-los-contenedores-1)
      - d. [Detener los contenedores](#d-detener-los-contenedores-1)
-   - 4.3. [Ejecución local sin Docker (Opcional)](#43-ejecución-local-sin-docker-opcional)
 5. 🔀 [Estructura del Proyecto](#5--estructura-del-proyecto-)
 6. 🤖 [Documentación de la API](#6--documentación-de-la-api--)
    - 6.1. [Inicia el proyecto](#61-inicia-el-proyecto)
@@ -35,8 +33,6 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 8. 📞 [Contacto](#8--contacto-)
 9. 📝 [Notas adicionales](#9--notas-adicionales-)
 
-
-[![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#--Tabla-de-Contenidos)
 
 ## 1. 📋 Requisitos previos [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 

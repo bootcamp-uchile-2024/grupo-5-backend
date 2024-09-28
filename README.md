@@ -1,10 +1,5 @@
 # 🐾 Petrópolis Backend
 
-[![Node.js](https://img.shields.io/badge/Node.js-20.13.1-green?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Docker](https://img.shields.io/badge/Docker-20.10.7-blue?logo=docker&logoColor=white)](https://www.docker.com/)
-[![Docker Compose](https://img.shields.io/badge/Docker--Compose-1.29.2-blue?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
-[![Swagger](https://img.shields.io/badge/Swagger-API-green?logo=swagger&logoColor=white)](https://swagger.io/)
-
 Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorno para desarrollo y producción utilizando Docker y Docker Compose.
 
 ## 📝 Tabla de Contenidos
@@ -50,10 +45,28 @@ Lorenzo Baeza
 
 Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu máquina local:
 
-- [Node.js](https://nodejs.org/) : v20.13.1 
-- [Docker](https://www.docker.com/get-started) (para entornos Dockerizados)
-- [Docker Compose](https://docs.docker.com/compose/install/) (para gestionar los servicios Docker)
-- Un editor de texto como [Visual Studio Code](https://code.visualstudio.com/) o similar.
+[![Node.js](https://img.shields.io/badge/Node.js-20.13.1-green?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/Docker-20.10.7-blue?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Docker Compose](https://img.shields.io/badge/Docker--Compose-1.29.2-blue?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
+[![Swagger](https://img.shields.io/badge/Swagger-API-green?logo=swagger&logoColor=white)](https://swagger.io/)
+
+- Nest
+  ```bash
+  npm i -g @nestjs/cli
+  ```
+- Typescript
+  ```bash
+  npm install -g typescript
+  ```
+- Swagger
+  ```bash
+  npm install --save @nestjs/swagger
+  ```
+- Librerias NPM adicionales (Pipes/variables de entorno)
+  ```bash
+  npm i --save @nestjs/config
+  npm install class-validator class-transformer
+  ```
 
 ## ⚙️ Configuración de las variables de entorno
 
@@ -65,14 +78,14 @@ Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Hay
 ### Ejemplo de archivo `.env.desarrollo`
 
 ```plaintext
-NODE_ENV=desarrollo
 PORT=3000
+NODE_ENV=desarrollo
 ```
 ### Ejemplo de archivo `.env.produccion`
 
 ```plaintext
-NODE_ENV=producción
 PORT=8080
+NODE_ENV=produccion
 ```
 
 ### 🛠️ Configuración y ejecución del proyecto
@@ -95,16 +108,12 @@ Copia el contenido del ejemplo de `.env.desarrollo` y guárdalo como `.env.desar
 
 #### b. Construir y levantar los contenedores
 
-Utiliza el archivo `docker-compose.dev.yml` para levantar los servicios de desarrollo:
+Utiliza el archivo `docker-compose.yml` para levantar los servicios de desarrollo:
 
 ```bash
-docker-compose -f docker-compose.dev.yml up --build
+docker-compose --file docker-compose.yml --env-file .env.desarrollo up
 ```
-
-Este comando hará lo siguiente:
-
-- Construirá la imagen de Docker a partir del `Dockerfile`.
-- Levantará los servicios necesarios, como la base de datos (MongoDB, PostgreSQL, etc.) y el backend.
+El comando levanta los contenedores definidos en docker-compose.yml usando las variables de entorno del archivo `.env.desarrollo`.
   
 La aplicación estará corriendo en `http://localhost:3000`.
 

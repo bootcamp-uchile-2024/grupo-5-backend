@@ -6,12 +6,12 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 
 - [🐾 Petrópolis - API](#-petropolis---api)
 1. 📋 [Requisitos previos](#1--requisitos-previos-)
-2. 🛠️ [Instalación](#2--instalación-)
+2. 🛠️ [Instalación](#2-%EF%B8%8F-instalación-)
    - 2.1. [Clona el repositorio](#21-clona-el-repositorio)
    - 2.2. [Entra en el directorio del proyecto](#22-entra-en-el-directorio-del-proyecto)
    - 2.3. [Instala las dependencias](#23-instala-las-dependencias)
-3. ⚙️ [Configuración](#3--configuración-)
-4. 🛠️ [Ejecución](#4--ejecución-)
+3. ⚙️ [Configuración](#3-%EF%B8%8F-configuración-)
+4. 🛠️ [Ejecución](#4-%EF%B8%8F-ejecución-)
    - 4.1. 👨‍💻 [Modo Desarrollo](#41-modo-desarrollo)
      - a. [Crear el archivo `.env.desarrollo`](#a-crear-el-archivo-envdesarrollo)
      - b. [Construir y levantar los contenedores](#b-construir-y-levantar-los-contenedores)
@@ -24,10 +24,10 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
      - d. [Detener los contenedores](#d-detener-los-contenedores-1)
    - 4.3. [Ejecución local sin Docker (Opcional)](#43-ejecución-local-sin-docker-opcional)
 5. 🔀 [Estructura del Proyecto](#5--estructura-del-proyecto-)
-6. 🤖 [Documentación de la API](#6--documentación-de-la-api-)
+6. 🤖 [Documentación de la API](#6--documentación-de-la-api--)
    - 6.1. [Inicia el proyecto](#61-inicia-el-proyecto)
    - 6.2. [Accede a Swagger en tu navegador](#62-accede-a-swagger-en-tu-navegador)
-7. 👷‍♂️ [Flujo de Trabajo para Desarrollo](#7--flujo-de-trabajo-para-desarrollo-)
+7. 👷‍♂️ [Flujo de Trabajo para Desarrollo](#7-%EF%B8%8Fflujo-de-trabajo-para-desarrollo-)
    - 7.1. [Flujo de Trabajo](#71-flujo-de-trabajo)
    - 7.2. [Branch Principal](#72-branch-principal)
    - 7.3. [Creación de Branches para Desarrollo](#73-creación-de-branches-para-desarrollo)
@@ -321,7 +321,7 @@ Si tienes alguna pregunta, no dudes en ponerte en contacto con nosotros a travé
   - [![Lorenzo Baeza](https://img.shields.io/badge/Lorenzo_Baeza-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LENZOZ)
 
 
-## 📝 Notas adicionales [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
+## 9. 📝 Notas adicionales [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 - Si tienes algún problema o pregunta, no dudes en abrir un **issue** en el repositorio.
 - Asegúrate de mantener las dependencias actualizadas con `npm install` en cada actualización del proyecto.

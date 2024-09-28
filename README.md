@@ -9,7 +9,7 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 
 ## 📝 Tabla de Contenidos
 
-- [📚 Petrópolis - API](#-plantopia---api)
+- [📚 Petrópolis - API](#-petropolis---api)
   - [📝 Tabla de Contenidos](#-tabla-de-contenidos)
   - [🔗 Links](#-links)
   - [👨🏻‍💻 Autores](#-autores)
@@ -22,6 +22,26 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
   - [🏛️ Estructura del Proyecto](#️-estructura-del-proyecto)
   - [📈 Estado del Proyecto](#-estado-del-proyecto)
   - [📝 License](#-license)
+
+Rodrigo Alcayaga
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/ralcayaga)
+
+Ányelo Flores
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/anyelofc)
+
+Andree Barait
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/bananin8)
+
+Mauricio Piña
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/mauriciopina)
+
+Lorenzo Baeza
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/LENZOZ)
 
 ## 🚀 Requisitos previos
 

@@ -6,7 +6,7 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 
 - [🐾 Petrópolis - API](#-petropolis---api)
 1. 📋 [Requisitos previos](#1--requisitos-previos)
-2. 🛠️ [Instalación](#2--instalación)
+2. 🛠️ [Instalación](#2--instalacion)
    - 2.1. [Clona el repositorio](#21-clona-el-repositorio)
    - 2.2. [Entra en el directorio del proyecto](#22-entra-en-el-directorio-del-proyecto)
    - 2.3. [Instala las dependencias](#23-instala-las-dependencias)

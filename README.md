@@ -1,6 +1,6 @@
 # 🐾 Petrópolis Backend
 
-[![Node.js](https://img.shields.io/badge/Node.js-14.15.1-green?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20.13.1-green?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Docker](https://img.shields.io/badge/Docker-20.10.7-blue?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Docker Compose](https://img.shields.io/badge/Docker--Compose-1.29.2-blue?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![Swagger](https://img.shields.io/badge/Swagger-API-green?logo=swagger&logoColor=white)](https://swagger.io/)
@@ -22,6 +22,9 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
   - [🏛️ Estructura del Proyecto](#️-estructura-del-proyecto)
   - [📈 Estado del Proyecto](#-estado-del-proyecto)
   - [📝 License](#-license)
+
+
+## 🔗 Links
 
 Rodrigo Alcayaga
 
@@ -47,7 +50,7 @@ Lorenzo Baeza
 
 Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu máquina local:
 
-- [Node.js](https://nodejs.org/) (para desarrollo local sin Docker)
+- [Node.js](https://nodejs.org/) : v20.13.1 
 - [Docker](https://www.docker.com/get-started) (para entornos Dockerizados)
 - [Docker Compose](https://docs.docker.com/compose/install/) (para gestionar los servicios Docker)
 - Un editor de texto como [Visual Studio Code](https://code.visualstudio.com/) o similar.

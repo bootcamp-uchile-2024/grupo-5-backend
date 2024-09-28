@@ -5,11 +5,8 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 ## 📝 Tabla de Contenidos
 
 - [🐾 Petrópolis - API](#-petropolis---api)
-1. 📋 [Requisitos previos](#1-📋-requisitos-previos)
-   - ![Nest CLI](https://img.shields.io/badge/NestCLI-8.2.6-red?logo=nestjs&logoColor=white)
-   - [Node.js](https://nodejs.org/)
-   - [Docker](https://www.docker.com/)
-   - [Docker Compose](https://docs.docker.com/compose/)
+1. 📋 [Requisitos previos](#1.-📋-requisitos-previos)
+1. 📋 [Requisitos previos](#1.-requisitos-previos)
 2. 🛠️ [Instalación](#2-🛠️-instalación)
    - 2.1. [Clona el repositorio](#21-clona-el-repositorio)
    - 2.2. [Entra en el directorio del proyecto](#22-entra-en-el-directorio-del-proyecto)

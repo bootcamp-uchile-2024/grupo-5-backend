@@ -35,7 +35,7 @@ Andree Barait
 
 Mauricio Piña
 
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/mauriciopina)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/mauriciopinavalenzuela)
 
 Lorenzo Baeza
 

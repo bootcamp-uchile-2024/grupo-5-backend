@@ -5,7 +5,11 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 ## 📝 Tabla de Contenidos
 
 - [🐾 Petrópolis - API](#-petropolis---api)
-1. 📋 [Requisitos previos](#1-requisitos-previos)
+1. 📋 [Requisitos previos](#1-📋-requisitos-previos)
+   - ![Nest CLI](https://img.shields.io/badge/NestCLI-8.2.6-red?logo=nestjs&logoColor=white)
+   - [Node.js](https://nodejs.org/)
+   - [Docker](https://www.docker.com/)
+   - [Docker Compose](https://docs.docker.com/compose/)
 2. 🛠️ [Instalación](#2-🛠️-instalación)
    - 2.1. [Clona el repositorio](#21-clona-el-repositorio)
    - 2.2. [Entra en el directorio del proyecto](#22-entra-en-el-directorio-del-proyecto)
@@ -34,20 +38,6 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
    - 7.4. [Nomenclatura de las Ramas](#74-nomenclatura-de-las-ramas)
 8. 📞 [Contacto](#8-📞-contacto)
 9. 📝 [Notas adicionales](#9-📝-notas-adicionales)
-
-
-  - [📝 Tabla de Contenidos](#-tabla-de-contenidos)
-  - [🔗 Links](#-links)
-  - [👨🏻‍💻 Autores](#-autores)
-  - [💻 Requisitos Previos (Para Desarrollo)](#-requisitos-previos)
-  - [🚀 Levantar la Imagen de Docker](#-levantar-la-imagen-de-docker)
-  - [💻 Instalacion del proyecto](#-instalacion-del-proyecto)
-  - [🏃‍♂️ Ejecutar la APP](#️-ejecutar-la-app)
-  - [📖 Documentacion API 🌎](#-documentacion-api-)
-  - [🌍 Variables de Entorno](#-variables-de-entorno)
-  - [🏛️ Estructura del Proyecto](#️-estructura-del-proyecto)
-  - [📈 Estado del Proyecto](#-estado-del-proyecto)
-  - [📝 License](#-license)
 
 
 ## 1. 📋 Requisitos previos

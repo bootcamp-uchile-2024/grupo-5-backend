@@ -38,7 +38,7 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 
 [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#--Tabla-de-Contenidos)
 
-## 1. 📋 Requisitos previos [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#--Tabla-de-Contenidos)
+## 1. 📋 Requisitos previos [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu máquina local:
 
@@ -56,7 +56,7 @@ Para instalar `Nest Cli` correr este comando:
 
 [![Docker Compose](https://img.shields.io/badge/Docker--Compose-1.29.2-blue?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 
-## 2. 🛠️ Instalación
+## 2. 🛠️ Instalación [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 Ejecuta los siguientes comandos instalar el proyecto en local:
 
 ### 2.1. Clona el repositorio:
@@ -76,7 +76,7 @@ npm install
 ```
 
 
-## 3. ⚙️ Configuración
+## 3. ⚙️ Configuración [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Encontrarás dos archivos de configuración que puedes utilizar dependiendo del entorno:
 
@@ -93,7 +93,7 @@ Este proyecto utiliza archivos `.env` para manejar las variables de entorno. Enc
     NODE_ENV=produccion
     ```
 
-## 4. 🛠️ Ejecución
+## 4. 🛠️ Ejecución [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 A continuación se indican los pasos para la ejecución del proyecto en modo `desarrollo` y `producción`.
 
@@ -183,7 +183,7 @@ npm run start:dev
 
 Esto levantará el servidor en el puerto **3000** por defecto.
 
-## 5. 🔀 Estructura del Proyecto
+## 5. 🔀 Estructura del Proyecto [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 A continuación la estructura del proyecto: 
 
@@ -253,7 +253,7 @@ SRC/
 │   └─
 ```
 
-## 6 🤖 Documentación de la API [![Swagger](https://img.shields.io/badge/Swagger--blue?logo=swagger&logoColor=white)](https://swagger.io/)
+## 6 🤖 Documentación de la API [![Swagger](https://img.shields.io/badge/Swagger--blue?logo=swagger&logoColor=white)](https://swagger.io/) [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 Swagger está habilitado en este proyecto. Puedes acceder a la documentación de la API después de iniciar el
 servidor con estos pasos. 
@@ -280,7 +280,7 @@ Para acceder a la documentación debes copiar las siguientes URL en tu navegador
 	http://localhost:8080/api/producto
 ```
 
-## 7. 👷‍♂️Flujo de Trabajo para Desarrollo
+## 7. 👷‍♂️Flujo de Trabajo para Desarrollo [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 A continuación el flujo de trabajo que se debe seguir para realizar
 cambios sobre este  proyecto.
 ### 7.1. Flujo de Trabajo
@@ -302,8 +302,7 @@ Ramas para nuevas funcionalidades:
 
 - Ramas para nuevas funcionalidades: `Taller + Numero de la presentacion a entregar (Taller_6)`
 
-## 8. 📞 Contacto 
-
+## 8. 📞 Contacto [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 Si tienes alguna pregunta, no dudes en ponerte en contacto con nosotros a través de:
 
 - 📧 Email: contacto@petropolis.com
@@ -322,7 +321,7 @@ Si tienes alguna pregunta, no dudes en ponerte en contacto con nosotros a travé
   - [![Lorenzo Baeza](https://img.shields.io/badge/Lorenzo_Baeza-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LENZOZ)
 
 
-## 📝 Notas adicionales 
+## 📝 Notas adicionales [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 - Si tienes algún problema o pregunta, no dudes en abrir un **issue** en el repositorio.
 - Asegúrate de mantener las dependencias actualizadas con `npm install` en cada actualización del proyecto.

@@ -13,7 +13,7 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
   - [📝 Tabla de Contenidos](#-tabla-de-contenidos)
   - [🔗 Links](#-links)
   - [👨🏻‍💻 Autores](#-autores)
-  - [💻 Requisitos Previos (Para Desarrollo)](#-requisitos-previos-para-desarrollo)
+  - [💻 Requisitos Previos (Para Desarrollo)](#-requisitos-previos)
   - [🚀 Levantar la Imagen de Docker](#-levantar-la-imagen-de-docker)
   - [💻 Instalacion del proyecto](#-instalacion-del-proyecto)
   - [🏃‍♂️ Ejecutar la APP](#️-ejecutar-la-app)

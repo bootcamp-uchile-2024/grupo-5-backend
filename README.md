@@ -5,14 +5,13 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 ## 📝 Tabla de Contenidos
 
 - [🐾 Petrópolis - API](#-petropolis---api)
-1. 📋 [Requisitos previos](#1---requisitos-previos)
-2. 1. 📋 [Requisitos previos](#1--requisitos-previos)
-3. 🛠️ [Instalación](#2---instalación)
+1. 📋 [Requisitos previos](#1--requisitos-previos)
+3. 🛠️ [Instalación](#2--instalación)
    - 2.1. [Clona el repositorio](#21-clona-el-repositorio)
    - 2.2. [Entra en el directorio del proyecto](#22-entra-en-el-directorio-del-proyecto)
    - 2.3. [Instala las dependencias](#23-instala-las-dependencias)
-4. ⚙️ [Configuración](#3---configuración)
-5. 🛠️ [Ejecución](#4---ejecución)
+4. ⚙️ [Configuración](#3--configuración)
+5. 🛠️ [Ejecución](#4--ejecución)
    - 4.1. 👨‍💻 [Modo Desarrollo](#41-modo-desarollo)
      - a. [Crear el archivo `.env.desarrollo`](#a-crear-el-archivo-envdesarrollo)
      - b. [Construir y levantar los contenedores](#b-construir-y-levantar-los-contenedores)
@@ -24,8 +23,8 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
      - c. [Verificar los contenedores](#c-verificar-los-contenedores-1)
      - d. [Detener los contenedores](#d-detener-los-contenedores-1)
    - 4.3. [Ejecución local sin Docker (Opcional)](#43-ejecución-local-sin-docker-opcional)
-6. 🔀 [Estructura del Proyecto](#5---estructura-del-proyecto)
-7. 🤖 [Documentación de la API](#6---documentación-de-la-api)
+6. 🔀 [Estructura del Proyecto](#5--estructura-del-proyecto)
+7. 🤖 [Documentación de la API](#6--documentación-de-la-api)
    - 6.1. [Inicia el proyecto](#61-inicia-el-proyecto)
    - 6.2. [Accede a Swagger en tu navegador](#62-accede-a-swagger-en-tu-navegador)
 8. 👷‍♂️ [Flujo de Trabajo para Desarrollo](#7--flujo-de-trabajo-para-desarrollo)
@@ -39,7 +38,7 @@ Este proyecto es un backend basado en Node.js y Docker. Se proporciona un entorn
 
 [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#--Tabla-de-Contenidos)
 
-## 1. 📋 Requisitos previos 
+## 1. 📋 Requisitos previos [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#--Tabla-de-Contenidos)
 
 
 Antes de comenzar, asegúrate de tener instalados los siguientes programas en tu máquina local:

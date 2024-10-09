@@ -1,8 +1,10 @@
 {
-  "name": "grupo-5-backend",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "name": "api_proyecto_petropolis",
+  "version": "1.0.0",
+  "description": "Esta API describe los métodos para la Gestión de ",
+  "author": "pettacular-celula-backend-grupo-5",
+  "url": "https://www.petropolis.com",
+  "mail": "contacto@petropolis.com",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",

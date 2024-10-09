@@ -1,0 +1,7 @@
+services:
+  app: 
+    image: backendgrupo5/grupo-5-backend:1.0.0
+    env_file:
+      - .env.produccion
+    ports:
+      - "${PORT}:${PORT}"

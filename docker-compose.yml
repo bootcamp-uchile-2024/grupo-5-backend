@@ -1,0 +1,11 @@
+services:
+  app:
+    image: node:16-alpine
+    working_dir: /usr/src/app
+    volumes: 
+      - .:/usr/src/app
+    env_file:
+      - .env.desarrollo
+    ports:
+      - "${PORT}:${PORT}"
+    command: "npm run start:dev"  

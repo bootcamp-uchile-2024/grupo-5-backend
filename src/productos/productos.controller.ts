@@ -35,14 +35,14 @@ export class ProductosController {
        nombre: 'Proplan Cachorro',
        marca: 'Proplan',
        precio: 30000,
-       imagenes: ['https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dw6e12a409/images/15_m.jpg', 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwcdcfcb77/images/11fb2-puppy-dry-1-25.jpg']
+       imagenes: ['images/proplan1.jpg', 'images/proplan2.jpg']
    },
    {
      id: 2653,
      nombre: 'Royal Canin Adulto',
      marca: 'Royal Canin',
      precio: 85000,
-     imagenes: ['https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwa695bd1e/images/16_m.jpg', 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dw3eb24306/images/3c3a0-medium-adult-03.jpg']
+     imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg']
    },
  ];
 
@@ -75,7 +75,7 @@ export class ProductosController {
       marca: 'Royal Canin',
       descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
       precio: 86990,
-      imagenes: ['https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dw6e12a409/images/15_m.jpg', 'https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwcdcfcb77/images/11fb2-puppy-dry-1-25.jpg'],
+      imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg'],
       etiquetas: ['Royal Canin', 'Cachorros', 'Razas medianas', 'Prebióticos'],
       categoria: 'Alimento Seco Perros',
       stock: 150,
@@ -85,7 +85,7 @@ export class ProductosController {
       vidaUtil: '12 meses',
       recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
       };
-  }
+  }
 
 
   @ApiTags('Crear Producto')

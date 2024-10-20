@@ -5,7 +5,18 @@ services:
     volumes: 
       - .:/usr/src/app
     env_file:
-      - .env.desarrollo
+      - .env
     ports:
-      - "${PORT}:${PORT}"
-    command: "npm run start:dev"  
+      - '${PORT}:${PORT}' 
+    command: 'npm run start:dev'  
+
+  bd-server:
+    image: mysql:8.0.39-debian
+    environment:
+      - MYSQL_ROOT_PASSWORD='${PASSDB}'
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - '${PORTDB}:${PORTDB}'

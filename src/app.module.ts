@@ -12,9 +12,21 @@ import { validate } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 //import { VariablesDeEntorno } from './commons/config/validation.config';
 import { validateSync } from 'class-validator';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { ConexionModule } from './conexion/conexion.module';
 
 @Module({
   imports: [
+  TypeOrmModule.forRoot({
+  type: 'mysql',
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: 'clave123',
+  database: 'petropolis'
+  }),
+  
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: process.env.NODE_ENV === 'produccion' ? '.env.produccion' : '.env.desarrollo',
@@ -28,7 +40,7 @@ import { validateSync } from 'class-validator';
         return validatedConfig;
       },
     }),
-    UsuariosModule, MascotasModule, ProductosModule, EquipoModule,
+    UsuariosModule, MascotasModule, ProductosModule, EquipoModule, ConexionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

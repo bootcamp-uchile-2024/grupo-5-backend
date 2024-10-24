@@ -43,9 +43,9 @@ create table AVATAR_USUARIOS
 );
 
 /*==============================================================*/
-/* Table: CALENDARIO                                            */
+/* Table: CALENDARIOS                                           */
 /*==============================================================*/
-create table CALENDARIO
+create table CALENDARIOS
 (
    IDEVENTO             int not null  comment '',
    IDFRECUENCIA         int  comment '',
@@ -57,9 +57,9 @@ create table CALENDARIO
 );
 
 /*==============================================================*/
-/* Table: CARROCOMPRAS                                          */
+/* Table: CARRO_COMPRAS                                         */
 /*==============================================================*/
-create table CARROCOMPRAS
+create table CARRO_COMPRAS
 (
    IDCARROCOMPRAS       bigint not null  comment '',
    IDUSUARIO            bigint not null  comment '',
@@ -68,9 +68,9 @@ create table CARROCOMPRAS
 );
 
 /*==============================================================*/
-/* Table: CATEGORIA_PRODUCTO                                    */
+/* Table: CATEGORIAS_PRODUCTO                                   */
 /*==============================================================*/
-create table CATEGORIA_PRODUCTO
+create table CATEGORIAS_PRODUCTO
 (
    IDCATEGORIA          int not null  comment '',
    NOMBRECATEGORIA      varchar(100) not null  comment '',
@@ -100,9 +100,9 @@ create table CONDICIONES_ALIMENTARIAS
 );
 
 /*==============================================================*/
-/* Table: DETALLE_CARRO_COMPRAS                                 */
+/* Table: DETALLES_CARRO_COMPRA                                 */
 /*==============================================================*/
-create table DETALLE_CARRO_COMPRAS
+create table DETALLES_CARRO_COMPRA
 (
    IDDETALLECARRO       bigint not null  comment '',
    IDCARROCOMPRAS       bigint not null  comment '',
@@ -112,9 +112,9 @@ create table DETALLE_CARRO_COMPRAS
 );
 
 /*==============================================================*/
-/* Table: DETALLE_PEDIDO                                        */
+/* Table: DETALLES_PEDIDOS                                      */
 /*==============================================================*/
-create table DETALLE_PEDIDO
+create table DETALLES_PEDIDOS
 (
    IDDETALLEPEDIDO      bigint not null  comment '',
    IDUSUARIO            bigint  comment '',
@@ -153,9 +153,9 @@ create table ENFERMEDADES_BASE
 );
 
 /*==============================================================*/
-/* Table: ESPECIE                                               */
+/* Table: ESPECIES                                              */
 /*==============================================================*/
-create table ESPECIE
+create table ESPECIES
 (
    IDESPECIE            int not null  comment '',
    NOMBREESPECIE        varchar(100) not null  comment '',
@@ -163,9 +163,9 @@ create table ESPECIE
 );
 
 /*==============================================================*/
-/* Table: FRECUENCIA                                            */
+/* Table: FRECUENCIAS                                           */
 /*==============================================================*/
-create table FRECUENCIA
+create table FRECUENCIAS
 (
    IDFRECUENCIA         int not null  comment '',
    FRECUENCIA           varchar(50) not null  comment '',
@@ -184,9 +184,9 @@ create table IMAGENES_PRODUCTOS
 );
 
 /*==============================================================*/
-/* Table: MARCA_PRODUCTO                                        */
+/* Table: MARCAS_PRODUCTO                                       */
 /*==============================================================*/
-create table MARCA_PRODUCTO
+create table MARCAS_PRODUCTO
 (
    IDMARCA              int not null  comment '',
    NOMBREMARCA          varchar(100) not null  comment '',
@@ -239,9 +239,9 @@ create table MASCOTAS_VACUNAS
 );
 
 /*==============================================================*/
-/* Table: PEDIDO                                                */
+/* Table: PEDIDOS                                               */
 /*==============================================================*/
-create table PEDIDO
+create table PEDIDOS
 (
    IDPEDIDO             bigint not null  comment '',
    FECHACREACION        datetime  comment '',
@@ -261,9 +261,9 @@ create table PEDIDO_PRODUCTO
 );
 
 /*==============================================================*/
-/* Table: PRESENTACION_PRODUCTO                                 */
+/* Table: PRESENTACIONES_PRODUCTO                               */
 /*==============================================================*/
-create table PRESENTACION_PRODUCTO
+create table PRESENTACIONES_PRODUCTO
 (
    IDPRESENTACION       int not null  comment '',
    IDPRODUCTO           bigint  comment '',
@@ -289,9 +289,9 @@ create table PRODUCTOS
 );
 
 /*==============================================================*/
-/* Table: PRODUCTO_CARRO                                        */
+/* Table: PRODUCTOS_CARRO                                       */
 /*==============================================================*/
-create table PRODUCTO_CARRO
+create table PRODUCTOS_CARRO
 (
    IDCARROCOMPRAS       bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
@@ -299,9 +299,9 @@ create table PRODUCTO_CARRO
 );
 
 /*==============================================================*/
-/* Table: RAZA                                                  */
+/* Table: RAZAS                                                 */
 /*==============================================================*/
-create table RAZA
+create table RAZAS
 (
    IDRAZA               int not null  comment '',
    IDESPECIE            int not null  comment '',
@@ -334,9 +334,9 @@ create table REGISTROS_MEDICOS
 );
 
 /*==============================================================*/
-/* Table: ROL                                                   */
+/* Table: ROLES                                                 */
 /*==============================================================*/
-create table ROL
+create table ROLES
 (
    IDROL                int not null  comment '',
    ROL                  varchar(20)  comment '',
@@ -385,23 +385,23 @@ create table VACUNAS
 alter table ATRIBUTOS_ESPECIFICOS add constraint PRODUCTO_ATRIESP foreign key (IDPRODUCTO)
       references PRODUCTOS (IDPRODUCTO) on delete restrict on update restrict;
 
-alter table CALENDARIO add constraint FRECUENCIAS_CALENDARIO foreign key (IDFRECUENCIA)
-      references FRECUENCIA (IDFRECUENCIA) on delete restrict on update restrict;
+alter table CALENDARIOS add constraint FRECUENCIAS_CALENDARIO foreign key (IDFRECUENCIA)
+      references FRECUENCIAS (IDFRECUENCIA) on delete restrict on update restrict;
 
-alter table CALENDARIO add constraint MASCOTAS_CALENDARIO foreign key (IDMASCOTA)
+alter table CALENDARIOS add constraint MASCOTAS_CALENDARIO foreign key (IDMASCOTA)
       references MASCOTAS (IDMASCOTA) on delete restrict on update restrict;
 
-alter table CARROCOMPRAS add constraint USUARIOS_CARCOM foreign key (IDUSUARIO)
+alter table CARRO_COMPRAS add constraint USUARIOS_CARCOM foreign key (IDUSUARIO)
       references USUARIOS (IDUSUARIO) on delete restrict on update restrict;
 
 alter table COMUNAS add constraint REGIONES_COMUNAS foreign key (IDREGION)
       references REGIONES (IDREGION) on delete restrict on update restrict;
 
-alter table DETALLE_CARRO_COMPRAS add constraint CARRCOMP_DETCARCOM foreign key (IDCARROCOMPRAS)
-      references CARROCOMPRAS (IDCARROCOMPRAS) on delete restrict on update restrict;
+alter table DETALLES_CARRO_COMPRA add constraint CARRCOMP_DETCARCOM foreign key (IDCARROCOMPRAS)
+      references CARRO_COMPRAS (IDCARROCOMPRAS) on delete restrict on update restrict;
 
-alter table DETALLE_PEDIDO add constraint PEDIDO_PEDIDODET foreign key (IDPEDIDO)
-      references PEDIDO (IDPEDIDO) on delete restrict on update restrict;
+alter table DETALLES_PEDIDOS add constraint PEDIDO_PEDIDODET foreign key (IDPEDIDO)
+      references PEDIDOS (IDPEDIDO) on delete restrict on update restrict;
 
 alter table DIRECCIONES add constraint COMUNAS_DIRECCIONES foreign key (IDCOMUNA)
       references COMUNAS (IDCOMUNA) on delete restrict on update restrict;
@@ -416,7 +416,7 @@ alter table MASCOTAS add constraint AVAMAS_MASCOTAS foreign key (IDAVATARMASCOTA
       references AVATAR_MASCOTAS (IDAVATARMASCOTA) on delete restrict on update restrict;
 
 alter table MASCOTAS add constraint RAZA_MASCOTAS foreign key (IDRAZA)
-      references RAZA (IDRAZA) on delete restrict on update restrict;
+      references RAZAS (IDRAZA) on delete restrict on update restrict;
 
 alter table MASCOTAS_CONDICIONES add constraint CONDICIONES_MASCONDALI foreign key (IDCONDICION)
       references CONDICIONES_ALIMENTARIAS (IDCONDICION) on delete restrict on update restrict;
@@ -440,28 +440,28 @@ alter table PEDIDO_PRODUCTO add constraint PRODUCTO_PRODPED foreign key (IDPRODU
       references PRODUCTOS (IDPRODUCTO) on delete restrict on update restrict;
 
 alter table PEDIDO_PRODUCTO add constraint PEDIDO_PROPED foreign key (IDPEDIDO)
-      references PEDIDO (IDPEDIDO) on delete restrict on update restrict;
+      references PEDIDOS (IDPEDIDO) on delete restrict on update restrict;
 
 alter table PEDIDO_PRODUCTO add constraint USUARIOS_PROPED foreign key (IDUSUARIO)
       references USUARIOS (IDUSUARIO) on delete restrict on update restrict;
 
-alter table PRESENTACION_PRODUCTO add constraint PRODUCTO_PRESPRO foreign key (IDPRODUCTO)
+alter table PRESENTACIONES_PRODUCTO add constraint PRODUCTO_PRESPRO foreign key (IDPRODUCTO)
       references PRODUCTOS (IDPRODUCTO) on delete restrict on update restrict;
 
 alter table PRODUCTOS add constraint PRODUCTO_CATPROD foreign key (IDCATEGORIA)
-      references CATEGORIA_PRODUCTO (IDCATEGORIA) on delete restrict on update restrict;
+      references CATEGORIAS_PRODUCTO (IDCATEGORIA) on delete restrict on update restrict;
 
 alter table PRODUCTOS add constraint MARCAPROD_PROD foreign key (IDMARCA)
-      references MARCA_PRODUCTO (IDMARCA) on delete restrict on update restrict;
+      references MARCAS_PRODUCTO (IDMARCA) on delete restrict on update restrict;
 
-alter table PRODUCTO_CARRO add constraint CARROCOM_PRODAC foreign key (IDCARROCOMPRAS)
-      references CARROCOMPRAS (IDCARROCOMPRAS) on delete restrict on update restrict;
+alter table PRODUCTOS_CARRO add constraint CARROCOM_PRODAC foreign key (IDCARROCOMPRAS)
+      references CARRO_COMPRAS (IDCARROCOMPRAS) on delete restrict on update restrict;
 
-alter table PRODUCTO_CARRO add constraint PRODUCTOS_PROCAR foreign key (IDPRODUCTO)
+alter table PRODUCTOS_CARRO add constraint PRODUCTOS_PROCAR foreign key (IDPRODUCTO)
       references PRODUCTOS (IDPRODUCTO) on delete restrict on update restrict;
 
-alter table RAZA add constraint ESPECIE_RAZA foreign key (IDESPECIE)
-      references ESPECIE (IDESPECIE) on delete restrict on update restrict;
+alter table RAZAS add constraint ESPECIE_RAZA foreign key (IDESPECIE)
+      references ESPECIES (IDESPECIE) on delete restrict on update restrict;
 
 alter table REGISTROS_MEDICOS add constraint MASCOTAS_REGMED foreign key (IDMASCOTA)
       references MASCOTAS (IDMASCOTA) on delete restrict on update restrict;
@@ -470,7 +470,7 @@ alter table USUARIOS add constraint AVATARUSUARIOS_USU foreign key (IDIMAGENAVAT
       references AVATAR_USUARIOS (IDIMAGENAVATAR) on delete restrict on update restrict;
 
 alter table USUARIOS add constraint ROL_USUARIOS foreign key (IDROL)
-      references ROL (IDROL) on delete restrict on update restrict;
+      references ROLES (IDROL) on delete restrict on update restrict;
 
 alter table USUARIOS_MASCOTAS add constraint USURIOS_USUMAS foreign key (IDUSUARIO)
       references USUARIOS (IDUSUARIO) on delete restrict on update restrict;

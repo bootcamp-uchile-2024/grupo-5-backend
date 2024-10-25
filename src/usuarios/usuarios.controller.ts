@@ -4,8 +4,8 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UsuarioDto } from './dto/read-usuario.dto';
 import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
 import {   ApiBody,   ApiOperation,   ApiParam,   ApiQuery,   ApiResponse,   ApiTags } from '@nestjs/swagger';
-import { Usuario } from './entities/usuario.entity';
-import { UserRole } from './entities/rol';
+import { Usuario } from './entities/usuarios.entity';
+import { UserRole } from './roles.enum';
 import { CreateProductoDto } from 'src/productos/dto/create-producto.dto';
 import { EliminaUsuarioDto } from './dto/delete-usuario.dto';
 

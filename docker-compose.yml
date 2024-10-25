@@ -1,22 +1,37 @@
 services:
-  app:
-    image: node:20-alpine
-    working_dir: /usr/src/app
-    volumes: 
-      - .:/usr/src/app
-    env_file:
-      - .env
-    ports:
-      - '${PORT}:${PORT}' 
-    command: 'npm run start:dev'  
+ # app:
+ #   image: node:19-alpine
+ #   working_dir: /usr/src/app
+ #   volumes: 
+ #     - .:/usr/src/app
+ #   env_file:
+ #     - .env
+ #   ports:
+ #     - '${PORT}:${PORT_DEFAULT}'  # Exponiendo el puerto de la app
+ #   depends_on:
+ #     - bd-server  # Asegura que la base de datos se inicie antes que la app
+ #   command: 'npm run start:dev'
+ #   networks:
+ #     - my-network
 
-  bd-server:
+  my-sql:
     image: mysql:8.0.39-debian
+    container_name: mysql-dev
+    ports:
+      - "3307:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD='${PASSDB}'
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: clave123
+      MYSQL_PASSWORD: clave123
+      MYSQL_DATABASE: petropolis
     env_file:
       - .env
     volumes:
-      - ./data:/var/lib/mysql
-    ports:
-      - '${PORTDB}:${PORTDB}' 
+      - ./data:/var/lib/mysql  # Para persistencia de datos
+  # Exponiendo el puerto del contenedor MySQL en tu máquina
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

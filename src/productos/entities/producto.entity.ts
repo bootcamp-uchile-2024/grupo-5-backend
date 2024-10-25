@@ -1,35 +1,33 @@
+import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
+import { CategoriaProducto } from './categoriaproducto.entity';
+import { MarcaProducto } from './marcaproducto.entity';
 
-export class Producto {  
+@Entity('productos') 
+export class Producto {
+  @PrimaryColumn() // Este debe ser un autoincrementtal
+  idProducto: number;
 
-      public id: number;
+  @Column()
+  idMarca: number;
 
-      public nombre: string;
+  @Column()
+  idCategoria: number;
 
-      public marca: string;
+  @Column()
+  nombreProducto: string;
 
-      public precio: number;
-      
-      public imagenes: string[];
+  @Column()
+  sku: string;
+
+  @Column()
+  descripcion: string;
 
 
-// DETALLE DEL PRODUCTO
+  @ManyToOne(() => CategoriaProducto, (categoria) => categoria.productos)
+  categoria: CategoriaProducto;
+  //VERIFICAR
+  @ManyToOne(() => MarcaProducto, (marca) => marca.nombreMarca)
+  marca: MarcaProducto;
 
-      public descripcion: string;
 
-      public etiquetas: string[];
-
-      public categoria: string;
-
-      public stock: number;
-
-      public ingredientes: string[];
-
-      public tamanio: string;
-    
-      public origen: string;
-    
-      public vidaUtil: string;
-    
-      public recomendacionesUso: string;
-
-  }
+}

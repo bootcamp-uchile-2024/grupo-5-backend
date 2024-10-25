@@ -8,39 +8,44 @@ import { EquipoModule } from './equipo/equipo.module';
 import { LoggingMiddleware } from './commons/middleware/logging.middleware';
 import { ConfigModule } from '@nestjs/config';
 import { VariablesDeEntorno } from './commons/config/validation.config';
-import { validate } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
-//import { VariablesDeEntorno } from './commons/config/validation.config';
 import { validateSync } from 'class-validator';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { ConexionModule } from './conexion/conexion.module';
+import { CarrocomprasModule } from './carrocompras/carrocompras.module';
 
 @Module({
   imports: [
-  TypeOrmModule.forRoot({
-  type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: 'clave123',
-  database: 'petropolis'
-  }),
-  
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',  
+      //host: '127.0.0.1',  
+      port: 3307,
+      username: 'root',
+      password: 'clave123',
+      database: 'petropolis',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: false,
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'produccion' ? '.env.produccion' : '.env.desarrollo',
+      envFilePath: process.env.NODE_ENV === 'produccion' ? '.env.produccion' : '.env',
       validate: (config: Record<string, unknown>) => {
         const validatedConfig = plainToInstance(VariablesDeEntorno, config, { enableImplicitConversion: true });
         const errors = validateSync(validatedConfig, { skipMissingProperties: false });
         
         if (errors.length > 0) {
-          throw new Error(`Config validation error: ${errors.toString()}`);
+          throw new Error(`Validacion de Configuracion,  Error : ${errors.toString()}`);
         }
         return validatedConfig;
       },
     }),
-    UsuariosModule, MascotasModule, ProductosModule, EquipoModule, ConexionModule,
+      UsuariosModule, 
+      MascotasModule, 
+      ProductosModule, 
+      EquipoModule, 
+      ConexionModule, 
+      CarrocomprasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

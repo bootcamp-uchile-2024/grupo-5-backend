@@ -17,9 +17,8 @@ RUN npm install --only=development
 COPY dist/src /app/dist
 
 # Exponer el puerto y el puerto por defecto
-EXPOSE ${PORT}
-EXPOSE ${PORT_DEFAULT}
-EXPOSE ${NODE_ENV}
+EXPOSE ${PUERTO}
+EXPOSE ${AMBIENTE}
 
 # Comando para iniciar la aplicación
 CMD ["npm", "run", "start:prod"]

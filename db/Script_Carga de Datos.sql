@@ -1,4 +1,4 @@
--- Insertar datos de las regiones de Chile
+-- Insertar datos en la tabla REGIONES
 INSERT INTO REGIONES (IDREGION, ORDEN, NOMBREREGION) VALUES
 (13, 1, 'Metropolitana de Santiago'),
 (15, 2, 'De Arica y Parinacota'),
@@ -18,7 +18,7 @@ INSERT INTO REGIONES (IDREGION, ORDEN, NOMBREREGION) VALUES
 (12, 16, 'De Magallanes y de La Antártica Chilena');
 
 
--- Insertar datos de todas las comunas de Chile
+-- Insertar datos en la tabla COMUNAS
 INSERT INTO COMUNAS (IDCOMUNA, IDREGION, NOMBRECOMUNA) VALUES
 (15101, 15, 'Arica'),
 (15102, 15, 'Camarones'),
@@ -368,15 +368,15 @@ INSERT INTO COMUNAS (IDCOMUNA, IDREGION, NOMBRECOMUNA) VALUES
 (13605, 13, 'Peñaflor');
 
 
--- Insertar datos en la tabla ROL
-INSERT INTO ROL (IDROL, ROL) VALUES
+-- Insertar datos en la tabla ROLES
+INSERT INTO ROLES (IDROL, ROL) VALUES
 (1, 'Usuario'),
 (2, 'Invitado'),
 (3, 'Administrador');
 
 
--- Insertar los valores en la tabla FRECUENCIA
-INSERT INTO FRECUENCIA (IDFRECUENCIA, FRECUENCIA) VALUES
+-- Insertar los valores en la tabla FRECUENCIAS
+INSERT INTO FRECUENCIAS (IDFRECUENCIA, FRECUENCIA) VALUES
 (1, 'Semanalmente'),
 (2, 'Cada dos semanas'),
 (3, 'Mensualmente'),
@@ -385,8 +385,8 @@ INSERT INTO FRECUENCIA (IDFRECUENCIA, FRECUENCIA) VALUES
 (6, 'Anualmente');
 
 
--- Insertar los valores en la tabla ESPECIE
-INSERT INTO ESPECIE (IDESPECIE, NOMBREESPECIE) VALUES
+-- Insertar los valores en la tabla ESPECIES
+INSERT INTO ESPECIES (IDESPECIE, NOMBREESPECIE) VALUES
 (1, 'Aves'),
 (2, 'Conejos'),
 (3, 'Exóticos'),
@@ -394,8 +394,8 @@ INSERT INTO ESPECIE (IDESPECIE, NOMBREESPECIE) VALUES
 (5, 'Perro'),
 (6, 'Roedores');
 
--- Insertar los valores en la tabla RAZA
-INSERT INTO RAZA (IDRAZA, IDESPECIE, NOMBRERAZA) VALUES
+-- Insertar los valores en la tabla RAZAS
+INSERT INTO RAZAS (IDRAZA, IDESPECIE, NOMBRERAZA) VALUES
 (1, 1, 'Canario'),
 (2, 1, 'Cacatúa'),
 (3, 1, 'Loro'),
@@ -656,7 +656,7 @@ INSERT INTO AVATAR_MASCOTAS (IDAVATARMASCOTA, PATHIMAMASCOTA) VALUES
 (100, 'AvatarMascota\100.png');
 
 
--- Inserciones de registros para la tabla ATRIBUTOS_ESPECIFICOS
+-- Inserciones de registros para la tabla MASCOTAS
 INSERT INTO MASCOTAS (IDMASCOTA, IDRAZA, IDAVATARMASCOTA, NOMBRE, FECHANACIMIENTO, SEXO, NUMEROCHIP) VALUES
 (1, 1, 1, 'Firulais', '2021-03-15', 'Macho', '1234567890'),
 (2, 2, 2, 'Lola', '2020-06-10', 'Hembra', '1234567891'),
@@ -1134,10 +1134,8 @@ INSERT INTO DIRECCIONES (IDDIRECCION, IDUSUARIO, IDCOMUNA, ALIAS, CALLE, NUMERO,
 (100, 100, 13601,  'Casa de Ricardo',  'Calle de la Montaña',  '23', 7850000,  'Cerca del centro comercial',  'Ricardo Tapia',  965432928);
 
 
-
-
--- Insertar los valores en la tabla CATEGORIA_PRODUCTO
-INSERT INTO CATEGORIA_PRODUCTO (IDCATEGORIA, NOMBRECATEGORIA, DESCRIPCIONCATEGORIA) VALUES
+-- Insertar los valores en la tabla CATEGORIAS_PRODUCTO
+INSERT INTO CATEGORIAS_PRODUCTO (IDCATEGORIA, NOMBRECATEGORIA, DESCRIPCIONCATEGORIA) VALUES
 (1, 'Alimento para Perros', 'Productos alimenticios para perros'),
 (2, 'Alimento para Gatos', 'Productos alimenticios para gatos'),
 (3, 'Alimento para Otras Mascotas', 'Productos alimenticios para aves, peces y exóticos'),
@@ -1148,8 +1146,8 @@ INSERT INTO CATEGORIA_PRODUCTO (IDCATEGORIA, NOMBRECATEGORIA, DESCRIPCIONCATEGOR
 (8, 'Transporte y Movilidad', 'Productos para transporte y movilidad de mascotas'),
 (9, 'Suplementos y Cuidados Especiales', 'Suplementos y productos calmantes para mascotas');
 
--- Insertar los valores en la tabla MARCA_PRODUCTO
-INSERT INTO MARCA_PRODUCTO (IDMARCA, NOMBREMARCA)
+-- Insertar los valores en la tabla MARCAS_PRODUCTO
+INSERT INTO MARCAS_PRODUCTO (IDMARCA, NOMBREMARCA)
 VALUES
 (1, 'Royal Canin'),
 (2, 'Hill''s Science Diet'),
@@ -1198,6 +1196,7 @@ VALUES
 (45, 'Little Paws'),  				-- Ropa y accesorios para perros pequeños
 (46, 'Pawsitively Posh Pooch');  	-- Ropa y accesorios de lujo para perros
 
+-- Insertar los valores en la tabla PRODUCTOS
 INSERT INTO PRODUCTOS (IDPRODUCTO, IDMARCA, IDCATEGORIA, NOMBREPRODUCTO, SKU, DESCRIPCION) VALUES 
 (1, 1, 1, 'Royal Canin Size Health Nutrition Medium Adult', 'RC001', 'Comida para perros adultos de tamaño mediano'),
 (2, 2, 1, 'Hill''s Science Diet Puppy Large Breed', 'HS001', 'Comida para cachorros de razas grandes'),
@@ -1250,8 +1249,8 @@ INSERT INTO PRODUCTOS (IDPRODUCTO, IDMARCA, IDCATEGORIA, NOMBREPRODUCTO, SKU, DE
 (49, 4, 1, 'Orijen Six Fish Dog', 'OR002', 'Alimento para perros con seis tipos de pescado'),
 (50, 5, 1, 'Acana Heritage Meats Formula', 'AC002', 'Alimento con carnes variadas para perros');
 
--- Inserciones de registros para la tabla PRESENTACION_PRODUCTO
-INSERT INTO PRESENTACION_PRODUCTO (IDPRESENTACION, IDPRODUCTO, PRECIO, STOCK, PESO, TAMANIO) VALUES
+-- Inserciones de registros para la tabla PRESENTACIONES_PRODUCTO
+INSERT INTO PRESENTACIONES_PRODUCTO (IDPRESENTACION, IDPRODUCTO, PRECIO, STOCK, PESO, TAMANIO) VALUES
 (1, 1, 5000, 100, 1000, 1),  -- Royal Canin Tamaño Nutrición Salud Medium Adulto 1kg
 (2, 1, 20000, 50, 5000, 5),  -- Royal Canin Tamaño Nutrición Salud Medium Adulto 5kg
 (3, 1, 35000, 30, 10000, 10), -- Royal Canin Tamaño Nutrición Salud Medium Adulto 10kg

@@ -4,8 +4,8 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UsuarioDto } from './dto/read-usuario.dto';
 import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
 import {   ApiBody,   ApiOperation,   ApiParam,   ApiQuery,   ApiResponse,   ApiTags } from '@nestjs/swagger';
-import { Usuario } from './entities/usuario.entity';
-import { UserRole } from './entities/rol';
+import { Usuario } from './entities/usuarios.entity';
+import { UserRole } from './roles.enum';
 import { CreateProductoDto } from 'src/productos/dto/create-producto.dto';
 import { EliminaUsuarioDto } from './dto/delete-usuario.dto';
 
@@ -31,7 +31,7 @@ export class UsuariosController {
       apeMaterno: 'González',
       correoElectronico: 'juan.perez@example.com',
       telefono: '+56912345678',
-      rolUsuario: UserRole.CLIENTE,
+      rolUsuario: UserRole.USUARIO,
     },
     {rutUsuario: '13257114-1',
       contrasena: 'laterribleclave',
@@ -95,7 +95,7 @@ return JSON.stringify(resultado);
       apeMaterno: 'González',
       correoElectronico: 'juan.perez@example.com',
       telefono: '+56912345678',
-      rolUsuario: UserRole.CLIENTE,
+      rolUsuario: UserRole.USUARIO,
     },
     {rutUsuario: '13257114-1',
       contrasena: 'laterribleclave',

@@ -1,31 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { CreateProductoDto } from './dto/create-producto.dto';
-import { ActualizarProductoDto } from './dto/update-producto.dto';
+import { Injectable } from "@nestjs/common";
+import { InjectDataSource } from "@nestjs/typeorm";
+import { DataSource } from "typeorm";
+import { Producto } from "./entities/producto.entity";
 
 @Injectable()
-export class ProductosService {
-  create(createProductoDto: CreateProductoDto) {
-    return 'This action adds a new producto';
-  }
+export class ProductoService {
 
+  constructor(
+    @InjectDataSource() private readonly dataSource: DataSource,
+  ) {}
 
-  findAll() {
-    return `This action returns all productos`;
-  }
+async findAll() :Promise<string> {
+  const em = this.dataSource.manager;
+  const promesaBuscar = em.find(Producto);
+  const resultado : Producto[] = await promesaBuscar;
+  console.log('Resultado:', resultado);
 
-
-  findOneDetail(id: number) {
-    return `This action returns el detalle de  producto #${id} `;
+  return 'Hola desde el servicio de productos';
   }
-  findOne(id: number) {
-    return `This action returns a #${id} producto`;
-  }
-
-  update(id: number, actualizarProductoDto: ActualizarProductoDto) {
-    return `This action updates a #${id} producto`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} producto`;
-  }
+  
 }
+

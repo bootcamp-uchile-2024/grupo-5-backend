@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRole } from '../entities/rol';
+import { UserRole } from '../roles.enum';
 import { IsNotEmpty, IsString, Length, Matches, Validate } from 'class-validator';
 import { IsRut } from 'src/commons/validator/is-rut.decorator';
 import { IsRutConstraint } from 'src/commons/validator/is-rut.constraint';

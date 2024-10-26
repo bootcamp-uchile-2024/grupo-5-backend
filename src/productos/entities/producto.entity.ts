@@ -1,35 +1,54 @@
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn, OneToMany, ManyToMany } from 'typeorm';
+import { CategoriaProducto } from './categoriaproducto.entity';
+import { MarcaProducto } from './marcaproducto.entity';
+import { join } from 'path';
+import { ImagenProducto } from './imagenproducto.entity';
+import { AtributosEspecificos } from './atributosespecificos.entity';
+import { PresentacionProducto } from './presentacionproducto.entity';
+import { Pedido } from './pedidos.entity';
+import { CarroCompras } from 'src/carrocompras/entities/carrocompra.entity';
 
-export class Producto {  
+@Entity('productos') 
+export class Producto {
+  @PrimaryColumn() // Este debe ser un autoincrementtal
+  idProducto: number;
 
-      public id: number;
+  @Column()
+  idMarca: number;
 
-      public nombre: string;
+  @Column()
+  idCategoria: number;
 
-      public marca: string;
+  @Column()
+  nombreProducto: string;
 
-      public precio: number;
-      
-      public imagenes: string[];
+  @Column()
+  sku: string;
 
+  @Column()
+  descripcion: string;
 
-// DETALLE DEL PRODUCTO
+  @ManyToOne(() => CategoriaProducto)
+  @JoinColumn({name: 'idCategoria'})
+  categoria: CategoriaProducto;
 
-      public descripcion: string;
+  @ManyToOne(() => MarcaProducto)
+  @JoinColumn({name: 'idMarca'})
+  marca: MarcaProducto;
 
-      public etiquetas: string[];
+  @OneToMany(() => AtributosEspecificos, (atributos) => atributos.idProducto)
+  atributos: AtributosEspecificos[];
 
-      public categoria: string;
+  @OneToMany(() => ImagenProducto, (imagen) => imagen.idImagen)
+  imagenes: ImagenProducto[];
 
-      public stock: number;
+  @OneToMany(() => PresentacionProducto, (presentacion) => presentacion.idPresentacion)
+  presentaciones: PresentacionProducto[];
+  
+  @ManyToMany(() => CarroCompras, (carro) => carro.productos_carro)
+  carroCompras: CarroCompras[];
 
-      public ingredientes: string[];
+  @ManyToMany(() => Pedido, (pedido) => pedido.productos_pedido)
+  pedidos: Pedido[];
 
-      public tamanio: string;
-    
-      public origen: string;
-    
-      public vidaUtil: string;
-    
-      public recomendacionesUso: string;
-
-  }
+}

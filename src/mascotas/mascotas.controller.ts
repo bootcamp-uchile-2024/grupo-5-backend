@@ -1,6 +1,6 @@
 import {  Controller,   Get,   Post,   Body,   Patch,   Param,   Delete,   Put, Query, NotFoundException, ParseIntPipe, UsePipes, ValidationPipe } from '@nestjs/common';
 import { MascotasService } from './mascotas.service';
-import { Mascota } from './entities/mascota.entity';
+import { Mascota } from './entities/mascotas.entity';
 import { MascotaDto } from './dto/read-mascota.dto';
 import { CreateMascotaDto } from './dto/create-mascota.dto';
 import { ActualizarMascotaDto } from './dto/update-mascota.dto';

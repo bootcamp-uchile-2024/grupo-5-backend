@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { UserRole } from '../entities/rol';
+import { UserRole } from '../roles.enum';
 import { CreateUsuarioDto } from './create-usuario.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, Length } from 'class-validator';

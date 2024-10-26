@@ -27,7 +27,7 @@ async function bootstrap() {
 
   //const app = await NestFactory.create(AppModule);
   //const configService = app.get(ConfigService);
-  const env = configService.get('NODE_ENV');
+  const env = configService.get('AMBIENTE');
 
 
 
@@ -83,7 +83,7 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/producto', app, document3);
 
-  const port = configService.get('PORT') || 3000//'PORT_DEFAULT';
+  const port = configService.get('PUERTO') || 3000//'PORT_DEFAULT';
   await app.listen(port);
   console.log(port);
   //console.log(`La aplicación se encuentra corriendo es el puerto de:  ${await app.getUrl()}`);

@@ -186,67 +186,134 @@ A continuación la estructura del proyecto:
 ```plaintext
 SRC/
 │   app.controller.ts
-│   app.module.ts                        # Módulo raíz de la aplicación
-│   app.service.ts                         
-│   main.ts                              # Punto de entrada del servidor
-│
-├───commons                              # Contiene los archivos asociados a la configuración, filtros, interceptores, middleware, validadores 
+│   app.module.ts
+│   app.service.ts
+│   directorio.txt
+│   main.ts
+│   
+├───carrocompras
+│   │   carrocompras.controller.ts
+│   │   carrocompras.module.ts
+│   │   carrocompras.service.ts
+│   │   
+│   ├───dto
+│   │       create-carrocompra.dto.ts
+│   │       update-carrocompra.dto.ts
+│   │       
+│   └───entities
+│           carrocompra.entity.ts
+│           detallescarrocompra.entity.ts
+│           
+├───commons
 │   ├───config
 │   │       validation.config.ts
-│   │
+│   │       
 │   ├───filters
 │   │       http-exception.filter.ts
-│   │
+│   │       
 │   ├───interceptors
 │   │       logging.interceptor.ts
-│   │
+│   │       
 │   ├───middleware
 │   │       logging.middleware.ts
-│   │
+│   │       
 │   └───validator
 │           is-rut.constraint.ts
 │           is-rut.decorator.ts
-│
-├───equipo                               # Módulo con información del equipo
+│           
+├───conexion
+│   │   conexion.controller.ts
+│   │   conexion.module.ts
+│   │   conexion.service.ts
+│   │   
+│   ├───dto
+│   │       create-conexion.dto.ts
+│   │       update-conexion.dto.ts
+│   │       
+│   └───entities
+│           conexion.entity.ts
+│           
+├───equipo
 │   │   equipo.controller.spec.ts
 │   │   equipo.controller.ts
 │   │   equipo.module.ts
 │   │   equipo.service.spec.ts
 │   │   equipo.service.ts
-│   │
-│   ├───dto                              # Módulo DTO del equipo
+│   │   
+│   ├───dto
 │   │       create-equipo.dto.ts
 │   │       update-equipo.dto.ts
-│   │
-│   └───entities                         # Módulo entidades del equipo
+│   │       
+│   └───entities
 │           equipo.entity.ts
-│
-├───mascotas                             # Módulo de mascotas
+│           
+├───mascotas
 │   │   mascotas.controller.ts
 │   │   mascotas.module.ts
 │   │   mascotas.service.ts
-│   │
-│   ├───dto                              # Módulo DTO de mascotas
+│   │   
+│   ├───dto
 │   │       create-mascota.dto.ts
 │   │       delete-mascota.dto.ts
 │   │       read-mascota.dto.ts
 │   │       update-mascota.dto.ts
-│   │
-│   └───entities                         # Módulo entidades de mascotas
-│           mascota.entity.ts
-│
-├───productos                             # Módulo de productos
+│   │       
+│   └───entities
+│           avatarmascotas.entity.ts
+│           calendarios.entity.ts
+│           condicionesalimentarias.entity.ts
+│           enfermedadesbase.entity.ts
+│           especies.entity.ts
+│           frecuncias.entity.ts
+│           mascotas.entity.ts
+│           mascotasvacunas.entity_DELETE.ts
+│           razas.entity.ts
+│           registromedico.entity.ts
+│           vacunas.entity.ts
+│           
+├───productos
 │   │   productos.controller.ts
 │   │   productos.module.ts
 │   │   productos.service.ts
-│   │
-│   ├───dto                              # Módulo de productos
+│   │   
+│   ├───dto
 │   │       create-producto.dto.ts
+│   │       producto.dto.ts
 │   │       read-catalogo-productos.dto.ts
 │   │       read-detalle-producto.dto.ts
 │   │       update-producto.dto.ts
-│   │
-│   └─
+│   │       
+│   └───entities
+│           atributosespecificos.entity.ts
+│           categoriaproducto.entity.ts
+│           detallespedidos.entity.ts
+│           imagenproducto.entity.ts
+│           marcaproducto.entity.ts
+│           pedidos.entity.ts
+│           presentacionproducto.entity.ts
+│           producto.entity.ts
+│           productopedidos.entity.ts
+│           
+└───usuarios
+    │   roles.enum.ts
+    │   usuarios.controller.ts
+    │   usuarios.module.ts
+    │   usuarios.service.ts
+    │   
+    ├───dto
+    │       create-usuario.dto.ts
+    │       delete-usuario.dto.ts
+    │       read-usuario.dto.ts
+    │       update-usuario.dto.ts
+    │       
+    └───entities
+            avatarusuarios.entity.ts
+            comunas.entity.ts
+            direcciones.entity.ts
+            regiones.entity.ts
+            roles.entity.ts
+            usuariomascotas.entity.ts
+            usuarios.entity.ts
 ```
 
 ## 6 🤖 Documentación de la API [![Swagger](https://img.shields.io/badge/Swagger--blue?logo=swagger&logoColor=white)](https://swagger.io/) [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)

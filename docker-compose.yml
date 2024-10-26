@@ -16,14 +16,13 @@ services:
 
   my-sql:
     image: mysql:8.0.39-debian
-    container_name: mysql-dev
+    # container_name: mysql-dev
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
-      MYSQL_USER: root
+      #MYSQL_USER: yo
       MYSQL_ROOT_PASSWORD: clave123
-      MYSQL_PASSWORD: clave123
-      MYSQL_DATABASE: petropolis
+      #MYSQL_PASSWORD: clave123
     env_file:
       - .env
     volumes:

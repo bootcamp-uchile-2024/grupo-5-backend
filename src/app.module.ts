@@ -44,9 +44,8 @@ import { VariablesDeEntorno } from './commons/config/validation.config';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      //host: 'localhost',  
-      host: '127.0.0.1',  
-      port: 3307,
+      host: 'localhost', 
+      port: 3306,  
       username: 'root',
       password: 'clave123',
       database: 'petropolis',

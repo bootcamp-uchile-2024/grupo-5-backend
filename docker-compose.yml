@@ -1,28 +1,26 @@
 services:
- # app:
- #   image: node:19-alpine
- #   working_dir: /usr/src/app
- #   volumes: 
- #     - .:/usr/src/app
- #   env_file:
- #     - .env
- #   ports:
- #     - '${PORT}:${PORT_DEFAULT}'  # Exponiendo el puerto de la app
- #   depends_on:
- #     - bd-server  # Asegura que la base de datos se inicie antes que la app
- #   command: 'npm run start:dev'
- #   networks:
- #     - my-network
+ app:
+   image: node:19-alpine
+   working_dir: /usr/src/app
+   volumes: 
+     - .:/usr/src/app
+   env_file:
+     - .env
+   ports:
+     - '${PUERTO}:${PUERTO}'  # Exponiendo el puerto de la app
+   depends_on:
+     - bd-server  # Asegura que la base de datos se inicie antes que la app
+   command: 'npm run start:dev'
+   networks:
+     - my-network
 
-  my-sql:
+ my-sql:
     image: mysql:8.0.39-debian
     # container_name: mysql-dev
     ports:
-      - "3306:3306"
+      - "DB_PORT:DB_PORT"
     environment:
-      #MYSQL_USER: yo
       MYSQL_ROOT_PASSWORD: clave123
-      #MYSQL_PASSWORD: clave123
     env_file:
       - .env
     volumes:

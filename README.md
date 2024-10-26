@@ -179,6 +179,15 @@ npm run start:dev
 
 Esto levantará el servidor en el puerto **3000** por defecto.
 
+### 4.3. Subir Imagen en Docker Hub (Opcional)
+
+#### a. En el Terminal Vscode escribir los siguientes comandos:
+
+- docker login
+- usuario/nombre_imagen:tag
+- docker push mi_usuario/mi_imagen:latest
+ 
+
 ## 5. 🔀 Estructura del Proyecto [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 
 A continuación la estructura del proyecto: 
@@ -325,22 +334,22 @@ servidor con estos pasos.
 Para iniciar el proyecto debe correr el siguiente comando: 
 
 ```bash
-	npm run start:prod
+  npm run start:prod
 ```
 ### 6.2. Accede a Swagger en tu navegador:
 Para acceder a la documentación debes copiar las siguientes URL en tu navegador: 
 
 #### 6.2.1. Documentación API Usuario: 
 ```
-	http://localhost:8080/api/usuario
+  http://localhost:8080/api/usuario
 ```
 #### 6.2.2. Documentación API Mascota: 
 ```
-	http://localhost:8080/api/mascota
+  http://localhost:8080/api/mascota
 ```
 #### 6.2.3. Documentación API Producto: 
 ```
-	http://localhost:8080/api/producto
+  http://localhost:8080/api/producto
 ```
 
 ## 7. 👷‍♂️Flujo de Trabajo para Desarrollo [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)

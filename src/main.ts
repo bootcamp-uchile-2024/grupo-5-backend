@@ -72,9 +72,9 @@ async function bootstrap() {
     .setVersion(ArchivoPackageJson.version)
     .setContact(ArchivoPackageJson.author, ArchivoPackageJson.url, ArchivoPackageJson.mail)
     .setLicense(ArchivoPackageJson.license, '')
+    .addTag('Obtener Catálogo de Productos')
+    .addTag('Obtener Detalle de Producto')
     .addTag('Crear Producto')
-    .addTag('Buscar Catálogo de Productos')
-    .addTag('Buscar Detalle de Producto')
     .addTag('Actualizar Producto')
     .addTag('Eliminar Producto')
     .build();
@@ -83,7 +83,7 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/producto', app, document3);
 
-  const port = configService.get('PUERTO') || 3000//'PORT_DEFAULT';
+  const port = configService.get('PUERTO') || 3001;
   await app.listen(port);
   console.log(port);
   //console.log(`La aplicación se encuentra corriendo es el puerto de:  ${await app.getUrl()}`);

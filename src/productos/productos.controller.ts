@@ -12,7 +12,7 @@ export class ProductoController {
   constructor(private readonly productoService: ProductoService) {}
 
   // Endpoint para obtener todos los productos
-  @ApiTags('Buscar Catálogo de Productos Testing')
+  @ApiTags('Obtener Catálogo de Productos')
   @ApiOperation({ summary: 'Obtener el catalogo de los productos' })
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
@@ -22,7 +22,7 @@ export class ProductoController {
   }
 
 
-  @ApiTags('Buscar Detalle de Producto')
+  @ApiTags('Obtener Detalle de Producto')
   @ApiParam({ name: 'id', description: 'Id del Producto' })
   @ApiResponse({ status: 200, description: 'Producto encontrado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })

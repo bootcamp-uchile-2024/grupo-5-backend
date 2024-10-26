@@ -1197,149 +1197,156 @@ VALUES
 (46, 'Pawsitively Posh Pooch');  	-- Ropa y accesorios de lujo para perros
 
 -- Insertar los valores en la tabla PRODUCTOS
-INSERT INTO PRODUCTOS (IDPRODUCTO, IDMARCA, IDCATEGORIA, NOMBREPRODUCTO, SKU, DESCRIPCION) VALUES 
-(1, 1, 1, 'Royal Canin Size Health Nutrition Medium Adult', 'RC001', 'Comida para perros adultos de tamaño mediano'),
-(2, 2, 1, 'Hill''s Science Diet Puppy Large Breed', 'HS001', 'Comida para cachorros de razas grandes'),
-(3, 3, 1, 'Purina Pro Plan Focus Adult', 'PP001', 'Fórmula de pollo y arroz para perros adultos'),
-(4, 4, 1, 'Orijen Original Dog', 'OR001', 'Alimento para perros alto en proteínas'),
-(5, 5, 1, 'Acana Regionals Pacifica', 'AC001', 'Alimento con pescado para perros'),
-(6, 6, 1, 'Blue Buffalo Wilderness Chicken Recipe', 'BB001', 'Comida seca para perros rica en proteínas'),
-(7, 7, 1, 'Wellness CORE RawRev High-Protein', 'WE001', 'Alimento para perros, libre de granos'),
-(8, 8, 1, 'Iams ProActive Health Adult', 'IA001', 'Alimento para perros adultos'),
-(9, 9, 1, 'Nutro Ultra Adult Dry Dog Food', 'NU001', 'Comida seca con superalimentos'),
-(10, 10, 1, 'Taste of the Wild High Prairie', 'TW001', 'Fórmula de carne asada para perros'),
-(11, 11, 3, 'Zupreem FruitBlend Flavor for Parrots', 'ZP001', 'Alimento para loros con sabores frutales'),
-(12, 12, 3, 'Harrison''s Bird Foods High Potency', 'HB001', 'Alimento para aves de alta potencia nutricional'),
-(13, 13, 3, 'Oxbow Animal Health Western Timothy Hay', 'OX001', 'Heno de timothy occidental para conejos'),
-(14, 14, 3, 'Kaytee Forti-Diet Pro Health', 'KT001', 'Comida para aves y pequeños mamíferos'),
-(15, 15, 3, 'Exotic Nutrition Sugar Glider Food', 'EN001', 'Alimento para petauros del azúcar'),
-(16, 16, 3, 'TetraMin Tropical Flakes', 'TT001', 'Comida en hojuelas para peces tropicales'),
-(17, 17, 3, 'Repashy Superfoods Crested Gecko Diet', 'RE001', 'Comida para geckos crestados'),
-(18, 18, 3, 'Fluker''s High Calcium Cricket Diet', 'FL001', 'Dieta alta en calcio para grillos'),
-(19, 19, 1, 'Nature''s Logic Canine Beef Meal Feast', 'NL001', 'Comida para perros con carne de res'),
-(20, 20, 1, 'Stella & Chewy''s Freeze-Dried Raw Dinner Patties', 'SC001', 'Pañuelos de cena cruda liofilizada para perros'),
-(21, 21, 2, 'Dr. Elsey''s Ultra Cat Litter', 'DE001', 'Arena ultra aglutinante para gatos'),
-(22, 22, 2, 'PetSafe ScoopFree Self-Cleaning Litter Box', 'PS001', 'Caja de arena autolimpiable para gatos'),
-(23, 23, 2, 'PetFusion Ultimate Cat Scratcher Lounge', 'PF001', 'Rascador de lujo para gatos'),
-(24, 24, 9, 'Pet Naturals of Vermont Calming Chews', 'PN001', 'Masticables calmantes para mascotas'),
-(25, 25, 6, 'Tropiclean Fresh Breath Oral Care', 'TP001', 'Cuidado bucal para mascotas'),
-(26, 26, 4, 'KONG Classic Dog Toy', 'KO001', 'Juguete clásico para perros'),
-(27, 27, 4, 'Chuckit! Ultra Ball', 'CH001', 'Pelota ultra para juegos interactivos con perros'),
-(28, 28, 4, 'Nylabone Dura Chew', 'NY001', 'Juguete para morder de alta resistencia para perros'),
-(29, 29, 7, 'Petco Designer Dog Sweater', 'PC001', 'Suéter de diseño para perros'),
-(30, 30, 5, 'Chewy Pet Bed', 'CY001', 'Cama para mascotas de Chewy'),
-(31, 31, 4, 'BarkBox Super Chewer Toy', 'BBX001', 'Juguete para masticadores intensos'),
-(32, 32, 4, 'ZippyPaws Plush Dog Toy', 'ZP002', 'Juguete de peluche para perros'),
-(33, 33, 4, 'Outward Hound Interactive Puzzle Toy', 'OH001', 'Juguete interactivo tipo rompecabezas para perros'),
-(34, 34, 8, 'PawHut Pet Carrier Bag', 'PH001', 'Bolsa de transporte para mascotas'),
-(35, 35, 7, 'PetSmart Halloween Dog Costume', 'PSM001', 'Disfraz de Halloween para perros'),
-(36, 36, 5, 'Ruffwear Front Range Dog Harness', 'RW001', 'Arnés para perros Front Range'),
-(37, 37, 4, 'Tuffy''s Mega Ring Dog Toy', 'TF001', 'Juguete para perros resistente a mordidas'),
-(38, 38, 7, 'Gooby Fleece Dog Vest', 'GB001', 'Chaleco de lana para perros pequeños'),
-(39, 39, 4, 'Mammoth Flossy Chews Cotton Blend Rope', 'MM001', 'Juguete de cuerda de algodón para perros'),
-(40, 40, 6, 'Zymox Ear Solution with Hydrocortisone', 'ZM001', 'Solución para oídos con hidrocortisona para mascotas'),
-(41, 41, 5, 'PetFusion Memory Foam Dog Bed', 'PF002', 'Cama de espuma viscoelástica para perros'),
-(42, 42, 5, 'Keenovo Heated Pet Pad', 'KN001', 'Almohadilla térmica para mascotas'),
-(43, 43, 5, 'Frisco Sherpa Blanket', 'FR001', 'Manta de sherpa para mascotas'),
-(44, 44, 7, 'Little Paws Dog Sweater', 'LP001', 'Suéter para perros pequeños'),
-(45, 45, 5, 'Pawsitively Posh Pooch Luxury Collar', 'PP001', 'Collar de lujo para perros'),
-(46, 1, 1, 'Royal Canin Veterinary Diet Gastrointestinal Low Fat', 'RC002', 'Comida veterinaria baja en grasa para perros con problemas digestivos'),
-(47, 2, 1, 'Hill''s Science Diet Sensitive Stomach & Skin', 'HS002', 'Comida para perros con estómago y piel sensibles'),
-(48, 3, 1, 'Purina Pro Plan Savor Shredded Blend', 'PP002', 'Comida para perros adultos con mezcla de pollo y arroz'),
-(49, 4, 1, 'Orijen Six Fish Dog', 'OR002', 'Alimento para perros con seis tipos de pescado'),
-(50, 5, 1, 'Acana Heritage Meats Formula', 'AC002', 'Alimento con carnes variadas para perros');
+INSERT INTO PRODUCTOS (IDPRODUCTO, IDMARCA, IDCATEGORIA, NOMBREPRODUCTO, DESCRIPCION) VALUES 
+(1, 1, 1,  'Royal Canin Size Health Nutrition Medium Adult',  'Comida para perros adultos de tamaño mediano'), 
+(2, 2, 1,  'Hill''s Science Diet Puppy Large Breed',  'Comida para cachorros de razas grandes'), 
+(3, 3, 1,  'Purina Pro Plan Focus Adult',  'Fórmula de pollo y arroz para perros adultos'), 
+(4, 4, 1,  'Orijen Original Dog',  'Alimento para perros alto en proteínas'), 
+(5, 5, 1,  'Acana Regionals Pacifica',  'Alimento con pescado para perros'), 
+(6, 6, 1,  'Blue Buffalo Wilderness Chicken Recipe',  'Comida seca para perros rica en proteínas'), 
+(7, 7, 1,  'Wellness CORE RawRev High-Protein',  'Alimento para perros'), 
+(8, 8, 1,  'Iams ProActive Health Adult',  'Alimento para perros adultos'), 
+(9, 9, 1,  'Nutro Ultra Adult Dry Dog Food',  'Comida seca con superalimentos'), 
+(10, 10, 1,  'Taste of the Wild High Prairie',  'Fórmula de carne asada para perros'), 
+(11, 11, 3,  'Zupreem FruitBlend Flavor for Parrots',  'Alimento para loros con sabores frutales'), 
+(12, 12, 3,  'Harrison''s Bird Foods High Potency',  'Alimento para aves de alta potencia nutricional'), 
+(13, 13, 3,  'Oxbow Animal Health Western Timothy Hay',  'Heno de timothy occidental para conejos'), 
+(14, 14, 3,  'Kaytee Forti-Diet Pro Health',  'Comida para aves y pequeños mamíferos'), 
+(15, 15, 3,  'Exotic Nutrition Sugar Glider Food',  'Alimento para petauros del azúcar'), 
+(16, 16, 3,  'TetraMin Tropical Flakes',  'Comida en hojuelas para peces tropicales'), 
+(17, 17, 3,  'Repashy Superfoods Crested Gecko Diet',  'Comida para geckos crestados'), 
+(18, 18, 3,  'Fluker''s High Calcium Cricket Diet',  'Dieta alta en calcio para grillos'), 
+(19, 19, 1,  'Nature''s Logic Canine Beef Meal Feast',  'Comida para perros con carne de res'), 
+(20, 20, 1,  'Stella & Chewy''s Freeze-Dried Raw Dinner Patties',  'Pañuelos de cena cruda liofilizada para perros'), 
+(21, 21, 2,  'Dr. Elsey''s Ultra Cat Litter',  'Arena ultra aglutinante para gatos'), 
+(22, 22, 2,  'PetSafe ScoopFree Self-Cleaning Litter Box',  'Caja de arena autolimpiable para gatos'), 
+(23, 23, 2,  'PetFusion Ultimate Cat Scratcher Lounge',  'Rascador de lujo para gatos'), 
+(24, 24, 9,  'Pet Naturals of Vermont Calming Chews',  'Masticables calmantes para mascotas'), 
+(25, 25, 6,  'Tropiclean Fresh Breath Oral Care',  'Cuidado bucal para mascotas'), 
+(26, 26, 4,  'KONG Classic Dog Toy',  'Juguete clásico para perros'), 
+(27, 27, 4,  'Chuckit! Ultra Ball',  'Pelota ultra para juegos interactivos con perros'), 
+(28, 28, 4,  'Nylabone Dura Chew',  'Juguete para morder de alta resistencia para perros'), 
+(29, 29, 7,  'Petco Designer Dog Sweater',  'Suéter de diseño para perros'), 
+(30, 30, 5,  'Chewy Pet Bed',  'Cama para mascotas de Chewy'), 
+(31, 31, 4,  'BarkBox Super Chewer Toy',  'Juguete para masticadores intensos'), 
+(32, 32, 4,  'ZippyPaws Plush Dog Toy',  'Juguete de peluche para perros'), 
+(33, 33, 4,  'Outward Hound Interactive Puzzle Toy',  'Juguete interactivo tipo rompecabezas para perros'), 
+(34, 34, 8,  'PawHut Pet Carrier Bag',  'Bolsa de transporte para mascotas'), 
+(35, 35, 7,  'PetSmart Halloween Dog Costume',  'Disfraz de Halloween para perros'), 
+(36, 36, 5,  'Ruffwear Front Range Dog Harness',  'Arnés para perros Front Range'), 
+(37, 37, 4,  'Tuffy''s Mega Ring Dog Toy',  'Juguete para perros resistente a mordidas'), 
+(38, 38, 7,  'Gooby Fleece Dog Vest',  'Chaleco de lana para perros pequeños'), 
+(39, 39, 4,  'Mammoth Flossy Chews Cotton Blend Rope',  'Juguete de cuerda de algodón para perros'), 
+(40, 40, 6,  'Zymox Ear Solution with Hydrocortisone',  'Solución para oídos con hidrocortisona para mascotas'), 
+(41, 41, 5,  'PetFusion Memory Foam Dog Bed',  'Cama de espuma viscoelástica para perros'), 
+(42, 42, 5,  'Keenovo Heated Pet Pad',  'Almohadilla térmica para mascotas'), 
+(43, 43, 5,  'Frisco Sherpa Blanket',  'Manta de sherpa para mascotas'), 
+(44, 44, 7,  'Little Paws Dog Sweater',  'Suéter para perros pequeños'), 
+(45, 45, 5,  'Pawsitively Posh Pooch Luxury Collar',  'Collar de lujo para perros'), 
+(46, 1, 1,  'Royal Canin Veterinary Diet Gastrointestinal Low Fat',  'Comida veterinaria baja en grasa para perros con problemas digestivos'), 
+(47, 2, 1,  'Hill''s Science Diet Sensitive Stomach & Skin',  'Comida para perros con estómago y piel sensibles'), 
+(48, 3, 1,  'Purina Pro Plan Savor Shredded Blend',  'Comida para perros adultos con mezcla de pollo y arroz'), 
+(49, 4, 1,  'Orijen Six Fish Dog',  'Alimento para perros con seis tipos de pescado'), 
+(50, 5, 1,  'Acana Heritage Meats Formula',  'Alimento con carnes variadas para perros');
+
 
 
 -- Insertar los valores en la tabla IMAGENES_PRODUCTOS
 INSERT INTO IMAGENES_PRODUCTOS (IDIMAGEN, IDPRODUCTO,PATHIMAPRODUCTOS) VALUES
-(1, 1, '\ImagenesProducto\1.png'),
-(2, 1, '\ImagenesProducto\2.png'),
-(3, 1, '\ImagenesProducto\3.png'),
-(4, 2, '\ImagenesProducto\4.png'),
-(5, 2, '\ImagenesProducto\5.png'),
-(6, 2, '\ImagenesProducto\6.png'),
-(7, 3, '\ImagenesProducto\7.png'),
-(8, 3, '\ImagenesProducto\8.png'),
-(9, 3, '\ImagenesProducto\9.png'),
-(10,4, '\ImagenesProducto\10.png'),
-(11,4, '\ImagenesProducto\11.png'),
-(12,4, '\ImagenesProducto\12.png'),
-(13,5, '\ImagenesProducto\13.png'),
-(14,5, '\ImagenesProducto\14.png'),
-(15,5, '\ImagenesProducto\15.png'),
-(16,6, '\ImagenesProducto\16.png'),
-(17,6, '\ImagenesProducto\17.png'),
-(18,6, '\ImagenesProducto\18.png'),
-(19,7, '\ImagenesProducto\19.png'),
-(20,7, '\ImagenesProducto\20.png'),
-(21,7, '\ImagenesProducto\21.png');
+(1, 5, 'ImagenesProducto1.png'),
+(2, 1, 'ImagenesProducto2.png'),
+(3, 1, 'ImagenesProducto3.png'),
+(4, 2, 'ImagenesProducto4.png'),
+(5, 2, 'ImagenesProducto5.png'),
+(6, 2, 'ImagenesProducto6.png'),
+(7, 3, 'ImagenesProducto7.png'),
+(8, 3, 'ImagenesProducto8.png'),
+(9, 3, 'ImagenesProducto9.png'),
+(10,4, 'ImagenesProducto10.png'),
+(11,4, 'ImagenesProducto11.png'),
+(12,4, 'ImagenesProducto12.png'),
+(13,5, 'ImagenesProducto13.png'),
+(14,5, 'ImagenesProducto14.png'),
+(15,5, 'ImagenesProducto15.png'),
+(16,6, 'ImagenesProducto16.png'),
+(17,6, 'ImagenesProducto17.png'),
+(18,6, 'ImagenesProducto18.png'),
+(19,7, 'ImagenesProducto19.png'),
+(20,7, 'ImagenesProducto20.png'),
+(21,7, 'ImagenesProducto21.png'),
+
+(22, 50, 'ImagenesProducto1.png'),
+(23, 50, 'ImagenesProducto2.png'),
+(24, 50, 'ImagenesProducto3.png'),
+(25, 50, 'ImagenesProducto4.png');
 
 
 -- Inserciones de registros para la tabla PRESENTACIONES_PRODUCTO
-INSERT INTO PRESENTACIONES_PRODUCTO (IDPRESENTACION, IDPRODUCTO, PRECIO, STOCK, PESO, TAMANIO) VALUES
-(1, 1, 5000, 100, 1000, 1),  -- Royal Canin Tamaño Nutrición Salud Medium Adulto 1kg
-(2, 1, 20000, 50, 5000, 5),  -- Royal Canin Tamaño Nutrición Salud Medium Adulto 5kg
-(3, 1, 35000, 30, 10000, 10), -- Royal Canin Tamaño Nutrición Salud Medium Adulto 10kg
-(4, 2, 4500, 150, 500, 0.5),  -- Hill's Science Diet Cachorro Raza Grande 0.5kg
-(5, 2, 18000, 60, 3000, 3),   -- Hill's Science Diet Cachorro Raza Grande 3kg
-(6, 3, 6000, 80, 1200, 1),    -- Purina Pro Plan Enfoque Adulto 1kg
-(7, 3, 24000, 40, 6000, 6),   -- Purina Pro Plan Enfoque Adulto 6kg
-(8, 4, 7000, 90, 1500, 1.5),  -- Orijen Original Perro 1.5kg
-(9, 4, 26000, 35, 6000, 6),   -- Orijen Original Perro 6kg
-(10, 5, 7500, 85, 1200, 1),   -- Acana Regionals Pacifica 1kg
-(11, 5, 28000, 25, 5000, 5),  -- Acana Regionals Pacifica 5kg
-(12, 6, 8000, 120, 1500, 1.5), -- Blue Buffalo Wilderness Receta de Pollo 1.5kg
-(13, 6, 30000, 20, 6000, 6),  -- Blue Buffalo Wilderness Receta de Pollo 6kg
-(14, 7, 9000, 110, 2000, 2),   -- Wellness CORE RawRev Alto en Proteínas 2kg
-(15, 7, 35000, 15, 8000, 8),   -- Wellness CORE RawRev Alto en Proteínas 8kg
-(16, 8, 6000, 140, 1200, 1.5), -- Iams ProActive Health Adulto 1.5kg
-(17, 8, 23000, 30, 5500, 5),   -- Iams ProActive Health Adulto 5kg
-(18, 9, 9500, 100, 1500, 1.5), -- Nutro Ultra Adulto Croquetas Secas para Perro 1.5kg
-(19, 9, 36000, 22, 7000, 7),   -- Nutro Ultra Adulto Croquetas Secas para Perro 7kg
-(20, 10, 10000, 80, 1500, 1.5), -- Taste of the Wild Alta Pradera 1.5kg
-(21, 10, 37000, 18, 6000, 6),   -- Taste of the Wild Alta Pradera 6kg
-(22, 11, 12000, 75, 900, 1),   -- Zupreem Sabor Frutal para Loros 1kg
-(23, 11, 45000, 20, 3000, 3),  -- Zupreem Sabor Frutal para Loros 3kg
-(24, 12, 11000, 80, 700, 1),   -- Harrison's Alimentos para Aves Alta Potencia 1kg
-(25, 12, 42000, 15, 2500, 2.5), -- Harrison's Alimentos para Aves Alta Potencia 2.5kg
-(26, 13, 13000, 60, 900, 1),   -- Oxbow Salud Animal Heno Timothy Occidental 1kg
-(27, 14, 14000, 100, 500, 0.5), -- Kaytee Forti-Diet Pro Salud 0.5kg
-(28, 15, 15000, 55, 800, 1),   -- Nutrición Exótica Comida para Sugar Gliders 1kg
-(29, 16, 16000, 85, 1000, 1),  -- TetraMin Escamas Tropicales 1kg
-(30, 17, 17000, 40, 600, 0.5), -- Repashy Superfoods Dieta para Gecko Crestado 0.5kg
-(31, 18, 18000, 65, 500, 0.5), -- Fluker's Dieta de Grillo Alto en Calcio 0.5kg
-(32, 19, 19000, 50, 900, 1),   -- Nature's Logic Comida para Perro con Carne de Res 1kg
-(33, 20, 20000, 30, 800, 1),   -- Stella & Chewy's Hamburguesas Congeladas Crudas 1kg
-(34, 21, 21000, 70, 1500, 1.5), -- Dr. Elsey's Arena de Gato Ultra 1.5kg
-(35, 22, 22000, 60, 4000, 4),   -- PetSafe ScoopFree Caja de Arena Autolimpiante 4kg
-(36, 23, 23000, 50, 3500, 3.5), -- PetFusion Rascador Lounge Ultimate para Gatos 3.5kg
-(37, 24, 24000, 80, 2500, 2.5), -- Pet Naturals of Vermont Masticables Calmantes 2.5kg
-(38, 25, 25000, 90, 500, 0.5),  -- Tropiclean Cuidado Oral Aliento Fresco 0.5kg
-(39, 26, 26000, 75, 1000, 1),   -- KONG Juguete Clásico para Perro 1kg
-(40, 27, 27000, 80, 600, 0.5),  -- Chuckit! Ultra Bola 0.5kg
-(41, 28, 28000, 60, 200, 0.2),   -- Nylabone Dura Masticable 0.2kg
-(42, 29, 29000, 100, 300, 0.3), -- Suéter de Diseño para Perro Petco 0.3kg
-(43, 30, 30000, 55, 500, 0.5),  -- Cama Chewy para Mascotas 0.5kg
-(44, 31, 31000, 70, 800, 0.8),  -- Juguete BarkBox Super Chewer 0.8kg
-(45, 32, 32000, 60, 600, 0.6),  -- Juguete de Peluche ZippyPaws para Perros 0.6kg
-(46, 33, 33000, 50, 2000, 2),   -- Juguete Interactivo Outward Hound Puzzle 2kg
-(47, 34, 34000, 45, 1500, 1.5), -- Bolsa Transportadora PawHut para Mascotas 1.5kg
-(48, 35, 35000, 30, 800, 0.8),  -- Disfraz de Halloween para Perro PetSmart 0.8kg
-(49, 36, 36000, 40, 700, 0.7),  -- Arnés Frontal Ruffwear Front Range 0.7kg
-(50, 37, 37000, 20, 300, 0.3),  -- Juguete Tuffy's Mega Ring para Perro 0.3kg
-(51, 38, 38000, 75, 400, 0.4),  -- Chaleco de Forro Polar Gooby para Perros 0.4kg
-(52, 39, 39000, 60, 500, 0.5),  -- Cuerda de Algodón Mammoth Flossy Chews 0.5kg
-(53, 40, 40000, 45, 300, 0.3),  -- Solución para Oídos Zymox con Hidrocortisona 0.3kg
-(54, 41, 41000, 50, 1500, 1.5), -- Cama de Espuma Memoria PetFusion para Perros 1.5kg
-(55, 42, 42000, 70, 600, 0.6),  -- Almohadilla Térmica Keenovo para Mascotas 0.6kg
-(56, 43, 43000, 80, 900, 0.9),  -- Manta Sherpa Frisco 0.9kg
-(57, 44, 44000, 90, 300, 0.3),  -- Suéter para perros Little Paws 0.3kg
-(58, 45, 45000, 100, 500, 0.5), -- Clicker para entrenamiento canino Pawsitively Safe 0.5kg
-(59, 46, 46000, 60, 300, 0.3),  -- Arnés EzyDog Convert 0.3kg
-(60, 47, 47000, 70, 1000, 1),   -- Entrenador remoto PetSafe Elite para perros pequeños 1kg
-(61, 48, 48000, 50, 1500, 1.5), -- Alfombrilla Soggy Doggy 1.5kg
-(62, 49, 49000, 40, 200, 0.2),  -- Pod de golosinas Our Pets 0.2kg
-(63, 50, 50000, 30, 250, 0.25); -- Bebedero de gravedad Petmate Replendish 0.25kg
+INSERT INTO PRESENTACIONES_PRODUCTO (IDPRESENTACION, IDPRODUCTO, SKU, PRECIO, STOCK, PESO, TAMANIO) VALUES
+(1, 1, 1000, 5000, 100, 1000,  1),    -- Royal Canin Tamaño Nutrición Salud Medium Adulto 1kg
+(2, 1, 1001, 20000, 50, 5000,  5),    -- Royal Canin Tamaño Nutrición Salud Medium Adulto 5kg
+(3, 1, 1002, 35000, 30, 10000,  10),    -- Royal Canin Tamaño Nutrición Salud Medium Adulto 10kg
+(4, 2, 1003, 4500, 150, 500,  0.5),    -- Hill's Science Diet Cachorro Raza Grande 0.5kg
+(5, 2, 1004, 18000, 60, 3000,  3),    -- Hill's Science Diet Cachorro Raza Grande 3kg
+(6, 3, 1005, 6000, 80, 1200,  1),    -- Purina Pro Plan Enfoque Adulto 1kg
+(7, 3, 1006, 24000, 40, 6000,  6),    -- Purina Pro Plan Enfoque Adulto 6kg
+(8, 4, 1007, 7000, 90, 1500,  1.5),    -- Orijen Original Perro 1.5kg
+(9, 4, 1008, 26000, 35, 6000,  6),    -- Orijen Original Perro 6kg
+(10, 5, 1009, 7500, 85, 1200,  1),    -- Acana Regionals Pacifica 1kg
+(11, 5, 1010, 28000, 25, 5000,  5),    -- Acana Regionals Pacifica 5kg
+(12, 6, 1011, 8000, 120, 1500,  1.5),    -- Blue Buffalo Wilderness Receta de Pollo 1.5kg
+(13, 6, 1012, 30000, 20, 6000,  6),    -- Blue Buffalo Wilderness Receta de Pollo 6kg
+(14, 7, 1013, 9000, 110, 2000,  2),    -- Wellness CORE RawRev Alto en Proteínas 2kg
+(15, 7, 1014, 35000, 15, 8000,  8),    -- Wellness CORE RawRev Alto en Proteínas 8kg
+(16, 8, 1015, 6000, 140, 1200,  1.5),    -- Iams ProActive Health Adulto 1.5kg
+(17, 8, 1016, 23000, 30, 5500,  5),    -- Iams ProActive Health Adulto 5kg
+(18, 9, 1017, 9500, 100, 1500,  1.5),    -- Nutro Ultra Adulto Croquetas Secas para Perro 1.5kg
+(19, 9, 1018, 36000, 22, 7000,  7),    -- Nutro Ultra Adulto Croquetas Secas para Perro 7kg
+(20, 10, 1019, 10000, 80, 1500,  1.5),    -- Taste of the Wild Alta Pradera 1.5kg
+(21, 10, 1020, 37000, 18, 6000,  6),    -- Taste of the Wild Alta Pradera 6kg
+(22, 11, 1021, 12000, 75, 900,  1),    -- Zupreem Sabor Frutal para Loros 1kg
+(23, 11, 1022, 45000, 20, 3000,  3),    -- Zupreem Sabor Frutal para Loros 3kg
+(24, 12, 1023, 11000, 80, 700,  1),    -- Harrison's Alimentos para Aves Alta Potencia 1kg
+(25, 12, 1024, 42000, 15, 2500,  2.5),    -- Harrison's Alimentos para Aves Alta Potencia 2.5kg
+(26, 13, 1025, 13000, 60, 900,  1),    -- Oxbow Salud Animal Heno Timothy Occidental 1kg
+(27, 14, 1026, 14000, 100, 500,  0.5),    -- Kaytee Forti-Diet Pro Salud 0.5kg
+(28, 15, 1027, 15000, 55, 800,  1),    -- Nutrición Exótica Comida para Sugar Gliders 1kg
+(29, 16, 1028, 16000, 85, 1000,  1),    -- TetraMin Escamas Tropicales 1kg
+(30, 17, 1029, 17000, 40, 600,  0.5),    -- Repashy Superfoods Dieta para Gecko Crestado 0.5kg
+(31, 18, 1030, 18000, 65, 500,  0.5),    -- Fluker's Dieta de Grillo Alto en Calcio 0.5kg
+(32, 19, 1031, 19000, 50, 900,  1),    -- Nature's Logic Comida para Perro con Carne de Res 1kg
+(33, 20, 1032, 20000, 30, 800,  1),    -- Stella & Chewy's Hamburguesas Congeladas Crudas 1kg
+(34, 21, 1033, 21000, 70, 1500,  1.5),    -- Dr. Elsey's Arena de Gato Ultra 1.5kg
+(35, 22, 1034, 22000, 60, 4000,  4),    -- PetSafe ScoopFree Caja de Arena Autolimpiante 4kg
+(36, 23, 1035, 23000, 50, 3500,  3.5),    -- PetFusion Rascador Lounge Ultimate para Gatos 3.5kg
+(37, 24, 1036, 24000, 80, 2500,  2.5),    -- Pet Naturals of Vermont Masticables Calmantes 2.5kg
+(38, 25, 1037, 25000, 90, 500,  0.5),    -- Tropiclean Cuidado Oral Aliento Fresco 0.5kg
+(39, 26, 1038, 26000, 75, 1000,  1),    -- KONG Juguete Clásico para Perro 1kg
+(40, 27, 1039, 27000, 80, 600,  0.5),    -- Chuckit! Ultra Bola 0.5kg
+(41, 28, 1040, 28000, 60, 200,  0.2),    -- Nylabone Dura Masticable 0.2kg
+(42, 29, 1041, 29000, 100, 300,  0.3),    -- Suéter de Diseño para Perro Petco 0.3kg
+(43, 30, 1042, 30000, 55, 500,  0.5),    -- Cama Chewy para Mascotas 0.5kg
+(44, 31, 1043, 31000, 70, 800,  0.8),    -- Juguete BarkBox Super Chewer 0.8kg
+(45, 32, 1044, 32000, 60, 600,  0.6),    -- Juguete de Peluche ZippyPaws para Perros 0.6kg
+(46, 33, 1045, 33000, 50, 2000,  2),    -- Juguete Interactivo Outward Hound Puzzle 2kg
+(47, 34, 1046, 34000, 45, 1500,  1.5),    -- Bolsa Transportadora PawHut para Mascotas 1.5kg
+(48, 35, 1047, 35000, 30, 800,  0.8),    -- Disfraz de Halloween para Perro PetSmart 0.8kg
+(49, 36, 1048, 36000, 40, 700,  0.7),    -- Arnés Frontal Ruffwear Front Range 0.7kg
+(50, 37, 1049, 37000, 20, 300,  0.3),    -- Juguete Tuffy's Mega Ring para Perro 0.3kg
+(51, 38, 1050, 38000, 75, 400,  0.4),    -- Chaleco de Forro Polar Gooby para Perros 0.4kg
+(52, 39, 1051, 39000, 60, 500,  0.5),    -- Cuerda de Algodón Mammoth Flossy Chews 0.5kg
+(53, 40, 1052, 40000, 45, 300,  0.3),    -- Solución para Oídos Zymox con Hidrocortisona 0.3kg
+(54, 41, 1053, 41000, 50, 1500,  1.5),    -- Cama de Espuma Memoria PetFusion para Perros 1.5kg
+(55, 42, 1054, 42000, 70, 600,  0.6),    -- Almohadilla Térmica Keenovo para Mascotas 0.6kg
+(56, 43, 1055, 43000, 80, 900,  0.9),    -- Manta Sherpa Frisco 0.9kg
+(57, 44, 1056, 44000, 90, 300,  0.3),    -- Suéter para perros Little Paws 0.3kg
+(58, 45, 1057, 45000, 100, 500,  0.5),    -- Clicker para entrenamiento canino Pawsitively Safe 0.5kg
+(59, 46, 1058, 46000, 60, 300,  0.3),    -- Arnés EzyDog Convert 0.3kg
+(60, 47, 1059, 47000, 70, 1000,  1),    -- Entrenador remoto PetSafe Elite para perros pequeños 1kg
+(61, 48, 1060, 48000, 50, 1500,  1.5),    -- Alfombrilla Soggy Doggy 1.5kg
+(62, 49, 1061, 49000, 40, 200,  0.2),    -- Pod de golosinas Our Pets 0.2kg
+(63, 50, 1062, 50000, 30, 250,  0.25); -- Bebedero de gravedad Petmate Replendish 0.25kg,   
+
 
 
 -- Inserciones de registros para la tabla ATRIBUTOS_ESPECIFICOS

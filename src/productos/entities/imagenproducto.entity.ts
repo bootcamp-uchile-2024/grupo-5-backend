@@ -1,16 +1,20 @@
 // imagen-producto.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { Producto } from './producto.entity';
 
-@Entity('imagenes_producto')
+@Entity('imagenes_productos')
 export class ImagenProducto {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   idImagen: number;
 
-  @Column()
+  @Column({name: 'PATHIMAPRODUCTOS'})
   pathImagenProducto: string;
   
-  @ManyToOne(() => Producto)
-  @JoinColumn({name: 'Producto'})
+  // @ManyToOne(() => Producto)
+  // @JoinColumn({name: 'IdProducto'})
+  // idProducto: Producto;
+
+  @ManyToOne(() => Producto, (producto) => producto.imagenes)
+  @JoinColumn({ name: 'IdProducto' })
   producto: Producto;
 }

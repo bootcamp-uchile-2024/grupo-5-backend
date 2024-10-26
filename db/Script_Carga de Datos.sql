@@ -1249,6 +1249,32 @@ INSERT INTO PRODUCTOS (IDPRODUCTO, IDMARCA, IDCATEGORIA, NOMBREPRODUCTO, SKU, DE
 (49, 4, 1, 'Orijen Six Fish Dog', 'OR002', 'Alimento para perros con seis tipos de pescado'),
 (50, 5, 1, 'Acana Heritage Meats Formula', 'AC002', 'Alimento con carnes variadas para perros');
 
+
+-- Insertar los valores en la tabla IMAGENES_PRODUCTOS
+INSERT INTO IMAGENES_PRODUCTOS (IDIMAGEN, IDPRODUCTO,PATHIMAPRODUCTOS) VALUES
+(1, 1, '\ImagenesProducto\1.png'),
+(2, 1, '\ImagenesProducto\2.png'),
+(3, 1, '\ImagenesProducto\3.png'),
+(4, 2, '\ImagenesProducto\4.png'),
+(5, 2, '\ImagenesProducto\5.png'),
+(6, 2, '\ImagenesProducto\6.png'),
+(7, 3, '\ImagenesProducto\7.png'),
+(8, 3, '\ImagenesProducto\8.png'),
+(9, 3, '\ImagenesProducto\9.png'),
+(10,4, '\ImagenesProducto\10.png'),
+(11,4, '\ImagenesProducto\11.png'),
+(12,4, '\ImagenesProducto\12.png'),
+(13,5, '\ImagenesProducto\13.png'),
+(14,5, '\ImagenesProducto\14.png'),
+(15,5, '\ImagenesProducto\15.png'),
+(16,6, '\ImagenesProducto\16.png'),
+(17,6, '\ImagenesProducto\17.png'),
+(18,6, '\ImagenesProducto\18.png'),
+(19,7, '\ImagenesProducto\19.png'),
+(20,7, '\ImagenesProducto\20.png'),
+(21,7, '\ImagenesProducto\21.png');
+
+
 -- Inserciones de registros para la tabla PRESENTACIONES_PRODUCTO
 INSERT INTO PRESENTACIONES_PRODUCTO (IDPRESENTACION, IDPRODUCTO, PRECIO, STOCK, PESO, TAMANIO) VALUES
 (1, 1, 5000, 100, 1000, 1),  -- Royal Canin Tamaño Nutrición Salud Medium Adulto 1kg

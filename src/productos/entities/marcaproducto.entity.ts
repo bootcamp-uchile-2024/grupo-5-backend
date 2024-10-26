@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column, OneToMany, JoinColumn, ManyToOne } from 'typeorm';
 import { Producto } from '../entities/producto.entity';
 
-@Entity('marca_producto')
+@Entity('marcas_producto')
 export class MarcaProducto {
   @PrimaryColumn()
   idMarca: number;  

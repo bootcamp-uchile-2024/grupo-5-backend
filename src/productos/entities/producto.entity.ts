@@ -23,9 +23,6 @@ export class Producto {
   nombreProducto: string;
 
   @Column()
-  sku: string;
-
-  @Column()
   descripcion: string;
 
   @ManyToOne(() => CategoriaProducto)
@@ -39,11 +36,17 @@ export class Producto {
   @OneToMany(() => AtributosEspecificos, (atributos) => atributos.idProducto)
   atributos: AtributosEspecificos[];
 
-  @OneToMany(() => ImagenProducto, (imagen) => imagen.idImagen)
+
+  // @OneToMany(() => ImagenProducto, (imagen) => imagen.idImagen)
+  // imagenes: ImagenProducto[];
+
+  @OneToMany(() => ImagenProducto, (imagen) => imagen.producto)
   imagenes: ImagenProducto[];
 
-  @OneToMany(() => PresentacionProducto, (presentacion) => presentacion.idPresentacion)
+
+  @OneToMany(() => PresentacionProducto, (presentacion) => presentacion.producto)
   presentaciones: PresentacionProducto[];
+
   
   @ManyToMany(() => CarroCompras, (carro) => carro.productos_carro)
   carroCompras: CarroCompras[];

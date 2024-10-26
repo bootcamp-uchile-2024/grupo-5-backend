@@ -8,7 +8,7 @@ export class CatalogoProductoDto {
         description: 'Identificador del Producto',
         required: true,
         example: 23})
-    public id: number;
+    public sku: number;
 
     @ApiProperty({
         type: 'string', 
@@ -16,7 +16,7 @@ export class CatalogoProductoDto {
         description: 'Nombre del Producto',
         required: true,
         example: 'Proplan Cachorro'})
-    public nombre: string;
+    public NombreProducto: string;
 
     @ApiProperty({
         type: 'string', 
@@ -24,21 +24,24 @@ export class CatalogoProductoDto {
         description: 'Nombre de la Marca del Producto',
         required: true,
         example: 'Proplan'})
-    public marca: string;
+    public MarcaProducto: string;
 
     @ApiProperty({
         type: 'number', 
         title: 'Precio del Producto',
         description: 'Precio del Producto',
         required: true,
-        example: 54000})
-    public precio: number;
+        example: 'Precio: 35000'})
+    public PrecioProducto: number;
 
+    
     @ApiProperty({
         type: 'string', 
         title: 'Imágenes del Producto',
         description: 'Imágenes del Producto',
         required: true,
         example: ['images/proplan1.jpg', 'images/proplan2.jpg']})
-    public imagenes: string[];
+    public ImagenesProducto: string[];
+
+
 }

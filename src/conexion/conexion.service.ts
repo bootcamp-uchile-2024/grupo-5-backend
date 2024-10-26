@@ -18,8 +18,8 @@ export class ConexionService {
     const resultado : any[] = await this.dataSource.query(instruccion);
     for (const fila of resultado) {
       const dto= new CatalogoProductoDto();
-      dto.id = fila.IDPRODUCTO,
-      dto.nombre = fila.NOMBREPRODUCTO
+      dto.sku = fila.IDPRODUCTO,
+      dto.NombreProducto = fila.NOMBREPRODUCTO
       listaProductos.push(dto);
     }
     return listaProductos;

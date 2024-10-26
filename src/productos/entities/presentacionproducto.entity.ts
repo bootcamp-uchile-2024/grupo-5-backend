@@ -1,25 +1,29 @@
 // presentacion-producto.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Producto } from './producto.entity';
 
-@Entity('presentacion_producto')
+@Entity('PRESENTACIONES_PRODUCTO')
 export class PresentacionProducto {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({ name: 'IdPresentacion' })
   idPresentacion: number;
 
-  @Column()
+  @Column({name : 'sku'})
+  sku: number;
+
+  @Column({name : 'precio'})
   precio: number;
 
-  @Column()
+  @Column({name : 'stock'})
   stock: number;
 
-  @Column()
+  @Column({name : 'peso'})
   peso: number;
 
-  @Column()
+  @Column({name : 'tamanio'})
   tamanio: number;
-
+  
   @ManyToOne(() => Producto)
-  @JoinColumn({ name: 'idProducto' })
+  @JoinColumn({ name: 'IdProducto' })
   producto: Producto;
+
 }

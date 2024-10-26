@@ -14,13 +14,16 @@ export class ProductoController {
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
   @Get("productos")
-  async findAll(): Promise<Producto[]> {
-    console.log('Solicitando todos los productos...');
-    const productos = await this.productoService.findAll();
-    console.log('Productos devueltos al controlador:', productos); 
-    return productos;
-
+  findAll(){
+    return this.productoService.findAll();
   }
+  // async findAll(): Promise<Producto[]> {
+  //   console.log('Solicitando todos los productos...');
+  //   const productos = await this.productoService.findAll();
+  //   console.log('Productos devueltos al controlador:', productos); 
+  //   return 'productos';
+
+  // }
 }
 
 

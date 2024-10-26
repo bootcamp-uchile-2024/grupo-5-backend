@@ -22,11 +22,9 @@ export class Calendario {
   @Column()
   motivocalendario: string;
 
-
   @ManyToOne(() => Frecuencia)
   @JoinColumn({ name: 'IdFrecuencia' })
   idFrecuencia: Frecuencia;
-
 
   @ManyToOne(() => Mascota)
   @JoinColumn({ name: 'IdMascota' })

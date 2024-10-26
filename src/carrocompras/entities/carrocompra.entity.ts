@@ -1,5 +1,8 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { Usuario } from 'src/usuarios/entities/usuarios.entity';
+import { DetalleCarroCompra } from './detallescarrocompra.entity';
+import { Producto } from 'src/productos/entities/producto.entity';
+import { join } from 'path';
 
 @Entity('carro_compras')
 export class CarroCompras {
@@ -12,8 +15,20 @@ export class CarroCompras {
   @Column()
   fechaCreacion: Date;
 
-  //VALIDAR
-  @ManyToOne(() => Usuario/*, (usuario) => usuario.idUsuario*/)
+  @ManyToOne(() => Usuario)
   @JoinColumn({ name: 'idUsuario' })
   usuario: Usuario;
+
+  @OneToMany(() => DetalleCarroCompra, detalleCarroCompra => detalleCarroCompra.carroCompra)
+  detalleCarroCompra: DetalleCarroCompra[];
+
+  @ManyToMany(() => Producto)
+  @JoinTable({ name: 'PRODUCTOS_CARRO',
+    joinColumn: { name: 'idCarroCompras', referencedColumnName: 'idCarroCompras' },
+    inverseJoinColumn: { name: 'idProducto', referencedColumnName: 'idProducto' },
+  })
+  productos_carro: Producto[]; 
+
+
+
 }

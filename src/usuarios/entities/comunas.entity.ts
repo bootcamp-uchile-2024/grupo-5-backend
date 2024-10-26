@@ -13,11 +13,9 @@ export class Comuna {
   @Column()
   nombreComuna: string;
 
-  @ManyToOne(() => Region, (region) => region.comunas)
+  @ManyToOne(() => Region)
   @JoinColumn({ name: 'idRegion' })
   region: Region;
-
-
 
   @OneToMany(() => Direcciones, (direccion) => direccion.comuna)
   direcciones: Direcciones[];

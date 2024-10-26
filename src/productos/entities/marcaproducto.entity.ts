@@ -9,8 +9,7 @@ export class MarcaProducto {
   @Column()
   nombreMarca: string;
 
-  @ManyToOne(() => Producto)
-  @JoinColumn({name: 'Producto'})
-  producto: Producto;
-
+  @OneToMany(() => Producto, producto => producto.marca)
+  productos: Producto[];
+  
 }

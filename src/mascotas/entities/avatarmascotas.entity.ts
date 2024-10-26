@@ -4,7 +4,7 @@ import { Mascota } from './mascotas.entity';
 @Entity('avatar_mascotas')
 export class AvatarMascota {
     @PrimaryColumn()
-    idAvatarMascota: bigint;
+    idAvatarMascota: number;
 
     @Column()
     pathImagenMascota: string;

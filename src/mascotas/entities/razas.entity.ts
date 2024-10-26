@@ -13,7 +13,7 @@ export class Raza {
     @OneToMany(() => Mascota, (mascota) => mascota.raza)
     mascotas: Mascota[];
 
-    @ManyToOne(() => Especie, (especie) => especie.razas)
+    @ManyToOne(() => Especie)
     @JoinColumn({ name: 'idEspecie' })
     especie: Especie;
 

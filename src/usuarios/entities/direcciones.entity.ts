@@ -1,11 +1,12 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Usuario } from './usuarios.entity';
 import { Comuna } from './comunas.entity';
+import { UsuarioDto } from '../dto/read-usuario.dto';
 
 @Entity('direcciones')
 export class Direcciones {
     @PrimaryColumn()
-    idDireccion: bigint;
+    idDireccion: number;
 
     @Column()
     idUsuario: number;
@@ -33,12 +34,12 @@ export class Direcciones {
 
     @Column()
     telefonoContacto: number;
-    //VALIDAR
-    @ManyToOne(() => Usuario, (usuario) => usuario.direcciones)
+
+    @ManyToOne(() => Usuario)
     @JoinColumn({ name: 'idUsuario' }) 
     usuario: Usuario;
 
-    @ManyToOne(() => Comuna, (comuna) => comuna.direcciones)
+    @ManyToOne(() => Comuna)
     @JoinColumn({ name: 'idComuna' }) 
     comuna: Comuna;
 }

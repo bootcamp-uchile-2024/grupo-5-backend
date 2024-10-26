@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
-import { MascotasCondiciones } from './mascotascondiciones.entity';
+import { Entity, PrimaryColumn, Column, OneToMany, ManyToMany } from 'typeorm';
+import { Mascota } from './mascotas.entity';
+
 
 @Entity('condiciones_alimentarias')
 export class CondicionAlimentaria {
@@ -9,6 +10,7 @@ export class CondicionAlimentaria {
     @Column()
     condicionalimentaria: string;
 
-    @OneToMany(() => MascotasCondiciones, (mascotasCondiciones) => mascotasCondiciones.condicion)
-    mascotas: MascotasCondiciones[];
+    @ManyToMany(() => Mascota, (mascota) => mascota.condicionesAlimentarias)
+    mascotas: Mascota[];
+
 }

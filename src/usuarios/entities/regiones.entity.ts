@@ -12,7 +12,6 @@ export class Region {
   @Column()
   nombreRegion: string;
 
-  // Relación con la entidad Comuna
   @OneToMany(() => Comuna, (comuna) => comuna.region)
   comunas: Comuna[];
 }

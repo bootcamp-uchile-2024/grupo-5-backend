@@ -1,6 +1,7 @@
-import {     Entity,     PrimaryColumn,     Column,     OneToMany } from 'typeorm';
-import { DetallePedido } from './detalle_pedido.entity';
-import { ProductoPedido } from './producto_pedido.entity';
+import {     Entity,     PrimaryColumn,     Column,     OneToMany, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Usuario } from 'src/usuarios/entities/usuarios.entity';
+import { DetallesPedidos } from './detallespedidos.entity';
+import { Producto } from './producto.entity';
 
 @Entity('PEDIDOS')
 export class Pedido {
@@ -13,9 +14,18 @@ export class Pedido {
     @Column({ nullable: true })
     fechaEntrega: Date;
 
-    @OneToMany(() => DetallePedido, (detallePedido) => detallePedido.pedido)
-    detallesPedido: DetallePedido[];
+    @ManyToOne(() => Usuario)
+    @JoinColumn({ name: 'idUsuario' })
+    usuario: Usuario;
 
-    @OneToMany(() => ProductoPedido, (productoPedido) => productoPedido.pedido)
-    productosPedidos: ProductoPedido[];
+    @OneToMany(() => DetallesPedidos, (detallePedido) => detallePedido.pedido)
+    detallesPedido: DetallesPedidos[];
+
+    @ManyToMany(() => Producto)
+    @JoinTable({ name: 'PRODUCTOS_PEDIDOS',
+      joinColumn: { name: 'idPedido', referencedColumnName: 'idPedido' },
+      inverseJoinColumn: { name: 'idProducto', referencedColumnName: 'idProducto' },
+    })
+    productos_pedido: Producto[]; 
+
 }

@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
-import { MascotasVacunas } from './mascotasvacunas.entity_DELETE';
+import { Entity, PrimaryColumn, Column, OneToMany, ManyToMany } from 'typeorm';
+import { Mascota } from './mascotas.entity';
+
 
 @Entity('vacunas')
 export class Vacuna {
@@ -9,6 +10,6 @@ export class Vacuna {
     @Column()
     nombreVacuna: string;
 
-    @OneToMany(() => MascotasVacunas, (mascotasVacunas) => mascotasVacunas.vacuna)
-    mascotas: MascotasVacunas[];
+    @ManyToMany(() => Mascota, (mascota) => mascota.vacunas)
+    mascotas: Mascota[];
 }

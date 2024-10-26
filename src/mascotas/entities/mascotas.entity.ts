@@ -1,11 +1,12 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, OneToMany, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Raza } from './razas.entity';
 import { AvatarMascota } from './avatarmascotas.entity';
 import { RegistroMedico } from './registromedico.entity';
 import { Calendario } from './calendarios.entity';
-import { MascotasCondiciones } from './mascotascondiciones.entity';
-import { MascotasVacunas } from './mascotasvacunas.entity_DELETE';
-import { UsuariosMascotas } from 'src/usuarios/entities/usuariomascotas.entity';
+import { CondicionAlimentaria } from './condicionesalimentarias.entity';
+import { Vacuna } from './vacunas.entity';
+import { Enfermedad_Base } from './enfermedadesbase.entity';
+import { Usuario } from 'src/usuarios/entities/usuarios.entity';
 
 @Entity('mascotas')
 export class Mascota {
@@ -27,23 +28,43 @@ export class Mascota {
     @OneToMany(() => RegistroMedico, (registroMedico) => registroMedico.mascota)
     registrosMedicos: RegistroMedico[];
 
-    @ManyToOne(() => Raza, (raza) => raza.mascotas)
+    @ManyToOne(() => Raza)
     @JoinColumn({ name: 'idRaza' })
     raza: Raza;
 
-    @ManyToOne(() => AvatarMascota, (avatarMascota) => avatarMascota.idAvatarMascota)
+    @OneToOne(() => AvatarMascota)
     @JoinColumn({ name: 'idAvatarMascota' })
     avatarMascota: AvatarMascota;
 
-    @OneToMany(() => Calendario, (calendario) => calendario.motivocalendario)
+    @OneToMany(() => Calendario, (calendario) => calendario.idMascota)
     calendarios: Calendario[];
 
-    @OneToMany(() => MascotasCondiciones, (mascotasCondiciones) => mascotasCondiciones.mascota)
-    condiciones: MascotasCondiciones[];
+    @ManyToMany(() => CondicionAlimentaria)
+    @JoinTable({name: 'Mascotas_Condalimentarias',
+        joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
+        inverseJoinColumn: {name: 'idCondicion', referencedColumnName: 'idCondicion'},
+    })
+    condicionesAlimentarias: CondicionAlimentaria[];
 
-    @OneToMany(() => MascotasVacunas, (mascotasVacunas) => mascotasVacunas.mascota)
-    vacunas: MascotasVacunas[];
+    @ManyToMany(() => Vacuna)
+    @JoinTable({name: 'Mascotas_Vacunas',
+        joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
+        inverseJoinColumn: {name: 'idVacuna', referencedColumnName: 'idVacuna'},
+    })
+    vacunas: Vacuna[];
 
-    @OneToMany(() => UsuariosMascotas, (usuariosMascotas) => usuariosMascotas.mascota)
-    usuarios: UsuariosMascotas[];
+    @ManyToMany(() => Enfermedad_Base)
+    @JoinTable({name: 'Mascotas_Enfermedades',
+        joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
+        inverseJoinColumn: {name: 'idEnfermedad', referencedColumnName: 'idEnfermedad'},
+    })
+    enfermedades: Enfermedad_Base[];
+
+    @ManyToMany(() => Usuario)
+    @JoinTable({name: 'Usuarios_Mascotas',
+        joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
+        inverseJoinColumn: {name: 'idUsuario', referencedColumnName: 'idUsuario'},
+    })
+    usuarios: Usuario[];
+
 }

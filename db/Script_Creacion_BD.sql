@@ -244,6 +244,7 @@ create table MASCOTAS_VACUNAS
 create table PEDIDOS
 (
    IDPEDIDO             bigint not null  comment '',
+   IDUSUARIO            bigint  comment '',
    FECHACREACION        datetime  comment '',
    FECHAENTRGA          datetime  comment '',
    primary key (IDPEDIDO)
@@ -292,10 +293,9 @@ create table PRODUCTOS_CARRO
 /*==============================================================*/
 create table PRODUCTOS_PEDIDOS
 (
-   IDUSUARIO            bigint not null  comment '',
    IDPEDIDO             bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
-   primary key (IDUSUARIO, IDPEDIDO, IDPRODUCTO)
+   primary key (IDPEDIDO, IDPRODUCTO)
 );
 
 /*==============================================================*/
@@ -436,6 +436,9 @@ alter table MASCOTAS_VACUNAS add constraint VACUNAS_MASVAC foreign key (IDVACUNA
 alter table MASCOTAS_VACUNAS add constraint MASCOTAS_MASVAC foreign key (IDMASCOTA)
       references MASCOTAS (IDMASCOTA) on delete restrict on update restrict;
 
+alter table PEDIDOS add constraint USUARIOS_PEDIDOS foreign key (IDUSUARIO)
+      references USUARIOS (IDUSUARIO) on delete restrict on update restrict;
+
 alter table PRESENTACIONES_PRODUCTO add constraint PRODUCTO_PRESPRO foreign key (IDPRODUCTO)
       references PRODUCTOS (IDPRODUCTO) on delete restrict on update restrict;
 
@@ -456,9 +459,6 @@ alter table PRODUCTOS_PEDIDOS add constraint PRODUCTO_PRODPED foreign key (IDPRO
 
 alter table PRODUCTOS_PEDIDOS add constraint PEDIDOS_PROPED foreign key (IDPEDIDO)
       references PEDIDOS (IDPEDIDO) on delete restrict on update restrict;
-
-alter table PRODUCTOS_PEDIDOS add constraint USUARIOS_PROPED foreign key (IDUSUARIO)
-      references USUARIOS (IDUSUARIO) on delete restrict on update restrict;
 
 alter table RAZAS add constraint ESPECIES_RAZAS foreign key (IDESPECIE)
       references ESPECIES (IDESPECIE) on delete restrict on update restrict;

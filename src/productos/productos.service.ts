@@ -1,29 +1,23 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository } from 'typeorm';
-import { Producto } from './entities/producto.entity';
-import { ProductoDto } from './dto/producto.dto';
-
+import { Injectable } from "@nestjs/common";
+import { InjectDataSource } from "@nestjs/typeorm";
+import { DataSource } from "typeorm";
+import { Producto } from "./entities/producto.entity";
 
 @Injectable()
 export class ProductoService {
+
   constructor(
-    @InjectRepository(Producto)
-    private readonly productoRepository: Repository<Producto>, // Inyectamos el repositorio de Producto
+    @InjectDataSource() private readonly dataSource: DataSource,
   ) {}
 
-  // Método para obtener todos los productos con sus relaciones
-  async findAll(): Promise<Producto[]> {
-    try{
-      const productos = this.productoRepository.find({
-          relations: ['categoria', 'marca'], // Relaciones con categoria y marca
-        });
-        console.log('Productos:', productos);
-        return productos;
+async findAll() :Promise<string> {
+  const em = this.dataSource.manager;
+  const promesaBuscar = em.find(Producto);
+  const resultado : Producto[] = await promesaBuscar;
+  console.log('Resultado:', resultado);
 
-      } catch (error) {
-        console.error('Error al obtener productos:', error);
-        throw new InternalServerErrorException('Error al obtener productos');
-      }
-    }
+  return 'Hola desde el servicio de productos';
   }
+  
+}
+

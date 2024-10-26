@@ -64,7 +64,7 @@
             type: 'string',
             enum: UserRole, // Aquí se especifica el enum
             description: 'Rol del usuario en el sistema',
-            example: UserRole.CLIENTE,
+            example: UserRole.USUARIO,
           })
           public rolUsuario: UserRole;
       

@@ -1,10 +1,10 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
-
+import { Entity, PrimaryColumn, Column, ManyToOne, OneToMany, JoinColumn, ManyToMany } from 'typeorm';
 import { AvatarUsuarios } from './avatarusuarios.entity';
-import { UsuariosMascotas } from './usuariomascotas.entity';
-
 import { Direcciones } from './direcciones.entity';
 import { Roles } from './roles.entity';
+import { Pedido } from 'src/productos/entities/pedidos.entity';
+import { CarroCompras } from 'src/carrocompras/entities/carrocompra.entity';
+import { Mascota } from 'src/mascotas/entities/mascotas.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -39,17 +39,22 @@ export class Usuario {
     @JoinColumn({ name: 'idRol' })
     rol: Roles;
 
-    @ManyToOne(() => AvatarUsuarios, (avatar) => avatar.usuarios)
+    @ManyToOne(() => AvatarUsuarios)
     @JoinColumn({ name: 'idImagenAvatar' })
     avatar: AvatarUsuarios;
-
 
     @OneToMany(() => Direcciones, (direccion) => direccion.usuario)
     direcciones: Direcciones[];
 
-    @OneToMany(() => UsuariosMascotas, (usuarioMascota) => usuarioMascota.usuario)
-    mascotas: UsuariosMascotas[];
-
     @OneToMany(() => Pedido, (pedido) => pedido.usuario)
     pedidos: Pedido[];
+
+    @OneToMany(() => CarroCompras, (carro) => carro.usuario)
+    carroCompras: CarroCompras[];
+
+    @ManyToMany(() => Mascota, (mascota) => mascota.usuarios)
+    mascotas: Mascota[];
+
 }
+
+

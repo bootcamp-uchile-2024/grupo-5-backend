@@ -4,7 +4,7 @@ import { Mascota } from './mascotas.entity';
 @Entity('registros_medicos')
 export class RegistroMedico {
     @PrimaryColumn()
-    idRegistroMedico: bigint;
+    idRegistroMedico: number;
 
     @Column()
     fechaRegistro: Date;
@@ -16,7 +16,7 @@ export class RegistroMedico {
     motivo: string;
 
     
-    @ManyToOne(() => Mascota, (mascota) => mascota.registrosMedicos)
+    @ManyToOne(() => Mascota)
     @JoinColumn({ name: 'idMascota' })
     mascota: Mascota;
 }

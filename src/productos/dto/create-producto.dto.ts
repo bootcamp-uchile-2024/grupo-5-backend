@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { ArrayNotEmpty, IsArray, IsNotEmpty, IsNumber, IsString, Length, Max, Min } from "class-validator";
-
+import { ImagenProducto } from "../entities/imagenproducto.entity";
 
 export class CreateProductoDto {
 
@@ -21,21 +21,21 @@ export class CreateProductoDto {
         example: 'Royal Canin Cachorro Medium Puppy alimento para perro'}) 
         @IsString({message: 'El Nombre del Producto debe ser un string'})
         @Length(1, 80, { message: 'El Nombre del Producto debe tener entre 1 y 80 caracteres.' })
-   public nombre: string;
+   public nombreProducto: string;
    
 
    @ApiProperty({
-        type: 'string', 
-        title: 'Marca del Producto',
-        description: 'Nombre de la Marca del Producto',
-        required: true,
-        maxLength: 20,  
+        type: 'number', 
+        title: 'Identificador de la Marca del Producto',
+        description: 'Identificador de la Marca del Producto',
+        minimum: 1,
+        maximum: 10000000,
         nullable: false,
-        example: 'Royal Canin'}) 
-        @IsString({message: 'La Marca del Producto debe ser un string'})
-        @Length(1, 20, { message: 'La Marca del Producto debe tener entre 1 y 20 caracteres.' })
-        @IsNotEmpty({message: 'La Marca del producto no puede estar vacía'})
-    public marca: string;
+        example: '1'}) 
+        @IsString({message: 'Identificador de la Marca del Producto debe ser un string'})
+        @Length(1, 20, { message: 'Identificador la Marca del Producto debe tener entre 1 y 20 caracteres.' })
+        @IsNotEmpty({message: 'Identificador la Marca del producto no puede estar vacía'})
+    public idMarca: number;
 
     @ApiProperty({
         type: 'string', 
@@ -49,6 +49,20 @@ export class CreateProductoDto {
         @Length(1, 500, { message: 'La Descripción del Producto debe tener entre 1 y 500 caracteres.' })
         @IsNotEmpty({message: 'La Descripción del Producto no puede estar vacía'})
     public descripcion: string;
+
+    @ApiProperty({
+        type: 'string', 
+        title: 'SKU del Producto',
+        description: 'SKU del Producto',
+        required: true,
+        maxLength: 8,  
+        nullable: false,
+        example: 'ATRC1927'}) 
+        @IsString({message: 'El SKU Producto debe ser un string'})
+        @Length(1, 8, { message: 'El SKU del Producto debe tener entre 1 y 8 caracteres.' })
+        @IsNotEmpty({message: 'El SKU del Producto no puede estar vacío'})
+    public sku: string;
+
 
     @ApiProperty({
         type: 'number', 
@@ -66,8 +80,73 @@ export class CreateProductoDto {
         @Max(10000000, { message: 'El Precio del Producto no debe exceder los  10000000.' })
     public precio: number;
 
+
     @ApiProperty({
-        type: 'string[]', 
+        type: 'number', 
+        title: 'Stock del Producto',
+        description: 'Stock del Producto ',
+        required: true,
+        minimum: 1,
+        maximum: 10000000,
+        maxLength: 10,  
+        nullable: false,
+        example: '1200'}) 
+        @IsNumber({}, {message: 'El Stock del Producto debe ser un número'})
+        @IsNotEmpty({message: 'El Stock del Producto no puede estar vacío'})
+        @Min(1, { message: 'El Stock del Producto debe ser al menos 1 unidad.' })
+        @Max(10000000, { message: 'El Stock del Producto no debe exceder los  10000000.' })
+    public stock: number;
+
+    @ApiProperty({
+        type: 'string', 
+        title: 'Peso del Producto',
+        description: 'Peso del Producto ',
+        required: true,
+        maxLength: 20,  
+        nullable: true,
+        example: '12 Kg'}) 
+        @IsString( {message: 'El Peso del Producto debe ser un string'})
+    public peso: string;
+
+
+    @ApiProperty({
+        type: 'string', 
+        title: 'Tamaño del Producto',
+        description: 'Tamaño del Producto ',
+        required: true,
+        maxLength: 20,  
+        nullable: true,
+        example: '12 Kg'}) 
+        @IsString( {message: 'El Tamaño del Producto debe ser un string'})
+    public tamanio: string;
+
+
+    @ApiProperty({
+        type: 'string', 
+        title: 'Ingredientes del Producto',
+        description: 'Lista de Ingredientes del Producto', 
+        required: false,
+        maxLength: 1000,  
+        nullable: true,
+        example: 'Arcilla aglutinante.'}) 
+        @IsString({message: 'Los Ingredientes del Producto debe ser un string'})
+        @Length(1, 1000, { message: 'Los Ingredientes del Producto debe tener entre 1 y 1000 caracteres.' })
+   public ingredientes: string;
+
+   @ApiProperty({
+    type: 'string', 
+    title: 'Materiales del Producto',
+    description: 'Lista Materiales de Ingredientes del Producto', 
+    required: false,
+    maxLength: 1000,  
+    nullable: true,
+    example: 'Arcilla aglutinante.'}) 
+    @IsString({message: 'Los Materiales del Producto debe ser un string'})
+    @Length(1, 1000, { message: 'Los Ingredientes del Producto debe tener entre 1 y 1000 caracteres.' })
+public material: string;
+
+    @ApiProperty({
+        type: 'ImagenProducto[]', 
         title: 'Imágenes del Producto',
         description: 'Imágenes del Producto', 
         required: true,
@@ -78,111 +157,31 @@ export class CreateProductoDto {
         // @Length(1, 255, { message: 'El tamaño de la Ruta de las Imágenes debe tener entre 1 y 255 caracteres.' })
         @ArrayNotEmpty({ message: 'El arreglo de rutas de imágenes no puede estar vacío.' })
         @IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
-   public imagenes: string[];
-
-    @ApiProperty({
-        type: 'string[]', 
-        title: 'Etiquetas del Producto', 
-        description: 'Lista de Etiquetas del Producto', 
-        required: true,
-        nullable: false,
-        example: ['Royal Canin', 'Adutlo', 'Chihuahua', 'Vitaminas E y C']}) 
-        @IsArray({message: 'Las Etiquetas del Producto deben ser un array de strings'})
-        @IsNotEmpty({message: 'Las Etiquetas del producto no pueden estar vacías'})
-    public etiquetas: string[];
-
-    @ApiProperty({
-        type: 'string', 
-        title: 'Categoria del Producto',
-        description: 'Categoría del Producto', 
-        required: true,
-        maxLength: 80,  
-        nullable: false,
-        example: 'Alimento Seco Perros'}) 
-        @IsString({message: 'La Categoría del Producto debe ser un string'})
-        @Length(1, 80, { message: 'La Categoría del Producto debe tener entre 1 y 80 caracteres.' })
-        @IsNotEmpty({message: 'La Categoría del Producto no puede estar vacía'})
-    public categoria: string;
-   
-    @ApiProperty({
-        type: 'number', 
-        title: 'Stock del Producto',
-        description: 'Stock del Producto en Unidades', 
-        required: true,
-        minimum: 0,
-        maximum: 100000,
-        maxLength: 10,  
-        nullable: false,
-        example: 150}) 
-        @IsNumber({}, {message: 'El Stock del Producto debe ser un número'})
-        @IsNotEmpty({message: 'El Stock del Producto no puede estar vacío'})   
-        @Min(0, { message: 'El Stock del Producto debe ser al menos 1 unidad.' })
-        @Max(100000, { message: 'El Stock del Producto no debe exceder las 100000 unidades.' })  
-    public stock: number;
-
-    @ApiProperty({
-        type: 'string', 
-        title: 'Ingredientes del Producto',
-        description: 'Lista de Ingredientes del Producto', 
-        required: true,
-        maxLength: 1000,  
-        nullable: false,
-        example: 'Maíz, harina de subproductos de pollo, grasas animales (vacuna y pollo), proteína vegetal purificada (L.I.P.*), harina de carne vacuna (L.I.P.*), arroz, harina de trigo, pulpa de remolacha, hidrolizado de hígado de pollo, harina de gluten de maíz, sales minerales, aceite de pescado, vitaminas, aceite vegetal (con aceite de borraja), zeolita, levadura de cerveza, L-lisina, fructo-oligosacáridos (FOS), oligoelementos, taurina, DL-metionina, mananooligosacáridos (MOS), oligoelementos quelados, extracto de rosa de la India (rico en luteína). (*) Low Indigestible Protein: proteína seleccionada por su alta asimilación.'}) 
-        @IsString({message: 'Los Ingredientes del Producto debe ser un string'})
-        @Length(1, 1000, { message: 'Los Ingredientes del Producto debe tener entre 1 y 500 caracteres.' })
-        @IsNotEmpty({message: 'Los Ingredientes del producto no pueden estar vacíos'})
-   public ingredientes: string;
+   public imagenes: ImagenProducto[];
 
    @ApiProperty({
-        type: 'string', 
-        title: 'Tamaño del Producto',
-        description: 'Tamaño del Producto', 
-        required: true,
-        maxLength: 20,  
-        nullable: false,
-        example: '15 Kg'}) 
-        @IsString({message: 'El tamaño del Producto debe ser un string'})   
-        @Length(1, 20, { message: 'El tamaño del Producto debe tener entre 1 y 20 caracteres.' })
-        @IsNotEmpty({message: 'El tamaño del Producto no puede estar vacío'})
-   public tamanio: string;
-   
-   @ApiProperty({
-        type: 'string', 
-        title: 'Origen del Producto',
-        description: 'Origen del Producto',
-        required: true,
-        maxLength: 50,  
-        nullable: false,
-        example: 'Francia'}) 
-        @IsString({message: 'El Origen del Producto debe ser un string'})
-        @Length(1, 50, { message: 'El Origen del Producto debe tener entre 1 y 50 caracteres.' })
-        @IsNotEmpty({message: 'El Origen del Producto no puede estar vacío'})
-   public origen: string;
+    type: 'number', 
+    title: 'Identificador Categoria del Producto',
+    description: 'Identificador Categoría del Producto', 
+    required: true,
+    minimum: 1,
+    maximum: 10000000,
+    nullable: false,
+    example: '1'}) 
+    @IsString({message: 'Identificador Categoría del Producto debe ser un string'})
+    @Length(1, 100, { message: 'Identificador Categoría del Producto debe tener entre 1 y 100 caracteres.' })
+    @IsNotEmpty({message: 'Identificador Categoría del Producto no puede estar vacía'})
+public idCategoria: number;
 
-   @ApiProperty({
-        type: 'string', 
-        title: 'Vida Útil del Producto',
-        description: 'Vida Útil del Producto',
-        required: true,
-        maxLength: 20,  
-        nullable: false,
-        example: '12 meses'}) 
-        @IsString({message: 'La Vida Útil del Producto debe ser un string'})
-        @Length(1, 20, { message: 'La Vida Útil del Producto debe tener entre 1 y 20 caracteres.' })
-        @IsNotEmpty({message: 'La Vida Útil del Producto no puede estar vacía'})
-   public vidaUtil: string;
-
-   @ApiProperty({
-        type: 'string', 
-        title: 'Recomendaciones de Uso',
-        description: 'Recomendaciones de Uso del Producto',
-        required: true,
-        maxLength: 80,  
-        nullable: false,
-        example: 'Solo para cachorros'}) 
-        @IsString({message: 'Las Recomendaciones de Uso del Producto debe ser un string'})
-        @Length(1, 80, { message: 'Las Recomendaciones de Uso del Producto debe tener entre 1 y 80 caracteres.' })
-        @IsNotEmpty({message: 'Las Recomendaciones de Uso del Producto no pueden estar vacías'})
-   public recomendacionesUso: string;
+    // @ApiProperty({
+    //     type: 'string[]', 
+    //     title: 'Etiquetas del Producto', 
+    //     description: 'Lista de Etiquetas del Producto', 
+    //     required: true,
+    //     nullable: false,
+    //     example: ['Royal Canin', 'Adutlo', 'Chihuahua', 'Vitaminas E y C']}) 
+    //     @IsArray({message: 'Las Etiquetas del Producto deben ser un array de strings'})
+    //     @IsNotEmpty({message: 'Las Etiquetas del producto no pueden estar vacías'})
+    // public etiquetas: string[];
 
 }

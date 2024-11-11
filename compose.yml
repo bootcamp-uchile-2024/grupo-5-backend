@@ -1,0 +1,66 @@
+
+# services:
+#   api:
+#     image: "node:${NODE_VERSION}"
+#     command: "npm run start:dev"
+#     user: root
+#     working_dir: /home/node/nest
+#     environment:
+#       - PUERTO_NESTJS=${NESTJS_PORT}
+#       - DB_HOST=${DB_HOST}
+#       - DB_PORT=${DB_PORT}
+#       - DB_USER=${DB_USER}
+#       - DB_PASS=${DB_PASS_ROOT}
+#       - DB_NAME=${DB_NAME}
+#     ports:
+#       - "5001:${NESTJS_PORT}"
+#     volumes:
+#       - .:/home/node/nest
+      
+#   db:
+#     image: "mysql:${DB_VERSION}"
+#     environment:
+#       MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT}
+#       MYSQL_DATABASE: ${DB_NAME} 
+#     volumes:
+#       - .mysql_data:/var/lib/mysql 
+#     ports:
+#       - "5002:${DB_PORT}"
+
+
+#version: '3.8'                              # Define la versión de Docker Compose
+
+services:
+  # Servicio API para la aplicación NestJS
+  api:
+    image: "node:${NODE_VERSION}"           # Utiliza la versión especificada de Node.js desde el entorno
+    command: "npm run start:dev"            # Ejecuta el comando de desarrollo de NestJS
+    user: root                              # Permite acceso como root dentro del contenedor
+    working_dir: /home/node/nest            # Directorio de trabajo dentro del contenedor
+    environment:      
+      PUERTO_NESTJS: ${NESTJS_PORT}         # Puerto en el que escuchará la API
+      DB_HOST: ${DB_HOST}                   # Host de la base de datos
+      DB_PORT: ${DB_PORT}                   # Puerto de la base de datos
+      DB_USER: ${DB_USER}                   # Usuario de la base de datos
+      DB_PASS: ${DB_PASS_ROOT}              # Contraseña de la base de datos
+      DB_NAME: ${DB_NAME}                   # Nombre de la base de datos
+    ports:
+      - "5001:${NESTJS_PORT}"               # Mapea el puerto 5001 del host al puerto de la API dentro del contenedor
+    volumes:
+      - .:/home/node/nest                   # Monta el directorio actual en el contenedor para desarrollo en tiempo real
+
+  # Servicio de Base de Datos MySQL
+  db:
+    image: "mysql:${DB_VERSION}"            # Usa la versión especificada de MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT}  # Contraseña de root para MySQL
+      MYSQL_DATABASE: ${DB_NAME}            # Crea una base de datos inicial
+    volumes:
+      - .mysql_data:/var/lib/mysql          # Almacena los datos de MySQL en una carpeta persistente
+    ports:
+      - "5002:${DB_PORT}"                   # Mapea el puerto 5002 del host al puerto de MySQL dentro del contenedor
+
+# Define volúmenes persistentes para almacenamiento de datos
+volumes:
+  .mysql_data:
+    driver: local                           # Usamos el controlador de volumen predeterminado para datos locales

@@ -10,11 +10,11 @@ export class Producto {
   @PrimaryGeneratedColumn({ name: 'idproducto' })
   idProducto: number;
 
-  @PrimaryColumn({ name: 'idmarca' })
-  idMarca: number;
+  // @Column({ name: 'idmarca' })
+  // idMarca: number;
 
-  @PrimaryColumn({ name: 'idcategoria' })
-  idCategoria: number;
+  // @Column({ name: 'idcategoria' })
+  // idCategoria: number;
 
   @Column({ name:'nombreproducto' })
   nombreProducto: string;

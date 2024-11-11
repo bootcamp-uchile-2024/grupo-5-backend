@@ -11,6 +11,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { ImagenProducto } from '../entities/imagenproducto.entity';
 
 export class ActualizarProductoDto extends PartialType(CreateProductoDto) {
   // @ApiProperty({
@@ -183,7 +184,7 @@ export class ActualizarProductoDto extends PartialType(CreateProductoDto) {
     each: true,
     message: 'Cada ruta de imagen debe ser una cadena de texto.',
   })
-  public imagenes: string[];
+  public imagenes: ImagenProducto[];
 
   @ApiProperty({
     type: 'string',

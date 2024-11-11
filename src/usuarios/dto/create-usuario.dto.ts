@@ -1,10 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRole } from '../roles.enum';
-import { IsNotEmpty, IsString, Length, Matches, Validate } from 'class-validator';
+import { IsNotEmpty, IsString, Length } from 'class-validator';
 import { IsRut } from 'src/commons/validator/is-rut.decorator';
-import { IsRutConstraint } from 'src/commons/validator/is-rut.constraint';
+import { UserRole } from '../roles.enum';
 
 export class CreateUsuarioDto {  
+
+
+  @ApiProperty({
+    type: 'number',
+    title: 'Id del Usuario',
+    description: 'Identificación única del Usuario en formato chileno',
+    example: '1',
+    minLength: 1,                   // Tamaño minimo
+    maxLength: 1000000,                  // Tamaño maximo
+    required: true,                 // Indica si es obligatorio
+    nullable: false})                // Indica si el valor puede ser nulo
+    @IsRut({ message: 'El Id ingresado no es válido.' })
+    @IsNotEmpty({ message: 'El Id no puede ser vacío' })
+    @IsString({message: 'El Id del Usuario debe ser un numero'})
+    @Length(1, 10, { message: 'El id del Usuario debe tener entre 1 y 1000000.' })
+    
+  public idUsuario: number; 
 
     @ApiProperty({
         type: 'string',
@@ -122,8 +138,25 @@ export class CreateUsuarioDto {
         @IsNotEmpty({ message: 'El Rol de Usuario no puede ser vacío' })
     public rolUsuario: UserRole;
 
+    @ApiProperty({
+      type: 'boolean',
+      title: 'Check de Ofertas al crear el Usuario',
+      description: 'Check de Ofertas al crear el Usuario.',
+      example: 'true',      
+      nullable: true,     
+      required: true})    
+      @IsNotEmpty({ message: 'El check de ofertas no puede ser vacío' })
+  public chkOfertas: boolean;
 
-    
+  @ApiProperty({
+    type: 'boolean',
+    title: 'Check de Terminos al crear el Usuario',
+    description: 'Check de Terminos al crear el Usuario.',
+    example: 'true',      
+    nullable: true,     
+    required: true})    
+    @IsNotEmpty({ message: 'El check de Terminos no puede ser vacío' })
+public chkTerminos: boolean; 
 
        //  @ApiProperty({
        //     type: 'array',

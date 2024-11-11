@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ImagenProducto } from '../entities/imagenproducto.entity';
 
 export class CatalogoProductoDto {
   @ApiProperty({
@@ -48,5 +49,5 @@ export class CatalogoProductoDto {
     title: 'Imágenes del Producto',
     description: 'Imágenes del Producto',
   })
-  public ImagenesProducto: string[];
+  public ImagenesProducto: ImagenProducto[];
 }

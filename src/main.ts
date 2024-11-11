@@ -27,13 +27,11 @@ async function bootstrap() {
 
   //const app = await NestFactory.create(AppModule);
   //const configService = app.get(ConfigService);
-  const env = configService.get('AMBIENTE');
-
-
+  const env =  process.env.NODE_ENV;
 
   // Configuración de Swagger para Usuarios
   const config1 = new DocumentBuilder()
-    .setTitle(ArchivoPackageJson.name + ' - Módulo Usuarios (' + env + ')')
+    .setTitle(ArchivoPackageJson.CopyrightName + ' - Módulo Usuarios (' + env + ')')
     .setDescription(ArchivoPackageJson.description + ' Usuarios')
     .setVersion(ArchivoPackageJson.version)
     .setContact(ArchivoPackageJson.author, ArchivoPackageJson.url, ArchivoPackageJson.mail)
@@ -50,7 +48,7 @@ async function bootstrap() {
 
   // Configuración de Swagger para Mascotas
   const config2 = new DocumentBuilder()
-    .setTitle(ArchivoPackageJson.name + ' - Módulo Mascotas (' + env + ')')
+    .setTitle(ArchivoPackageJson.CopyrightName + ' - Módulo Mascotas (' + env + ')')
     .setDescription(ArchivoPackageJson.description + ' Mascotas')
     .setVersion(ArchivoPackageJson.version)
     .setContact(ArchivoPackageJson.author, ArchivoPackageJson.url, ArchivoPackageJson.mail)
@@ -67,7 +65,7 @@ async function bootstrap() {
 
   // Configuración de Swagger para Productos
   const config3 = new DocumentBuilder()
-    .setTitle(ArchivoPackageJson.name + ' - Módulo Productos (' + env + ')')
+    .setTitle(ArchivoPackageJson.CopyrightName + ' - Módulo Productos (' + env + ')')
     .setDescription(ArchivoPackageJson.description + ' Productos')
     .setVersion(ArchivoPackageJson.version)
     .setContact(ArchivoPackageJson.author, ArchivoPackageJson.url, ArchivoPackageJson.mail)
@@ -83,9 +81,14 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/producto', app, document3);
 
-  const port = configService.get('PUERTO') || 3001;
-  await app.listen(port);
-  console.log(port);
+  const puerto = process.env.PUERTO_NESTJS || 3030;
+  await app.listen(puerto, '0.0.0.0');
+  console.log('\t\t**************************************************************');
+  console.log('\t\t*                                                            *');
+  console.log('\t\t*                Swagger API Petropolis                      *');
+  console.log(`\t\t*    Servidor corriendo sobre  http://localhost:${puerto}         *`);
+  console.log('\t\t*                                                            *');
+  console.log('\t\t**************************************************************');
   //console.log(`La aplicación se encuentra corriendo es el puerto de:  ${await app.getUrl()}`);
 }
 

@@ -15,7 +15,7 @@ export class Usuario {
     rut: string;
 
     @Column()
-    nombreUsuario: string;
+    nombreUsuario: string;  
 
     @Column()
     apellidos: string;

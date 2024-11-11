@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ImagenProducto } from '../entities/imagenproducto.entity';
 
 export class GetProductoDto {
   @ApiProperty({
@@ -13,7 +14,7 @@ export class GetProductoDto {
     title: 'Nombre del Producto',
     description: 'Nombre del Producto',
   })
-  public nombre: string;
+  public nombreProducto: string;
 
   @ApiProperty({
     type: 'string',
@@ -76,7 +77,14 @@ export class GetProductoDto {
     title: 'Imágenes del Producto',
     description: 'Imágenes del Producto',
   })
-  public imagenes: string[];
+  public imagenes: ImagenProducto[];
+
+  @ApiProperty({
+    type: 'string',
+    title: 'Material del Producto',
+    description: 'Material del Producto',
+  })
+  public material: string;
 
   @ApiProperty({
     type: 'string',

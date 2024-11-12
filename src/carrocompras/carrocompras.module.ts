@@ -1,9 +1,17 @@
 import { Module } from '@nestjs/common';
-import { CarrocomprasService } from './carrocompras.service';
-import { CarrocomprasController } from './carrocompras.controller';
+import { CarroComprasService } from './carrocompras.service';
+import { CarroComprasController } from './carrocompras.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CarroCompras } from './entities/carrocompra.entity';
+import { DetalleCarroCompra } from './entities/detallescarrocompra.entity';
+import { Usuario } from 'src/usuarios/entities/usuarios.entity'; 
 
 @Module({
-  controllers: [CarrocomprasController],
-  providers: [CarrocomprasService],
+  imports: [
+    TypeOrmModule.forFeature([CarroCompras, DetalleCarroCompra, Usuario]), 
+  ],
+  controllers: [CarroComprasController],
+  providers: [CarroComprasService],
+  exports: [CarroComprasService],
 })
-export class CarrocomprasModule {}
+export class CarroComprasModule {}

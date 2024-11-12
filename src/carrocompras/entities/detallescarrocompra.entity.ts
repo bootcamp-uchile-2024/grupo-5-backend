@@ -1,20 +1,21 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import { CarroCompras } from "./carrocompra.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { CarroCompras } from './carrocompra.entity';
 
-@Entity('DETALLES_CARRO_COMPRA')
+@Entity('detalles_carro_compra')
 export class DetalleCarroCompra {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   idDetalleCarro: number;
-  
-  @Column()
+
+  @Column({ type: 'int' })
+  idProducto: number; // Agrega esta propiedad
+
+  @Column({ type: 'int' })
   cantidad: number;
-  
-  @Column()
+
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   precioUnitario: number;
-  
-  @ManyToOne(() => CarroCompras)
+
+  @ManyToOne(() => CarroCompras, (carroCompra) => carroCompra.detalleCarroCompra)
   @JoinColumn({ name: 'idCarroCompras' })
-  carroCompra: CarroCompras[];
-
-
+  carroCompra: CarroCompras;
 }

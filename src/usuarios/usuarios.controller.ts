@@ -6,6 +6,7 @@ import { EliminaUsuarioDto } from './dto/delete-usuario.dto';
 import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
 import { UserRole } from './roles.enum';
 import { UsuariosService } from './usuarios.service';
+import { ActivaUsuarioDto } from './dto/react-usuario.dto';
 
 @Controller('usuarios')
 
@@ -26,13 +27,13 @@ import { UsuariosService } from './usuarios.service';
 
 
   @ApiTags('Buscar Usuarios')
-  @ApiOperation({ summary: 'Obtener usuario por Identificador' })
-  @ApiParam({ name: 'id', description: 'Id del usuario' })
+  @ApiOperation({ summary: 'Obtener usuario por rut del Usuario' })
+  @ApiParam({ name: 'rut', description: 'Rut del usuario' })
   @ApiResponse({ status: 200, description: 'Usuario encontrado.' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
-  @Get(':id')
-  async findOne(@Param('id') id: number) {
-    return await this.usuarioService.findOne(id);
+  @Get(':rut')
+  async findOne(@Param('rut') rut: string) {
+    return await this.usuarioService.findOne(rut);
   }
 
 
@@ -74,4 +75,16 @@ import { UsuariosService } from './usuarios.service';
     return `El  usuario  RUT: ${rut} fue eliminado con exito.`;
   }
 
+
+  @ApiTags('Activar Usuario')
+  @ApiOperation({ summary: 'Activar usuario por su RUT' })
+  @ApiBody({ type: ActivaUsuarioDto })
+  @ApiResponse({ status: 200, description: 'Se Activa Usuario.' })
+  @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
+  @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario' })
+  @Delete(':rut')
+  reactivate(@Param() activaUsuarioDto: ActivaUsuarioDto): string {
+    const { rut } = activaUsuarioDto;
+    return `El  usuario  RUT: ${rut} fue activado con exito.`;
+  }
 }

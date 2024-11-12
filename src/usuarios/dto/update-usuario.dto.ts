@@ -89,15 +89,13 @@ public correoElectronico: string;
   public telefono: string;
 
   @ApiProperty({
-    type: 'string',
+    type: 'number',
     title: 'Rol del Usuario',
     description: 'Rol del usuario en el sistema. Debe ser uno de los siguientes valores: ADMINISTRADOR, MANAGER, CLIENTE, INVITADO.',
-    example: 'CLIENTE',
-    enum: UserRole,          // Especifica que es un campo de un conjunto de valores
-    enumName: 'UserRole',    // Nombre del enum para la documentación
+    example: '1',
     nullable: false,        // Asegura que el campo no sea nulo
     required: true})        // Campo obligatorio 
-public rolUsuario: UserRole;
+public rolUsuario: number;
 
    //  @ApiProperty({
    //     type: 'array',

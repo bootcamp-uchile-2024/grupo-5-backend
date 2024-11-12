@@ -20,7 +20,7 @@ export class CreateUsuarioDto {
     @IsString({message: 'El Id del Usuario debe ser un numero'})
     @Length(1, 10, { message: 'El id del Usuario debe tener entre 1 y 1000000.' })
     
-  public idUsuario: number; 
+  public idUsuario?: number; 
 
     @ApiProperty({
         type: 'string',
@@ -127,16 +127,14 @@ export class CreateUsuarioDto {
       public telefono: string;
 
       @ApiProperty({
-        type: 'string',
+        type: 'number',
         title: 'Rol del Usuario',
         description: 'Rol del usuario en el sistema. Debe ser uno de los siguientes valores: ADMINISTRADOR, MANAGER, CLIENTE, INVITADO.',
-        example: 'CLIENTE',
-        enum: UserRole,          // Especifica que es un campo de un conjunto de valores
-        enumName: 'UserRole',    // Nombre del enum para la documentación
+        example: '1',        // Especifica que es un campo de un conjunto de valores    // Nombre del enum para la documentación
         nullable: false,        // Asegura que el campo no sea nulo
         required: true})        // Campo obligatorio 
         @IsNotEmpty({ message: 'El Rol de Usuario no puede ser vacío' })
-    public rolUsuario: UserRole;
+    public rolUsuario: number;
 
     @ApiProperty({
       type: 'boolean',
@@ -157,6 +155,27 @@ export class CreateUsuarioDto {
     required: true})    
     @IsNotEmpty({ message: 'El check de Terminos no puede ser vacío' })
 public chkTerminos: boolean; 
+
+@ApiProperty({
+  type: 'boolean',
+  title: 'Check valida cuenta Usuario Activa',
+  description: 'Check valida cuenta Usuario Activa.',
+  example: 'true',      
+  nullable: false,     
+  required: true})    
+  @IsNotEmpty({ message: 'El check de validación de cuenta no puede ser vacío' })
+public activo: boolean; 
+
+@ApiProperty({
+  type: 'number',
+  title: 'Identificador Id Avatar Usuario',
+  example: '234',
+  description: 'Identificador Id Avatar usuario registrado',                                    
+  nullable: true,                                               
+  required: false})                                            
+  @IsString({message: 'El Avatar del Usuario debe ser un number'})
+  
+public idAvatar: number;
 
        //  @ApiProperty({
        //     type: 'array',

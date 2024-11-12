@@ -1,7 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     10-11-2024 21:30:54                          */
+/* Created on:     12-11-2024 13:03:04                          */
 /*==============================================================*/
+
 
 DROP DATABASE Petropolis;
 
@@ -10,7 +11,7 @@ CREATE DATABASE Petropolis;
 USE Petropolis;
 
 /*==============================================================*/
-/* Table: ABAJO_DE_PESO                                         */
+/* Table: AVATAR_MASCOTAS                                       */
 
 /*==============================================================*/
 /* Table: AVATAR_MASCOTAS                                       */
@@ -340,6 +341,7 @@ create table USUARIOS
    CONTRASENA           varchar(100)  comment '',
    CHKTERMINOS          bool  comment '',
    CHKOFERTAS           bool  comment '',
+   ACTIVO               bool  comment '',
    primary key (IDUSUARIO)
 );
 

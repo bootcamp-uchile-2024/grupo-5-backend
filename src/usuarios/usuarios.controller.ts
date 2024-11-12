@@ -37,7 +37,8 @@ import { UsuariosService } from './usuarios.service';
 
 
   @ApiTags('Crear Usuarios')
-  @ApiOperation({ summary: 'Crear nuevo usuario' })
+  @ApiOperation({ summary: 'Crear nuevo usuario',
+    description: 'HU 1.1 - Formulario de registro de usuario: Como nuevo usuario, quiero un formulario de registro que sea fácil de completar y que solicite solo la información necesaria sobre mí y mis mascotas, para crear mi cuenta rápidamente'})
   @ApiBody({ type: CreateUsuarioDto })
   @ApiResponse({ status: 200, description: 'Usuario creado.' })
   @ApiResponse({ status: 409, description: 'Usuario ya existe.' })

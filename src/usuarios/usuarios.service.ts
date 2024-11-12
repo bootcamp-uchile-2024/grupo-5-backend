@@ -1,10 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUsuarioDto } from './dto/create-usuario.dto';
-import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
-import { UsuarioMapper } from './mapper/usuario.mapper';
-import { Usuario } from './entities/usuarios.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateUsuarioDto } from './dto/create-usuario.dto';
+import { Usuario } from './entities/usuarios.entity';
+import { UsuarioMapper } from './mapper/usuario.mapper';
 
 @Injectable()
 export class UsuariosService {

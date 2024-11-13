@@ -1,34 +1,47 @@
 services:
- app:
-   image: node:19-alpine
-   working_dir: /usr/src/app
-   volumes: 
-     - .:/usr/src/app
-   env_file:
-     - .env
-   ports:
-     - '${PUERTO}:${PUERTO}'  # Exponiendo el puerto de la app
-   depends_on:
-     - bd-server  # Asegura que la base de datos se inicie antes que la app
-   command: 'npm run start:dev'
-   networks:
-     - my-network
-
- my-sql:
-    image: mysql:8.0.39-debian
-    # container_name: mysql-dev
+  #  Servicio API para la aplicación NestJS
+  api:
+    image: "node:${NODE_VERSION}"           # Utiliza la versión especificada de Node.js desde el entorno
+    command: "npm run start:dev"            # Ejecuta el comando de desarrollo de NestJS
+    user: root                              # Permite acceso como root dentro del contenedor
+    working_dir: /home/node/nest            # Directorio de trabajo dentro del contenedor
+    environment:   
+      DB_TYPE: ${DB_TYPE}                   # Puerto en el que escuchará la API
+      DB_HOST: ${DB_HOST}                   # Host de la base de datos
+      DB_PORT: ${DB_PORT}                   # Puerto de la base de datos
+      DB_USER: ${DB_USER}                   # Usuario de la base de datos
+      DB_PASS_ROOT: ${DB_PASS_ROOT}         # Contraseña de la base de datos
+      DB_NAME: ${DB_NAME}                   # Nombre de la base de datos
     ports:
-      - "DB_PORT:DB_PORT"
-    environment:
-      MYSQL_ROOT_PASSWORD: clave123
-    env_file:
-      - .env
+      - "5001:${NESTJS_PORT}"               # Mapea el puerto 5001 del host al puerto de la API dentro del contenedor
     volumes:
-      - ./data:/var/lib/mysql  # Para persistencia de datos
-  # Exponiendo el puerto del contenedor MySQL en tu máquina
+      - .:/home/node/nest                   # Monta el directorio actual en el contenedor para desarrollo en tiempo real
+    depends_on:
+      - db                                  # Asegura que el servicio db esté activo antes de iniciar la API
     networks:
-      - my-network
+      - backend_network 
 
+
+  # Servicio de Base de Datos MySQL
+  db:
+    image: "mysql:${DB_VERSION}"            # Usa la versión especificada de MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT}  # Contraseña de root para MySQL
+      MYSQL_DATABASE: ${DB_NAME}            # Crea una base de datos inicial
+    volumes:
+      - .mysql_data:/var/lib/mysql          # Almacena los datos de MySQL en una carpeta persistente
+    ports:
+      - "5002:${DB_PORT}"                   # Mapea el puerto 5002 del host al puerto de MySQL dentro del contenedor
+
+    networks:
+      - backend_network                    # Definimos una red específica para comunicación interna
+
+# Definimos las redes
 networks:
-  my-network:
+  backend_network:
     driver: bridge
+
+# Define volúmenes persistentes para almacenamiento de datos
+volumes:
+  .mysql_data:
+    driver: local                           # Usamos el controlador de volumen predeterminado para datos locales

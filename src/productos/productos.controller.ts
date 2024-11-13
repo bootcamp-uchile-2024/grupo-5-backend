@@ -1,51 +1,52 @@
-import {   Body, Controller,   Delete,   Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe} from '@nestjs/common';
-import { Producto } from './entities/producto.entity';
-import { ProductoService } from './productos.service'
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { DetalleProductoDto } from './dto/read-detalle-producto.dto';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { ActualizarProductoDto } from './dto/update-producto.dto';
+import { ProductoService } from './productos.service';
+import { GetProductoDto } from './dto/read-producto.dto';
 
 
-@Controller()
+@Controller('productos')
 export class ProductoController {
   constructor(private readonly productoService: ProductoService) {}
 
   // Endpoint para obtener todos los productos
   @ApiTags('Obtener Catálogo de Productos')
-  @ApiOperation({ summary: 'Obtener el catalogo de los productos' })
+  @ApiOperation({ summary: 'Obtener el catalogo de los productos',
+    description: 'HU 4.1 - Mostrar Listado de productos (C: Como "Pet lover" (usuario) quiero ver las opciones de productos en un listado amplio y variado con paginación, para identificar rápidamente los diferentes productos del catálogo '})
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
-  @Get("productos")
+  @Get()
   findAll(){
-    return this.productoService.findAll();
+    return this.productoService.catalogoProductos();
   }
 
-
   @ApiTags('Obtener Detalle de Producto')
+  @ApiOperation({ summary: 'Obtener producto por Id',description:'HU 4.2 - Información detallada de productos: Como "Pet lover" (usuario), quiero ver información detallada sobre los productos, incluyendo opiniones, para tomar decisiones informadas sobre mis compras.' })
   @ApiParam({ name: 'id', description: 'Id del Producto' })
   @ApiResponse({ status: 200, description: 'Producto encontrado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
-  @ApiOperation({ summary: 'Obtener producto por Id' })
   @Get(':id')
-  buscarDetalleProducto(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number) { //DetalleProductoDto {
-    return {
-      id: {id} ,
-      nombre: 'Royal Canin Medium Puppy Alimento para Perro',
-      marca: 'Royal Canin',
-      descripcion: 'Royal Canin Medium Puppy es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Proporciona una combinación exclusiva de nutrientes que garantizan una seguridad digestiva óptima y favorecen el equilibrio de la flora intestinal con prebióticos.',
-      precio: 86990,
-      imagenes: ['images/2653_001.jpg', 'images/2653_002.jpg'],
-      etiquetas: ['Royal Canin', 'Cachorros', 'Razas medianas', 'Prebióticos'],
-      categoria: 'Alimento Seco Perros',
-      stock: 150,
-      ingredientes: 'Maíz, harina de subproductos de pollo, grasas animales, proteína vegetal purificada, arroz, harina de trigo, pulpa de remolacha, vitaminas, aceite de pescado.',
-      tamanio: '15 Kg',
-      origen: 'Francia',
-      vidaUtil: '12 meses',
-      recomendacionesUso: 'Solo para cachorros de razas medianas hasta 12 meses de edad'
-      };
-  }
+  findProductId(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number) { //GetProductoDto {
+    return this.productoService.DetalleProducto(id);
+}
+
+  @ApiTags('Obtener Catálogo de Productos Paginado')
+  @ApiOperation({ summary: 'Obtener el catalogo de los productos paginado'})
+  @ApiParam({ name: 'pagina', description: 'Número de la pagina' })
+  @ApiParam({ name: 'cantidadPorPagina', description: 'Cantidad de productos por pagina' })
+  @ApiResponse({ status: 200, description: 'Obtiene todos los productos por pagina.' })
+  @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
+  @Get(":pagina/:cantidadPorPagina")
+  async findAllPag(
+      @Param("pagina") pagina: number,
+      @Param("cantidadPorPagina") cantidadPorPagina: number 
+     ): Promise<GetProductoDto[]>{
+        const resultado : GetProductoDto[] = await this.productoService.catalogoProductosPag(pagina, cantidadPorPagina);
+    return resultado;
+  }
+
+
 
 
   @ApiTags('Crear Producto')

@@ -1,10 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRole } from '../roles.enum';
-import { IsNotEmpty, IsString, Length, Matches, Validate } from 'class-validator';
+import { IsNotEmpty, IsString, Length } from 'class-validator';
 import { IsRut } from 'src/commons/validator/is-rut.decorator';
-import { IsRutConstraint } from 'src/commons/validator/is-rut.constraint';
+import { UserRole } from '../roles.enum';
 
 export class CreateUsuarioDto {  
+
+
+  @ApiProperty({
+    type: 'number',
+    title: 'Id del Usuario',
+    description: 'Identificación única del Usuario en formato chileno',
+    example: '1',
+    minLength: 1,                   // Tamaño minimo
+    maxLength: 1000000,                  // Tamaño maximo
+    required: true,                 // Indica si es obligatorio
+    nullable: false})                // Indica si el valor puede ser nulo
+    @IsRut({ message: 'El Id ingresado no es válido.' })
+    @IsNotEmpty({ message: 'El Id no puede ser vacío' })
+    @IsString({message: 'El Id del Usuario debe ser un numero'})
+    @Length(1, 10, { message: 'El id del Usuario debe tener entre 1 y 1000000.' })
+    
+  public idUsuario?: number; 
 
     @ApiProperty({
         type: 'string',
@@ -111,19 +127,55 @@ export class CreateUsuarioDto {
       public telefono: string;
 
       @ApiProperty({
-        type: 'string',
+        type: 'number',
         title: 'Rol del Usuario',
         description: 'Rol del usuario en el sistema. Debe ser uno de los siguientes valores: ADMINISTRADOR, MANAGER, CLIENTE, INVITADO.',
-        example: 'CLIENTE',
-        enum: UserRole,          // Especifica que es un campo de un conjunto de valores
-        enumName: 'UserRole',    // Nombre del enum para la documentación
+        example: '1',        // Especifica que es un campo de un conjunto de valores    // Nombre del enum para la documentación
         nullable: false,        // Asegura que el campo no sea nulo
         required: true})        // Campo obligatorio 
         @IsNotEmpty({ message: 'El Rol de Usuario no puede ser vacío' })
-    public rolUsuario: UserRole;
+    public rolUsuario: number;
 
+    @ApiProperty({
+      type: 'boolean',
+      title: 'Check de Ofertas al crear el Usuario',
+      description: 'Check de Ofertas al crear el Usuario.',
+      example: 'true',      
+      nullable: true,     
+      required: true})    
+      @IsNotEmpty({ message: 'El check de ofertas no puede ser vacío' })
+  public chkOfertas: boolean;
 
-    
+  @ApiProperty({
+    type: 'boolean',
+    title: 'Check de Terminos al crear el Usuario',
+    description: 'Check de Terminos al crear el Usuario.',
+    example: 'true',      
+    nullable: true,     
+    required: true})    
+    @IsNotEmpty({ message: 'El check de Terminos no puede ser vacío' })
+public chkTerminos: boolean; 
+
+@ApiProperty({
+  type: 'boolean',
+  title: 'Check valida cuenta Usuario Activa',
+  description: 'Check valida cuenta Usuario Activa.',
+  example: 'true',      
+  nullable: false,     
+  required: true})    
+  @IsNotEmpty({ message: 'El check de validación de cuenta no puede ser vacío' })
+public activo: boolean; 
+
+@ApiProperty({
+  type: 'number',
+  title: 'Identificador Id Avatar Usuario',
+  example: '234',
+  description: 'Identificador Id Avatar usuario registrado',                                    
+  nullable: true,                                               
+  required: false})                                            
+  @IsString({message: 'El Avatar del Usuario debe ser un number'})
+  
+public idAvatar: number;
 
        //  @ApiProperty({
        //     type: 'array',

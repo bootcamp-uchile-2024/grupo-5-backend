@@ -7,7 +7,7 @@ export class AvatarUsuarios {
     idImagenAvatar: number;
 
     @Column()
-    pathImagenUsuario: string;
+    pathImaUsuario: string;
 
     @OneToMany(() => Usuario, (usuario) => usuario.avatar)
     usuarios: Usuario[];

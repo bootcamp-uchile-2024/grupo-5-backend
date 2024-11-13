@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
+import { UsuarioController } from './usuarios.controller';
 import { UsuariosService } from './usuarios.service';
-import { UsuariosController } from './usuarios.controller';
-import { IsRutConstraint } from 'src/commons/validator/is-rut.constraint';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Usuario } from './entities/usuarios.entity';
+import { AvatarUsuarios } from './entities/avatarusuarios.entity';
 
 @Module({
-  controllers: [UsuariosController],
+  imports: [TypeOrmModule.forFeature([Usuario, AvatarUsuarios])],
+  controllers: [UsuarioController],
   providers: [UsuariosService],
 })
 export class UsuariosModule {}

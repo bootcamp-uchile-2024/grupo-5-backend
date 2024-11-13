@@ -1,7 +1,6 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor, Body, BadRequestException } from '@nestjs/common';
-import { isNotEmpty, IsNotEmpty } from 'class-validator';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
   
   @Injectable()
   export class LoggingInterceptor implements NestInterceptor {

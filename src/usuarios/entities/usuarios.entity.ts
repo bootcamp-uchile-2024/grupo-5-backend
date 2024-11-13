@@ -15,7 +15,7 @@ export class Usuario {
     rut: string;
 
     @Column()
-    nombreUsuario: string;
+    nombreUsuario: string;  
 
     @Column()
     apellidos: string;
@@ -35,13 +35,24 @@ export class Usuario {
     @Column({ default: false })
     chkOfertas: boolean;
 
-    @ManyToOne(() => Roles, (rol) => rol.usuarios)
-    @JoinColumn({ name: 'idRol' })
-    rol: Roles;
+    @Column({ default: true })
+    activo: boolean;
 
-    @ManyToOne(() => AvatarUsuarios)
+    // @ManyToOne(() => Roles, (rol) => rol.usuarios)
+    // @JoinColumn({ name: 'idRol' })
+    // rol: Roles
+
+    // @ManyToOne(() => AvatarUsuarios)
+    // @JoinColumn({ name: 'idImagenAvatar' })
+    // avatar: AvatarUsuarios;
+
+    @ManyToOne(() => Roles, (rol) => rol.idRol)
+    @JoinColumn({ name: 'idRol' })
+    rol: number;
+
+    @ManyToOne(() => AvatarUsuarios, (au) => au.idImagenAvatar)
     @JoinColumn({ name: 'idImagenAvatar' })
-    avatar: AvatarUsuarios;
+    avatar: number;
 
     @OneToMany(() => Direcciones, (direccion) => direccion.usuario)
     direcciones: Direcciones[];

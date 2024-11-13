@@ -2,6 +2,6 @@ import { IsNotEmpty } from 'class-validator';
 
 export class VariablesDeEntorno {
   @IsNotEmpty()
-  PUERTO: number;
+  NESTJS_PORT: number;
 
 }

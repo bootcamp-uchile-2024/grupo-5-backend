@@ -12,8 +12,9 @@ export class ProductoController {
 
   // Endpoint para obtener todos los productos
   @ApiTags('Obtener Catálogo de Productos')
-  @ApiOperation({ summary: 'Obtener el catalogo de los productos',
-    description: 'HU 4.1 - Mostrar Listado de productos (C: Como "Pet lover" (usuario) quiero ver las opciones de productos en un listado amplio y variado con paginación, para identificar rápidamente los diferentes productos del catálogo '})
+  @ApiOperation({ 
+    summary: 'HU 4.1: Obtener el Catálogo de los Productos',
+    description: '<strong>HU 4.1 - Mostrar Listado de Productos: </strong>Como "Pet lover" (usuario) quiero ver las opciones de productos en un listado amplio y variado con paginación, para identificar rápidamente los diferentes productos del catálogo.'})
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
   @Get()
@@ -22,7 +23,9 @@ export class ProductoController {
   }
 
   @ApiTags('Obtener Detalle de Producto')
-  @ApiOperation({ summary: 'Obtener producto por Id',description:'HU 4.2 - Información detallada de productos: Como "Pet lover" (usuario), quiero ver información detallada sobre los productos, incluyendo opiniones, para tomar decisiones informadas sobre mis compras.' })
+  @ApiOperation({ 
+    summary: 'HU 4.2: Obtener producto por Id',
+    description:'<strong>HU 4.2 - Información detallada de productos:</strong> Como "Pet lover" (usuario), quiero ver información detallada sobre los productos, incluyendo opiniones, para tomar decisiones informadas sobre mis compras.' })
   @ApiParam({ name: 'id', description: 'Id del Producto' })
   @ApiResponse({ status: 200, description: 'Producto encontrado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
@@ -32,10 +35,11 @@ export class ProductoController {
 }
 
   @ApiTags('Obtener Catálogo de Productos Paginado')
-  @ApiOperation({ summary: 'Obtener el catalogo de los productos paginado'})
-  @ApiParam({ name: 'pagina', description: 'Número de la pagina' })
-  @ApiParam({ name: 'cantidadPorPagina', description: 'Cantidad de productos por pagina' })
-  @ApiResponse({ status: 200, description: 'Obtiene todos los productos por pagina.' })
+  @ApiOperation({ summary: 'HU 4.1: Obtener el Ctálogo de los Productos Paginado',
+    description: '<strong>HU 4.1 - Mostrar Listado de Productos: </strong>Como "Pet lover" (usuario) quiero ver las opciones de productos en un listado amplio y variado con paginación, para identificar rápidamente los diferentes productos del catálogo.'})
+  @ApiParam({ name: 'pagina', description: 'Número de la página' })
+  @ApiParam({ name: 'cantidadPorPagina', description: 'Cantidad de productos por página' })
+  @ApiResponse({ status: 200, description: 'Obtiene todos los productos por página.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
   @Get(":pagina/:cantidadPorPagina")
   async findAllPag(
@@ -48,11 +52,10 @@ export class ProductoController {
 
 
 
-
   @ApiTags('Crear Producto')
   @ApiOperation({ summary: 'Crear nuevo producto' })
   @ApiBody({ type: CreateProductoDto })
-  @ApiResponse({ status: 200, description: 'Producto creado con éxito' })
+  @ApiResponse({ status: 200, description: 'Producto creado con éxito.' })
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
   @Post()
   @UsePipes(new ValidationPipe())

@@ -53,8 +53,13 @@ export class UsuariosService {
   }
 
  // Obtener todos los usuarios
- async findAll(): Promise<Usuario[]> {
-  return await this.usuarioRepository.find();
+//  async findAll(): Promise<Usuario[]> {
+//   return await this.usuarioRepository.find();
+// }
+async findAll(): Promise<Usuario[]> {
+  return await this.usuarioRepository.find({
+    relations: ['avatar'], // Incluimos la relación con avatar
+  });
 }
 
 async findOne(rut: string): Promise<Usuario> {

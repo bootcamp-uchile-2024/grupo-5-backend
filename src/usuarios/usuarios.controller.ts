@@ -103,9 +103,9 @@ export class UsuarioController {
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario', example: '10234945-K' })
   @Delete(':rut')
-  remove(@Param('rut') eliminaUsuarioDto: EliminaUsuarioDto): string {
-    const { rut } = eliminaUsuarioDto;
-    return `El  usuario  RUT: ${rut} fue eliminado con éxito.`;
+  async remove(@Param('rut') rut: string): Promise<string> {
+    await this.usuarioService.remove(rut);
+    return `El  usuario  RUT: ${rut} fue eliminado con exito.`;
   }
 
   @ApiTags('Activar Usuario')
@@ -119,8 +119,9 @@ export class UsuarioController {
   @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
   @ApiParam({ name: 'rut', required: true, description: 'RUT del usuario', example: '10234945-K' })
   @Patch(':rut')
-  reactivate(@Param('rut') activaUsuarioDto: ActivaUsuarioDto): string {
-    const { rut } = activaUsuarioDto;
-    return `El  usuario  RUT: ${rut} fue activado con éxito.`;
+  async reactivate(@Param('rut') rut: string): Promise<string> {
+    // Llamar al servicio para activar el usuario por RUT
+      await this.usuarioService.reactivate(rut);
+      return `El usuario con RUT ${rut} fue activado con éxito.`;
   }
 }

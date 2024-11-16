@@ -11,6 +11,7 @@ import { HttpExceptionFilter } from './commons/filters/http-exception.filter';
 import * as ArchivoPackageJson from '../package.json';
 
 import { ConfigService } from '@nestjs/config';
+import { CarrocomprasModule } from './carrocompras/carrocompras.module';
 
 
 async function bootstrap() {
@@ -76,9 +77,10 @@ async function bootstrap() {
     .addTag('Crear Producto')
     .addTag('Actualizar Producto')
     .addTag('Eliminar Producto')
+    .addTag('Carro de Compras')
     .build();
   const document3 = SwaggerModule.createDocument(app, config3, {
-    include: [AppModule, ProductosModule],
+    include: [AppModule, ProductosModule, CarrocomprasModule],
   });
   SwaggerModule.setup('api/producto', app, document3);
 

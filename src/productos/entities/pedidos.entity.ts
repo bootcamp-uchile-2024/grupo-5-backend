@@ -1,31 +1,46 @@
-import {     Entity,     PrimaryColumn,     Column,     OneToMany, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
 import { Usuario } from 'src/usuarios/entities/usuarios.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 import { DetallesPedidos } from './detallespedidos.entity';
 import { Producto } from './producto.entity';
 
 @Entity('PEDIDOS')
 export class Pedido {
-    @PrimaryColumn()
-    idPedido: number;
+  @PrimaryColumn({ name: 'idpedido' })
+  idPedido: number;
 
-    @Column({ nullable: true })
-    fechaCreacion: Date;
+  @Column({ name: 'fechaCreacion' })
+  fechaCreacion: Date;
 
-    @Column({ nullable: true })
-    fechaEntrega: Date;
+  @Column({ name: 'fechaEntrega' })
+  fechaEntrega: Date;
 
-    @ManyToOne(() => Usuario)
-    @JoinColumn({ name: 'idUsuario' })
-    usuario: Usuario;
+  @Column({ name: 'preciototal' })
+  precioTotal: number;
 
-    @OneToMany(() => DetallesPedidos, (detallePedido) => detallePedido.pedido)
-    detallesPedido: DetallesPedidos[];
+  @ManyToOne(() => Usuario)
+  @JoinColumn({ name: 'idUsuario' })
+  idUSsuario: Usuario;
 
-    @ManyToMany(() => Producto)
-    @JoinTable({ name: 'PRODUCTOS_PEDIDOS',
-      joinColumn: { name: 'idPedido', referencedColumnName: 'idPedido' },
-      inverseJoinColumn: { name: 'idProducto', referencedColumnName: 'idProducto' },
-    })
-    productos_pedido: Producto[]; 
+  @OneToMany(() => DetallesPedidos, (detallePedido) => detallePedido.pedido)
+  detallePedido: DetallesPedidos[];
 
+  @ManyToMany(() => Producto)
+  @JoinTable({
+    name: 'PRODUCTOS_PEDIDOS',
+    joinColumn: { name: 'idPedido', referencedColumnName: 'idPedido' },
+    inverseJoinColumn: {
+      name: 'idProducto',
+      referencedColumnName: 'idProducto',
+    },
+  })
+  productos_pedido: Producto[];
 }

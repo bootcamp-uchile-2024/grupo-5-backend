@@ -1,9 +1,17 @@
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-import { CategoriaProducto } from "./categoriaproducto.entity";
-import { MarcaProducto } from "./marcaproducto.entity";
-import { ImagenProducto } from "./imagenproducto.entity";
-import { CarroCompras } from "src/carrocompras/entities/carrocompra.entity";
-import { Pedido } from "./pedidos.entity";
+import { DetalleCarroCompra } from 'src/carrocompras/entities/detalleCarroCompra.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from 'typeorm';
+import { CategoriaProducto } from './categoriaproducto.entity';
+import { DetallesPedidos } from './detallespedidos.entity';
+import { ImagenProducto } from './imagenproducto.entity';
+import { MarcaProducto } from './marcaproducto.entity';
 
 @Entity('productos')
 export class Producto {
@@ -16,48 +24,49 @@ export class Producto {
   // @Column({ name: 'idcategoria' })
   // idCategoria: number;
 
-  @Column({ name:'nombreproducto' })
+  @Column({ name: 'nombreproducto' })
   nombreProducto: string;
 
-  @Column({ name:'descripcion' })
+  @Column({ name: 'descripcion' })
   descripcion: string;
 
-  @Column({ name:'sku' })
+  @Column({ name: 'sku' })
   sku: string;
 
-  @Column({ name:'precio' })
+  @Column({ name: 'precio' })
   precio: number;
 
-  @Column({ name:'stock' })
+  @Column({ name: 'stock' })
   stock: number;
 
   @Column({ name: 'peso' })
   peso: string;
 
-  @Column({ name:'tamanio' })
+  @Column({ name: 'tamanio' })
   tamanio: string;
 
   @Column({ name: 'ingredientes' })
   ingredientes: string;
 
   @Column({ name: 'material' })
-  material: string;
+  material: string;
 
   @ManyToOne(() => CategoriaProducto)
-  @JoinColumn({name: 'idCategoria'})
+  @JoinColumn({ name: 'idCategoria' })
   categoria: CategoriaProducto;
 
   @ManyToOne(() => MarcaProducto)
-  @JoinColumn({name: 'idMarca'})
+  @JoinColumn({ name: 'idMarca' })
   marca: MarcaProducto;
 
   @OneToMany(() => ImagenProducto, (imagen) => imagen.producto)
   imagenes: ImagenProducto[];
-  
-  @ManyToMany(() => CarroCompras, (carro) => carro.productos_carro)
-  carroCompras: CarroCompras[];
 
-  @ManyToMany(() => Pedido, (pedido) => pedido.productos_pedido)
-  pedidos: Pedido[];
+  @ManyToMany(() => DetalleCarroCompra, (detalle) => detalle.productos)
+  detallesCarroCompra: DetalleCarroCompra[];
+  
+  @ManyToMany(() => DetallesPedidos, (detalle) => detalle.productos)
+  DetallesPedido: DetallesPedidos[];
 
 }
+

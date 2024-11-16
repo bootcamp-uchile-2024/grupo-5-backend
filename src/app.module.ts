@@ -6,8 +6,8 @@ import { validateSync } from 'class-validator';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CarrocomprasModule } from './carrocompras/carrocompras.module';
-import { CarroCompras } from './carrocompras/entities/carrocompra.entity';
-import { DetalleCarroCompra } from './carrocompras/entities/detallescarrocompra.entity';
+import { CarroCompras } from './carrocompras/entities/carroCompra.entity';
+import { DetalleCarroCompra } from './carrocompras/entities/detalleCarroCompra.entity';
 import { VariablesDeEntorno } from './commons/config/validation.config';
 import { LoggingMiddleware } from './commons/middleware/logging.middleware';
 import { ConexionModule } from './conexion/conexion.module';
@@ -37,11 +37,29 @@ import { Region } from './usuarios/entities/regiones.entity';
 import { Roles } from './usuarios/entities/roles.entity';
 import { Usuario } from './usuarios/entities/usuarios.entity';
 import { UsuariosModule } from './usuarios/usuarios.module';
+// imports: [
+// type: process.env.DB_TYPE as 'mysql',  //dependiendo de tu configuración
+// host: process.env.DB_HOST,
+// port: Number(process.env.DB_PORT),
+// username: process.env.DB_USER,
+// password: process.env.DB_PASS_ROOT,
+// database: process.env.DB_NAME,
+// entities: [
+
+// imports: [
+//   TypeOrmModule.forRoot({
+//     type: 'mysql',  //dependiendo de tu configuración
+//     host: 'localhost',
+//     port: 5002,
+//     username: 'root',
+//     password: 'clave123',
+//     database: 'petropolis',
+//     entities: [
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: process.env.DB_TYPE as 'mysql',  //dependiendo de tu configuración
+      type: process.env.DB_TYPE as 'mysql', //dependiendo de tu configuración
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USER,
@@ -71,44 +89,49 @@ import { UsuariosModule } from './usuarios/usuarios.module';
         RegistroMedico,
         Roles,
         Usuario,
-        Vacuna
-           ],
+        Vacuna,
+      ],
       synchronize: false,
-      logging: true,  //Me aparezca la consulta SQL
+      logging: true, //Me aparezca la consulta SQL
     }),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'produccion' ? '.env.produccion' : '.env',
-       validate: (config: Record<string, unknown>) => {
-         const validatedConfig = plainToInstance(VariablesDeEntorno, config, { enableImplicitConversion: true });
-         const errors = validateSync(validatedConfig, { skipMissingProperties: false });
-        
-         if (errors.length > 0) {
-           throw new Error(`Validacion de Configuracion,  Error : ${errors.toString()}`);
-         }
-         return validatedConfig;
-       },
+      envFilePath:
+        process.env.NODE_ENV === 'produccion' ? '.env.produccion' : '.env',
+      validate: (config: Record<string, unknown>) => {
+        const validatedConfig = plainToInstance(VariablesDeEntorno, config, {
+          enableImplicitConversion: true,
+        });
+        const errors = validateSync(validatedConfig, {
+          skipMissingProperties: false,
+        });
+
+        if (errors.length > 0) {
+          throw new Error(
+            `Validacion de Configuracion,  Error : ${errors.toString()}`,
+          );
+        }
+        return validatedConfig;
+      },
     }),
-      UsuariosModule, 
-      MascotasModule, 
-      ProductosModule, 
-      EquipoModule, 
-      ConexionModule, 
-      CarrocomprasModule,
+    UsuariosModule,
+    MascotasModule,
+    ProductosModule,
+    EquipoModule,
+    ConexionModule,
+    CarrocomprasModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggingMiddleware)
-      .forRoutes('*');
-      console.log('DB Type:', process.env.DB_TYPE);
-      console.log('DB Host:', process.env.DB_HOST);
-      console.log('DB Port:', process.env.DB_PORT);
-      console.log('DB Username:', process.env.DB_USER);
-      console.log('DB Password:', process.env.DB_PASS_ROOT);
-      console.log('DB Name:', process.env.DB_NAME);
+    consumer.apply(LoggingMiddleware).forRoutes('*');
+    console.log('DB Type:', process.env.DB_TYPE);
+    console.log('DB Host:', process.env.DB_HOST);
+    console.log('DB Port:', process.env.DB_PORT);
+    console.log('DB Username:', process.env.DB_USER);
+    console.log('DB Password:', process.env.DB_PASS_ROOT);
+    console.log('DB Name:', process.env.DB_NAME);
   }
 }

@@ -1,17 +1,14 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     12-11-2024 13:03:04                          */
+/* Created on:     15-11-2024 20:48:40                          */
 /*==============================================================*/
 
 
-DROP DATABASE Petropolis;
+DROP DATABASE  Petropolis;
 
 CREATE DATABASE Petropolis;
 
 USE Petropolis;
-
-/*==============================================================*/
-/* Table: AVATAR_MASCOTAS                                       */
 
 /*==============================================================*/
 /* Table: AVATAR_MASCOTAS                                       */
@@ -52,9 +49,10 @@ create table CALENDARIOS
 /*==============================================================*/
 create table CARRO_COMPRAS
 (
-   IDCARROCOMPRAS       bigint not null  comment '',
+   IDCARROCOMPRAS       bigint not null auto_increment  comment '',
    IDUSUARIO            bigint not null  comment '',
    FECHACREACION        timestamp not null  comment '',
+   PRECIOTOTAL          bigint  comment '',
    primary key (IDCARROCOMPRAS)
 );
 
@@ -234,9 +232,10 @@ create table MASCOTAS_VACUNAS
 create table PEDIDOS
 (
    IDPEDIDO             bigint not null  comment '',
-   IDUSUARIO            bigint  comment '',
+   IDUSUARIO            bigint not null  comment '',
    FECHACREACION        datetime  comment '',
-   FECHAENTRGA          datetime  comment '',
+   FECHAENTREGA         datetime  comment '',
+   PRECIOTOTAL          bigint  comment '',
    primary key (IDPEDIDO)
 );
 
@@ -265,9 +264,9 @@ create table PRODUCTOS
 /*==============================================================*/
 create table PRODUCTOS_CARRO
 (
-   IDCARROCOMPRAS       bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
-   primary key (IDCARROCOMPRAS, IDPRODUCTO)
+   IDDETALLECARRO       bigint not null  comment '',
+   primary key (IDPRODUCTO, IDDETALLECARRO)
 );
 
 /*==============================================================*/
@@ -275,9 +274,9 @@ create table PRODUCTOS_CARRO
 /*==============================================================*/
 create table PRODUCTOS_PEDIDOS
 (
-   IDPEDIDO             bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
-   primary key (IDPEDIDO, IDPRODUCTO)
+   IDDETALLEPEDIDO      bigint not null  comment '',
+   primary key (IDPRODUCTO, IDDETALLEPEDIDO)
 );
 
 /*==============================================================*/
@@ -425,17 +424,17 @@ alter table PRODUCTOS add constraint PRODUCTO_CATPROD foreign key (IDCATEGORIA)
 alter table PRODUCTOS add constraint MARCAPROD_PROD foreign key (IDMARCA)
       references MARCAS_PRODUCTO (IDMARCA) on delete restrict on update restrict;
 
-alter table PRODUCTOS_CARRO add constraint CARROCOM_PRODAC foreign key (IDCARROCOMPRAS)
-      references CARRO_COMPRAS (IDCARROCOMPRAS) on delete restrict on update restrict;
+alter table PRODUCTOS_CARRO add constraint DETCARCOM_PROCARRO foreign key (IDDETALLECARRO)
+      references DETALLES_CARRO_COMPRA (IDDETALLECARRO) on delete restrict on update restrict;
 
 alter table PRODUCTOS_CARRO add constraint PRODUCTOS_PROCAR foreign key (IDPRODUCTO)
       references PRODUCTOS (IDPRODUCTO) on delete restrict on update restrict;
 
+alter table PRODUCTOS_PEDIDOS add constraint DETPED_PROPED foreign key (IDDETALLEPEDIDO)
+      references DETALLES_PEDIDOS (IDDETALLEPEDIDO) on delete restrict on update restrict;
+
 alter table PRODUCTOS_PEDIDOS add constraint PRODUCTO_PRODPED foreign key (IDPRODUCTO)
       references PRODUCTOS (IDPRODUCTO) on delete restrict on update restrict;
-
-alter table PRODUCTOS_PEDIDOS add constraint PEDIDOS_PROPED foreign key (IDPEDIDO)
-      references PEDIDOS (IDPEDIDO) on delete restrict on update restrict;
 
 alter table RAZAS add constraint ESPECIES_RAZAS foreign key (IDESPECIE)
       references ESPECIES (IDESPECIE) on delete restrict on update restrict;

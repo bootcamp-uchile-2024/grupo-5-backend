@@ -1,11 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCarrocompraDto } from './dto/create-carrocompra.dto';
-import { UpdateCarrocompraDto } from './dto/update-carrocompra.dto';
+import { CreateCarroCompraDto } from './dto/create-carroCmpra.dto';
+import { UpdateCarrocompraDto } from './dto/update-carroCmpra.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CarroCompras } from './entities/carroCompra.entity';
+import { Repository } from 'typeorm';
+
 
 @Injectable()
 export class CarrocomprasService {
-  create(createCarrocompraDto: CreateCarrocompraDto) {
-    return 'This action adds a new carrocompra';
+
+  constructor(
+    @InjectRepository(CarroCompras)
+    private carroComprasRepository: Repository<CarroCompras>,
+  ) {}
+
+  async create(createCarrocompraDto: CreateCarroCompraDto) : Promise<CarroCompras> {
+    const carroCompra = new CarroCompras();
+    carroCompra.idUsuario = createCarrocompraDto.Usuario;
+    carroCompra.fechaCreacion = createCarrocompraDto.fechaCreacion;
+    carroCompra.precioTotal = createCarrocompraDto.precioTotal;
+    carroCompra.detallesCarro = createCarrocompraDto.detallesCarro;
+    return this.carroComprasRepository.save(carroCompra);
   }
 
   findAll() {

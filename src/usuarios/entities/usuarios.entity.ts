@@ -3,7 +3,7 @@ import { AvatarUsuarios } from './avatarusuarios.entity';
 import { Direcciones } from './direcciones.entity';
 import { Roles } from './roles.entity';
 import { Pedido } from 'src/productos/entities/pedidos.entity';
-import { CarroCompras } from 'src/carrocompras/entities/carrocompra.entity';
+import { CarroCompras } from 'src/carrocompras/entities/carroCompra.entity';
 import { Mascota } from 'src/mascotas/entities/mascotas.entity';
 
 @Entity('usuarios')
@@ -57,10 +57,10 @@ export class Usuario {
     @OneToMany(() => Direcciones, (direccion) => direccion.usuario)
     direcciones: Direcciones[];
 
-    @OneToMany(() => Pedido, (pedido) => pedido.usuario)
+    @OneToMany(() => Pedido, (pedido) => pedido.idUSsuario)
     pedidos: Pedido[];
 
-    @OneToMany(() => CarroCompras, (carro) => carro.usuario)
+    @OneToMany(() => CarroCompras, (carro) => carro.idUsuario)
     carroCompras: CarroCompras[];
 
     @ManyToMany(() => Mascota, (mascota) => mascota.usuarios)

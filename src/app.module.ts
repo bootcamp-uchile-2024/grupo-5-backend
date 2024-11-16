@@ -38,6 +38,7 @@ import { Roles } from './usuarios/entities/roles.entity';
 import { Usuario } from './usuarios/entities/usuarios.entity';
 import { UsuariosModule } from './usuarios/usuarios.module';
 // imports: [
+//   TypeOrmModule.forRoot({
 // type: process.env.DB_TYPE as 'mysql',  //dependiendo de tu configuración
 // host: process.env.DB_HOST,
 // port: Number(process.env.DB_PORT),
@@ -48,7 +49,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 
 // imports: [
 //   TypeOrmModule.forRoot({
-//     type: 'mysql',  //dependiendo de tu configuración
+//     type: 'mysql', //dependiendo de tu configuración
 //     host: 'localhost',
 //     port: 5002,
 //     username: 'root',

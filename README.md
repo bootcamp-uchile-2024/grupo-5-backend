@@ -390,8 +390,6 @@ Si tienes alguna pregunta, no dudes en ponerte en contacto con nosotros a travé
 
   - [![Mauricio Piña](https://img.shields.io/badge/Mauricio_Pina-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mauriciopinavalenzuela)
 
-  - [![Lorenzo Baeza](https://img.shields.io/badge/Lorenzo_Baeza-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LENZOZ)
-
 
 ## 9. 📝 Notas adicionales [![Ir Arriba](https://img.shields.io/badge/Ir_Arriba-green?style=for-the-badge&logo=arrow-up&logoColor=white)](#-tabla-de-contenidos)
 

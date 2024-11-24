@@ -1,8 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CarrocomprasService } from './carrocompras.service';
 import { UpdateCarrocompraDto } from './dto/update-carroCmpra.dto';
-import { CreateCarroCompraDto } from './dto/create-carroCmpra.dto';
+
 import { ApiTags } from '@nestjs/swagger';
+import { CreateCarroCompraDto } from './dto/create-carroCompra.dto';
 
 @ApiTags('Carro de Compras')
 @Controller('carrocompras')

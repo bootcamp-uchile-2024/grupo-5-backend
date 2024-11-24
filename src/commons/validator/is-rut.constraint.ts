@@ -11,7 +11,7 @@ export class IsRutConstraint implements ValidatorConstraintInterface {
     if (!rut) return false;
 
     // Lógica para validar el RUT 
-    const rutRegex = /^[0-9]+-[0-9kK]{1}$/;
+    const rutRegex = /^[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9kK]{1}$/;
     return rutRegex.test(rut);
   }
 

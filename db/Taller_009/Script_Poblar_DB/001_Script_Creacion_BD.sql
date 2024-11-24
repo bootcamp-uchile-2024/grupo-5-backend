@@ -4,12 +4,246 @@
 /*==============================================================*/
 
 
-DROP DATABASE  Petropolis;
+alter table CALENDARIOS 
+   drop foreign key FRECUENCIAS_CALENDARIOS;
 
-CREATE DATABASE Petropolis;
+alter table CALENDARIOS 
+   drop foreign key MASCOTAS_CALENDARIOS;
 
-USE Petropolis;
+alter table CARRO_COMPRAS 
+   drop foreign key USUARIOS_CARCOM;
 
+alter table COMUNAS 
+   drop foreign key REGIONES_COMUNAS;
+
+alter table DETALLES_CARRO_COMPRA 
+   drop foreign key CARRCOMP_DETCARCOM;
+
+alter table DETALLES_CARRO_COMPRA 
+   drop foreign key PROD_DETCARCOM;
+
+alter table DETALLES_PEDIDOS 
+   drop foreign key PROD_DETPEDIDOS;
+
+alter table DETALLES_PEDIDOS 
+   drop foreign key PEDIDO_DETPEDIDOS;
+
+alter table DIRECCIONES 
+   drop foreign key COMUNAS_DIRECCIONES;
+
+alter table DIRECCIONES 
+   drop foreign key USUARIOS_DIRECCIONES;
+
+alter table IMAGENES_PRODUCTOS 
+   drop foreign key PRODUCTOS_IMAGPROD;
+
+alter table MASCOTAS 
+   drop foreign key AVAMAS_MASCOTAS;
+
+alter table MASCOTAS 
+   drop foreign key RAZAS_MASCOTAS;
+
+alter table MASCOTAS_CONDALIMENTARIAS 
+   drop foreign key CONDICIONES_MASCONDALI;
+
+alter table MASCOTAS_CONDALIMENTARIAS 
+   drop foreign key MASCOTAS_MASCONDALI;
+
+alter table MASCOTAS_ENFERMEDADES 
+   drop foreign key MASCOTAS_MASENF;
+
+alter table MASCOTAS_ENFERMEDADES 
+   drop foreign key ENFERBASE_MASENF;
+
+alter table MASCOTAS_VACUNAS 
+   drop foreign key VACUNAS_MASVAC;
+
+alter table MASCOTAS_VACUNAS 
+   drop foreign key MASCOTAS_MASVAC;
+
+alter table PEDIDOS 
+   drop foreign key USUARIOS_PEDIDOS;
+
+alter table PRODUCTOS 
+   drop foreign key PRODUCTO_CATPROD;
+
+alter table PRODUCTOS 
+   drop foreign key MARCAPROD_PROD;
+
+alter table RAZAS 
+   drop foreign key ESPECIES_RAZAS;
+
+alter table REGISTROS_MEDICOS 
+   drop foreign key MASCOTAS_REGMED;
+
+alter table USUARIOS 
+   drop foreign key AVATARUSU_USUARIOS;
+
+alter table USUARIOS 
+   drop foreign key ROLES_USUARIOS;
+
+alter table USUARIOS_MASCOTAS 
+   drop foreign key USURIOS_USUMAS;
+
+alter table USUARIOS_MASCOTAS 
+   drop foreign key MASCOTAS_USUMAS;
+
+drop table if exists AVATAR_MASCOTAS;
+
+drop table if exists AVATAR_USUARIOS;
+
+
+alter table CALENDARIOS 
+   drop foreign key MASCOTAS_CALENDARIOS;
+
+alter table CALENDARIOS 
+   drop foreign key FRECUENCIAS_CALENDARIOS;
+
+drop table if exists CALENDARIOS;
+
+
+alter table CARRO_COMPRAS 
+   drop foreign key USUARIOS_CARCOM;
+
+drop table if exists CARRO_COMPRAS;
+
+drop table if exists CATEGORIAS_PRODUCTO;
+
+
+alter table COMUNAS 
+   drop foreign key REGIONES_COMUNAS;
+
+drop table if exists COMUNAS;
+
+drop table if exists CONDICIONES_ALIMENTARIAS;
+
+
+alter table DETALLES_CARRO_COMPRA 
+   drop foreign key CARRCOMP_DETCARCOM;
+
+alter table DETALLES_CARRO_COMPRA 
+   drop foreign key PROD_DETCARCOM;
+
+drop table if exists DETALLES_CARRO_COMPRA;
+
+
+alter table DETALLES_PEDIDOS 
+   drop foreign key PEDIDO_DETPEDIDOS;
+
+alter table DETALLES_PEDIDOS 
+   drop foreign key PROD_DETPEDIDOS;
+
+drop table if exists DETALLES_PEDIDOS;
+
+
+alter table DIRECCIONES 
+   drop foreign key USUARIOS_DIRECCIONES;
+
+alter table DIRECCIONES 
+   drop foreign key COMUNAS_DIRECCIONES;
+
+drop table if exists DIRECCIONES;
+
+drop table if exists ENFERMEDADES_BASE;
+
+drop table if exists ESPECIES;
+
+drop table if exists FRECUENCIAS;
+
+
+alter table IMAGENES_PRODUCTOS 
+   drop foreign key PRODUCTOS_IMAGPROD;
+
+drop table if exists IMAGENES_PRODUCTOS;
+
+drop table if exists MARCAS_PRODUCTO;
+
+
+alter table MASCOTAS 
+   drop foreign key AVAMAS_MASCOTAS;
+
+alter table MASCOTAS 
+   drop foreign key RAZAS_MASCOTAS;
+
+drop table if exists MASCOTAS;
+
+
+alter table MASCOTAS_CONDALIMENTARIAS 
+   drop foreign key MASCOTAS_MASCONDALI;
+
+alter table MASCOTAS_CONDALIMENTARIAS 
+   drop foreign key CONDICIONES_MASCONDALI;
+
+drop table if exists MASCOTAS_CONDALIMENTARIAS;
+
+
+alter table MASCOTAS_ENFERMEDADES 
+   drop foreign key MASCOTAS_MASENF;
+
+alter table MASCOTAS_ENFERMEDADES 
+   drop foreign key ENFERBASE_MASENF;
+
+drop table if exists MASCOTAS_ENFERMEDADES;
+
+
+alter table MASCOTAS_VACUNAS 
+   drop foreign key VACUNAS_MASVAC;
+
+alter table MASCOTAS_VACUNAS 
+   drop foreign key MASCOTAS_MASVAC;
+
+drop table if exists MASCOTAS_VACUNAS;
+
+
+alter table PEDIDOS 
+   drop foreign key USUARIOS_PEDIDOS;
+
+drop table if exists PEDIDOS;
+
+
+alter table PRODUCTOS 
+   drop foreign key MARCAPROD_PROD;
+
+alter table PRODUCTOS 
+   drop foreign key PRODUCTO_CATPROD;
+
+drop table if exists PRODUCTOS;
+
+
+alter table RAZAS 
+   drop foreign key ESPECIES_RAZAS;
+
+drop table if exists RAZAS;
+
+drop table if exists REGIONES;
+
+
+alter table REGISTROS_MEDICOS 
+   drop foreign key MASCOTAS_REGMED;
+
+drop table if exists REGISTROS_MEDICOS;
+
+drop table if exists ROLES;
+
+
+alter table USUARIOS 
+   drop foreign key AVATARUSU_USUARIOS;
+
+alter table USUARIOS 
+   drop foreign key ROLES_USUARIOS;
+
+drop table if exists USUARIOS;
+
+
+alter table USUARIOS_MASCOTAS 
+   drop foreign key USURIOS_USUMAS;
+
+alter table USUARIOS_MASCOTAS 
+   drop foreign key MASCOTAS_USUMAS;
+
+drop table if exists USUARIOS_MASCOTAS;
+
+drop table if exists VACUNAS;
 
 /*==============================================================*/
 /* Table: AVATAR_MASCOTAS                                       */

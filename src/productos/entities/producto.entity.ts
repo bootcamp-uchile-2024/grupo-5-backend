@@ -1,28 +1,15 @@
 import { DetalleCarroCompra } from 'src/carrocompras/entities/detalleCarroCompra.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToMany,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn
-} from 'typeorm';
+import {  Column,  Entity,  JoinColumn,  ManyToMany,  ManyToOne,  OneToMany,  PrimaryGeneratedColumn} from 'typeorm';
 import { CategoriaProducto } from './categoriaproducto.entity';
 import { DetallesPedidos } from './detallespedidos.entity';
 import { ImagenProducto } from './imagenproducto.entity';
 import { MarcaProducto } from './marcaproducto.entity';
+import { Pedido } from './pedidos.entity';
 
 @Entity('productos')
 export class Producto {
   @PrimaryGeneratedColumn({ name: 'idproducto' })
   idProducto: number;
-
-  // @Column({ name: 'idmarca' })
-  // idMarca: number;
-
-  // @Column({ name: 'idcategoria' })
-  // idCategoria: number;
 
   @Column({ name: 'nombreproducto' })
   nombreProducto: string;
@@ -62,11 +49,12 @@ export class Producto {
   @OneToMany(() => ImagenProducto, (imagen) => imagen.producto)
   imagenes: ImagenProducto[];
 
-  @ManyToMany(() => DetalleCarroCompra, (detalle) => detalle.productos)
+  @OneToMany(() => DetalleCarroCompra, (detalle) => detalle.producto)
   detallesCarroCompra: DetalleCarroCompra[];
-  
-  @ManyToMany(() => DetallesPedidos, (detalle) => detalle.productos)
-  DetallesPedido: DetallesPedidos[];
+
+  @ManyToOne(() => Pedido)
+  @JoinColumn({ name: 'idPedido' })
+  pedido: Pedido;
 
 }
 

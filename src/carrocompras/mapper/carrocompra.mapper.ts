@@ -1,4 +1,5 @@
-import { CreateCarroCompraDto } from "../dto/create-carroCmpra.dto";
+
+import { CreateCarroCompraDto } from "../dto/create-carroCompra.dto";
 import { CarroCompras } from "../entities/carroCompra.entity";
 
 export class carroCompraMapper{

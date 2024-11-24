@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCarroCompraDto } from './dto/create-carroCmpra.dto';
 import { UpdateCarrocompraDto } from './dto/update-carroCmpra.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CarroCompras } from './entities/carroCompra.entity';
 import { Repository } from 'typeorm';
+import { CreateCarroCompraDto } from './dto/create-carroCompra.dto';
 
 
 @Injectable()

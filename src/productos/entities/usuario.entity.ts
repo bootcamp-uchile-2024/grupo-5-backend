@@ -1,5 +1,6 @@
 import { UserRole } from 'src/usuarios/roles.enum';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Pedido } from './pedidos.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -34,4 +35,8 @@ export class Usuario {
     default: UserRole.INVITADO
   })
   rolUsuario: UserRole;
+
+
+  @OneToMany(() => Pedido, (p) => p.idUSsuario)
+pedidos: Pedido[];
 }

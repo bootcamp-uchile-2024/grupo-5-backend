@@ -1,24 +1,19 @@
-# Usa una imagen ligera de Node.js
-FROM node:16-alpine
+# FROM node:22.9.0-alpine3.19 AS constructor
+# USER node
+# WORKDIR /home/node/nest
+# COPY --chown=node:node src /home/node/nest/src
+# COPY --chown=node:node package.json /home/node/nest/package.json
+# COPY --chown=node:node package-lock.json /home/node/nest/package-lock.json
+# COPY --chown=node:node tsconfig.json /home/node/nest/tsconfig.json
+# COPY --chown=node:node tsconfig.build.json /home/node/nest/tsconfig.build.json
+# COPY --chown=node:node nest-cli.json /home/node/nest/nest-cli.json
+# RUN npm install && npm run build && rm -rf node_modules && npm install --production
 
-# Establecer el directorio de trabajo
-WORKDIR /app
-
-# Copiar package.json y package-lock.json
-COPY package*.json /app
-
-# Instalar solo dependencias de producción
-RUN npm install --only=production
-
-# Instalar solo dependencias de desarrollo
-RUN npm install --only=development
-
-# Copiar el resto del código de la aplicación
-COPY dist/src /app/dist
-
-# Exponer el puerto y el puerto por defecto
-EXPOSE ${PUERTO}
-EXPOSE ${AMBIENTE}
-
-# Comando para iniciar la aplicación
+FROM node:22.9.0-alpine3.19
+USER node
+WORKDIR /home/node/nest
+COPY ./dist  /home/node/nest/dist
+COPY ./node_modules /home/node/nest/node_modules
+COPY package.json /home/node/nest/package.json
+COPY package-lock.json /home/node/nest/package-lock.json
 CMD ["npm", "run", "start:prod"]

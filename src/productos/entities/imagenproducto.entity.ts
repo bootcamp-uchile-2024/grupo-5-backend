@@ -4,7 +4,7 @@ import { Producto } from './producto.entity';
 
 @Entity('imagenes_productos')
 export class ImagenProducto {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn({name: 'IdImagen'})
   idImagen: number;
 
   @Column({name: 'PATHIMAPRODUCTOS'})

@@ -59,8 +59,9 @@ export class ProductoController {
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
   @Post()
   @UsePipes(new ValidationPipe())
-  createProduct(@Body() createProductoDto: CreateProductoDto): string {
-    return 'Producto creado con éxito.';
+  createProduct(@Body() createProductoDto: CreateProductoDto) {
+    return this.productoService.createProducto(createProductoDto);
+
   }
 
 
@@ -72,8 +73,9 @@ export class ProductoController {
   @ApiParam({ name: 'id', required: true, description: 'Id del producto' })
   @Put(':id')
   @UsePipes(new ValidationPipe())
-  update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number, 
-         @Body() actualizarProductoDto: ActualizarProductoDto): string {
+  async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number, 
+               @Body() actualizarProductoDto: ActualizarProductoDto): Promise<string> {
+          await this.productoService.actualizarProducto(id, actualizarProductoDto);     
     return `El producto ${id} fue actualizado con éxito.`;
   }
 
@@ -83,7 +85,8 @@ export class ProductoController {
   @ApiOperation({ summary: 'Eliminar producto por Id' })
   @ApiParam({ name: 'id', required: true, description: 'Id del producto.' })
   @Delete(':id')
-  remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): string {
+  async remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): Promise<string> {
+    await this.productoService.remove(id);
     return `El producto ${id} fue eliminado con éxito.`;
   }
 

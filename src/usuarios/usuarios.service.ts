@@ -80,10 +80,7 @@ export class UsuariosService {
   }
 
   // Actualizar un usuario existente
-  async update(
-    rut: string,
-    updateUsuarioDto: CreateUsuarioDto,
-  ): Promise<Usuario> {
+  async update( rut: string, updateUsuarioDto: CreateUsuarioDto,): Promise<Usuario> {
     const usuario = await this.findOne(rut);
     const updatedUsuario = UsuarioMapper.dtoToEntity(updateUsuarioDto);
     updatedUsuario.idUsuario = usuario.idUsuario; // Preservar el ID del usuario existente

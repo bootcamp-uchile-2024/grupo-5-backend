@@ -18,6 +18,22 @@ export class CreateCarroCompraDto {
       @Max(1000000000, { message: 'Identificador del carro de Compras debe ser como máximo 1000000000' })
       @IsNotEmpty({ message: 'Identificador del carro de Compras no puede ser vacío' })
       idCarroCompras: number;
+      
+      @ApiProperty({
+        type: 'number',
+        title: 'Id del Usuario',
+        description: 'Identificación única del Usuario en el sistema',
+        example: 1,
+        minimum: 1,
+        maximum: 10000000000,
+        required: true,
+        nullable: false,
+      })
+      @IsNumber()
+      @Min(1, { message: 'El id del Usuario debe ser al menos 1' })
+      @Max(10000000000, { message: 'El id del Usuario debe ser como máximo 10000000000' })
+      @IsNotEmpty({ message: 'El id del Usuario no puede ser vacío' })
+      idUsuario: number;
   
       @ApiProperty({
         type: 'Date',
@@ -46,21 +62,6 @@ export class CreateCarroCompraDto {
       @IsNotEmpty({ message: 'Precio Total del los productos en el carro de Compras no puede ser vacío' })
       precioTotal: number;
 
-      @ApiProperty({
-        type: 'number',
-        title: 'Id del Usuario',
-        description: 'Identificación única del Usuario en el sistema',
-        example: 1,
-        minimum: 1,
-        maximum: 10000000000,
-        required: true,
-        nullable: false,
-      })
-      @IsNumber()
-      @Min(1, { message: 'El id del Usuario debe ser al menos 1' })
-      @Max(10000000000, { message: 'El id del Usuario debe ser como máximo 10000000000' })
-      @IsNotEmpty({ message: 'El id del Usuario no puede ser vacío' })
-      Usuario: number;
   
     @ApiProperty({
         description: 'Lista de detalles del carro de compras',

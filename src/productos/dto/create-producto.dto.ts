@@ -10,7 +10,6 @@ export class CreateProductoDto {
     //     description: 'Identificador del Producto',
     //     required: true,example: 23})
     // public id: number;
-   
    @ApiProperty({
         type: 'string', 
         title: 'Nombre del Producto',
@@ -32,8 +31,6 @@ export class CreateProductoDto {
         maximum: 10000000,
         nullable: false,
         example: '1'}) 
-        @IsString({message: 'Identificador de la Marca del Producto debe ser un string'})
-        @Length(1, 20, { message: 'Identificador la Marca del Producto debe tener entre 1 y 20 caracteres.' })
         @IsNotEmpty({message: 'Identificador la Marca del producto no puede estar vacía'})
     public idMarca: number;
 
@@ -168,10 +165,21 @@ public material: string;
     maximum: 10000000,
     nullable: false,
     example: '1'}) 
-    @IsString({message: 'Identificador Categoría del Producto debe ser un string'})
-    @Length(1, 100, { message: 'Identificador Categoría del Producto debe tener entre 1 y 100 caracteres.' })
     @IsNotEmpty({message: 'Identificador Categoría del Producto no puede estar vacía'})
 public idCategoria: number;
+
+
+@ApiProperty({
+    type: 'number', 
+    title: 'Estado del Producto',
+    description: 'Estado del Producto', 
+    required: true,
+    minimum: 0,
+    maximum: 1,
+    nullable: false,
+    example: '1'}) 
+    @IsNotEmpty({message: 'Estado del Producto: 0:Desactivado - 1:Activo'})
+public activo: number;
 
     // @ApiProperty({
     //     type: 'string[]', 

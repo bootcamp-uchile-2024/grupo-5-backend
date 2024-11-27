@@ -84,7 +84,7 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/producto', app, document3);
 
-  const puerto = process.env.PUERTO_NESTJS || 3030;
+  const puerto = 3000;//process.env.PUERTO_NESTJS || 3030;
   await app.listen(puerto, '0.0.0.0');
   console.log('\t\t**************************************************************');
   console.log('\t\t*                                                            *');

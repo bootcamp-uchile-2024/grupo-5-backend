@@ -93,6 +93,13 @@ export class GetProductoDto {
   })
   public categoria: string;
 
+  @ApiProperty({
+    type: 'number',
+    title: 'Estado del Producto',
+    description: 'Estado del Producto',
+  })
+  public activo: number;
+
   // @ApiProperty({
   //     type: 'string[]',
   //     title: 'Etiquetas del Producto',

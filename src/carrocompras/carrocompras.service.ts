@@ -16,11 +16,11 @@ export class CarrocomprasService {
 
   async create(createCarrocompraDto: CreateCarroCompraDto) : Promise<CarroCompras> {
     const carroCompra = new CarroCompras();
-    carroCompra.idUsuario = createCarrocompraDto.Usuario;
+    carroCompra.idUsuario = createCarrocompraDto.idUsuario;
     carroCompra.fechaCreacion = createCarrocompraDto.fechaCreacion;
     carroCompra.precioTotal = createCarrocompraDto.precioTotal;
     carroCompra.detallesCarro = createCarrocompraDto.detallesCarro;
-    return this.carroComprasRepository.save(carroCompra);
+     return await this.carroComprasRepository.save(carroCompra);
   }
 
   findAll() {

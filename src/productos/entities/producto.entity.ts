@@ -1,10 +1,9 @@
 import { DetalleCarroCompra } from 'src/carrocompras/entities/detalleCarroCompra.entity';
-import {  Column,  Entity,  JoinColumn,  ManyToMany,  ManyToOne,  OneToMany,  PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { CategoriaProducto } from './categoriaproducto.entity';
 import { DetallesPedidos } from './detallespedidos.entity';
 import { ImagenProducto } from './imagenproducto.entity';
 import { MarcaProducto } from './marcaproducto.entity';
-import { Pedido } from './pedidos.entity';
 
 @Entity('productos')
 export class Producto {
@@ -38,6 +37,9 @@ export class Producto {
   @Column({ name: 'material' })
   material: string;
 
+  @Column({ name: 'activo' })
+  activo: number;
+
   @ManyToOne(() => CategoriaProducto)
   @JoinColumn({ name: 'idCategoria' })
   categoria: CategoriaProducto;
@@ -52,9 +54,10 @@ export class Producto {
   @OneToMany(() => DetalleCarroCompra, (detalle) => detalle.producto)
   detallesCarroCompra: DetalleCarroCompra[];
 
-  @ManyToOne(() => Pedido)
-  @JoinColumn({ name: 'idPedido' })
-  pedido: Pedido;
+  @OneToMany(() => DetallesPedidos, (detalle) => detalle.producto)
+  detallePedido: DetallesPedidos;
+
+  
 
 }
 

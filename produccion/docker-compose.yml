@@ -1,43 +1,35 @@
-# services:
-#   api: 
-#     image: "backendgrupo5/grupo-5-backend:${VERSION_TAG}"
-#     image: "node:${NODE_VERSION}"  
 services:
   #  Servicio API para la aplicación NestJS
   api:
-    image: "backendgrupo5/grupo-5-backend:${VERSION_TAG}"         # Utiliza la versión especificada de Node.js desde el entorno
-    command: "npm run start:dev"            # Ejecuta el comando de desarrollo de NestJS
-    user: node                              # Permite acceso como root dentro del contenedor
-    working_dir: /home/node/nest            # Directorio de trabajo dentro del contenedor
+    image: "backendgrupo5/grupo-5-backend:${VERSION_TAG}"        
     environment:   
-      DB_TYPE: ${DB_TYPE}                   # Puerto en el que escuchará la API
-      DB_HOST: ${DB_HOST}                   # Host de la base de datos
-      DB_PORT: ${DB_PORT}                   # Puerto de la base de datos
-      DB_USER: ${DB_USER}                   # Usuario de la base de datos
-      DB_PASS_ROOT: ${DB_PASS_ROOT}         # Contraseña de la base de datos
-      DB_NAME: ${DB_NAME}                   # Nombre de la base de datos
+      DB_TYPE: ${DB_TYPE}                   
+      DB_HOST: ${DB_HOST}                   
+      DB_PORT: ${DB_PORT}                   
+      DB_USER: ${DB_USER}                   
+      DB_PASS_ROOT: ${DB_PASS_ROOT}         
+      DB_NAME: ${DB_NAME}                   
+      NESTJS_PORT: ${NESTJS_PORT}           
     ports:
-      - "5001:${NESTJS_PORT}"               # Mapea el puerto 5001 del host al puerto de la API dentro del contenedor
-    volumes:
-      - .:/home/node/nest                   # Monta el directorio actual en el contenedor para desarrollo en tiempo real
+      - "5001:${NESTJS_PORT}"               
     depends_on:
-      - db                                  # Asegura que el servicio db esté activo antes de iniciar la API
+      - db                                  
     networks:
       - backend_network 
 
   # Servicio de Base de Datos MySQL
   db:
-    image: "mysql:${DB_VERSION}"            # Usa la versión especificada de MySQL
+    image: "mysql:${DB_VERSION}"           
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT}  # Contraseña de root para MySQL
-      MYSQL_DATABASE: ${DB_NAME}            # Crea una base de datos inicial
+      MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT} 
+      MYSQL_DATABASE: ${DB_NAME}           
     volumes:
-      - .mysql_data:/var/lib/mysql          # Almacena los datos de MySQL en una carpeta persistente
+      - .mysql_data:/var/lib/mysql         
     ports:
-      - "5002:${DB_PORT}"                   # Mapea el puerto 5002 del host al puerto de MySQL dentro del contenedor
+      - "5002:${DB_PORT}"                  
 
     networks:
-      - backend_network                    # Definimos una red específica para comunicación interna
+      - backend_network                    
 
   # Migración de Base de Datos
   flyway:
@@ -52,7 +44,7 @@ services:
     depends_on:
       - db
     networks:
-      - backend_network                    # Definimos una red específica para comunicación interna
+      - backend_network                   
 
 # Definimos las redes
 networks:
@@ -62,5 +54,5 @@ networks:
 # Define volúmenes persistentes para almacenamiento de datos
 volumes:
   .mysql_data:
-    driver: local                           # Usamos el controlador de volumen predeterminado para datos locales
+    driver: local                           
 

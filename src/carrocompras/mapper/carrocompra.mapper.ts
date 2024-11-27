@@ -6,7 +6,7 @@ export class carroCompraMapper{
     static entityToCarroCompraDto(entity: CarroCompras): CreateCarroCompraDto{
         const dto = new CreateCarroCompraDto();
         dto.idCarroCompras = entity.idCarroCompras;
-        dto.Usuario = entity.idUsuario;  
+        dto.idUsuario = entity.idUsuario;  
         dto.fechaCreacion = entity.fechaCreacion;
         dto.precioTotal = entity.precioTotal;
         dto.detallesCarro = entity.detallesCarro;
@@ -16,7 +16,7 @@ export class carroCompraMapper{
     static dtoToCreateCarroCompraDtoEntity(dto: CreateCarroCompraDto): CarroCompras{
         const entity = new CarroCompras();
         entity.idCarroCompras  = dto.idCarroCompras ;
-        entity.idUsuario = dto.Usuario;
+        entity.idUsuario = dto.idUsuario;
         entity.fechaCreacion = dto.fechaCreacion;
         entity.precioTotal = dto.precioTotal;
         entity.detallesCarro = dto.detallesCarro;

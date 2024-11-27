@@ -12,7 +12,10 @@ export class DetallesPedidos {
   pedido: Pedido;
 
 
-  //FALTA PRODUCTO
+  @ManyToOne(() => Producto)
+  @JoinColumn({ name: 'idProducto' })
+  producto: Producto;
+
 
   @Column()
   cantidadProducto: number;

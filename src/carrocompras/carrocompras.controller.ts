@@ -30,6 +30,7 @@ export class CarrocomprasController {
     return this.carrocomprasService.update(+id, updateCarrocompraDto);
   }
 
+  //EL GENERAR EL PEDIDO LLAMA A ESTE SERVICO DONDE LIMPIA EL CARRO
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.carrocomprasService.remove(+id);

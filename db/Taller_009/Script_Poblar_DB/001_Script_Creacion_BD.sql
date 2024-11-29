@@ -1,10 +1,13 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     23-11-2024 20:29:10                          */
+/* Created on:     28-11-2024 2:53:37                           */
 /*==============================================================*/
 
+DROP DATABASE  Petropolis;
 
+CREATE DATABASE Petropolis;
 
+USE Petropolis;
 
 /*==============================================================*/
 /* Table: AVATAR_MASCOTAS                                       */
@@ -45,12 +48,11 @@ create table CALENDARIOS
 /*==============================================================*/
 create table CARRO_COMPRAS
 (
-   IDUSUARIO            bigint not null comment '',
+   IDUSUARIO            bigint not null  comment '',
    IDCARROCOMPRAS       bigint not null auto_increment  comment '',
    FECHACREACION        timestamp not null  comment '',
    PRECIOTOTAL          bigint  comment '',
    primary key (IDCARROCOMPRAS)
-   unique (IDUSUARIO);
 );
 
 /*==============================================================*/
@@ -92,10 +94,11 @@ create table DETALLES_CARRO_COMPRA
 (
    IDDETALLECARRO       bigint not null  comment '',
    IDCARROCOMPRAS       bigint not null  comment '',
+   IDUSUARIO            bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
    CANTIDAD             int not null  comment '',
    PRECIOUNITARIO       int not null  comment '',
-   primary key (IDDETALLECARRO, IDCARROCOMPRAS, IDPRODUCTO)
+   primary key (IDDETALLECARRO, IDCARROCOMPRAS, IDUSUARIO, IDPRODUCTO)
 );
 
 /*==============================================================*/
@@ -164,7 +167,7 @@ create table FRECUENCIAS
 /*==============================================================*/
 create table IMAGENES_PRODUCTOS
 (
-   IDIMAGEN             bigint not null auto_increment comment '',
+   IDIMAGEN             bigint not null auto_increment  comment '',
    IDPRODUCTO           bigint  comment '',
    PATHIMAPRODUCTOS     varchar(1000) not null  comment '',
    primary key (IDIMAGEN)
@@ -247,7 +250,7 @@ create table PRODUCTOS
    IDMARCA              int  comment '',
    IDCATEGORIA          int  comment '',
    NOMBREPRODUCTO       varchar(150) not null  comment '',
-   DESCRIPCION          varchar(1000) not null  comment '',
+   DESCRIPCION          varchar(150) not null  comment '',
    SKU                  varchar(20) not null  comment '',
    PRECIO               int not null  comment '',
    STOCK                int not null  comment '',

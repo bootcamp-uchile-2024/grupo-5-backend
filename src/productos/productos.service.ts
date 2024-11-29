@@ -1,13 +1,13 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { getRepository, Repository } from "typeorm";
-import { Producto } from "./entities/producto.entity";
-import { ProductoMapper } from "./mapper/producto.mapper";
+import { Repository } from "typeorm";
+import { CreateProductoDto } from './dto/create-producto.dto';
 import { CatalogoProductoDto } from "./dto/read-catalogo-productos.dto";
 import { GetProductoDto } from "./dto/read-producto.dto";
-import { CreateProductoDto } from './dto/create-producto.dto';
 import { ActualizarProductoDto } from "./dto/update-producto.dto";
 import { ImagenProducto } from "./entities/imagenproducto.entity";
+import { Producto } from "./entities/producto.entity";
+import { ProductoMapper } from "./mapper/producto.mapper";
 
 
 @Injectable()
@@ -31,6 +31,8 @@ export class ProductoService {
     }
     return productoGuardado;
   }
+
+
   async catalogoProductos(): Promise<CatalogoProductoDto[]> {
     const productos = await this.productoRepository
       .createQueryBuilder('p')
@@ -95,7 +97,7 @@ async catalogoProductosPag(nroPagina: number, cantidadPorPagina: number): Promis
 
     //console.log(productos);
 
-  return ProductoMapper.entityListToGetProductoDtoList(productos);
+  return await ProductoMapper.entityListToGetProductoDtoList(productos);
 }
 async DetalleProducto(id: number): Promise<GetProductoDto[]> {
   const productosDet = await this.productoRepository
@@ -124,53 +126,76 @@ async DetalleProducto(id: number): Promise<GetProductoDto[]> {
 
     //console.log(productosDet);
 
-  return ProductoMapper.entityListToGetProductoDtoList(productosDet);
+  return await ProductoMapper.entityListToGetProductoDtoList(productosDet);
 }
 
 
-// async update( rut: string, updateUsuarioDto: CreateUsuarioDto,): Promise<Usuario> {
-//   const usuario = await this.findOne(rut);
-//   const updatedUsuario = UsuarioMapper.dtoToEntity(updateUsuarioDto);
-//   updatedUsuario.idUsuario = usuario.idUsuario; // Preservar el ID del usuario existente
-//   await this.usuarioRepository.save(updatedUsuario);
-//   return updatedUsuario;
+async actualizarProducto(id: number, updateProductoDto: ActualizarProductoDto,): Promise<GetProductoDto[]> {
+  // Buscar el producto por ID
+  const producto = await this.productoRepository.findOne({
+    where: { idProducto: id },
+    relations: ['imagenes', 'marca', 'categoria'], // Para cargar las relaciones
+  });
 
-//Con el id producto en imagnes_Producto obtenemos el id de imagen
-//conel id de imagen actualizo la rut y nobre
-async actualizarProducto( id: number, updateProductoDto: ActualizarProductoDto): Promise<Producto> {
-  const producto = await this.productoRepository.findOne({ where: { idProducto: id } });
-  console.log('producto---->', producto);
   if (!producto) {
-    throw new NotFoundException(`Producto con Id ${id} no fue encontrado`);
+    throw new NotFoundException(`Producto con ID ${id} no encontrado`);
   }
-  const updateProducto = ProductoMapper.DtoToGetProductoEntity(updateProductoDto);
-  updateProducto.idProducto = producto.idProducto; 
-  const productoActualizado : Producto = await this.productoRepository.save(updateProducto);
-   for (const imagen of productoActualizado.imagenes) {
-      console.log('imagen.idImagen---->', imagen.idImagen);
-      const imagenUpdate = await this.imagenProductoRepository.findOne({where : { idImagen: imagen.idImagen}})
-      console.log('1.- imagenUpdate---->', imagenUpdate);
-      imagen.producto = imagenUpdate.producto;
-      console.log('2.- imagenUpdate: ',imagenUpdate);
-      imagen.pathImagenProducto = imagenUpdate.pathImagenProducto.toString();
-      console.log('imagen.pathImagenProducto',imagen.pathImagenProducto);
-    await this.imagenProductoRepository.save(imagen);
-   }
-  return updateProducto;
+
+  // Actualizar los campos del producto
+  producto.nombreProducto = updateProductoDto.nombreProducto || producto.nombreProducto;
+  producto.descripcion = updateProductoDto.descripcion || producto.descripcion;
+  producto.sku = updateProductoDto.sku || producto.sku;
+  producto.precio = updateProductoDto.precio || producto.precio;
+  producto.stock = updateProductoDto.stock || producto.stock;
+  producto.peso = updateProductoDto.peso || producto.peso;
+  producto.tamanio = updateProductoDto.tamanio || producto.tamanio;
+  producto.ingredientes = updateProductoDto.ingredientes || producto.ingredientes;
+  producto.material = updateProductoDto.material || producto.material;
+  producto.activo = updateProductoDto.activo || producto.activo;
+
+  // Actualizar relaciones con marca y categoría
+  if (updateProductoDto.idMarca) {
+    producto.marca = { idMarca: updateProductoDto.idMarca } as any;
+  }
+  if (updateProductoDto.idCategoria) {
+    producto.categoria = { idCategoria: updateProductoDto.idCategoria } as any;
+  }
+
+  // Guardar cambios en la tabla PRODUCTOS
+  await this.productoRepository.save(producto);
+
+  // Validar y corregir las imágenes relacionadas en IMAGENES_PRODUCTOS
+  if (updateProductoDto.imagenes && updateProductoDto.imagenes.length > 0) {
+    // Corregir cualquier valor de pathImagenProducto que no sea una cadena
+    updateProductoDto.imagenes.forEach((imagen) => {
+      if (typeof imagen.pathImagenProducto !== 'string') {
+        // Transformar a cadena con un valor por defecto si está vacío
+        imagen.pathImagenProducto = String(imagen.pathImagenProducto || 'ruta/por/defecto.jpg');
+      }
+    });
+
+    // Eliminar imágenes existentes
+    await this.imagenProductoRepository.delete({ producto });
+
+    // Insertar nuevas imágenes
+    const nuevasImagenes = updateProductoDto.imagenes.map((imagenDto) => {
+      const nuevaImagen = new ImagenProducto();
+      nuevaImagen.pathImagenProducto = imagenDto.pathImagenProducto;
+      nuevaImagen.producto = producto; // Asociar con el producto
+      return nuevaImagen;
+    });
+    await this.imagenProductoRepository.save(nuevasImagenes);
+  }
+
+  // Obtener el producto actualizado con relaciones
+  const productoActualizado = await this.productoRepository.findOne({
+    where: { idProducto: id },
+    relations: ['imagenes', 'marca', 'categoria'],
+  });
+
+  // Mapear a GetProductoDto y retornar
+  return await [ProductoMapper.entityToGetProductoDto(productoActualizado)];
 }
-
-async getImagesProduct(idProducto: number) : Promise<ImagenProducto[]> { 
-  const imagenesProductos = await this.imagenProductoRepository
-  .createQueryBuilder('ip')
-  .where('ip.idProducto = :idProducto', { idProducto })
-  .getMany();
-  return imagenesProductos;
-
-
-
-}
-
-
 
 async remove(id: number): Promise<Producto> {
   const producto = await this.productoRepository.findOne({ where: { idProducto: id } });
@@ -179,12 +204,24 @@ async remove(id: number): Promise<Producto> {
   }
   if (!producto.activo) {
     throw new BadRequestException(
-      `Producto  ${id} ya está desactivado`,
+      `Producto  ${id} ya fue dado de baja`,
     );
   }
   producto.activo = 0;
   return await this.productoRepository.save(producto);
 }
 
-
+async activate(id: number): Promise<Producto> {
+  const producto = await this.productoRepository.findOne({ where: { idProducto: id } });
+  if (!producto) {
+    throw new NotFoundException(`Producto con Id ${id} no fue encontrado`);
+  }
+  if (!producto.activo) {
+    throw new BadRequestException(
+      `Producto  ${id} fue habilitado`,
+    );
+  }
+  producto.activo = 1;
+  return await this.productoRepository.save(producto);
+}
 }

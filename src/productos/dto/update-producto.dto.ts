@@ -159,10 +159,14 @@ public material: string;
       required: true,
       maxLength: 255,  
       nullable: false,
-      example: ['images/2653_001.jpg', 'images/2653_002.jpg']}) 
+      example: [
+        { idImagen: 134, pathImagenProducto: '/images/16_m.jpg' },
+        { idImagen: 135, pathImagenProducto: '/images/2653_new.jpg' },
+        { idImagen: 136, pathImagenProducto: '/images/2653_new.jpg' },
+      ]}) 
       @IsArray({message: 'La Ruta de las Imágenes del Producto deben ser un arreglo de strings'})
       @ArrayNotEmpty({ message: 'El arreglo de rutas de imágenes no puede estar vacío.' })
-      @IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
+     // @IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
  public imagenes: ImagenProducto[];
 
  @ApiProperty({

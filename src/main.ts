@@ -12,7 +12,7 @@ import * as ArchivoPackageJson from '../package.json';
 
 import { ConfigService } from '@nestjs/config';
 import { CarrocomprasModule } from './carrocompras/carrocompras.module';
-
+ 
 
 async function bootstrap() {
 
@@ -76,7 +76,8 @@ async function bootstrap() {
     .addTag('Obtener Detalle de Producto')
     .addTag('Crear Producto')
     .addTag('Actualizar Producto')
-    .addTag('Eliminar Producto')
+    .addTag('Alta de un Producto')
+    .addTag('Baja de un Producto')
     .addTag('Carro de Compras')
     .build();
   const document3 = SwaggerModule.createDocument(app, config3, {
@@ -84,7 +85,7 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/producto', app, document3);
 
-  const puerto = 3000;//process.env.PUERTO_NESTJS || 3030;
+  const puerto = process.env.PUERTO_NESTJS || 3030;
   await app.listen(puerto, '0.0.0.0');
   console.log('\t\t**************************************************************');
   console.log('\t\t*                                                            *');

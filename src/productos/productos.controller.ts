@@ -18,8 +18,8 @@ export class ProductoController {
   @ApiResponse({ status: 200, description: 'Obtiene todos los productos.' })
   @ApiResponse({ status: 404, description: 'No se encontraron productos.' })
   @Get()
-  findAll(){
-    return this.productoService.catalogoProductos();
+  async findAll(){
+    return await this.productoService.catalogoProductos();
   }
 
   @ApiTags('Obtener Detalle de Producto')
@@ -30,8 +30,8 @@ export class ProductoController {
   @ApiResponse({ status: 200, description: 'Producto encontrado.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @Get(':id')
-  findProductId(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number) { //GetProductoDto {
-    return this.productoService.DetalleProducto(id);
+  async findProductId(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number) : Promise <GetProductoDto[]>{  
+    return await this.productoService.DetalleProducto(id);
 }
 
   @ApiTags('Obtener Catálogo de Productos Paginado')
@@ -49,18 +49,16 @@ export class ProductoController {
         const resultado : GetProductoDto[] = await this.productoService.catalogoProductosPag(pagina, cantidadPorPagina);
     return resultado;
   }
-
-
-
+  
   @ApiTags('Crear Producto')
   @ApiOperation({ summary: 'Crear nuevo producto' })
   @ApiBody({ type: CreateProductoDto })
   @ApiResponse({ status: 200, description: 'Producto creado con éxito.' })
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
-  @Post()
   @UsePipes(new ValidationPipe())
-  createProduct(@Body() createProductoDto: CreateProductoDto) {
-    return this.productoService.createProducto(createProductoDto);
+  @Post()
+  async createProduct(@Body() createProductoDto: CreateProductoDto) {
+    return await this.productoService.createProducto(createProductoDto);
 
   }
 
@@ -71,25 +69,37 @@ export class ProductoController {
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
   @ApiOperation({ summary: 'Actualizar producto por Id' })
   @ApiParam({ name: 'id', required: true, description: 'Id del producto' })
-  @Put(':id')
   @UsePipes(new ValidationPipe())
+  @Put(':id/actualizar')
   async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number, 
                @Body() actualizarProductoDto: ActualizarProductoDto): Promise<string> {
-          await this.productoService.actualizarProducto(id, actualizarProductoDto);     
+    await this.productoService.actualizarProducto(id, actualizarProductoDto);     
     return `El producto ${id} fue actualizado con éxito.`;
   }
 
-  @ApiTags('Eliminar Producto')
-  @ApiResponse({ status: 200, description: 'Producto eliminado con éxito.' })
+  @ApiTags('Alta de un Producto')
+  @ApiResponse({ status: 200, description: 'Producto habilitado con éxito.' })
   @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
-  @ApiOperation({ summary: 'Eliminar producto por Id' })
+  @ApiOperation({ summary: 'Habilitar producto por Id' })
   @ApiParam({ name: 'id', required: true, description: 'Id del producto.' })
-  @Delete(':id')
+  @Put(':id/alta')
+  async activate(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): Promise<string> {
+    await this.productoService.activate(id);
+    return `El producto ${id} habilitado con éxito.`;
+  }
+  
+  @ApiTags('Baja de un Producto')
+  @ApiResponse({ status: 200, description: 'Producto fue dado de baja con éxito.' })
+  @ApiResponse({ status: 404, description: 'Producto no encontrado.' })
+  @ApiOperation({ summary: 'Baja de un producto por Id' })
+  @ApiParam({ name: 'id', required: true, description: 'Id del producto.' })
+  @UsePipes(new ValidationPipe())
+  @Put(':id/baja')
   async remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 400 })) id: number): Promise<string> {
     await this.productoService.remove(id);
-    return `El producto ${id} fue eliminado con éxito.`;
+    return `El producto ${id} fue dado de baja con éxito.`;
   }
-
+  
 
 }
 

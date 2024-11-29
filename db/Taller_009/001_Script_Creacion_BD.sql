@@ -1,15 +1,13 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     23-11-2024 20:29:10                          */
+/* Created on:     28-11-2024 2:53:37                           */
 /*==============================================================*/
-
 
 DROP DATABASE  Petropolis;
 
 CREATE DATABASE Petropolis;
 
 USE Petropolis;
-
 
 /*==============================================================*/
 /* Table: AVATAR_MASCOTAS                                       */
@@ -50,11 +48,12 @@ create table CALENDARIOS
 /*==============================================================*/
 create table CARRO_COMPRAS
 (
+   IDUSUARIO            bigint not null comment '',
    IDCARROCOMPRAS       bigint not null auto_increment  comment '',
-   IDUSUARIO            bigint not null  comment '',
    FECHACREACION        timestamp not null  comment '',
    PRECIOTOTAL          bigint  comment '',
    primary key (IDCARROCOMPRAS)
+   unique (IDUSUARIO);
 );
 
 /*==============================================================*/
@@ -94,12 +93,13 @@ create table CONDICIONES_ALIMENTARIAS
 /*==============================================================*/
 create table DETALLES_CARRO_COMPRA
 (
-   IDDETALLECARRO       bigint not null  comment '',
+   IDDETALLECARRO       bigint not null  auto_increment comment '',
    IDCARROCOMPRAS       bigint not null  comment '',
+   IDUSUARIO            bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
    CANTIDAD             int not null  comment '',
    PRECIOUNITARIO       int not null  comment '',
-   primary key (IDDETALLECARRO, IDCARROCOMPRAS, IDPRODUCTO)
+   primary key (IDDETALLECARRO, IDCARROCOMPRAS, IDUSUARIO, IDPRODUCTO)
 );
 
 /*==============================================================*/
@@ -168,7 +168,7 @@ create table FRECUENCIAS
 /*==============================================================*/
 create table IMAGENES_PRODUCTOS
 (
-   IDIMAGEN             bigint not null  comment '',
+   IDIMAGEN             bigint not null auto_increment  comment '',
    IDPRODUCTO           bigint  comment '',
    PATHIMAPRODUCTOS     varchar(1000) not null  comment '',
    primary key (IDIMAGEN)

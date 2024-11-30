@@ -153,7 +153,7 @@ public material: string;
         @IsArray({message: 'La Ruta de las Imágenes del Producto deben ser un arreglo de strings'})
         // @Length(1, 255, { message: 'El tamaño de la Ruta de las Imágenes debe tener entre 1 y 255 caracteres.' })
         @ArrayNotEmpty({ message: 'El arreglo de rutas de imágenes no puede estar vacío.' })
-        @IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
+        //@IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
    public imagenes: ImagenProducto[];
 
    @ApiProperty({

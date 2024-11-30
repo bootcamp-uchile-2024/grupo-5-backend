@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
@@ -38,15 +38,8 @@ import { Region } from './usuarios/entities/regiones.entity';
 import { Roles } from './usuarios/entities/roles.entity';
 import { Usuario } from './usuarios/entities/usuarios.entity';
 import { UsuariosModule } from './usuarios/usuarios.module';
-// imports: [
-//   TypeOrmModule.forRoot({
-// type: process.env.DB_TYPE as 'mysql',  //dependiendo de tu configuración
-// host: process.env.DB_HOST,
-// port: Number(process.env.DB_PORT),
-// username: process.env.DB_USER,
-// password: process.env.DB_PASS_ROOT,
-// database: process.env.DB_NAME,
-// entities: [
+import { ServeStaticModule } from '@nestjs/serve-static';
+
 
 // imports: [
 //   TypeOrmModule.forRoot({
@@ -60,15 +53,43 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
   imports: [
-  TypeOrmModule.forRoot({
-    type: 'mysql', //dependiendo de tu configuración
-    host: 'localhost',
-    port: 5002,
-    username: 'root',
-    password: 'clave123',
-    database: 'petropolis',
-    entities: [
-        AvatarMascota,
+
+    ServeStaticModule.forRoot({
+      rootPath: "./files",
+      serveRoot: "/files",
+    } ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+  envFilePath: process.env.NODE_ENV == 'dev' ? '.env_new' : '.env',    
+  validate: (config: Record<string, unknown>) => {
+    const validatedConfig = plainToInstance(VariablesDeEntorno, config, {
+      enableImplicitConversion: true,
+    });
+    const errors = validateSync(validatedConfig, {
+      skipMissingProperties: false,
+    });
+
+    if (errors.length > 0) {
+      throw new Error(
+        `Validacion de Configuracion,  Error : ${errors.toString()}`,
+      );
+    }
+    return validatedConfig;
+  },
+}),
+    TypeOrmModule.forRootAsync ({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'mysql',  
+        host: configService.get<string>('DB_HOST'),
+        port: Number(configService.get<string>('DB_PORT')),
+        username: configService.get<string>('DB_USER'),
+        password: configService.get<string>('DB_PASS_ROOT'),
+        database: configService.get<string>('DB_NAME'),
+        entities: [
+          AvatarMascota,
+         main
         AvatarUsuarios,
         Calendario,
         CarroCompra,
@@ -94,28 +115,10 @@ import { UsuariosModule } from './usuarios/usuarios.module';
         Vacuna,
       ],
       synchronize: false,
-      logging: true, //Me aparezca la consulta SQL
+      logging: false, //Me aparezca la consulta SQL
     }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath:
-        process.env.NODE_ENV === 'produccion' ? '.env.produccion' : '.env',
-      validate: (config: Record<string, unknown>) => {
-        const validatedConfig = plainToInstance(VariablesDeEntorno, config, {
-          enableImplicitConversion: true,
-        });
-        const errors = validateSync(validatedConfig, {
-          skipMissingProperties: false,
-        });
-
-        if (errors.length > 0) {
-          throw new Error(
-            `Validacion de Configuracion,  Error : ${errors.toString()}`,
-          );
-        }
-        return validatedConfig;
-      },
-    }),
+  }),
+    
     UsuariosModule,
     MascotasModule,
     ProductosModule,

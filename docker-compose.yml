@@ -2,7 +2,7 @@ services:
   #  Servicio API para la aplicación NestJS
   api:
     image: "node:${NODE_VERSION}"           # Utiliza la versión especificada de Node.js desde el entorno
-    command: "npm run start:dev"            # Ejecuta el comando de desarrollo de NestJS
+    command: "npm run start:dev-docker"     # Ejecuta el comando de desarrollo de NestJS
     user: root                              # Permite acceso como root dentro del contenedor
     working_dir: /home/node/nest            # Directorio de trabajo dentro del contenedor
     environment:   

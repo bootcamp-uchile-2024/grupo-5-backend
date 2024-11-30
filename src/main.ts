@@ -1,18 +1,19 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { UsuariosModule } from './usuarios/usuarios.module';
+import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './commons/filters/http-exception.filter';
+import { LoggingInterceptor } from './commons/interceptors/logging.interceptor';
 import { MascotasModule } from './mascotas/mascotas.module';
 import { ProductosModule } from './productos/productos.module';
-import { LoggingInterceptor } from './commons/interceptors/logging.interceptor';
-import { HttpExceptionFilter } from './commons/filters/http-exception.filter';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 
 import * as ArchivoPackageJson from '../package.json';
 
 import { ConfigService } from '@nestjs/config';
-import { CarrocomprasModule } from './carrocompras/carrocompras.module';
- 
+import { CarrocomprasModule } from './carro-compras/carro-compra.module';
+import { DetalleCarroComprasModule } from './detalle-carro-compras/detalle-carro-compras.module';
+
 
 async function bootstrap() {
 
@@ -72,16 +73,19 @@ async function bootstrap() {
     .setVersion(ArchivoPackageJson.version)
     .setContact(ArchivoPackageJson.author, ArchivoPackageJson.url, ArchivoPackageJson.mail)
     .setLicense(ArchivoPackageJson.license, '')
+    // .addTag('Temp - Detalle Carro de Compras')
+    .addTag('Carro de Compras')
     .addTag('Obtener Catálogo de Productos')
     .addTag('Obtener Detalle de Producto')
     .addTag('Crear Producto')
     .addTag('Actualizar Producto')
+    .addTag('Eliminar Producto')
     .addTag('Alta de un Producto')
     .addTag('Baja de un Producto')
     .addTag('Carro de Compras')
     .build();
   const document3 = SwaggerModule.createDocument(app, config3, {
-    include: [AppModule, ProductosModule, CarrocomprasModule],
+    include: [AppModule, ProductosModule, CarrocomprasModule, DetalleCarroComprasModule],
   });
   SwaggerModule.setup('api/producto', app, document3);
 

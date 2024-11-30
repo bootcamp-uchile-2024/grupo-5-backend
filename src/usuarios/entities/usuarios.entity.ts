@@ -1,10 +1,10 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, OneToMany, JoinColumn, ManyToMany } from 'typeorm';
+import { Mascota } from 'src/mascotas/entities/mascotas.entity';
+import { Pedido } from 'src/productos/entities/pedidos.entity';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 import { AvatarUsuarios } from './avatarusuarios.entity';
 import { Direcciones } from './direcciones.entity';
 import { Roles } from './roles.entity';
-import { Pedido } from 'src/productos/entities/pedidos.entity';
-import { CarroCompras } from 'src/carrocompras/entities/carroCompra.entity';
-import { Mascota } from 'src/mascotas/entities/mascotas.entity';
+import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -60,8 +60,8 @@ export class Usuario {
     @OneToMany(() => Pedido, (pedido) => pedido.idUSsuario)
     pedidos: Pedido[];
 
-    @OneToMany(() => CarroCompras, (carro) => carro.idUsuario)
-    carroCompras: CarroCompras[];
+    @OneToMany(() => CarroCompra, (carro) => carro.idUsuario)
+    carroCompra: CarroCompra[];
 
     @ManyToMany(() => Mascota, (mascota) => mascota.usuarios)
     mascotas: Mascota[];

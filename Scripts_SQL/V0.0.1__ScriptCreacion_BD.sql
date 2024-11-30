@@ -90,7 +90,7 @@ create table CONDICIONES_ALIMENTARIAS
 /*==============================================================*/
 create table DETALLES_CARRO_COMPRA
 (
-   IDDETALLECARRO       bigint not null  comment '',
+   IDDETALLECARRO       bigint not null  auto_increment comment '',
    IDCARROCOMPRAS       bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
    CANTIDAD             int not null  comment '',

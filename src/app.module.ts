@@ -5,12 +5,13 @@ import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CarrocomprasModule } from './carrocompras/carrocompras.module';
-import { CarroCompras } from './carrocompras/entities/carroCompra.entity';
-import { DetalleCarroCompra } from './carrocompras/entities/detalleCarroCompra.entity';
+import { CarrocomprasModule } from './carro-compras/carro-compra.module';
+import { CarroCompra } from './carro-compras/entities/carro-compra.entity';
 import { VariablesDeEntorno } from './commons/config/validation.config';
 import { LoggingMiddleware } from './commons/middleware/logging.middleware';
 import { ConexionModule } from './conexion/conexion.module';
+import { DetalleCarroComprasModule } from './detalle-carro-compras/detalle-carro-compras.module';
+import { DetalleCarroCompra } from './detalle-carro-compras/entities/detalle-carro-compra.entity';
 import { EquipoModule } from './equipo/equipo.module';
 import { AvatarMascota } from './mascotas/entities/avatarmascotas.entity';
 import { Calendario } from './mascotas/entities/calendarios.entity';
@@ -52,6 +53,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
+
     ServeStaticModule.forRoot({
       rootPath: "./files",
       serveRoot: "/files",
@@ -87,9 +89,10 @@ import { ServeStaticModule } from '@nestjs/serve-static';
         database: configService.get<string>('DB_NAME'),
         entities: [
           AvatarMascota,
+         main
         AvatarUsuarios,
         Calendario,
-        CarroCompras,
+        CarroCompra,
         CategoriaProducto,
         Comuna,
         CondicionAlimentaria,
@@ -122,6 +125,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     EquipoModule,
     ConexionModule,
     CarrocomprasModule,
+    DetalleCarroComprasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

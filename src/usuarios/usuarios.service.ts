@@ -79,6 +79,16 @@ export class UsuariosService {
     return usuario;
   }
 
+  async findUsuarioById(id_usuario: number) {
+    const usuario = await this.usuarioRepository.findOne({ where: { idUsuario: id_usuario } });
+
+    if (!usuario) {
+      throw new NotFoundException(`Usuario con ID ${id_usuario} no encontrado`);
+    }
+
+    return usuario;
+  }
+
   // Actualizar un usuario existente
   async update( rut: string, updateUsuarioDto: CreateUsuarioDto,): Promise<Usuario> {
     const usuario = await this.findOne(rut);

@@ -5,12 +5,13 @@ import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CarrocomprasModule } from './carrocompras/carrocompras.module';
-import { CarroCompras } from './carrocompras/entities/carroCompra.entity';
-import { DetalleCarroCompra } from './carrocompras/entities/detalleCarroCompra.entity';
+import { CarrocomprasModule } from './carro-compras/carro-compra.module';
+import { CarroCompra } from './carro-compras/entities/carro-compra.entity';
 import { VariablesDeEntorno } from './commons/config/validation.config';
 import { LoggingMiddleware } from './commons/middleware/logging.middleware';
 import { ConexionModule } from './conexion/conexion.module';
+import { DetalleCarroComprasModule } from './detalle-carro-compras/detalle-carro-compras.module';
+import { DetalleCarroCompra } from './detalle-carro-compras/entities/detalle-carro-compra.entity';
 import { EquipoModule } from './equipo/equipo.module';
 import { AvatarMascota } from './mascotas/entities/avatarmascotas.entity';
 import { Calendario } from './mascotas/entities/calendarios.entity';
@@ -59,18 +60,18 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: process.env.DB_TYPE as 'mysql', //dependiendo de tu configuración
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      username: process.env.DB_USER,
-      password: process.env.DB_PASS_ROOT,
-      database: process.env.DB_NAME,
-      entities: [
+  TypeOrmModule.forRoot({
+    type: 'mysql', //dependiendo de tu configuración
+    host: 'localhost',
+    port: 5002,
+    username: 'root',
+    password: 'clave123',
+    database: 'petropolis',
+    entities: [
         AvatarMascota,
         AvatarUsuarios,
         Calendario,
-        CarroCompras,
+        CarroCompra,
         CategoriaProducto,
         Comuna,
         CondicionAlimentaria,
@@ -121,6 +122,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     EquipoModule,
     ConexionModule,
     CarrocomprasModule,
+    DetalleCarroComprasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

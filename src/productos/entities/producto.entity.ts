@@ -1,9 +1,9 @@
-import { DetalleCarroCompra } from 'src/carrocompras/entities/detalleCarroCompra.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { CategoriaProducto } from './categoriaproducto.entity';
 import { DetallesPedidos } from './detallespedidos.entity';
 import { ImagenProducto } from './imagenproducto.entity';
 import { MarcaProducto } from './marcaproducto.entity';
+import { DetalleCarroCompra } from 'src/detalle-carro-compras/entities/detalle-carro-compra.entity';
 
 @Entity('productos')
 export class Producto {
@@ -52,7 +52,7 @@ export class Producto {
   imagenes: ImagenProducto[];
 
   @OneToMany(() => DetalleCarroCompra, (detalle) => detalle.producto)
-  detallesCarroCompra: DetalleCarroCompra[];
+  detalleCarroCompra: DetalleCarroCompra[];
 
   @OneToMany(() => DetallesPedidos, (detalle) => detalle.producto)
   detallePedido: DetallesPedidos;

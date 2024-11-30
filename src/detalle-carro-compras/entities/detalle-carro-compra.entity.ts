@@ -1,6 +1,6 @@
+import { CarroCompra } from "src/carro-compras/entities/carro-compra.entity";
 import { Producto } from "src/productos/entities/producto.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { CarroCompras } from "./carroCompra.entity";
 
 
 
@@ -10,12 +10,12 @@ export class DetalleCarroCompra {
   @PrimaryGeneratedColumn()
   idDetalleCarro: number;
 
-  @ManyToOne(() => CarroCompras)
+  @ManyToOne(() => CarroCompra)
   @JoinColumn({name : 'idCarroCompras'})	
-  carroCompras: CarroCompras;
+  carroCompra: CarroCompra;
 
-  @ManyToOne(() => Producto, (producto) => producto.detallesCarroCompra)
-  @JoinColumn()
+  @ManyToOne(() => Producto)
+  @JoinColumn({name : 'idProducto'})
   producto: Producto;
 
   @Column()

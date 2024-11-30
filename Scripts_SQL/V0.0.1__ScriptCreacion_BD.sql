@@ -49,7 +49,8 @@ create table CARRO_COMPRAS
    IDUSUARIO            bigint not null  comment '',
    FECHACREACION        timestamp not null  comment '',
    PRECIOTOTAL          bigint  comment '',
-   primary key (IDCARROCOMPRAS)
+   primary key (IDCARROCOMPRAS),
+   UNIQUE (IDUSUARIO)
 );
 
 /*==============================================================*/
@@ -89,7 +90,7 @@ create table CONDICIONES_ALIMENTARIAS
 /*==============================================================*/
 create table DETALLES_CARRO_COMPRA
 (
-   IDDETALLECARRO       bigint not null  comment '',
+   IDDETALLECARRO       bigint not null  auto_increment comment '',
    IDCARROCOMPRAS       bigint not null  comment '',
    IDPRODUCTO           bigint not null  comment '',
    CANTIDAD             int not null  comment '',

@@ -41,11 +41,11 @@ export class Producto {
   activo: number;
 
   @ManyToOne(() => CategoriaProducto)
-  @JoinColumn({ name: 'idCategoria' })
+  @JoinColumn({ name: 'idcategoria' })
   categoria: CategoriaProducto;
 
   @ManyToOne(() => MarcaProducto)
-  @JoinColumn({ name: 'idMarca' })
+  @JoinColumn({ name: 'idmarca' })
   marca: MarcaProducto;
 
   @OneToMany(() => ImagenProducto, (imagen) => imagen.producto)
@@ -56,8 +56,5 @@ export class Producto {
 
   @OneToMany(() => DetallesPedidos, (detalle) => detalle.producto)
   detallePedido: DetallesPedidos;
-
-  
-
 }
 

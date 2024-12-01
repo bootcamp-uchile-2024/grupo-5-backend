@@ -5,41 +5,41 @@ import { UsuarioDto } from '../dto/read-usuario.dto';
 
 @Entity('direcciones')
 export class Direcciones {
-    @PrimaryColumn()
+    @PrimaryColumn({ name: 'iddireccion' })
     idDireccion: number;
 
-    @Column()
+    @Column({ name: 'idusuario' })
     idUsuario: number;
 
-    @Column()
+    @Column({ name: 'idcomuna' })
     idComuna: number;
 
-    @Column()
+    @Column({ name: 'alias' })
     alias: string;
 
-    @Column()
+    @Column({ name: 'calle' })
     calle: string;
 
-    @Column()
+    @Column({ name: 'numero' })
     numero: string;
 
-    @Column()
+    @Column({ name: 'depto' })
     zipCode: number;
 
-    @Column()
+    @Column({ name: 'referencias' })
     referencias: string;
 
-    @Column()
+    @Column({ name: 'personacontacto' })
     personaContacto: string;
 
-    @Column()
+    @Column({ name: 'telefonocontacto' })
     telefonoContacto: number;
 
     @ManyToOne(() => Usuario)
-    @JoinColumn({ name: 'idUsuario' }) 
+    @JoinColumn({ name: 'idusuario' }) 
     usuario: Usuario;
 
     @ManyToOne(() => Comuna)
-    @JoinColumn({ name: 'idComuna' }) 
+    @JoinColumn({ name: 'idcomuna' }) 
     comuna: Comuna;
 }

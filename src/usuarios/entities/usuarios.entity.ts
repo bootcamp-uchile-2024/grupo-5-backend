@@ -8,34 +8,34 @@ import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
 
 @Entity('usuarios')
 export class Usuario {
-    @PrimaryColumn()
+    @PrimaryColumn({ name: 'idusuario' })
     idUsuario: number;
 
-    @Column()
+    @Column({name: 'rut', unique: true})
     rut: string;
 
-    @Column()
+    @Column({name: 'nombreusuario'})
     nombreUsuario: string;  
 
-    @Column()
+    @Column({name: 'apellidos'})
     apellidos: string;
 
-    @Column()
+    @Column({name: 'fechanacimiento'})
     email: string;
 
-    @Column({ nullable: true })
+    @Column({ name: 'telefono', nullable: true })
     telefono: number;
 
-    @Column({ nullable: true })
+    @Column({ name: 'contrasena',  nullable: true })
     contrasena: string;
 
-    @Column({ default: false })
+    @Column({ name: 'chkterminos', default: false })
     chkTerminos: boolean;
 
-    @Column({ default: false })
+    @Column({name: 'chkofertas', default: false })
     chkOfertas: boolean;
 
-    @Column({ default: true })
+    @Column({ name: 'activo', default: true })
     activo: boolean;
 
     // @ManyToOne(() => Roles, (rol) => rol.usuarios)
@@ -47,11 +47,11 @@ export class Usuario {
     // avatar: AvatarUsuarios;
 
     @ManyToOne(() => Roles, (rol) => rol.idRol)
-    @JoinColumn({ name: 'idRol' })
+    @JoinColumn({ name: 'idrol' })
     rol: number;
 
     @ManyToOne(() => AvatarUsuarios, (au) => au.idImagenAvatar)
-    @JoinColumn({ name: 'idImagenAvatar' })
+    @JoinColumn({ name: 'idimagenavatar' })
     avatar: number;
 
     @OneToMany(() => Direcciones, (direccion) => direccion.usuario)

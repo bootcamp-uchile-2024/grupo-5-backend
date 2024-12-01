@@ -4,25 +4,22 @@ import { Producto } from './producto.entity';
 
 @Entity('detalles_pedidos')
 export class DetallesPedidos {
-  @PrimaryColumn()
+  @PrimaryColumn({ name: 'iddetallepedido' })
   idDetallePedido: number;
 
   @ManyToOne(() => Pedido)
-  @JoinColumn({ name: 'idPedido' })
+  @JoinColumn({ name: 'idpedido' })
   pedido: Pedido;
 
-
   @ManyToOne(() => Producto)
-  @JoinColumn({ name: 'idProducto' })
+  @JoinColumn({ name: 'idproducto' })
   producto: Producto;
 
-
-  @Column()
+  @Column({ name: 'cantidadproducto' })
   cantidadProducto: number;
 
-  @Column()
+  @Column({ name: 'precioproducto' })
   precioProducto: number;
 
 }
 
-// LIBRO = DETALLE_CARRO_COMPRA

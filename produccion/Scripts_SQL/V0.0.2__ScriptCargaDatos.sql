@@ -1,5 +1,5 @@
 -- Insertar datos en la tabla REGIONES
-INSERT INTO REGIONES (IDREGION, ORDEN, NOMBREREGION) VALUES
+insert into regiones (idregion, orden, nombreregion) values
 (13, 1, 'Metropolitana de Santiago'),
 (15, 2, 'De Arica y Parinacota'),
 (01, 3, 'De Tarapacá'),
@@ -19,7 +19,7 @@ INSERT INTO REGIONES (IDREGION, ORDEN, NOMBREREGION) VALUES
 
 
 -- Insertar datos en la tabla COMUNAS
-INSERT INTO COMUNAS (IDCOMUNA, IDREGION, NOMBRECOMUNA) VALUES
+insert into comunas (idcomuna, idregion, nombrecomuna) values
 (15101, 15, 'Arica'),
 (15102, 15, 'Camarones'),
 (15201, 15, 'Putre'),
@@ -369,14 +369,14 @@ INSERT INTO COMUNAS (IDCOMUNA, IDREGION, NOMBRECOMUNA) VALUES
 
 
 -- Insertar datos en la tabla ROLES
-INSERT INTO ROLES (IDROL, ROL) VALUES
+insert into roles (idrol, rol) values
 (1, 'Usuario'),
 (2, 'Invitado'),
 (3, 'Administrador');
 
 
 -- Insertar los valores en la tabla FRECUENCIAS
-INSERT INTO FRECUENCIAS (IDFRECUENCIA, FRECUENCIA) VALUES
+insert into frecuencias (idfrecuencia, frecuencia) values
 (1, 'Semanalmente'),
 (2, 'Cada dos semanas'),
 (3, 'Mensualmente'),
@@ -386,7 +386,7 @@ INSERT INTO FRECUENCIAS (IDFRECUENCIA, FRECUENCIA) VALUES
 
 
 -- Insertar los valores en la tabla ESPECIES
-INSERT INTO ESPECIES (IDESPECIE, NOMBREESPECIE) VALUES
+insert into especies (idespecie, nombreespecie) values
 (1, 'Aves'),
 (2, 'Conejos'),
 (3, 'Exóticos'),
@@ -395,7 +395,7 @@ INSERT INTO ESPECIES (IDESPECIE, NOMBREESPECIE) VALUES
 (6, 'Roedores');
 
 -- Insertar los valores en la tabla RAZAS
-INSERT INTO RAZAS (IDRAZA, IDESPECIE, NOMBRERAZA) VALUES
+insert into razas (idraza, idespecie, nombreraza) values
 (1, 1, 'Canario'),
 (2, 1, 'Cacatúa'),
 (3, 1, 'Loro'),
@@ -459,8 +459,7 @@ INSERT INTO RAZAS (IDRAZA, IDESPECIE, NOMBRERAZA) VALUES
 
 
 -- Insertar los valores en la tabla VACUNAS
-INSERT INTO VACUNAS (IDVACUNA, NOMBREVACUNA)
-VALUES
+insert into vacunas (idvacuna, nombrevacuna) values
 (1, 'CPV - Parvovirus Canino, Perros'),
 (2, 'CDV - Moquillo Canino, Perros'),
 (3, 'Leptospirosis, Perros'),
@@ -489,8 +488,7 @@ VALUES
 
 
 -- Insertar los valores en la tabla ENFERMEDADES_BASE
-INSERT INTO ENFERMEDADES_BASE (IDESNFERMEDAD, NOMBREENFERMEDAD)
-VALUES
+insert into enfermedades_base (idenfermedad, nombreenfermedad) values
 (1, 'Parvovirus canino'),
 (2, 'Moquillo canino'),
 (3, 'Leptospirosis'),
@@ -519,8 +517,7 @@ VALUES
 
 
 -- Insertar los valores en la tabla CONDICIONES_ALIMENTARIAS
-INSERT INTO CONDICIONES_ALIMENTARIAS (IDCONDICION, CONDICIONALIMENTARIA)
-VALUES
+insert into condiciones_alimentarias (idcondicion, condicionalimentaria) values
 (1, 'Dieta baja en proteínas - Enfermedades renales, Perros'),
 (2, 'Dieta alta en fibra - Diabetes, Perros'),
 (3, 'Dieta hipoalergénica - Alergias alimentarias, Perros y Gatos'),
@@ -553,7 +550,7 @@ VALUES
 (30, 'Dieta con baja cantidad de carbohidratos - Control de peso, Gatos');
 
 -- Inserciones de registros para la tabla AVATAR_MASCOTAS
-INSERT INTO AVATAR_MASCOTAS (IDAVATARMASCOTA, PATHIMAMASCOTA) VALUES
+insert into avatar_mascotas (idavatarmascota, pathimamascota) values
 (1, 'AvatarMascota\1.png'),
 (2, 'AvatarMascota\2.png'),
 (3, 'AvatarMascota\3.png'),
@@ -657,7 +654,7 @@ INSERT INTO AVATAR_MASCOTAS (IDAVATARMASCOTA, PATHIMAMASCOTA) VALUES
 
 
 -- Inserciones de registros para la tabla MASCOTAS
-INSERT INTO MASCOTAS (IDMASCOTA, IDRAZA, IDAVATARMASCOTA, NOMBRE, FECHANACIMIENTO, SEXO, NUMEROCHIP) VALUES
+insert into mascotas (idmascota, idraza, idavatarmascota, nombre, fechanacimiento, sexo, numerochip) values
 (1, 1, 1, 'Firulais', '2021-03-15', 'Macho', '1234567890'),
 (2, 2, 2, 'Lola', '2020-06-10', 'Hembra', '1234567891'),
 (3, 3, 3, 'Rocco', '2019-12-05', 'Macho', '1234567892'),
@@ -760,7 +757,7 @@ INSERT INTO MASCOTAS (IDMASCOTA, IDRAZA, IDAVATARMASCOTA, NOMBRE, FECHANACIMIENT
 (100, 4, 100, 'Rocco', '2020-10-08', 'Macho', '1234567989');
 
 -- Inserciones de registros para la tabla REGISTROS_MEDICOS
-INSERT INTO REGISTROS_MEDICOS (IDRESGISTROMEDICO, IDMASCOTA, FECHAREGISTRO, HORAREGISTRO, MOTIVO) VALUES
+insert into registros_medicos (idresgistromedico, idmascota, fecharegistro, horaregistro, motivo) values
 (1, 1, '2023-01-15', '09:30:00', 'Revisión general de salud.'),
 (2, 1, '2023-02-20', '09:30:00', 'Control post-operatorio tras cirugía.'),
 (3, 1, '2023-03-10', '10:00:00', 'Chequeo de vacunación.'),
@@ -824,7 +821,7 @@ INSERT INTO REGISTROS_MEDICOS (IDRESGISTROMEDICO, IDMASCOTA, FECHAREGISTRO, HORA
 
 
 -- Insertar los valores en la tabla AVATAR_USUARIOS
-INSERT INTO AVATAR_USUARIOS (IDIMAGENAVATAR, PATHIMAUSUARIO) VALUES
+insert into avatar_usuarios (idimagenavatar, pathimausuario) values
 (1, '\AvatarUsuario\1.png'),
 (2, '\AvatarUsuario\2.png'),
 (3, '\AvatarUsuario\3.png'),
@@ -928,7 +925,7 @@ INSERT INTO AVATAR_USUARIOS (IDIMAGENAVATAR, PATHIMAUSUARIO) VALUES
 
 
 -- Insertar los valores en la tabla USUARIOS
-INSERT INTO USUARIOS (IDUSUARIO, IDROL, IDIMAGENAVATAR, RUT, NOMBREUSUARIO, APELLIDOS, EMAIL, TELEFONO, CONTRASENA, CHKTERMINOS, CHKOFERTAS, ACTIVO) VALUES
+insert into usuarios (idusuario, idrol, idimagenavatar, rut, nombreusuario, apellidos, email, telefono, contrasena, chkterminos, chkofertas, activo) values
 (1, 1, 1, '12345678-9', 'Juan', 'Pérez', 'juan.perez@gmail.com', 912345678, 'contrasena123', true, true,true),
 (2, 2, 2, '87654321-0', 'María', 'González', 'maria.gonzalez@hotmail.com', 912345679, 'contrasena123', true, false,true),
 (3, 1, 1, '12312312-1', 'Carlos', 'Sánchez', 'carlos.sanchez@yahoo.com', 912345680, 'contrasena123', true, true,true),
@@ -1031,7 +1028,7 @@ INSERT INTO USUARIOS (IDUSUARIO, IDROL, IDIMAGENAVATAR, RUT, NOMBREUSUARIO, APEL
 (100, 2, 2, '40012345-0', 'Pablo', 'Cifuentes', 'pablo.cifuentes@gmail.com', 912345777, 'contrasena123', true, false,true);
 
 -- Insertar los valores en la tabla DIRECCIONES
-INSERT INTO DIRECCIONES (IDDIRECCION, IDUSUARIO, IDCOMUNA, ALIAS, CALLE, NUMERO, ZIPCODE, REFERENCIAS, PERSONACONTACTO, TELEFONOCONTACTRO) VALUES
+insert into direcciones (iddireccion, idusuario, idcomuna, alias, calle, numero, zipcode, referencias, personacontacto, telefonocontactro) values
 (1, 1, 13101,  'Casa de Juan',  'Avenida Libertador Bernardo O’Higgins',  '1234', 8320000,  'Cerca de la estación de metro',  'Juan Pérez',  987654321),
 (2, 2, 13102,  'Departamento de María',  'Calle San Francisco',  '567', 8320000,  'Cerca de Plaza Italia',  'María Gómez',  912345678),
 (3, 3, 13103,  'Casa de Carlos',  'Calle Uruguay',  '88', 2340000,  'A una cuadra del casino',  'Carlos Fernández',  934567890),
@@ -1135,7 +1132,7 @@ INSERT INTO DIRECCIONES (IDDIRECCION, IDUSUARIO, IDCOMUNA, ALIAS, CALLE, NUMERO,
 
 
 -- Insertar los valores en la tabla CATEGORIAS_PRODUCTO
-INSERT INTO CATEGORIAS_PRODUCTO (IDCATEGORIA, NOMBRECATEGORIA, DESCRIPCIONCATEGORIA) VALUES
+insert into categorias_producto (idcategoria, nombrecategoria, descripcioncategoria) values
 (1, 'Alimento para Perros', 'Productos alimenticios para perros'),
 (2, 'Alimento para Gatos', 'Productos alimenticios para gatos'),
 (3, 'Alimento para Otras Mascotas', 'Productos alimenticios para aves, peces y exóticos'),
@@ -1147,8 +1144,7 @@ INSERT INTO CATEGORIAS_PRODUCTO (IDCATEGORIA, NOMBRECATEGORIA, DESCRIPCIONCATEGO
 (9, 'Suplementos y Cuidados Especiales', 'Suplementos y productos calmantes para mascotas');
 
 -- Insertar los valores en la tabla MARCAS_PRODUCTO
-INSERT INTO MARCAS_PRODUCTO (IDMARCA, NOMBREMARCA)
-VALUES
+insert into marcas_producto (idmarca, nombremarca) values
 (1, 'Royal Canin'),
 (2, 'Hill''s Science Diet'),
 (3, 'Purina Pro Plan'),
@@ -1197,61 +1193,61 @@ VALUES
 (46, 'Pawsitively Posh Pooch');  	-- Ropa y accesorios de lujo para perros
 
 -- Insertar los valores en la tabla PRODUCTOS
-INSERT INTO PRODUCTOS (IDMARCA, IDCATEGORIA, NOMBREPRODUCTO, DESCRIPCION, SKU, PRECIO, STOCK, PESO, TAMANIO, INGREDIENTES, MATERIAL) VALUES 
-(1, 1, 'Royal Canin Size Health Nutrition Medium Adult', 'Comida para perros adultos de tamaño mediano', 'RC001MED', 15000, 100, '15kg', 'Mediano', 'Pollo, arroz, vitaminas', ''),
-(2, 1, 'Hill''s Science Diet Puppy Large Breed', 'Comida para cachorros de razas grandes', 'HS002LRG', 18000, 50, '18kg', 'Grande', 'Cordero, avena, minerales', ''),
-(3, 1, 'Purina Pro Plan Focus Adult', 'Fórmula de pollo y arroz para perros adultos', 'PP003ADL', 20000, 150, '12kg', 'Mediano', 'Pollo, arroz, vegetales', ''),
-(4, 1, 'Orijen Original Dog', 'Alimento para perros alto en proteínas', 'OJ004DOG', 22000, 120, '14kg', 'Mediano', 'Pollo, pavo, pescado', ''),
-(5, 1, 'Acana Regionals Pacifica', 'Alimento con pescado para perros', 'AC005PAC', 25000, 80, '16kg', 'Mediano', 'Salmón, arenque, langosta', ''),
-(6, 1, 'Blue Buffalo Wilderness Chicken Recipe', 'Comida seca para perros rica en proteínas', 'BB006WIL', 21000, 60, '13kg', 'Pequeño', 'Pollo, batata, zanahorias', ''),
-(7, 1, 'Wellness CORE RawRev High-Protein', 'Alimento para perros', 'WC007RAW', 23000, 90, '17kg', 'Grande', 'Pollo, pavo, calabaza', ''),
-(8, 1, 'Iams ProActive Health Adult', 'Alimento para perros adultos', 'IA008ADL', 16000, 110, '14kg', 'Mediano', 'Pollo, arroz, avena', ''),
-(9, 1, 'Nutro Ultra Adult Dry Dog Food', 'Comida seca con superalimentos', 'NU009DRY', 19000, 130, '15kg', 'Grande', 'Pollo, arroz integral, cebada', ''),
-( 10, 1, 'Taste of the Wild High Prairie', 'Fórmula de carne asada para perros', 'TW010HPR', 24000, 140, '16kg', 'Mediano', 'Bisonte, venado, guisantes', ''),
-( 11, 3, 'Zupreem FruitBlend Flavor for Parrots', 'Alimento para loros con sabores frutales', 'ZP011FRU', 8000, 50, '500g', 'Pequeño', 'Frutas, semillas, vitaminas', ''),
-( 12, 3, 'Harrison''s Bird Foods High Potency', 'Alimento para aves de alta potencia nutricional', 'HB012HPT', 10000, 70, '1kg', 'Mediano', 'Pechuga de pollo, espinaca, zanahorias', ''),
-( 13, 3, 'Oxbow Animal Health Western Timothy Hay', 'Heno de timothy occidental para conejos', 'OX013HAY', 5000, 200, '2kg', 'Mediano', '', ''),
-( 14, 3, 'Kaytee Forti-Diet Pro Health', 'Comida para aves y pequeños mamíferos', 'KT014PHD', 9000, 60, '1kg', 'Pequeño', 'Semillas, hierbas', ''),
-( 15, 3, 'Exotic Nutrition Sugar Glider Food', 'Alimento para petauros del azúcar', 'EN015SGF', 12000, 40, '700g', 'Mediano', 'Frutas, nueces', ''),
-( 16, 3, 'TetraMin Tropical Flakes', 'Comida en hojuelas para peces tropicales', 'TT016FLK', 7000, 150, '250g', 'Pequeño', '', ''),
-( 17, 3, 'Repashy Superfoods Crested Gecko Diet', 'Comida para geckos crestados', 'RS017GKD', 11000, 80, '500g', 'Pequeño', 'Insectos, frutas', ''),
-( 18, 3, 'Fluker''s High Calcium Cricket Diet', 'Dieta alta en calcio para grillos', 'FL018CCD', 6500, 200, '300g', 'Pequeño', 'Grillos, calcio', ''),
-( 19, 1, 'Nature''s Logic Canine Beef Meal Feast', 'Comida para perros con carne de res', 'NL019BMF', 21000, 90, '12kg', 'Mediano', 'Carne de res, vegetales', ''),
-( 20, 1, 'Stella & Chewy''s Freeze-Dried Raw Dinner Patties', 'Pañuelos de cena cruda liofilizada para perros', 'SC020FRD', 23000, 110, '10kg', 'Mediano', 'Pollo, vegetales', ''),
-( 21, 2, 'Dr. Elsey''s Ultra Cat Litter', 'Arena ultra aglutinante para gatos', 'DE021LIT', 5000, 300, '5kg', 'Pequeño', '', 'Arcilla aglutinante'),
-( 22, 2, 'PetSafe ScoopFree Self-Cleaning Litter Box', 'Caja de arena autolimpiable para gatos', 'PS022SCL', 15000, 150, '3kg', 'Mediano', '', 'Plástico'),
-( 23, 2, 'PetFusion Ultimate Cat Scratcher Lounge', 'Rascador de lujo para gatos', 'PF023SCR', 22000, 80, '2kg', 'Grande', '', 'Cartón'),
-( 24, 9, 'Pet Naturals of Vermont Calming Chews', 'Masticables calmantes para mascotas', 'PN024CAL', 10000, 120, '150g', 'Pequeño', 'Melisa, manzanilla', ''),
-( 25, 6, 'Tropiclean Fresh Breath Oral Care', 'Cuidado bucal para mascotas', 'TC025FBO', 7000, 200, '200g', 'Mediano', 'Menta, aloe vera', ''),
-( 26, 4, 'KONG Classic Dog Toy', 'Juguete clásico para perros', 'K026JCT', 5000, 300, '1kg', 'Mediano', '', 'Caucho'),
-( 27, 4, 'Chuckit! Ultra Ball', 'Pelota ultra para juegos interactivos con perros', 'CU027UB', 6000, 250, '500g', 'Pequeño', '', 'Goma'),
-( 28, 4, 'Nylabone Dura Chew', 'Juguete para morder de alta resistencia para perros', 'NY028DCH', 5500, 350, '800g', 'Mediano', '', 'Nylon'),
-( 29, 7, 'Petco Designer Dog Sweater', 'Suéter de diseño para perros', 'PC029SW', 8000, 150, '300g', 'Pequeño', '', 'Algodón'),
-( 30, 5, 'Chewy Pet Bed', 'Cama para mascotas de Chewy', 'CH030BED', 18000, 100, '2kg', 'Mediano', '', 'Espuma'),
-( 31, 4, 'BarkBox Super Chewer Toy', 'Juguete para masticadores intensos', 'BB031SCT', 9000, 180, '900g', 'Mediano', '', 'Caucho'),
-( 32, 4, 'ZippyPaws Plush Dog Toy', 'Juguete de peluche para perros', 'ZP032PLT', 7000, 220, '600g', 'Pequeño', '', 'Algodón'),
-( 33, 4, 'Outward Hound Interactive Puzzle Toy', 'Juguete interactivo tipo rompecabezas para perros', 'OH033PZL', 12000, 160, '1.5kg', 'Mediano', '', 'Madera'),
-( 34, 8, 'PawHut Pet Carrier Bag', 'Bolsa de transporte para mascotas', 'PH034TCB', 15000, 130, '800g', 'Mediano', '', 'Tela'),
-( 35, 7, 'PetSmart Halloween Dog Costume', 'Disfraz de Halloween para perros', 'PS035HDC', 7000, 180, '500g', 'Pequeño', '', 'Poliéster'),
-( 36, 5, 'Ruffwear Front Range Dog Harness', 'Arnés para perros Front Range', 'RW036FRH', 11000, 100, '1kg', 'Mediano', '', 'Nylon'),
-( 37, 4, 'Tuffy''s Mega Ring Dog Toy', 'Juguete para perros resistente a mordidas', 'TU037MRD', 13000, 90, '700g', 'Mediano', '', 'Caucho'),
-( 38, 7, 'Gooby Fleece Dog Vest', 'Chaleco de lana para perros pequeños', 'GB038FDV', 6000, 200, '200g', 'Pequeño', '', 'Fleece'),
-( 39, 4, 'Mammoth Flossy Chews Cotton Blend Rope', 'Juguete de cuerda de algodón para perros', 'MC039FCR', 4000, 220, '800g', 'Mediano', '', 'Algodón'),
-( 40, 6, 'Zymox Ear Solution with Hydrocortisone', 'Solución para oídos con hidrocortisona para mascotas', 'ZY040EHS', 5000, 300, '100ml', 'Pequeño', 'Hidrocortisona', ''),
-( 41, 5, 'PetFusion Memory Foam Dog Bed', 'Cama de espuma viscoelástica para perros', 'PF041FMF', 14000, 110, '3kg', 'Mediano', '', 'Espuma'),
-( 42, 5, 'Keenovo Heated Pet Pad', 'Almohadilla térmica para mascotas', 'KN042HPD', 12000, 150, '1.2kg', 'Mediano', '', 'Tela'),
-( 43, 5, 'Frisco Sherpa Blanket', 'Manta de sherpa para mascotas', 'FS043SBL', 6000, 120, '1.5kg', 'Grande', '', 'Sherpa'),
-( 44, 7, 'Little Paws Dog Sweater', 'Suéter para perros pequeños', 'LP044LDS', 7000, 100, '300g', 'Pequeño', '', 'Algodón'),
-( 45, 5, 'Pawsitively Posh Pooch Luxury Collar', 'Collar de lujo para perros', 'PP045LPC', 12000, 80, '150g', 'Pequeño', '', 'Cuero'),
-( 1, 1, 'Royal Canin Veterinary Diet Gastrointestinal Low Fat', 'Comida veterinaria baja en grasa para perros con problemas digestivos', 'RC046GVF', 19000, 130, '10kg', 'Mediano', 'Pechuga de pollo, arroz', ''),
-( 2, 1, 'Hill''s Science Diet Sensitive Stomach & Skin', 'Comida para perros con estómago y piel sensibles', 'HS047SSS', 17000, 100, '12kg', 'Mediano', 'Pollo, arroz integral', ''),
-( 3, 1, 'Purina Pro Plan Savor Shredded Blend', 'Comida para perros adultos con mezcla de pollo y arroz', 'PP048SAV', 21000, 90, '14kg', 'Mediano', 'Pollo, arroz, maíz', ''),
-( 4, 1, 'Orijen Six Fish Dog', 'Alimento para perros con seis tipos de pescado', 'OJ049SIX', 23000, 110, '15kg', 'Mediano', 'Salmón, arenque, bacalao, sardinas', ''),
-( 5, 1, 'Acana Heritage Meats Formula', 'Alimento con carnes variadas para perros', 'AC050HER', 24000, 100, '16kg', 'Mediano', 'Pechuga de pollo, cordero, pato', '');
+insert into productos (idmarca, idcategoria, nombreproducto, descripcion, sku, precio, stock, peso, tamanio, ingredientes, material, activo) values 
+(1, 1, 'Royal Canin Size Health Nutrition Medium Adult', 'Comida para perros adultos de tamaño mediano', 'RC001MED', 15000, 100, '15kg', 'Mediano', 'Pollo, arroz, vitaminas', '', 1),
+(2, 1, 'Hill''s Science Diet Puppy Large Breed', 'Comida para cachorros de razas grandes', 'HS002LRG', 18000, 50, '18kg', 'Grande', 'Cordero, avena, minerales', '', 1),
+(3, 1, 'Purina Pro Plan Focus Adult', 'Fórmula de pollo y arroz para perros adultos', 'PP003ADL', 20000, 150, '12kg', 'Mediano', 'Pollo, arroz, vegetales', '', 1),
+(4, 1, 'Orijen Original Dog', 'Alimento para perros alto en proteínas', 'OJ004DOG', 22000, 120, '14kg', 'Mediano', 'Pollo, pavo, pescado', '', 1),
+(5, 1, 'Acana Regionals Pacifica', 'Alimento con pescado para perros', 'AC005PAC', 25000, 80, '16kg', 'Mediano', 'Salmón, arenque, langosta', '', 1),
+(6, 1, 'Blue Buffalo Wilderness Chicken Recipe', 'Comida seca para perros rica en proteínas', 'BB006WIL', 21000, 60, '13kg', 'Pequeño', 'Pollo, batata, zanahorias', '', 1),
+(7, 1, 'Wellness CORE RawRev High-Protein', 'Alimento para perros', 'WC007RAW', 23000, 90, '17kg', 'Grande', 'Pollo, pavo, calabaza', '', 1),
+(8, 1, 'Iams ProActive Health Adult', 'Alimento para perros adultos', 'IA008ADL', 16000, 110, '14kg', 'Mediano', 'Pollo, arroz, avena', '', 1),
+(9, 1, 'Nutro Ultra Adult Dry Dog Food', 'Comida seca con superalimentos', 'NU009DRY', 19000, 130, '15kg', 'Grande', 'Pollo, arroz integral, cebada', '', 1),
+( 10, 1, 'Taste of the Wild High Prairie', 'Fórmula de carne asada para perros', 'TW010HPR', 24000, 140, '16kg', 'Mediano', 'Bisonte, venado, guisantes', '', 1),
+( 11, 3, 'Zupreem FruitBlend Flavor for Parrots', 'Alimento para loros con sabores frutales', 'ZP011FRU', 8000, 50, '500g', 'Pequeño', 'Frutas, semillas, vitaminas', '', 1),
+( 12, 3, 'Harrison''s Bird Foods High Potency', 'Alimento para aves de alta potencia nutricional', 'HB012HPT', 10000, 70, '1kg', 'Mediano', 'Pechuga de pollo, espinaca, zanahorias', '', 1),
+( 13, 3, 'Oxbow Animal Health Western Timothy Hay', 'Heno de timothy occidental para conejos', 'OX013HAY', 5000, 200, '2kg', 'Mediano', '', '', 1),
+( 14, 3, 'Kaytee Forti-Diet Pro Health', 'Comida para aves y pequeños mamíferos', 'KT014PHD', 9000, 60, '1kg', 'Pequeño', 'Semillas, hierbas', '', 1),
+( 15, 3, 'Exotic Nutrition Sugar Glider Food', 'Alimento para petauros del azúcar', 'EN015SGF', 12000, 40, '700g', 'Mediano', 'Frutas, nueces', '', 1),
+( 16, 3, 'TetraMin Tropical Flakes', 'Comida en hojuelas para peces tropicales', 'TT016FLK', 7000, 150, '250g', 'Pequeño', '', '', 1),
+( 17, 3, 'Repashy Superfoods Crested Gecko Diet', 'Comida para geckos crestados', 'RS017GKD', 11000, 80, '500g', 'Pequeño', 'Insectos, frutas', '', 1),
+( 18, 3, 'Fluker''s High Calcium Cricket Diet', 'Dieta alta en calcio para grillos', 'FL018CCD', 6500, 200, '300g', 'Pequeño', 'Grillos, calcio', '', 1),
+( 19, 1, 'Nature''s Logic Canine Beef Meal Feast', 'Comida para perros con carne de res', 'NL019BMF', 21000, 90, '12kg', 'Mediano', 'Carne de res, vegetales', '', 1),
+( 20, 1, 'Stella & Chewy''s Freeze-Dried Raw Dinner Patties', 'Pañuelos de cena cruda liofilizada para perros', 'SC020FRD', 23000, 110, '10kg', 'Mediano', 'Pollo, vegetales', '', 1),
+( 21, 2, 'Dr. Elsey''s Ultra Cat Litter', 'Arena ultra aglutinante para gatos', 'DE021LIT', 5000, 300, '5kg', 'Pequeño', '', 'Arcilla aglutinante', 1),
+( 22, 2, 'PetSafe ScoopFree Self-Cleaning Litter Box', 'Caja de arena autolimpiable para gatos', 'PS022SCL', 15000, 150, '3kg', 'Mediano', '', 'Plástico', 1),
+( 23, 2, 'PetFusion Ultimate Cat Scratcher Lounge', 'Rascador de lujo para gatos', 'PF023SCR', 22000, 80, '2kg', 'Grande', '', 'Cartón', 1),
+( 24, 9, 'Pet Naturals of Vermont Calming Chews', 'Masticables calmantes para mascotas', 'PN024CAL', 10000, 120, '150g', 'Pequeño', 'Melisa, manzanilla', '', 1),
+( 25, 6, 'Tropiclean Fresh Breath Oral Care', 'Cuidado bucal para mascotas', 'TC025FBO', 7000, 200, '200g', 'Mediano', 'Menta, aloe vera', '', 1),
+( 26, 4, 'KONG Classic Dog Toy', 'Juguete clásico para perros', 'K026JCT', 5000, 300, '1kg', 'Mediano', '', 'Caucho', 1),
+( 27, 4, 'Chuckit! Ultra Ball', 'Pelota ultra para juegos interactivos con perros', 'CU027UB', 6000, 250, '500g', 'Pequeño', '', 'Goma', 1),
+( 28, 4, 'Nylabone Dura Chew', 'Juguete para morder de alta resistencia para perros', 'NY028DCH', 5500, 350, '800g', 'Mediano', '', 'Nylon', 1),
+( 29, 7, 'Petco Designer Dog Sweater', 'Suéter de diseño para perros', 'PC029SW', 8000, 150, '300g', 'Pequeño', '', 'Algodón', 1),
+( 30, 5, 'Chewy Pet Bed', 'Cama para mascotas de Chewy', 'CH030BED', 18000, 100, '2kg', 'Mediano', '', 'Espuma', 1),
+( 31, 4, 'BarkBox Super Chewer Toy', 'Juguete para masticadores intensos', 'BB031SCT', 9000, 180, '900g', 'Mediano', '', 'Caucho', 1),
+( 32, 4, 'ZippyPaws Plush Dog Toy', 'Juguete de peluche para perros', 'ZP032PLT', 7000, 220, '600g', 'Pequeño', '', 'Algodón', 1),
+( 33, 4, 'Outward Hound Interactive Puzzle Toy', 'Juguete interactivo tipo rompecabezas para perros', 'OH033PZL', 12000, 160, '1.5kg', 'Mediano', '', 'Madera', 1),
+( 34, 8, 'PawHut Pet Carrier Bag', 'Bolsa de transporte para mascotas', 'PH034TCB', 15000, 130, '800g', 'Mediano', '', 'Tela', 1),
+( 35, 7, 'PetSmart Halloween Dog Costume', 'Disfraz de Halloween para perros', 'PS035HDC', 7000, 180, '500g', 'Pequeño', '', 'Poliéster', 1),
+( 36, 5, 'Ruffwear Front Range Dog Harness', 'Arnés para perros Front Range', 'RW036FRH', 11000, 100, '1kg', 'Mediano', '', 'Nylon', 1),
+( 37, 4, 'Tuffy''s Mega Ring Dog Toy', 'Juguete para perros resistente a mordidas', 'TU037MRD', 13000, 90, '700g', 'Mediano', '', 'Caucho', 1),
+( 38, 7, 'Gooby Fleece Dog Vest', 'Chaleco de lana para perros pequeños', 'GB038FDV', 6000, 200, '200g', 'Pequeño', '', 'Fleece', 1),
+( 39, 4, 'Mammoth Flossy Chews Cotton Blend Rope', 'Juguete de cuerda de algodón para perros', 'MC039FCR', 4000, 220, '800g', 'Mediano', '', 'Algodón', 1),
+( 40, 6, 'Zymox Ear Solution with Hydrocortisone', 'Solución para oídos con hidrocortisona para mascotas', 'ZY040EHS', 5000, 300, '100ml', 'Pequeño', 'Hidrocortisona', '', 1),
+( 41, 5, 'PetFusion Memory Foam Dog Bed', 'Cama de espuma viscoelástica para perros', 'PF041FMF', 14000, 110, '3kg', 'Mediano', '', 'Espuma', 1),
+( 42, 5, 'Keenovo Heated Pet Pad', 'Almohadilla térmica para mascotas', 'KN042HPD', 12000, 150, '1.2kg', 'Mediano', '', 'Tela', 1),
+( 43, 5, 'Frisco Sherpa Blanket', 'Manta de sherpa para mascotas', 'FS043SBL', 6000, 120, '1.5kg', 'Grande', '', 'Sherpa', 1),
+( 44, 7, 'Little Paws Dog Sweater', 'Suéter para perros pequeños', 'LP044LDS', 7000, 100, '300g', 'Pequeño', '', 'Algodón', 1),
+( 45, 5, 'Pawsitively Posh Pooch Luxury Collar', 'Collar de lujo para perros', 'PP045LPC', 12000, 80, '150g', 'Pequeño', '', 'Cuero', 1),
+( 1, 1, 'Royal Canin Veterinary Diet Gastrointestinal Low Fat', 'Comida veterinaria baja en grasa para perros con problemas digestivos', 'RC046GVF', 19000, 130, '10kg', 'Mediano', 'Pechuga de pollo, arroz', '', 1),
+( 2, 1, 'Hill''s Science Diet Sensitive Stomach & Skin', 'Comida para perros con estómago y piel sensibles', 'HS047SSS', 17000, 100, '12kg', 'Mediano', 'Pollo, arroz integral', '', 1),
+( 3, 1, 'Purina Pro Plan Savor Shredded Blend', 'Comida para perros adultos con mezcla de pollo y arroz', 'PP048SAV', 21000, 90, '14kg', 'Mediano', 'Pollo, arroz, maíz', '', 1),
+( 4, 1, 'Orijen Six Fish Dog', 'Alimento para perros con seis tipos de pescado', 'OJ049SIX', 23000, 110, '15kg', 'Mediano', 'Salmón, arenque, bacalao, sardinas', '', 1),
+( 5, 1, 'Acana Heritage Meats Formula', 'Alimento con carnes variadas para perros', 'AC050HER', 24000, 100, '16kg', 'Mediano', 'Pechuga de pollo, cordero, pato', '', 1);
 
 
 -- Insertar los valores en la tabla IMAGENES_PRODUCTOS
-INSERT INTO IMAGENES_PRODUCTOS (IDIMAGEN, IDPRODUCTO,PATHIMAPRODUCTOS) VALUES
+insert into imagenes_productos (idimagen, idproducto,pathimaproductos) values
 (1, 1, "https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dwa695bd1e/images/16_m.jpg"),
 (2, 1, "https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dw4b806bdb/images/43f3a-medium-adult-04.jpg"),
 (3, 1, "https://www.superzoo.cl/on/demandware.static/-/Sites-SuperZoo-master-catalog/default/dw3eb24306/images/3c3a0-medium-adult-03.jpg"),

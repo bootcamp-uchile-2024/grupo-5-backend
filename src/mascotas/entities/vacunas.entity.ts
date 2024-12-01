@@ -4,10 +4,10 @@ import { Mascota } from './mascotas.entity';
 
 @Entity('vacunas')
 export class Vacuna {
-    @PrimaryColumn()
+    @PrimaryColumn({ name: 'idvacuna' })
     idVacuna: number;
 
-    @Column()
+    @Column({ name: 'nombrevacuna' })
     nombreVacuna: string;
 
     @ManyToMany(() => Mascota, (mascota) => mascota.vacunas)

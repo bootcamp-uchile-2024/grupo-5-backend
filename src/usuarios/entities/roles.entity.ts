@@ -3,10 +3,10 @@ import { Usuario } from './usuarios.entity';
 
 @Entity('roles')
 export class Roles {
-    @PrimaryColumn()
+    @PrimaryColumn({ name: 'idrol' })
     idRol: number;
 
-    @Column()
+    @Column({ name: 'rol' })
     rol: string;
 
     @OneToMany(() => Usuario, (usuario) => usuario.rol)

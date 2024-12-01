@@ -4,17 +4,17 @@ import { Mascota } from './mascotas.entity';
 
 @Entity('razas')
 export class Raza {
-    @PrimaryColumn()
+    @PrimaryColumn({ name: 'idraza' })
     idRaza: number;
 
-    @Column()
+    @Column({ name: 'nombreraza' })
     nombreRaza: string;
 
     @OneToMany(() => Mascota, (mascota) => mascota.raza)
     mascotas: Mascota[];
 
     @ManyToOne(() => Especie)
-    @JoinColumn({ name: 'idEspecie' })
+    @JoinColumn({ name: 'idespecie' })
     especie: Especie;
 
 }

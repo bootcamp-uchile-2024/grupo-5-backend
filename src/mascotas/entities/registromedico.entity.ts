@@ -1,20 +1,19 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, Timestamp } from 'typeorm';
 import { Mascota } from './mascotas.entity'; 
 
 @Entity('registros_medicos')
 export class RegistroMedico {
-    @PrimaryColumn()
+    @PrimaryColumn({ name: 'idregistromedico' })
     idRegistroMedico: number;
 
-    @Column()
+    @Column({name: 'fecharegistro'})
     fechaRegistro: Date;
 
-    @Column()
+    @Column({name: 'horaregistro'})
     horaRegistro: Date;
 
-    @Column()
+    @Column({name: 'motivo'})
     motivo: string;
-
     
     @ManyToOne(() => Mascota)
     @JoinColumn({ name: 'idMascota' })

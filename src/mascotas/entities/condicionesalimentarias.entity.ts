@@ -4,10 +4,10 @@ import { Mascota } from './mascotas.entity';
 
 @Entity('condiciones_alimentarias')
 export class CondicionAlimentaria {
-    @PrimaryColumn()
+    @PrimaryColumn({ name: 'idcondicion' })
     idCondicion: number;
 
-    @Column()
+    @Column({ name: 'condicionalimentaria' })
     condicionalimentaria: string;
 
     @ManyToMany(() => Mascota, (mascota) => mascota.condicionesAlimentarias)

@@ -74,14 +74,13 @@ async function bootstrap() {
     .setContact(ArchivoPackageJson.author, ArchivoPackageJson.url, ArchivoPackageJson.mail)
     .setLicense(ArchivoPackageJson.license, '')
     // .addTag('Temp - Detalle Carro de Compras')
-    .addTag('Carro de Compras')
-    .addTag('Obtener Catálogo de Productos')
-    .addTag('Obtener Detalle de Producto')
     .addTag('Crear Producto')
     .addTag('Actualizar Producto')
-    .addTag('Eliminar Producto')
+    // .addTag('Eliminar Producto')
     .addTag('Alta de un Producto')
     .addTag('Baja de un Producto')
+    .addTag('Obtener Catálogo de Productos')
+    .addTag('Obtener Detalle de Producto')
     .addTag('Carro de Compras')
     .build();
   const document3 = SwaggerModule.createDocument(app, config3, {

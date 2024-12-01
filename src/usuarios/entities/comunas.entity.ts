@@ -2,19 +2,19 @@ import {   Entity,   PrimaryColumn,   Column,   ManyToOne,   OneToMany,   JoinCo
 import { Direcciones } from './direcciones.entity';
 import { Region } from './regiones.entity';
 
-@Entity('COMUNAS')
+@Entity('comunas')
 export class Comuna {
-  @PrimaryColumn()
+  @PrimaryColumn({ name: 'idcomuna' })
   idComuna: number;
 
-  @Column()
+  @Column({ name: 'idregion' })
   idRegion: number;
 
-  @Column()
+  @Column({ name: 'nombrecomuna' })
   nombreComuna: string;
 
   @ManyToOne(() => Region)
-  @JoinColumn({ name: 'idRegion' })
+  @JoinColumn({ name: 'idregion' })
   region: Region;
 
   @OneToMany(() => Direcciones, (direccion) => direccion.comuna)

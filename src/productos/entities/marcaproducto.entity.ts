@@ -3,10 +3,10 @@ import { Producto } from '../entities/producto.entity';
 
 @Entity('marcas_producto')
 export class MarcaProducto {
-  @PrimaryColumn()
+  @PrimaryColumn( {name: 'idmarca'})
   idMarca: number;  
 
-  @Column()
+  @Column({name: 'nombremarca'})
   nombreMarca: string;
 
   @OneToMany(() => Producto, producto => producto.marca)

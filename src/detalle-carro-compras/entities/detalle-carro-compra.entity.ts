@@ -11,17 +11,17 @@ export class DetalleCarroCompra {
   idDetalleCarro: number;
 
   @ManyToOne(() => CarroCompra)
-  @JoinColumn({name : 'idCarroCompras'})	
+  @JoinColumn({name : 'idcarrocompras'})	
   carroCompra: CarroCompra;
 
   @ManyToOne(() => Producto)
-  @JoinColumn({name : 'idProducto'})
+  @JoinColumn({name : 'idproducto'})
   producto: Producto;
 
-  @Column()
+  @Column({name : 'cantidad'})
   cantidad: number;
 
-  @Column()
+  @Column({name : 'precioUnitario'})
   precioUnitario: number;
 
 }

@@ -88,8 +88,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
         password: configService.get<string>('DB_PASS_ROOT'),
         database: configService.get<string>('DB_NAME'),
         entities: [
-          AvatarMascota,
-         main
+        AvatarMascota,
         AvatarUsuarios,
         Calendario,
         CarroCompra,
@@ -115,7 +114,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
         Vacuna,
       ],
       synchronize: false,
-      logging: false, //Me aparezca la consulta SQL
+      logging: true, //Me aparezca la consulta SQL
     }),
   }),
     

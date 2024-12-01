@@ -4,29 +4,29 @@ import { Mascota } from './mascotas.entity';
 
 @Entity('calendarios')
 export class Calendario {
-  @PrimaryColumn()
+  @PrimaryColumn({ name: 'idevento' })
   idevento: number;
 
-  @Column()
-  idfrecuencia: number;
+  // @Column({ name: 'idfrecuencia' })
+  // idfrecuencia: number;
 
-  @Column()
-  idmascota: number;
+  // @Column({ name: 'idmascota' })
+  // idmascota: number;
 
-  @Column()
+  @Column({ name: 'fechaevento' })
   fechaevento: Date;
 
-  @Column()
+  @Column({ name: 'etiqueta' })
   etiqueta: string;
 
-  @Column()
+  @Column({ name: 'motivocalendario' })
   motivocalendario: string;
 
   @ManyToOne(() => Frecuencia)
-  @JoinColumn({ name: 'IdFrecuencia' })
+  @JoinColumn({ name: 'idfrecuencia' })
   idFrecuencia: Frecuencia;
 
   @ManyToOne(() => Mascota)
-  @JoinColumn({ name: 'IdMascota' })
-  idMascota: Mascota;
+  @JoinColumn({ name: 'idMascota' })
+  mascota: Mascota;
 }

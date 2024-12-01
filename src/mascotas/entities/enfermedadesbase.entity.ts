@@ -1,12 +1,12 @@
 import { Column, Entity, ManyToMany, PrimaryColumn } from "typeorm";
 import { Mascota } from "./mascotas.entity";
 
-@Entity({name: 'ENFERMEDADES_BASE'})
+@Entity({name: 'enfermedades_base'})
 export class Enfermedad_Base {
-    @PrimaryColumn()
+    @PrimaryColumn({name: 'idenfermedad'})
     idEnfermedad: number;
 
-    @Column()
+    @Column({name: 'nombreenfermedad'})
     nombreEnfermedad: string;
 
     @ManyToMany(() => Mascota, (mascota) => mascota.enfermedades)

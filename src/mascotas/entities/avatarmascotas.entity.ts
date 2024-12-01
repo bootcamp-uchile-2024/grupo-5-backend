@@ -1,14 +1,14 @@
-import { Entity, PrimaryColumn, Column, OneToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToOne, OneToMany } from 'typeorm';
 import { Mascota } from './mascotas.entity'; 
 
 @Entity('avatar_mascotas')
 export class AvatarMascota {
-    @PrimaryColumn()
+    @PrimaryColumn({name: 'idavatarmascota'})
     idAvatarMascota: number;
 
-    @Column()
+    @Column({name: 'pathimamascota'})
     pathImagenMascota: string;
 
-    @OneToOne(() => Mascota, (mascota) => mascota.avatarMascota)
-    mascota: Mascota;
+    @OneToMany(() => Mascota, (mascota) => mascota.avatarMascota)
+    mascotas: Mascota[];
 }

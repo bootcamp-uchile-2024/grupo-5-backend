@@ -3,10 +3,10 @@ import { Usuario } from './usuarios.entity';
 
 @Entity('avatar_usuarios')
 export class AvatarUsuarios {
-    @PrimaryColumn()
+    @PrimaryColumn( {name: 'idimagenavatar'})
     idImagenAvatar: number;
 
-    @Column()
+    @Column({name: 'pathimausuario'})
     pathImaUsuario: string;
 
     @OneToMany(() => Usuario, (usuario) => usuario.avatar)

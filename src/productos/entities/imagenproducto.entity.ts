@@ -4,10 +4,10 @@ import { Producto } from './producto.entity';
 
 @Entity('imagenes_productos')
 export class ImagenProducto {
-  @PrimaryGeneratedColumn({name: 'IdImagen'})
+  @PrimaryGeneratedColumn({name: 'idimagen'})
   idImagen: number;
 
-  @Column({name: 'PATHIMAPRODUCTOS'})
+  @Column({name: 'pathimaproductos'})
   pathImagenProducto: string;
   
   // @ManyToOne(() => Producto)
@@ -15,6 +15,6 @@ export class ImagenProducto {
   // idProducto: Producto;
 
   @ManyToOne(() => Producto, (producto) => producto.imagenes)
-  @JoinColumn({ name: 'IdProducto' })
+  @JoinColumn({ name: 'idproducto' })
   producto: Producto;
 }

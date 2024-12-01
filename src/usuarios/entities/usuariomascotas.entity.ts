@@ -3,7 +3,7 @@ import { Usuario } from './usuarios.entity';
 import { Mascota } from 'src/mascotas/entities/mascotas.entity';
 
 
-@Entity('usuarios_mascotas')
+@Entity('USUARIOS_MASCOTAS')
 export class UsuariosMascotas {
     @PrimaryColumn()
     idUsuario: bigint;

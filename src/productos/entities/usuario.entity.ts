@@ -5,37 +5,36 @@ import { Pedido } from './pedidos.entity';
 @Entity('usuarios')
 export class Usuario {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'idusuario' })
   id: string;
 
-  @Column({ unique: true })
+  @Column({name: 'rut', unique: true })
   rutUsuario: string;
 
-  @Column()
+  @Column({name: 'contrasena'})
   contrasena: string;
 
-  @Column()
+  @Column({name: 'nombreusuario'})
   nombre: string;
 
-  @Column()
+  @Column({name: 'apellidos'})
   apePaterno: string;
 
-  @Column()
-  apeMaterno: string;
+  // @Column()
+  // apeMaterno: string;
 
-  @Column({ unique: true })
+  @Column({ name: 'email', unique: true })
   correoElectronico: string;
 
-  @Column()
+  @Column({ name: 'telefono' })
   telefono: string;
 
-  @Column({
+  @Column({name: 'idrol',
     type: 'enum',
     enum: UserRole,
     default: UserRole.INVITADO
   })
   rolUsuario: UserRole;
-
 
   @OneToMany(() => Pedido, (p) => p.idUSsuario)
 pedidos: Pedido[];

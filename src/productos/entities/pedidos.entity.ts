@@ -8,17 +8,17 @@ export class Pedido {
   @PrimaryColumn({ name: 'idpedido' })
   idPedido: number;
 
-  @Column({ name: 'fechaCreacion' })
+  @Column({ name: 'fechacreacion' })
   fechaCreacion: Date;
 
-  @Column({ name: 'fechaEntrega' })
+  @Column({ name: 'fechaentrega' })
   fechaEntrega: Date;
 
   @Column({ name: 'preciototal' })
   precioTotal: number;
 
   @ManyToOne(() => Usuario)
-  @JoinColumn({ name: 'idUsuario' })
+  @JoinColumn({ name: 'idusuario' })
   idUSsuario: Usuario;
 
   @OneToMany(() => DetallesPedidos, (dp) => dp.pedido)

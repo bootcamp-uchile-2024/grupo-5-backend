@@ -3,10 +3,10 @@ import { Raza } from './razas.entity';
 
 @Entity('especies')
 export class Especie {
-    @PrimaryColumn()
+    @PrimaryColumn({name: 'idespecie'})
     idEspecie: number;
 
-    @Column()
+    @Column({name: 'nombreespecie'})
     nombreEspecie: string;
 
     @OneToMany(() => Raza, (raza) => raza.especie)

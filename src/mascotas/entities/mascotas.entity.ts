@@ -10,58 +10,58 @@ import { Usuario } from 'src/usuarios/entities/usuarios.entity';
 
 @Entity('mascotas')
 export class Mascota {
-    @PrimaryColumn()
+    @PrimaryColumn({name: 'idmascota'})
     idMascota: number;
 
-    @Column()
+    @Column({name: 'nombre'})
     nombre: string;
 
-    @Column()
+    @Column({name: 'fechanacimiento'})
     fechaNacimiento: Date;
 
-    @Column()
+    @Column({name: 'sexo'})
     sexo: string;
 
-    @Column()
+    @Column({name: 'numerochip'})
     numeroChip: string;
 
     @OneToMany(() => RegistroMedico, (registroMedico) => registroMedico.mascota)
     registrosMedicos: RegistroMedico[];
 
     @ManyToOne(() => Raza)
-    @JoinColumn({ name: 'idRaza' })
+    @JoinColumn({ name: 'idraza' })
     raza: Raza;
 
-    @OneToOne(() => AvatarMascota)
-    @JoinColumn({ name: 'idAvatarMascota' })
+    @ManyToOne(() => AvatarMascota)
+    @JoinColumn({ name: 'idavatarmascota' })
     avatarMascota: AvatarMascota;
 
-    @OneToMany(() => Calendario, (calendario) => calendario.idMascota)
+    @OneToMany(() => Calendario, (calendario) => calendario.mascota)
     calendarios: Calendario[];
 
     @ManyToMany(() => CondicionAlimentaria)
-    @JoinTable({name: 'Mascotas_Condalimentarias',
+    @JoinTable({name: 'mascotas_condalimentarias',
         joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
         inverseJoinColumn: {name: 'idCondicion', referencedColumnName: 'idCondicion'},
     })
     condicionesAlimentarias: CondicionAlimentaria[];
 
     @ManyToMany(() => Vacuna)
-    @JoinTable({name: 'Mascotas_Vacunas',
+    @JoinTable({name: 'mascotas_vacunas',
         joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
         inverseJoinColumn: {name: 'idVacuna', referencedColumnName: 'idVacuna'},
     })
     vacunas: Vacuna[];
 
     @ManyToMany(() => Enfermedad_Base)
-    @JoinTable({name: 'Mascotas_Enfermedades',
+    @JoinTable({name: 'mascotas_enfermedades',
         joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
         inverseJoinColumn: {name: 'idEnfermedad', referencedColumnName: 'idEnfermedad'},
     })
     enfermedades: Enfermedad_Base[];
 
     @ManyToMany(() => Usuario)
-    @JoinTable({name: 'Usuarios_Mascotas',
+    @JoinTable({name: 'usuarios_mascotas',
         joinColumn: {name: 'idMascota', referencedColumnName: 'idMascota'},
         inverseJoinColumn: {name: 'idUsuario', referencedColumnName: 'idUsuario'},
     })

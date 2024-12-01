@@ -3,13 +3,13 @@ import { Comuna } from './comunas.entity'; // Asegúrate de que la ruta sea corr
 
 @Entity('regiones')
 export class Region {
-  @PrimaryColumn()
+  @PrimaryColumn({name: 'idregion'})
   idRegion: number;
 
-  @Column()
+  @Column({name: 'orden'})
   orden: number;
 
-  @Column()
+  @Column({name: 'nombre_region'})
   nombreRegion: string;
 
   @OneToMany(() => Comuna, (comuna) => comuna.region)

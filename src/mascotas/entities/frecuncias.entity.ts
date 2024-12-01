@@ -3,10 +3,10 @@ import { Calendario } from './calendarios.entity';
 
 @Entity('frecuencias')
 export class Frecuencia {
-    @PrimaryColumn()
+    @PrimaryColumn({name: 'idfrecuencia'})
     idFrecuencia: number;
 
-    @Column()
+    @Column({name: 'frecuencia'})
     frecuencia: string;
 
     @OneToMany(() => Calendario, (calendario) => calendario.idFrecuencia)

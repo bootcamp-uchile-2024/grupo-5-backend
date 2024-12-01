@@ -8,7 +8,7 @@ export class CarroCompra {
   idCarroCompra: number;
 
   @ManyToOne(() => Usuario)
-  @JoinColumn({ name: 'idUsuario' })
+  @JoinColumn({ name: 'idusuario' })
   idUsuario: number;
 
   @Column({ name: 'fechacreacion' })

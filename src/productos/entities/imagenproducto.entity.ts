@@ -14,7 +14,7 @@ export class ImagenProducto {
   // @JoinColumn({name: 'IdProducto'})
   // idProducto: Producto;
 
-  @ManyToOne(() => Producto, (producto) => producto.imagenes)
-  @JoinColumn({ name: 'idproducto' })
+  @ManyToOne(() => Producto)
+  @JoinColumn({ name: 'idProducto' })
   producto: Producto;
 }

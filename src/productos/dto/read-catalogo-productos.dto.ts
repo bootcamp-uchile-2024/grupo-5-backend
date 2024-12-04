@@ -21,21 +21,21 @@ export class CatalogoProductoDto {
     title: 'Nombre del Producto',
     description: 'Nombre del Producto',
   })
-  public NombreProducto: string;
+  public nombreProducto: string;
 
   @ApiProperty({
     type: 'string',
     title: 'Marca del Producto',
     description: 'Nombre de la Marca del Producto',
   })
-  public MarcaProducto: string;
+  public marcaProducto: string;
 
   @ApiProperty({
     type: 'number',
     title: 'Precio del Producto',
     description: 'Precio del Producto',
   })
-  public PrecioProducto: number;
+  public precioProducto: number;
 
   @ApiProperty({
     type: 'number',
@@ -49,5 +49,5 @@ export class CatalogoProductoDto {
     title: 'Imágenes del Producto',
     description: 'Imágenes del Producto',
   })
-  public ImagenesProducto: ImagenProducto[];
+  public imagenesProducto: ImagenProducto[];
 }

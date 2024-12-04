@@ -15,12 +15,12 @@ export class Usuario {
     rut: string;
 
     @Column({name: 'nombreusuario'})
-    nombreUsuario: string;  
+    nombres: string;  
 
     @Column({name: 'apellidos'})
     apellidos: string;
 
-    @Column({name: 'fechanacimiento'})
+    @Column({name: 'email'})
     email: string;
 
     @Column({ name: 'telefono', nullable: true })
@@ -48,16 +48,16 @@ export class Usuario {
 
     @ManyToOne(() => Roles, (rol) => rol.idRol)
     @JoinColumn({ name: 'idrol' })
-    rol: number;
+    idRol: number;
 
     @ManyToOne(() => AvatarUsuarios, (au) => au.idImagenAvatar)
-    @JoinColumn({ name: 'idimagenavatar' })
+    @JoinColumn({ name: 'idImagenAvatar' })
     avatar: number;
 
     @OneToMany(() => Direcciones, (direccion) => direccion.usuario)
     direcciones: Direcciones[];
 
-    @OneToMany(() => Pedido, (pedido) => pedido.idUSsuario)
+    @OneToMany(() => Pedido, (pedido) => pedido.usuario)
     pedidos: Pedido[];
 
     @OneToMany(() => CarroCompra, (carro) => carro.idUsuario)

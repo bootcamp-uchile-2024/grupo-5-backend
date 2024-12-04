@@ -53,7 +53,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
-
     ServeStaticModule.forRoot({
       rootPath: "./files",
       serveRoot: "/files",

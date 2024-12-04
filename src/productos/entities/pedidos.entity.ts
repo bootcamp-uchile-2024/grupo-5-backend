@@ -19,12 +19,12 @@ export class Pedido {
 
   @ManyToOne(() => Usuario)
   @JoinColumn({ name: 'idusuario' })
-  idUSsuario: Usuario;
+  usuario: Usuario;
 
   @OneToMany(() => DetallesPedidos, (dp) => dp.pedido)
   detallePedido: DetallesPedidos[];
   @ManyToOne(() => Usuario)
 
   @OneToMany(() => Producto, (p) => p.idProducto)
-  producto: Producto[];
+  producto: Producto[]; 
 }

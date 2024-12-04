@@ -19,7 +19,7 @@ export class ConexionService {
     for (const fila of resultado) {
       const dto= new CatalogoProductoDto();
       dto.sku = fila.IDPRODUCTO,
-      dto.NombreProducto = fila.NOMBREPRODUCTO
+      dto.nombreProducto = fila.NOMBREPRODUCTO
       listaProductos.push(dto);
     }
     return listaProductos;

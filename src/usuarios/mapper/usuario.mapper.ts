@@ -6,9 +6,9 @@ export class UsuarioMapper {
       const entity = new Usuario();
       entity.idUsuario = dto.idUsuario;
       entity.rut = dto.rutUsuario;
-      entity.rol= dto.rolUsuario;
+      entity.idRol= dto.rolUsuario;
       entity.avatar = dto.idAvatar;
-      entity.nombreUsuario = dto.nombre;
+      entity.nombres = dto.nombre;
       entity.apellidos = `${dto.apePaterno} ${dto.apeMaterno}`;
       entity.email = dto.correoElectronico;
       entity.telefono = parseInt(dto.telefono.replace('+56', ''), 10); // Convertir teléfono a entero
@@ -24,8 +24,8 @@ export class UsuarioMapper {
   static entityToDto(entity: Usuario): CreateUsuarioDto {
     const dto = new CreateUsuarioDto(); 
     dto.rutUsuario= entity.rut;          //PREGUNTAR
-    dto.rolUsuario =entity.rol;          //PREGUNTAR
-    dto.nombre = entity.nombreUsuario;
+    dto.rolUsuario =entity.idRol;          //PREGUNTAR
+    dto.nombre = entity.nombres;
     dto.apePaterno =`${dto.apePaterno}` //PREGUNTAR
     dto.apeMaterno =`${dto.apeMaterno}` //PREGUNTAR
     dto.correoElectronico = entity.email;

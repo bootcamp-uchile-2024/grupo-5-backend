@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { ArrayNotEmpty, IsArray, IsNotEmpty, IsNumber, IsString, Length, Max, Min } from "class-validator";
+import { Type } from "class-transformer";
+import { IsIn, IsInt, IsNotEmpty, IsNumber, IsString, Length, Max, Min, ValidateNested } from "class-validator";
 import { ImagenProducto } from "../entities/imagenproducto.entity";
 
 export class CreateProductoDto {
@@ -31,7 +32,8 @@ export class CreateProductoDto {
         maximum: 10000000,
         nullable: false,
         example: '1'}) 
-        @IsNotEmpty({message: 'Identificador la Marca del producto no puede estar vacía'})
+        // @IsInt({ message: 'El identificador debe ser un entero.' })
+        // @Min(1, { message: 'El identificador debe ser mayor a 0.' })
     public idMarca: number;
 
     @ApiProperty({
@@ -44,7 +46,6 @@ export class CreateProductoDto {
         example: 'Royal Canin Medium Junior es un alimento para cachorros de razas medianas (11 a 25 Kg peso adulto) hasta los 12 meses de edad. Con una combinación exclusiva de nutrientes para garantizar una seguridad digestiva óptima y favorecer el equilibrio de la flora intestinal, con prebióticos, contribuyendo así a mejorar la calidad de las heces.'}) 
         @IsString({message: 'La Descripción del Producto debe ser un string'})
         @Length(1, 500, { message: 'La Descripción del Producto debe tener entre 1 y 500 caracteres.' })
-        @IsNotEmpty({message: 'La Descripción del Producto no puede estar vacía'})
     public descripcion: string;
 
     @ApiProperty({
@@ -57,7 +58,6 @@ export class CreateProductoDto {
         example: 'ATRC1927'}) 
         @IsString({message: 'El SKU Producto debe ser un string'})
         @Length(1, 8, { message: 'El SKU del Producto debe tener entre 1 y 8 caracteres.' })
-        @IsNotEmpty({message: 'El SKU del Producto no puede estar vacío'})
     public sku: string;
 
 
@@ -71,10 +71,10 @@ export class CreateProductoDto {
         maxLength: 10,  
         nullable: false,
         example: '86990'}) 
-        @IsNumber({}, {message: 'El Precio del Producto debe ser un número'})
-        @IsNotEmpty({message: 'El Precio del Producto no puede estar vacío'})
-        @Min(1, { message: 'El Precio del Producto debe ser al menos 1 peso.' })
-        @Max(10000000, { message: 'El Precio del Producto no debe exceder los  10000000.' })
+        // @IsNumber({}, {message: 'El Precio del Producto debe ser un número'})
+        // @IsNotEmpty({message: 'El Precio del Producto no puede estar vacío'})
+        // @Min(1, { message: 'El Precio del Producto debe ser al menos 1 peso.' })
+        // @Max(10000000, { message: 'El Precio del Producto no debe exceder los  10000000.' })
     public precio: number;
 
 
@@ -88,10 +88,10 @@ export class CreateProductoDto {
         maxLength: 10,  
         nullable: false,
         example: '1200'}) 
-        @IsNumber({}, {message: 'El Stock del Producto debe ser un número'})
-        @IsNotEmpty({message: 'El Stock del Producto no puede estar vacío'})
-        @Min(1, { message: 'El Stock del Producto debe ser al menos 1 unidad.' })
-        @Max(10000000, { message: 'El Stock del Producto no debe exceder los  10000000.' })
+        // @IsNumber({}, {message: 'El Stock del Producto debe ser un número'})
+        // @IsNotEmpty({message: 'El Stock del Producto no puede estar vacío'})
+        // @Min(1, { message: 'El Stock del Producto debe ser al menos 1 unidad.' })
+        // @Max(10000000, { message: 'El Stock del Producto no debe exceder los  10000000.' })
     public stock: number;
 
     @ApiProperty({
@@ -114,7 +114,7 @@ export class CreateProductoDto {
         maxLength: 20,  
         nullable: true,
         example: '12 Kg'}) 
-        @IsString( {message: 'El Tamaño del Producto debe ser un string'})
+        // @IsString( {message: 'El Tamaño del Producto debe ser un string'})
     public tamanio: string;
 
 
@@ -127,7 +127,6 @@ export class CreateProductoDto {
         nullable: true,
         example: 'Arcilla aglutinante.'}) 
         @IsString({message: 'Los Ingredientes del Producto debe ser un string'})
-        @Length(1, 1000, { message: 'Los Ingredientes del Producto debe tener entre 1 y 1000 caracteres.' })
    public ingredientes: string;
 
    @ApiProperty({
@@ -139,7 +138,6 @@ export class CreateProductoDto {
     nullable: true,
     example: 'Arcilla aglutinante.'}) 
     @IsString({message: 'Los Materiales del Producto debe ser un string'})
-    @Length(1, 1000, { message: 'Los Ingredientes del Producto debe tener entre 1 y 1000 caracteres.' })
 public material: string;
 
     @ApiProperty({
@@ -149,11 +147,11 @@ public material: string;
         required: true,
         maxLength: 255,  
         nullable: false,
-        example: ['images/2653_001.jpg', 'images/2653_002.jpg']}) 
-        @IsArray({message: 'La Ruta de las Imágenes del Producto deben ser un arreglo de strings'})
-        // @Length(1, 255, { message: 'El tamaño de la Ruta de las Imágenes debe tener entre 1 y 255 caracteres.' })
-        @ArrayNotEmpty({ message: 'El arreglo de rutas de imágenes no puede estar vacío.' })
-        //@IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
+        example: [
+            { idImagen: 134, pathImagenProducto: '/images/16_m.jpg' },
+            { idImagen: 135, pathImagenProducto: '/images/2653_new.jpg' },
+            { idImagen: 136, pathImagenProducto: '/images/2653_new.jpg' },
+          ]}) 
    public imagenes: ImagenProducto[];
 
    @ApiProperty({
@@ -165,7 +163,9 @@ public material: string;
     maximum: 10000000,
     nullable: false,
     example: '1'}) 
-    @IsNotEmpty({message: 'Identificador Categoría del Producto no puede estar vacía'})
+    // @IsInt({ message: 'El identificador debe ser un entero.' })
+    // @Min(1, { message: 'El identificador debe ser mayor a 0.' })
+    // @IsNotEmpty({message: 'Identificador Categoría del Producto no puede estar vacía'})
 public idCategoria: number;
 
 
@@ -178,7 +178,7 @@ public idCategoria: number;
     maximum: 1,
     nullable: false,
     example: '1'}) 
-    @IsNotEmpty({message: 'Estado del Producto: 0:Desactivado - 1:Activo'})
+    // @IsIn([0, 1], { message: 'El estado del producto debe ser 0 (desactivado) o 1 (activo).' })
 public activo: number;
 
     // @ApiProperty({

@@ -8,7 +8,8 @@ import { ActualizarProductoDto } from "./dto/update-producto.dto";
 import { ImagenProducto } from "./entities/imagenproducto.entity";
 import { Producto } from "./entities/producto.entity";
 import { ProductoMapper } from "./mapper/producto.mapper";
-
+import path from "path";
+import { promises as FS} from 'fs';
 
 @Injectable()
 export class ProductoService {
@@ -19,15 +20,63 @@ export class ProductoService {
   ) {}
 
 
-  async createProducto(createproductodto: CreateProductoDto): Promise<Producto> {
-    const producto : Producto = ProductoMapper.DtoToGetProductoEntity(createproductodto);
-    const productoGuardado : Producto = await this.productoRepository.save(producto);
+  async createProducto(files: any[], createproductodto: CreateProductoDto): Promise<Producto> {
+    console.log('createProducto');
+    // Validamos si se proporcionaron archivos
+    if (!files || files.length === 0) {
+      throw new Error('No se han proporcionado archivos.');
+    }
 
-    for (const imagen of producto.imagenes) {
+    // Convertimos el DTO a la entidad Producto
+    const producto: Producto = ProductoMapper.DtoToGetProductoEntity(createproductodto);
+    console.log('>producto: ', producto);
+    // Guardamos el producto
+    const productoGuardado: Producto = await this.productoRepository.save(producto);
+    console.log('>productoGuardado: ', productoGuardado);
+    // Recuperamos el ID del producto guardado
+    const codigonuevoproducto = productoGuardado.idProducto;
+    console.log('>codigonuevoproducto: ', codigonuevoproducto);
+    // Definimos la ruta base donde se guardarán las imágenes
+    const rutaArchivo = `/images/productos/${codigonuevoproducto}/`;
+    console.log('>rutaArchivo: ', rutaArchivo);
+    // Usamos path.resolve para asegurarnos de tener la ruta absoluta
+    const rutaRelativaArchivo = path.posix.join('files', rutaArchivo);
+    
+    // Creamos la ruta si no existe
+    try {
+      await FS.mkdir(rutaRelativaArchivo, { recursive: true });
+    } catch (error) {
+      console.error('Error al crear el directorio:', error);
+      throw new Error('No se pudo crear el directorio para las imágenes.');
+    }
+
+    let i: number = 1;
+    
+    // Iteramos sobre los archivos
+    for (const file of files) {
+      // Obtenemos la extensión del archivo
+      const extension = file.originalname.split('.').pop();  // Obtenemos la extensión del archivo
+      
+      // Generamos la ruta relativa con el nombre del producto y la extensión
+      const newPath = path.posix.join(rutaRelativaArchivo, `${codigonuevoproducto}_${i}.${extension}`);
+      
+      // Creamos la entidad ImagenProducto con el ID del producto
       const imagenProducto = new ImagenProducto();
       imagenProducto.producto = productoGuardado;
-      imagenProducto.pathImagenProducto = imagen.toString();
-     this.imagenProductoRepository.save(imagenProducto);
+      imagenProducto.pathImagenProducto = newPath;
+
+      // Intentamos escribir el archivo en el sistema de archivos
+      try {
+        await FS.writeFile(newPath, file.buffer);
+      } catch (error) {
+        console.error('Error al guardar la imagen:', error);
+        throw new Error('No se pudo guardar la imagen.');
+      }
+
+      // Guardamos la imagen del producto en la base de datos
+      await this.imagenProductoRepository.insert(imagenProducto);
+
+      i++;  // Incrementamos el contador de imágenes
     }
     return productoGuardado;
   }

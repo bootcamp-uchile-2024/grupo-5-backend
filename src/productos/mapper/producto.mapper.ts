@@ -12,11 +12,11 @@ export class ProductoMapper {
     const dto = new CatalogoProductoDto();
     dto.id = entity.idProducto;
     dto.sku = entity.sku;
-    dto.NombreProducto = entity.nombreProducto;
-    dto.MarcaProducto = entity.marca ? entity.marca.nombreMarca : null;  // Ajustado para obtener el nombre de la marca
-    dto.PrecioProducto = entity.precio;
+    dto.nombreProducto = entity.nombreProducto;
+    dto.marcaProducto = entity.marca ? entity.marca.nombreMarca : null;  // Ajustado para obtener el nombre de la marca
+    dto.precioProducto = entity.precio;
     dto.stock = entity.stock;
-    dto.ImagenesProducto = entity.imagenes; 
+    dto.imagenesProducto = entity.imagenes; 
     return dto;
   }
 

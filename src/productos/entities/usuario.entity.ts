@@ -36,6 +36,6 @@ export class Usuario {
   })
   rolUsuario: UserRole;
 
-  @OneToMany(() => Pedido, (p) => p.idUSsuario)
+  @OneToMany(() => Pedido, (p) => p.usuario)
 pedidos: Pedido[];
 }

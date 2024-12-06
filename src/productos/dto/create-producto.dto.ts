@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsIn, IsInt, IsNotEmpty, IsNumber, IsString, Length, Max, Min, ValidateNested } from "class-validator";
+import { IsString, Length } from "class-validator";
 import { ImagenProducto } from "../entities/imagenproducto.entity";
 
 export class CreateProductoDto {

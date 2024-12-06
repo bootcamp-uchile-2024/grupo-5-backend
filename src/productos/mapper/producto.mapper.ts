@@ -15,7 +15,7 @@ export class ProductoMapper {
     dto.nombreProducto = entity.nombreProducto;
     dto.marcaProducto = entity.marca ? entity.marca.nombreMarca : null;  // Ajustado para obtener el nombre de la marca
     dto.precioProducto = entity.precio;
-    dto.stock = entity.stock;
+    dto.stockProducto = entity.stock;
     dto.imagenesProducto = entity.imagenes; 
     return dto;
   }
@@ -30,16 +30,16 @@ export class ProductoMapper {
     dto.id = entity.idProducto;
     dto.sku = entity.sku;
     dto.nombreProducto = entity.nombreProducto;
-    dto.marca = entity.marca.nombreMarca;  // Ajustado para obtener el nombre de la marca
-    dto.descripcion = entity.descripcion;
-    dto.precio = entity.precio;
-    dto.stock = entity.stock;
-    dto.peso = entity.peso; 
-    dto.tamanio = entity.tamanio;
-    dto.ingredientes = entity.ingredientes;
-    dto.material = entity.material;
-    dto.imagenes = entity.imagenes;
-    dto.categoria = entity.categoria.nombreCategoria;
+    dto.marcaProducto = entity.marca.nombreMarca;  // Ajustado para obtener el nombre de la marca
+    dto.descripcionProducto = entity.descripcion;
+    dto.precioProducto = entity.precio;
+    dto.stockProducto = entity.stock;
+    dto.pesoProducto = entity.peso; 
+    dto.tamanioProducto = entity.tamanio;
+    dto.ingredientesProducto = entity.ingredientes;
+    dto.materialProducto = entity.material;
+    dto.imagenesProducto = entity.imagenes;
+    dto.categoriaProducto = entity.categoria.nombreCategoria;
     dto.activo = entity.activo;
     return dto;
   }

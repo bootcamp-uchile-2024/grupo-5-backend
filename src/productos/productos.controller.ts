@@ -1,25 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseFilePipe,
-  ParseIntPipe,
-  Post,
-  Put,
-  UploadedFiles,
-  UseInterceptors,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
-import {
-  ApiBody,
-  ApiOperation,
-  ApiParam,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import {  Body,  Controller,  Delete,  Get,  Param,  ParseFilePipe,  ParseIntPipe,  Post,  Put,  UploadedFiles,  UseInterceptors,  UsePipes,  ValidationPipe,} from '@nestjs/common';
+import {  ApiBody,  ApiOperation,  ApiParam,  ApiResponse,  ApiTags,} from '@nestjs/swagger';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { ActualizarProductoDto } from './dto/update-producto.dto';
 import { ProductoService } from './productos.service';
@@ -103,6 +83,7 @@ export class ProductoController {
   ) {
     return await this.productoService.createProducto(files, createProductoDto);
   }
+
 
   @ApiTags('Actualizar Producto')
   @ApiBody({ type: ActualizarProductoDto })

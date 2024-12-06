@@ -23,7 +23,7 @@ export class ActualizaUsuarioDto extends PartialType(CreateUsuarioDto) {
   @ApiProperty({
     type: 'string',
     title: 'Nombre del Usuario',
-    example: 'Mamerto',
+    example: 'Paola',
     description: 'Nombre de pila del usuario',
     minLength: 2,                   // Tamaño minimo
     maxLength: 50,                  // Tamaño maximo              
@@ -48,7 +48,7 @@ export class ActualizaUsuarioDto extends PartialType(CreateUsuarioDto) {
       
   @ApiProperty({
     type: 'string',
-    title: 'Apellido Paterno',
+    title: 'Apellido Materno',
     example: 'Abarca',
     description: 'Apellido Materno del usuario (2do apellido)',
     minLength: 2,                   // Tamaño minimo
@@ -62,7 +62,7 @@ export class ActualizaUsuarioDto extends PartialType(CreateUsuarioDto) {
   @ApiProperty({
     type: 'string',
     title: 'Correo Electrónico',
-    example: 'juan.perez@example.com',
+    example: 'ojito74@hotmail.com',
     description: 'Correo electrónico del usuario',
     minLength: 5,  
     maxLength: 100,  

@@ -84,7 +84,7 @@ export class CreateUsuarioDto {
           
       @ApiProperty({
         type: 'string',
-        title: 'Apellido Paterno',
+        title: 'Apellido Materno',
         example: 'Abarza',
         description: 'Apellido Materno del usuario (2do apellido)',
         minLength: 2,                   // Tamaño minimo

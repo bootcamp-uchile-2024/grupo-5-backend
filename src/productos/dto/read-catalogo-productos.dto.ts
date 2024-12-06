@@ -42,7 +42,7 @@ export class CatalogoProductoDto {
     title: 'Stock del Producto',
     description: 'Stock del Producto ',
   })
-  public stock: number;
+  public stockProducto: number;
 
   @ApiProperty({
     type: 'string',

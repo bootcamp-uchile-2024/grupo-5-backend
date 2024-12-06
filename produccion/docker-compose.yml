@@ -9,7 +9,8 @@ services:
       DB_USER: ${DB_USER}                   
       DB_PASS_ROOT: ${DB_PASS_ROOT}         
       DB_NAME: ${DB_NAME}                   
-      NESTJS_PORT: ${NESTJS_PORT}           
+      NESTJS_PORT: ${NESTJS_PORT}   
+      NODE_ENV: ${NODE_ENV}                 # Entorno de ejecución de la API              
     ports:
       - "5001:${NESTJS_PORT}"               
     depends_on:

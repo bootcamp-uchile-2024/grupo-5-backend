@@ -4,12 +4,6 @@ import { ImagenProducto } from "../entities/imagenproducto.entity";
 
 export class CreateProductoDto {
 
-    // @ApiProperty({
-    //     type: 'number', 
-    //     title: 'Id del Producto',
-    //     description: 'Identificador del Producto',
-    //     required: true,example: 23})
-    // public id: number;
    @ApiProperty({
         type: 'string', 
         title: 'Nombre del Producto',

@@ -23,6 +23,7 @@ import { EliminaUsuarioDto } from './dto/delete-usuario.dto';
 import { ActivaUsuarioDto } from './dto/react-usuario.dto';
 import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
 import { UsuariosService } from './usuarios.service';
+import { RegisterUsuarioDto } from './dto/register-usuario.dto';
 
 @Controller('usuarios')
 export class UsuarioController {
@@ -36,9 +37,9 @@ export class UsuarioController {
   })
   @ApiResponse({ status: 200, description: 'Obtiene todos los usuarios' })
   @ApiResponse({ status: 404, description: 'No se encontraron usuarios' })
-  @Get()
   @ApiOperation({ summary: 'Obtener todos los usuarios' })
   @ApiResponse({ status: 200, description: 'Lista de todos los usuarios.' })
+  @Get()
   async findAll() {
     return await this.usuarioService.findAll();
   }
@@ -66,12 +67,28 @@ export class UsuarioController {
   @ApiBody({ type: CreateUsuarioDto })
   @ApiResponse({ status: 200, description: 'Usuario creado.' })
   @ApiResponse({ status: 409, description: 'Usuario ya existe.' })
-  @Post()
-  @ApiOperation({ summary: 'Crear un nuevo usuario' })
   @ApiResponse({ status: 201, description: 'El usuario ha sido creado.' })
+  @Post(':rut')
   async create(@Body() createUsuarioDto: CreateUsuarioDto) {
     return await this.usuarioService.create(createUsuarioDto);
   }
+
+  @ApiTags('Registrar Usuarios')
+  @ApiOperation({
+    summary: 'HU 1.1: Crear Nuevo Usuario - Registrar Usuario',
+    description:
+      '<strong>HU 1.1 - Formulario de Registro de Usuario:</strong> Como nuevo usuario, quiero un formulario de registro que sea fácil de completar y que solicite solo la información necesaria sobre mí y mis mascotas, para crear mi cuenta rápidamente',
+  })
+  @ApiBody({ type: RegisterUsuarioDto })
+  @ApiResponse({ status: 200, description: 'Usuario registrado.' })
+  @ApiResponse({ status: 201, description: 'El usuario ha sido registrado con éxito.' })
+  @ApiResponse({ status: 409, description: 'Usuario ya está registrado.' })
+  @Post()
+  async register(@Body() registerUsuarioDto: RegisterUsuarioDto) {
+    console.log('registerUsuarioDto: ', registerUsuarioDto);
+    return await this.usuarioService.register(registerUsuarioDto);
+  }
+
 
   @ApiTags('Actualizar Usuarios')
   @ApiOperation({

@@ -1,10 +1,10 @@
+import { MarcaProducto } from "src/marca-producto/entities/marca-producto.entity";
 import { CreateProductoDto } from "../dto/create-producto.dto";
 import { CatalogoProductoDto } from "../dto/read-catalogo-productos.dto";
 import { GetProductoDto } from "../dto/read-producto.dto";
 import { ActualizarProductoDto } from "../dto/update-producto.dto";
-import { CategoriaProducto } from "../entities/categoriaproducto.entity";
-import { MarcaProducto } from '../entities/marcaproducto.entity';
 import { Producto } from "../entities/producto.entity";
+import { CategoriaProducto } from "src/categoria-producto/entities/categoria-producto.entity";
 
 export class ProductoMapper {
 

@@ -24,10 +24,8 @@ import { Raza } from './mascotas/entities/razas.entity';
 import { RegistroMedico } from './mascotas/entities/registromedico.entity';
 import { Vacuna } from './mascotas/entities/vacunas.entity';
 import { MascotasModule } from './mascotas/mascotas.module';
-import { CategoriaProducto } from './productos/entities/categoriaproducto.entity';
 import { DetallesPedidos } from './productos/entities/detallespedidos.entity';
 import { ImagenProducto } from './productos/entities/imagenproducto.entity';
-import { MarcaProducto } from './productos/entities/marcaproducto.entity';
 import { Pedido } from './productos/entities/pedidos.entity';
 import { Producto } from './productos/entities/producto.entity';
 import { ProductosModule } from './productos/productos.module';
@@ -39,6 +37,13 @@ import { Roles } from './usuarios/entities/roles.entity';
 import { Usuario } from './usuarios/entities/usuarios.entity';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { MarcaProductoModule } from './marca-producto/marca-producto.module';
+import { MarcaProducto } from './marca-producto/entities/marca-producto.entity';
+import { CategoriaProductoModule } from './categoria-producto/categoria-producto.module';
+import { CategoriaProducto } from './categoria-producto/entities/categoria-producto.entity';
+import { DescuentosModule } from './descuentos/descuentos.module';
+import { Descuento } from './descuentos/entities/descuento.entity';
+import { DetalleDescuento } from './descuentos/entities/detalle-descuento.entity';
 
 
 // imports: [
@@ -94,6 +99,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
         CategoriaProducto,
         Comuna,
         CondicionAlimentaria,
+        Descuento,
+        DetalleDescuento,
         DetalleCarroCompra,
         DetallesPedidos,
         Direcciones,
@@ -124,6 +131,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     ConexionModule,
     CarrocomprasModule,
     DetalleCarroComprasModule,
+    MarcaProductoModule,
+    CategoriaProductoModule,
+    DescuentosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,5 @@
 import { CreateUsuarioDto } from "../dto/create-usuario.dto";
+import { RegisterUsuarioDto } from "../dto/register-usuario.dto";
 import { Usuario } from "../entities/usuarios.entity";
 
 export class UsuarioMapper {
@@ -17,7 +18,23 @@ export class UsuarioMapper {
       entity.chkTerminos = dto.chkTerminos;
       entity.activo = dto.activo;
      return entity;
+  }
 
+  static dtoRegisterUsuarioToEntity(dto: RegisterUsuarioDto): Usuario {
+    const entity = new Usuario();
+
+    entity.rut = dto.rutUsuario;
+    entity.idRol= 1;
+    entity.avatar = 1;
+    entity.nombres = dto.nombres;
+    entity.apellidos = dto.apellidos;
+    entity.email = dto.correoElectronico;
+    entity.telefono = parseInt(dto.telefono.replace('+56', ''), 10); // Convertir teléfono a entero
+    entity.contrasena = dto.contrasena;
+    entity.chkOfertas = dto.chkOfertas;
+    entity.chkTerminos = dto.chkTerminos;
+    entity.activo = true;
+    return entity;
   }
 
 
@@ -41,5 +58,7 @@ export class UsuarioMapper {
     // dto.carroCompras = entity.carroCompras;
     // dto.mascotas = entity.mascotas; //
     return dto;
+
+    
 }
 }

@@ -9,6 +9,7 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { Usuario } from './entities/usuarios.entity';
 import { UsuarioMapper } from './mapper/usuario.mapper';
 import { AvatarUsuarios } from './entities/avatarusuarios.entity';
+import { RegisterUsuarioDto } from './dto/register-usuario.dto';
 
 @Injectable()
 export class UsuariosService {
@@ -59,10 +60,31 @@ export class UsuariosService {
     return await this.usuarioRepository.save(usuario);
   }
 
-  // Obtener todos los usuarios
-  //  async findAll(): Promise<Usuario[]> {
-  //   return await this.usuarioRepository.find();
-  // }
+  async register(registerUsuarioDto: RegisterUsuarioDto): Promise<Usuario> {
+    // Verificar si el usuario ya existe
+    const usuarioExiste = await this.usuarioRepository.findOne({  where: { rut: registerUsuarioDto.rutUsuario } });
+
+    if (usuarioExiste) {
+      throw new BadRequestException(
+        `El usuario con RUT ${registerUsuarioDto.rutUsuario} ya está registrado.`,
+      );
+    }
+    
+    // Verificar si el correo ya está registrado
+    const correoExiste = await this.usuarioRepository.findOne({ where: { email: registerUsuarioDto.correoElectronico } });
+    if (correoExiste) {
+      throw new BadRequestException(
+        `El correo ${registerUsuarioDto.correoElectronico} ya está registrado.`, 
+      );  
+    }
+
+    // Mapear el DTO de registro a la entidad Usuario
+    const usuario = UsuarioMapper.dtoRegisterUsuarioToEntity(registerUsuarioDto);
+    
+    // Guardar el usuario en la base de datos
+    return await this.usuarioRepository.save(usuario);
+  }
+
   async findAll(): Promise<Usuario[]> {
     return await this.usuarioRepository.find({
       relations: ['avatar'], // Incluimos la relación con avatar

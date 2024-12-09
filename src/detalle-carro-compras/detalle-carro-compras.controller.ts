@@ -60,7 +60,6 @@ export class DetalleCarroComprasController {
     );
   }
 
-  @ApiTags('Temp - Detalle Carro de Compras')
   @ApiOperation({
     summary:
       'HU 5.1: Carrito de Compras - Obtener Detalle del Carro de Compras por Id del Carro',

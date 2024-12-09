@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { CategoriaProducto } from './categoriaproducto.entity';
 import { DetallesPedidos } from './detallespedidos.entity';
 import { ImagenProducto } from './imagenproducto.entity';
-import { MarcaProducto } from './marcaproducto.entity';
 import { DetalleCarroCompra } from 'src/detalle-carro-compras/entities/detalle-carro-compra.entity';
+import { MarcaProducto } from 'src/marca-producto/entities/marca-producto.entity';
+import { CategoriaProducto } from 'src/categoria-producto/entities/categoria-producto.entity';
 
 @Entity('productos')
 export class Producto {
@@ -39,6 +39,9 @@ export class Producto {
 
   @Column({ name: 'activo' })
   activo: number;
+
+  @Column({ name: 'descuento' })
+  descuento: number;
 
   @ManyToOne(() => CategoriaProducto)
   @JoinColumn({ name: 'idCategoria' })

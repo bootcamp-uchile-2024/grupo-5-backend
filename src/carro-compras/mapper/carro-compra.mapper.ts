@@ -25,7 +25,7 @@ export class carroCompraMapper{
 
     static entityListoToDtoList(entityList: CarroCompra[]): CreateCarroCompraDto[]{
         const dtoList: CreateCarroCompraDto[] = [];
-        entityList.forEach((entity) => {
+        entityList.forEach((entity: CarroCompra) => {
             dtoList.push(this.entityToCreateCarroCompraDto(entity));
         });
         return dtoList;

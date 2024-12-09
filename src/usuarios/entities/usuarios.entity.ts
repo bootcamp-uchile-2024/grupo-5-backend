@@ -1,6 +1,6 @@
 import { Mascota } from 'src/mascotas/entities/mascotas.entity';
 import { Pedido } from 'src/productos/entities/pedidos.entity';
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { AvatarUsuarios } from './avatarusuarios.entity';
 import { Direcciones } from './direcciones.entity';
 import { Roles } from './roles.entity';
@@ -8,13 +8,13 @@ import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
 
 @Entity('usuarios')
 export class Usuario {
-    @PrimaryColumn({ name: 'idusuario' })
+    @PrimaryGeneratedColumn({ name: 'idusuario' })
     idUsuario: number;
 
     @Column({name: 'rut', unique: true})
     rut: string;
 
-    @Column({name: 'nombreusuario'})
+    @Column({name: 'nombres'})
     nombres: string;  
 
     @Column({name: 'apellidos'})

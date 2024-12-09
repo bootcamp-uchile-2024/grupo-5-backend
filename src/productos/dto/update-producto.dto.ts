@@ -167,7 +167,7 @@ public material: string;
       @IsArray({message: 'La Ruta de las Imágenes del Producto deben ser un arreglo de strings'})
       @ArrayNotEmpty({ message: 'El arreglo de rutas de imágenes no puede estar vacío.' })
      // @IsString({ each: true, message: 'Cada ruta de imagen debe ser una cadena de texto.' })
- public imagenes: ImagenProducto[];
+ public imagenes: string[];
 
  @ApiProperty({
   type: 'number', 

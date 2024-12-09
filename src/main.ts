@@ -15,9 +15,15 @@ import { CategoriaProductoModule } from './categoria-producto/categoria-producto
 import { DetalleCarroComprasModule } from './detalle-carro-compras/detalle-carro-compras.module';
 import { MarcaProductoModule } from './marca-producto/marca-producto.module';
 import { DescuentosModule } from './descuentos/descuentos.module';
+import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+    // Configurar el límite de tamaño del cuerpo
+    app.use(bodyParser.json({ limit: '10mb' })); 
+    app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
+
   app.enableCors();
   const configService = app.get(ConfigService);
 

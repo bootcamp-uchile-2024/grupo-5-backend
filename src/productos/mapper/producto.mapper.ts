@@ -65,7 +65,7 @@ export class ProductoMapper {
     entity.tamanio = dto.tamanio;
     entity.ingredientes = dto.ingredientes;
     entity.material = dto.material;
-    entity.imagenes = dto.imagenes;
+    //entity.imagenes = dto.imagenes;
     entity.categoria = categoria;
     entity.activo = dto.activo;
 

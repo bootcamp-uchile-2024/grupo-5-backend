@@ -276,7 +276,7 @@ create table productos
    idtipoalimento       bigint  comment '',
    idsegmento           bigint  comment '',
    nombreproducto       varchar(150) not null  comment '',
-   descripcion          varchar(150) not null  comment '',
+   descripcion          varchar(1000) not null  comment '',
    sku                  varchar(20) not null  comment '',
    precio               int not null  comment '',
    stock                int not null  comment '',

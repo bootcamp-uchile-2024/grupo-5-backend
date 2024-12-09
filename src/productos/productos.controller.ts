@@ -37,13 +37,12 @@ export class ProductoController {
   @ApiResponse({ status: 200, description: 'Producto creado con éxito.' })
   @ApiResponse({ status: 409, description: 'Producto ya existe.' })
   @UsePipes(new ValidationPipe())
-  @UseInterceptors(FilesInterceptor('listaArchivos'))
+  // @UseInterceptors(FilesInterceptor('listaArchivos'))
   @Post()
   async createProduct(
-    @Body() createProductoDto: CreateProductoDto,
-    @UploadedFiles(ParseFilePipe) files,
+    @Body() createProductoDto: CreateProductoDto
   ) {
-    return await this.productoService.createProducto(files, createProductoDto);
+    return await this.productoService.createProducto(createProductoDto);
   }
   //#endregion
 

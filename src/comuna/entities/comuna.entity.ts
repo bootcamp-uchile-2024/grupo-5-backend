@@ -1,6 +1,6 @@
 import {   Entity,   PrimaryColumn,   Column,   ManyToOne,   OneToMany,   JoinColumn } from 'typeorm';
-import { Direcciones } from './direcciones.entity';
-import { Region } from './regiones.entity';
+import { Region } from '../../region/entities/region.entity';
+import { Direcciones } from 'src/direcciones/entities/direcciones.entity';
 
 @Entity('comunas')
 export class Comuna {

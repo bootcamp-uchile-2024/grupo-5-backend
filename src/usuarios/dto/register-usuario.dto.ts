@@ -127,16 +127,16 @@ export class RegisterUsuarioDto {
   @IsNotEmpty({ message: 'El check de ofertas no puede ser vacío' })
   public chkOfertas: boolean;
 
-  @ApiProperty({
-    type: 'boolean',
-    title: 'Check de Terminos al crear el Usuario',
-    description: 'Check de Terminos al crear el Usuario.',
-    example: 'true',
-    nullable: true,
-    required: true,
-  })
-  @IsNotEmpty({ message: 'El check de Terminos no puede ser vacío' })
-  public chkTerminos: boolean;
+  // @ApiProperty({
+  //   type: 'boolean',
+  //   title: 'Check de Terminos al crear el Usuario',
+  //   description: 'Check de Terminos al crear el Usuario.',
+  //   example: 'true',
+  //   nullable: true,
+  //   required: true,
+  // })
+  // @IsNotEmpty({ message: 'El check de Terminos no puede ser vacío' })
+  // public chkTerminos: boolean;
 
 
 }

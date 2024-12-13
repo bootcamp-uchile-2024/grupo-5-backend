@@ -1,20 +1,26 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { UpdateCarrocompraDto } from './dto/update-carro-compra.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCarroCompraDto } from './dto/create-carro-compra.dto';
 import { carroCompraMapper } from './mapper/carro-compra.mapper';
 import { CarroCompra } from './entities/carro-compra.entity';
-import { UsuariosService } from 'src/usuarios/usuarios.service';
+import { UsuarioService } from 'src/usuarios/usuarios.service';
 
 @Injectable()
 export class CarroCompraService {
   constructor(
     @InjectRepository(CarroCompra)
     private CarroCompraRepository: Repository<CarroCompra>,
-    private readonly usuarioService: UsuariosService,
+    private readonly usuarioService: UsuarioService,
   ) {}
 
+  //#region Crear Carro de Compras
   async create(
     id_usuario: number,
     carroCompra: CreateCarroCompraDto,
@@ -22,7 +28,10 @@ export class CarroCompraService {
     const usuarioExiste = await this.usuarioService.findUsuarioById(id_usuario);
     if (!usuarioExiste) {
       throw new HttpException(
-        { message: 'Usuario no encontrado', error: 'Not Found' },
+        {
+          message: 'Usuario no encontrado',
+          error: 'Not Found',
+        },
         HttpStatus.NOT_FOUND,
       );
     }
@@ -33,35 +42,43 @@ export class CarroCompraService {
       const nuevoCarroCompra =
         carroCompraMapper.dtoToCarroCompraEntity(carroCompra);
       nuevoCarroCompra.idUsuario = id_usuario;
-      console.log('nuevoCarroCompra: ', nuevoCarroCompra);
-      const carroCrado =
+      const carroCreado =
         await this.CarroCompraRepository.save(nuevoCarroCompra);
       throw new HttpException(
-        { message: 'Carro de compras creado exitosamente', data: carroCrado },
+        {
+          message: 'Carro de compras creado exitosamente',
+          data: carroCreado,
+        },
         HttpStatus.CREATED,
       );
     } else {
       throw new HttpException(
-        { message: 'El carro de compras ya existe', error: 'Conflict' },
+        {
+          message: 'El carro de compras ya existe',
+          error: 'Conflict',
+        },
         HttpStatus.CONFLICT,
       );
     }
   }
+  //#endregion
 
+  //#region Obtener Carro de Compras por Id Usuario
   async getCarroCompraByIdUsuario(idUsuario: number): Promise<CarroCompra> {
-    console.log('getCarroCompraByIdUsuario: ', idUsuario);
     const carroBuscado = await this.CarroCompraRepository.findOne({
       where: { idUsuario },
       relations: ['detallesCarro', 'detallesCarro.producto'],
     });
 
     if (!carroBuscado) {
-      return null; 
+      return null;
     }
 
-    return carroBuscado; 
+    return carroBuscado;
   }
+  //#endregion
 
+  //#region Obtener Carro de Compras por Id Carro
   async getCarroByIdCarro(idCarro: number): Promise<CarroCompra> {
     const carroBuscado = await this.CarroCompraRepository.findOne({
       where: { idCarroCompra: idCarro },
@@ -71,13 +88,12 @@ export class CarroCompraService {
       throw new HttpException(
         { message: 'Carro no encontrado', error: 'Not Found' },
         HttpStatus.NOT_FOUND,
-      ); // 404
+      );
     }
-
-    // throw new HttpException({message: 'Carro buscado no existe', error: "Bas Request" }, HttpStatus.BAD_REQUEST); // 400
 
     return carroBuscado;
   }
+  //#endregion
 
   findOne(id: number) {
     return `This action returns a #${id} carrocompra`;
@@ -91,3 +107,4 @@ export class CarroCompraService {
     return `This action removes a #${id} carrocompra`;
   }
 }
+ 

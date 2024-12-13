@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
-import { Comuna } from './comunas.entity'; // Asegúrate de que la ruta sea correcta
+import { Comuna } from '../../comuna/entities/comuna.entity'; // Asegúrate de que la ruta sea correcta
 
 @Entity('regiones')
 export class Region {
@@ -9,7 +9,7 @@ export class Region {
   @Column({name: 'orden'})
   orden: number;
 
-  @Column({name: 'nombre_region'})
+  @Column({name: 'nombreregion'})
   nombreRegion: string;
 
   @OneToMany(() => Comuna, (comuna) => comuna.region)

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarroCompra } from './entities/carro-compra.entity';
-import { CarroCompraService } from './carro-compra.service';
-import { CarroCompraController } from './carro-compra.controller';
-import { UsuariosService } from 'src/usuarios/usuarios.service';
-import { Usuario } from 'src/usuarios/entities/usuarios.entity';
 import { AvatarUsuarios } from 'src/usuarios/entities/avatarusuarios.entity';
+import { Usuario } from 'src/usuarios/entities/usuarios.entity';
+import { UsuarioService } from 'src/usuarios/usuarios.service';
+import { CarroCompraController } from './carro-compra.controller';
+import { CarroCompraService } from './carro-compra.service';
+import { CarroCompra } from './entities/carro-compra.entity';
 
 @Module({
   imports: [
@@ -14,6 +14,6 @@ import { AvatarUsuarios } from 'src/usuarios/entities/avatarusuarios.entity';
     ]),
   ],
   controllers: [CarroCompraController],
-  providers: [CarroCompraService, UsuariosService,  ],
+  providers: [CarroCompraService, UsuarioService  ],
 })
-export class CarrocomprasModule {}
+export class CarroComprasModule {}

@@ -10,12 +10,14 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import * as ArchivoPackageJson from '../package.json';
 
 import { ConfigService } from '@nestjs/config';
-import { CarrocomprasModule } from './carro-compras/carro-compra.module';
 import { CategoriaProductoModule } from './categoria-producto/categoria-producto.module';
 import { DetalleCarroComprasModule } from './detalle-carro-compras/detalle-carro-compras.module';
 import { MarcaProductoModule } from './marca-producto/marca-producto.module';
 import { DescuentosModule } from './descuentos/descuentos.module';
 import * as bodyParser from 'body-parser';
+import { CarroComprasModule } from './carro-compras/carro-compra.module';
+import { RegionModule } from './region/region.module';
+import { ComunaModule } from './comuna/comuna.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -37,7 +39,7 @@ async function bootstrap() {
   //const configService = app.get(ConfigService);
   const env = process.env.NODE_ENV;
 
-  // Configuración de Swagger para Usuarios
+  //#region Configuración de Swagger para Usuarios
   const config1 = new DocumentBuilder()
     .setTitle(
       ArchivoPackageJson.CopyrightName + ' - Módulo Usuarios (' + env + ')',
@@ -55,17 +57,19 @@ async function bootstrap() {
     .addTag('Buscar Usuarios')
     .addTag('Actualizar Usuarios')
     .addTag('Eliminar Usuarios')
+    .addTag('Gestión de Regiones')
     .build();
   const document1 = SwaggerModule.createDocument(app, config1, {
-    include: [AppModule, UsuariosModule],
+    include: [AppModule, UsuariosModule, RegionModule, ComunaModule],
   });
   SwaggerModule.setup('api/usuario', app, document1, {
-    customSiteTitle: 'Usuarios  - API Petropolis',
+    customSiteTitle: 'Usuarios - API Petropolis',
     customfavIcon: 'https://img.icons8.com/?size=48&id=13042&format=png',
     customCss: '.swagger-ui .topbar { background-color: #05C7F2; }'
   });
+  //#endregion
 
-  // Configuración de Swagger para Mascotas
+  //#region Configuración de Swagger para Mascotas
   const config2 = new DocumentBuilder()
     .setTitle(
       ArchivoPackageJson.CopyrightName + ' - Módulo Mascotas (' + env + ')',
@@ -86,9 +90,14 @@ async function bootstrap() {
   const document2 = SwaggerModule.createDocument(app, config2, {
     include: [AppModule, MascotasModule],
   });
-  SwaggerModule.setup('api/mascota', app, document2);
+  SwaggerModule.setup('api/mascota', app, document2, {
+    customSiteTitle: 'Mascotas - API Petropolis',
+    customfavIcon: 'https://img.icons8.com/?size=48&id=16018&format=png',
+    customCss: '.swagger-ui .topbar { background-color: #05C7F2; }'
+  });
+  //#endregion
 
-  // Configuración de Swagger para Productos
+  //#region Configuración de Swagger para Productos
   const config3 = new DocumentBuilder()
     .setTitle(
       ArchivoPackageJson.CopyrightName + ' - Módulo Productos (' + env + ')',
@@ -101,12 +110,12 @@ async function bootstrap() {
       ArchivoPackageJson.mail,
     )
     .setLicense(ArchivoPackageJson.license, '')
+    .addTag('Carro de Compras')
     .addTag('Gestión de Descuentos')
     .addTag('Marca Productos')
     .addTag('Categoría Productos')
     .addTag('Productos')
     .addTag('Catálogo de Productos')
-    .addTag('Carro de Compras')
     // .addTag('Crear Producto')
     // .addTag('Actualizar Producto')
     // .addTag('Alta de un Producto')
@@ -117,7 +126,7 @@ async function bootstrap() {
     include: [
       AppModule,
       CategoriaProductoModule,
-      CarrocomprasModule,
+      CarroComprasModule,
       DescuentosModule,
       DetalleCarroComprasModule,
       MarcaProductoModule,
@@ -127,9 +136,11 @@ async function bootstrap() {
   SwaggerModule.setup('api/producto', app, document3, {
     customSiteTitle: 'Productos - API Petropolis',
     customfavIcon: 'https://img.icons8.com/?size=48&id=16045&format=png',
-    customCss: '.swagger-ui .topbar { background-color: #05C7F2; }'
+    customCss: '.swagger-ui .topbar { background-color: #FFD020; }'
   });
+ //#endregion
 
+  //#region Console Info
   const puerto = process.env.NESTJS_PORT || 3040;
   await app.listen(puerto, '0.0.0.0');
   console.log(
@@ -151,6 +162,7 @@ async function bootstrap() {
     '\t\t**************************************************************',
   );
   //console.log(`La aplicación se encuentra corriendo es el puerto de:  ${await app.getUrl()}`);
+  //#endregion
 }
 
 bootstrap();

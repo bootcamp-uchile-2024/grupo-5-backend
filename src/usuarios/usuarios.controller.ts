@@ -22,13 +22,16 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { EliminaUsuarioDto } from './dto/delete-usuario.dto';
 import { ActivaUsuarioDto } from './dto/react-usuario.dto';
 import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
-import { UsuariosService } from './usuarios.service';
 import { RegisterUsuarioDto } from './dto/register-usuario.dto';
+import { UsuarioService } from './usuarios.service';
 
 @Controller('usuarios')
 export class UsuarioController {
-  constructor(private readonly usuarioService: UsuariosService) {}
-
+  //#region Constructor
+  constructor(private readonly usuarioService: UsuarioService) {}
+  //#endregion
+  
+  //#region Obtener todos los usuarios
   @ApiTags('Buscar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.1: Obtener el listado de todos los usuarios',
@@ -43,7 +46,9 @@ export class UsuarioController {
   async findAll() {
     return await this.usuarioService.findAll();
   }
+  //#endregion
 
+  //#region Obtener Usuario por RUT
   @ApiTags('Buscar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.2: Obtener Usuario por RUT',
@@ -57,7 +62,9 @@ export class UsuarioController {
   async findOne(@Param('rut') rut: string) {
     return await this.usuarioService.findOne(rut);
   }
+  //#endregion
 
+  //#region Crear Usuario
   @ApiTags('Crear Usuarios')
   @ApiOperation({
     summary: 'HU 1.1: Crear Nuevo Usuario',
@@ -72,7 +79,9 @@ export class UsuarioController {
   async create(@Body() createUsuarioDto: CreateUsuarioDto) {
     return await this.usuarioService.create(createUsuarioDto);
   }
+  //#endregion
 
+  //#region Actualizar Usuario
   @ApiTags('Registrar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1: Crear Nuevo Usuario - Registrar Usuario',
@@ -88,8 +97,9 @@ export class UsuarioController {
     console.log('registerUsuarioDto: ', registerUsuarioDto);
     return await this.usuarioService.register(registerUsuarioDto);
   }
+  //#endregion
 
-
+  //#region Actualizar Usuario
   @ApiTags('Actualizar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.3: Actualizar usuario por RUT',
@@ -108,7 +118,9 @@ export class UsuarioController {
   ): string {
     return `El usuario con rut: ${rut} se actualizó con éxito.`;
   }
+  //#endregion
 
+  //#region Eliminar Usuario
   @ApiTags('Eliminar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.4: Eliminar usuario por su RUT',
@@ -124,7 +136,9 @@ export class UsuarioController {
     await this.usuarioService.remove(rut);
     return `El  usuario  RUT: ${rut} fue eliminado con exito.`;
   }
+  //#endregion
 
+  //#region Activar Usuario
   @ApiTags('Activar Usuario')
   @ApiOperation({
     summary: 'HU 1.1.5: Activar Usuario por su RUT',
@@ -141,4 +155,5 @@ export class UsuarioController {
       await this.usuarioService.reactivate(rut);
       return `El usuario con RUT ${rut} fue activado con éxito.`;
   }
+  //#endregion
 }

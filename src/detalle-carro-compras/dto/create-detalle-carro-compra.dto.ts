@@ -18,13 +18,6 @@ export class CreateDetalleCarroCompraDto {
   idProducto: number;
 
   @ApiProperty({
-    name: 'cantidad',
-    description: 'Cantidad de productos',
-    example: 1,
-  })
-  cantidad: number;
-
-  @ApiProperty({
     name: 'precioUnitario',
     description: 'Precio unitario del producto',
     example: 1000,

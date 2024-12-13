@@ -173,8 +173,7 @@ public activo: boolean;
   description: 'Identificador Id Avatar usuario registrado',                                    
   nullable: true,                                               
   required: false})                                            
-  @IsString({message: 'El Avatar del Usuario debe ser un number'})
-  
+  @IsString({message: 'El Avatar del Usuario debe ser un number'})  
 public idAvatar: number;
 
        //  @ApiProperty({

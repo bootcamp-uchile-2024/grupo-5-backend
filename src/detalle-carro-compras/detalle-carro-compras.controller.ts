@@ -18,6 +18,7 @@ export class DetalleCarroComprasController {
     private readonly detalleCarroComprasService: DetalleCarroComprasService,
   ) {}
 
+  //#region Agregar Producto Al Carro de Compras
   @ApiTags('Carro de Compras')
   @ApiOperation({
     summary:
@@ -37,29 +38,21 @@ export class DetalleCarroComprasController {
     required: true,
     example: 1,
   })
-  @ApiParam({
-    name: 'cantidad',
-    description: 'Cantidad del producto',
-    required: true,
-    example: 10,
-  })
-  @Post(':idCarroCompra/:idProducto/:cantidad')
-  async agregarProducto(
+  @Post('agregarProducto/:idCarroCompra/:idProducto')
+  agregarProducto(
     @Param('idCarroCompra') idCarroCompra: number,
     @Param('idProducto') idProducto: number,
-    @Param('cantidad') cantidad: number,
   ) {
-    console.log('agregarProducto()');
-    console.log('idCarroCompra: ', idCarroCompra);
-    console.log('idProducto: ', idProducto);
-    console.log('cantidad: ', cantidad);
-    return this.detalleCarroComprasService.agregarProducto(
+    console.log('### idCarroCompra', idCarroCompra);
+    console.log('### idProducto', idProducto);
+     return this.detalleCarroComprasService.agregarProducto(
       idCarroCompra,
       idProducto,
-      cantidad,
     );
   }
+  //#endregion
 
+  //#region Obtener Detalle del Carro de Compras por Id del Carro
   @ApiOperation({
     summary:
       'HU 5.1: Carrito de Compras - Obtener Detalle del Carro de Compras por Id del Carro',
@@ -78,11 +71,13 @@ export class DetalleCarroComprasController {
       idCarroCompra,
     );
   }
+  //#endregion
 
+  //#region Incrementar Cantidad de Producto ya Agregado al Carro de Compras
   @ApiTags('Carro de Compras')
   @ApiOperation({
     summary:
-      'HU 5.1: Carrito de Compras - Actualizar Cantidad de Producto en el Carro de Compras',
+      'HU 5.1: Carrito de Compras - Incrementar Cantidad de Producto ya Agregado al Carro de Compras',
     description:
       '<strong>HU 5.1 - Carrito de Compra:<br></strong> Como "Pet lover" quiero un carrito de compra que permita añadir y editar varios productos, para gestionar mis compras con facilidad.',
   })
@@ -98,25 +93,51 @@ export class DetalleCarroComprasController {
     required: true,
     example: 1,
   })
-  @ApiParam({
-    name: 'cantidad',
-    description: 'Cantidad del producto',
-    required: true,
-    example: 10,
-  })
-  @Patch(':idCarroCompra,:idProducto,:cantidad')
-  actualizarCantidadProducto(
+  @Patch('incrementarProducto/:idCarroCompra/:idProducto')
+  incrementarProductoEnCarro(
     @Param('idCarroCompra') idCarroCompra: number,
     @Param('idProducto') idProducto: number,
-    @Param('cantidad') cantidad: number,
   ) {
-    return this.detalleCarroComprasService.actualizarCantidadProducto(
+    return this.detalleCarroComprasService.incrementarProductoEnCarro(
       idCarroCompra,
-      idProducto,
-      cantidad,
+      idProducto
     );
   }
+  //#endregion
 
+//#region Disminuir Cantidad de Producto ya Agregado al Carro de Compras
+@ApiTags('Carro de Compras')
+@ApiOperation({
+  summary:
+    'HU 5.1: Carrito de Compras - Disminuir Cantidad de Producto ya Agregado al Carro de Compras',
+  description:
+    '<strong>HU 5.1 - Carrito de Compra:<br></strong> Como "Pet lover" quiero un carrito de compra que permita añadir y editar varios productos, para gestionar mis compras con facilidad.',
+})
+@ApiParam({
+  name: 'idCarroCompra',
+  description: 'Id del carro de compras',
+  required: true,
+  example: 1,
+})
+@ApiParam({
+  name: 'idProducto',
+  description: 'Id del producto',
+  required: true,
+  example: 1,
+})
+@Patch('disminuirProducto/:idCarroCompra/:idProducto')
+disminuirProductoEnCarro(
+  @Param('idCarroCompra') idCarroCompra: number,
+  @Param('idProducto') idProducto: number,
+) {
+  return this.detalleCarroComprasService.disminuirProductoEnCarro(
+    +idCarroCompra,
+    +idProducto
+  );
+}
+//#endregion
+
+  //#region Eliminar Producto del Carro de Compras
   @ApiTags('Carro de Compras')
   @ApiOperation({
     summary:
@@ -137,13 +158,14 @@ export class DetalleCarroComprasController {
     example: 1,
   })
   @Delete(':idCarroCompra,:idProducto')
-  eliminarProducto(
+  quitarProductoDelCarro(
     @Param('idCarroCompra') idCarroCompra: number,
     @Param('idProducto') idProducto: number,
   ) {
-    return this.detalleCarroComprasService.eliminarProducto(
+    return this.detalleCarroComprasService.quitarProductoDelCarro(
       idCarroCompra,
       idProducto,
     );
   }
+  //#endregion
 }

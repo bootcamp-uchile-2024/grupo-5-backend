@@ -1,7 +1,6 @@
+import { Comuna } from 'src/comuna/entities/comuna.entity';
+import { Usuario } from 'src/usuarios/entities/usuarios.entity';
 import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { Usuario } from './usuarios.entity';
-import { Comuna } from './comunas.entity';
-import { UsuarioDto } from '../dto/read-usuario.dto';
 
 @Entity('direcciones')
 export class Direcciones {

@@ -2,9 +2,9 @@ import { Mascota } from 'src/mascotas/entities/mascotas.entity';
 import { Pedido } from 'src/productos/entities/pedidos.entity';
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { AvatarUsuarios } from './avatarusuarios.entity';
-import { Direcciones } from './direcciones.entity';
 import { Roles } from './roles.entity';
 import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
+import { Direcciones } from 'src/direcciones/entities/direcciones.entity';
 
 @Entity('usuarios')
 export class Usuario {

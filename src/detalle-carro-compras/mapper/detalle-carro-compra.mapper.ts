@@ -11,7 +11,7 @@ export class detalleCarroCompraMapper {
 
     dto.idCarroCompra = entity.carroCompra.idCarroCompra;
     dto.idProducto = entity.producto.idProducto;
-    dto.cantidad = entity.cantidad;
+    //dto.cantidad = entity.cantidad;
     dto.precioUnitario = entity.precioUnitario;
     return dto;
   }
@@ -26,7 +26,7 @@ export class detalleCarroCompraMapper {
     
     entity.carroCompra = carroCompra;
     entity.producto = producto;
-    entity.cantidad = dto.cantidad;
+    entity.cantidad = 1;
     entity.precioUnitario = dto.precioUnitario;
     return entity;
   }

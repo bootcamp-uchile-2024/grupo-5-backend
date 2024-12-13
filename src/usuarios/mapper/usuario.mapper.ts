@@ -15,7 +15,7 @@ export class UsuarioMapper {
       entity.telefono = parseInt(dto.telefono.replace('+56', ''), 10); // Convertir teléfono a entero
       entity.contrasena = dto.contrasena;
       entity.chkOfertas = dto.chkOfertas;
-      entity.chkTerminos = dto.chkTerminos;
+      entity.chkTerminos = true;
       entity.activo = dto.activo;
      return entity;
   }
@@ -32,7 +32,7 @@ export class UsuarioMapper {
     entity.telefono = parseInt(dto.telefono.replace('+56', ''), 10); // Convertir teléfono a entero
     entity.contrasena = dto.contrasena;
     entity.chkOfertas = dto.chkOfertas;
-    entity.chkTerminos = dto.chkTerminos;
+    entity.chkTerminos = true;
     entity.activo = true;
     return entity;
   }

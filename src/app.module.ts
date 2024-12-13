@@ -5,7 +5,6 @@ import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CarrocomprasModule } from './carro-compras/carro-compra.module';
 import { CarroCompra } from './carro-compras/entities/carro-compra.entity';
 import { VariablesDeEntorno } from './commons/config/validation.config';
 import { LoggingMiddleware } from './commons/middleware/logging.middleware';
@@ -30,9 +29,8 @@ import { Pedido } from './productos/entities/pedidos.entity';
 import { Producto } from './productos/entities/producto.entity';
 import { ProductosModule } from './productos/productos.module';
 import { AvatarUsuarios } from './usuarios/entities/avatarusuarios.entity';
-import { Comuna } from './usuarios/entities/comunas.entity';
-import { Direcciones } from './usuarios/entities/direcciones.entity';
-import { Region } from './usuarios/entities/regiones.entity';
+import { Comuna } from './comuna/entities/comuna.entity';
+import { Region } from './region/entities/region.entity';
 import { Roles } from './usuarios/entities/roles.entity';
 import { Usuario } from './usuarios/entities/usuarios.entity';
 import { UsuariosModule } from './usuarios/usuarios.module';
@@ -44,6 +42,11 @@ import { CategoriaProducto } from './categoria-producto/entities/categoria-produ
 import { DescuentosModule } from './descuentos/descuentos.module';
 import { Descuento } from './descuentos/entities/descuento.entity';
 import { DetalleDescuento } from './descuentos/entities/detalle-descuento.entity';
+import { CarroComprasModule } from './carro-compras/carro-compra.module';
+import { DireccionesModule } from './direcciones/direcciones.module';
+import { Direcciones } from './direcciones/entities/direcciones.entity';
+import { ComunaModule } from './comuna/comuna.module';
+import { RegionModule } from './region/region.module';
 
 
 // imports: [
@@ -129,11 +132,14 @@ import { DetalleDescuento } from './descuentos/entities/detalle-descuento.entity
     ProductosModule,
     EquipoModule,
     ConexionModule,
-    CarrocomprasModule,
+    CarroComprasModule,
     DetalleCarroComprasModule,
     MarcaProductoModule,
     CategoriaProductoModule,
     DescuentosModule,
+    DireccionesModule,
+    ComunaModule,
+    RegionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

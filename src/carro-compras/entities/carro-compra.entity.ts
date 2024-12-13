@@ -14,9 +14,6 @@ export class CarroCompra {
   @Column({ name: 'fechacreacion' })
   fechaCreacion: Date;
 
-  @Column({ name: 'preciototal' })
-  precioTotal: number;
-
   @OneToMany(() => DetalleCarroCompra, (dc) => dc.carroCompra)
   detallesCarro: DetalleCarroCompra[];
 

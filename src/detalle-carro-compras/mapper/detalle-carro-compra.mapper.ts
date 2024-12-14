@@ -16,7 +16,7 @@ export class detalleCarroCompraMapper {
     return dto;
   }
 
-  static dtoToDetalleCarroCompraEntity(dto: CreateDetalleCarroCompraDto): DetalleCarroCompra {
+  static dtoCreateToDetalleCarroCompraEntity(dto: CreateDetalleCarroCompraDto): DetalleCarroCompra {
     const entity = new DetalleCarroCompra();
     const carroCompra = new CarroCompra();
     carroCompra.idCarroCompra = dto.idCarroCompra;

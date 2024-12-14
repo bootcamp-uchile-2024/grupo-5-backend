@@ -4,15 +4,33 @@ import { CreateComunaDto } from './dto/create-comuna.dto';
 import { UpdateComunaDto } from './dto/update-comuna.dto';
 import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Gestión de Regiones')
+@ApiTags('Gestión de Comunas')
 @Controller('comuna')
 export class ComunaController {
   constructor(private readonly comunaService: ComunaService) {}
 
+  //#region Crear una comuna
+  @ApiOperation({
+    summary: 'Comunas - Crear Comuna',
+    description:'Crear una comuna',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Comuna creada.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Comuna no creada.',
+  })
+  @ApiBody({
+    type: CreateComunaDto,
+  })
+  @UsePipes(new ValidationPipe())
   @Post()
   create(@Body() createComunaDto: CreateComunaDto) {
     return this.comunaService.create(createComunaDto);
   }
+  //#endregion
 
   //#region Listar todas las comunas
   @ApiOperation({
@@ -73,7 +91,7 @@ export class ComunaController {
     status: 404,
     description: 'Comuna no encontrada.',
   })
-  // @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe())
   @ApiParam({
     name: 'idComuna',
     description: 'ID de la comuna',
@@ -90,8 +108,30 @@ export class ComunaController {
   }
   //#endregion
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.comunaService.remove(+id);
+  //#region Eliminar una comuna
+  @ApiOperation({
+    summary: 'Comunas - Eliminar Comuna',
+    description:'Eliminar una comuna',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Comuna eliminada.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Comuna no encontrada.',
+  })
+  @ApiParam({
+    name: 'idComuna',
+    description: 'ID de la comuna',
+    type: 'number',
+    required: true,
+    example: 13101,
+  })
+  @UsePipes(new ValidationPipe())
+  @Delete(':idComuna')
+  remove(@Param('idComuna') idComuna: string) {
+    return this.comunaService.remove(+idComuna);
   }
+  //#endregion
 }

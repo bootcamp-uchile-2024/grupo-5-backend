@@ -153,16 +153,16 @@ create table detalles_pedidos
 /*==============================================================*/
 create table direcciones
 (
-   iddireccion          bigint not null auto_increment  comment '',
-   idusuario            bigint not null  comment '',
-   idcomuna             int  comment '',
-   alias                varchar(100) not null  comment '',
-   calle                longtext not null  comment '',
-   numero               char(10) not null  comment '',
-   referencias          varchar(1000) not null  comment '',
-   personacontacto      varchar(100) not null  comment '',
-   telefonocontacto    numeric(11,0) not null  comment '',
-   activo               int not null  comment '',
+   iddireccion          bigint not null auto_increment  comment 'Identificador único de la dirección.',
+   alias                varchar(100) not null  comment 'Nombre o alias para identificar la dirección (por ejemplo, Casa, Oficina).',
+   calle                longtext not null  comment 'Nombre de la calle o avenida de la dirección.',
+   numero               char(10) not null  comment 'Número de la casa o edificio.',
+   referencias          varchar(1000) not null  comment 'Referencias adicionales para ubicar la dirección.',
+   personacontacto      varchar(100) not null  comment 'Nombre de la persona de contacto asociada a la dirección.',
+   telefonocontacto     numeric(11,0) not null  comment 'Número de teléfono de la persona de contacto.',
+   activo               int not null  comment 'Estado de la dirección: 1 para activa, 0 para inactiva.',
+   idusuario            bigint not null  comment 'Identificador del usuario al que pertenece la dirección.',
+   idcomuna             int  comment 'Identificador de la comuna asociada a la dirección.',
    primary key (iddireccion)
 );
 

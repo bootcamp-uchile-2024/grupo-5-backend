@@ -18,6 +18,7 @@ import * as bodyParser from 'body-parser';
 import { CarroComprasModule } from './carro-compras/carro-compra.module';
 import { RegionModule } from './region/region.module';
 import { ComunaModule } from './comuna/comuna.module';
+import { DireccionModule } from './direccion/direccion.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -52,15 +53,13 @@ async function bootstrap() {
       ArchivoPackageJson.mail,
     )
     .setLicense(ArchivoPackageJson.license, '')
-    .addTag('Crear Usuarios')
-    .addTag('Registrar Usuarios')
-    .addTag('Buscar Usuarios')
-    .addTag('Actualizar Usuarios')
-    .addTag('Eliminar Usuarios')
+    .addTag('Gestión de Usuarios')
     .addTag('Gestión de Regiones')
+    .addTag('Gestión de Comunas')
+    .addTag('Gestión de Direcciones')
     .build();
   const document1 = SwaggerModule.createDocument(app, config1, {
-    include: [AppModule, UsuariosModule, RegionModule, ComunaModule],
+    include: [AppModule, UsuariosModule, RegionModule, ComunaModule, DireccionModule],
   });
   SwaggerModule.setup('api/usuario', app, document1, {
     customSiteTitle: 'Usuarios - API Petropolis',

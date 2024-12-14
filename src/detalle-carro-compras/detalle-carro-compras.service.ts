@@ -73,7 +73,7 @@ export class DetalleCarroComprasService {
 
       // Mapear el DTO a la entidad
       const detalleCarroCompra: DetalleCarroCompra =
-        detalleCarroCompraMapper.dtoToDetalleCarroCompraEntity(
+        detalleCarroCompraMapper.dtoCreateToDetalleCarroCompraEntity(
           createDetalleCarroCompraDto,
         );
 
@@ -87,7 +87,7 @@ export class DetalleCarroComprasService {
       const totalizarDetalleCarro =
         await this.calcularTotalDetalleCarro(idCarroCompra);
       //this.updatePrecioTotalCarro(idCarroCompra, totalizarDetalleCarro);
-
+        console.log('totalizarDetalleCarro: ', totalizarDetalleCarro);
       return detalleCarroCompra;
     } catch (error) {
       throw new Error(

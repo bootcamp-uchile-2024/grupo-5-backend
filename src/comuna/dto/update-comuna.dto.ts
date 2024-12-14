@@ -5,7 +5,7 @@ import { IsIn, IsInt, IsNotEmpty, IsString } from 'class-validator';
 export class UpdateComunaDto {
 
     @ApiProperty({
-        name: 'idregion',
+        name: 'idRegion',
         description: 'Identificador de la región',
         example: 13})
     @IsInt({
@@ -13,7 +13,7 @@ export class UpdateComunaDto {
     idRegion: number;
 
     @ApiProperty({
-        name: 'nombrecomuna',
+        name: 'nombreComuna',
         description: 'Nombre de la comuna',
         example: 'Santiago'})
     @IsString({

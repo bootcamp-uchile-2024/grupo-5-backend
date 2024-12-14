@@ -1,10 +1,10 @@
+import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
 import { Mascota } from 'src/mascotas/entities/mascotas.entity';
 import { Pedido } from 'src/productos/entities/pedidos.entity';
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { AvatarUsuarios } from './avatarusuarios.entity';
 import { Roles } from './roles.entity';
-import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
-import { Direcciones } from 'src/direcciones/entities/direcciones.entity';
+import { Direccion } from 'src/direccion/entities/direccion.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -54,8 +54,8 @@ export class Usuario {
     @JoinColumn({ name: 'idImagenAvatar' })
     avatar: number;
 
-    @OneToMany(() => Direcciones, (direccion) => direccion.usuario)
-    direcciones: Direcciones[];
+    @OneToMany(() => Direccion, (direccion) => direccion.usuario)
+    direcciones: Direccion[];
 
     @OneToMany(() => Pedido, (pedido) => pedido.usuario)
     pedidos: Pedido[];

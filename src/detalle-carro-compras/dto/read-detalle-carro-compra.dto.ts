@@ -13,4 +13,7 @@ export class ReadDetalleCarroCompraDto {
   
     @ApiProperty({ description: 'Lista de productos en este detalle', type: [Producto], required: false })
     productos?: Producto[];
+
+    @ApiProperty({ description: 'Total del carro de compras' })
+    totalCarro: number;
   }

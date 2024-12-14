@@ -43,8 +43,6 @@ export class DetalleCarroComprasController {
     @Param('idCarroCompra') idCarroCompra: number,
     @Param('idProducto') idProducto: number,
   ) {
-    console.log('### idCarroCompra', idCarroCompra);
-    console.log('### idProducto', idProducto);
      return this.detalleCarroComprasService.agregarProducto(
       idCarroCompra,
       idProducto,

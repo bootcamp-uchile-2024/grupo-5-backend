@@ -1,17 +1,11 @@
 import { Comuna } from 'src/comuna/entities/comuna.entity';
 import { Usuario } from 'src/usuarios/entities/usuarios.entity';
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('direcciones')
-export class Direcciones {
-    @PrimaryColumn({ name: 'iddireccion' })
+export class Direccion {
+    @PrimaryGeneratedColumn({ name: 'iddireccion' })
     idDireccion: number;
-
-    @Column({ name: 'idusuario' })
-    idUsuario: number;
-
-    @Column({ name: 'idcomuna' })
-    idComuna: number;
 
     @Column({ name: 'alias' })
     alias: string;
@@ -22,9 +16,6 @@ export class Direcciones {
     @Column({ name: 'numero' })
     numero: string;
 
-    @Column({ name: 'depto' })
-    zipCode: number;
-
     @Column({ name: 'referencias' })
     referencias: string;
 
@@ -34,11 +25,14 @@ export class Direcciones {
     @Column({ name: 'telefonocontacto' })
     telefonoContacto: number;
 
+    @Column({ name: 'activo'})
+    activo: boolean;
+    
     @ManyToOne(() => Usuario)
-    @JoinColumn({ name: 'idusuario' }) 
+    @JoinColumn({ name: 'idUsuario' }) 
     usuario: Usuario;
 
     @ManyToOne(() => Comuna)
-    @JoinColumn({ name: 'idcomuna' }) 
+    @JoinColumn({ name: 'idComuna' }) 
     comuna: Comuna;
 }

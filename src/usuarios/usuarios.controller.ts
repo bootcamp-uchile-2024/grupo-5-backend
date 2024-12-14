@@ -25,6 +25,7 @@ import { ActualizaUsuarioDto } from './dto/update-usuario.dto';
 import { RegisterUsuarioDto } from './dto/register-usuario.dto';
 import { UsuarioService } from './usuarios.service';
 
+@ApiTags('Gestión de Usuarios')
 @Controller('usuarios')
 export class UsuarioController {
   //#region Constructor
@@ -32,7 +33,6 @@ export class UsuarioController {
   //#endregion
   
   //#region Obtener todos los usuarios
-  @ApiTags('Buscar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.1: Obtener el listado de todos los usuarios',
     description:
@@ -49,7 +49,6 @@ export class UsuarioController {
   //#endregion
 
   //#region Obtener Usuario por RUT
-  @ApiTags('Buscar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.2: Obtener Usuario por RUT',
     description:
@@ -65,7 +64,6 @@ export class UsuarioController {
   //#endregion
 
   //#region Crear Usuario
-  @ApiTags('Crear Usuarios')
   @ApiOperation({
     summary: 'HU 1.1: Crear Nuevo Usuario',
     description:
@@ -82,7 +80,6 @@ export class UsuarioController {
   //#endregion
 
   //#region Actualizar Usuario
-  @ApiTags('Registrar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1: Crear Nuevo Usuario - Registrar Usuario',
     description:
@@ -100,7 +97,6 @@ export class UsuarioController {
   //#endregion
 
   //#region Actualizar Usuario
-  @ApiTags('Actualizar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.3: Actualizar usuario por RUT',
     description:
@@ -121,7 +117,6 @@ export class UsuarioController {
   //#endregion
 
   //#region Eliminar Usuario
-  @ApiTags('Eliminar Usuarios')
   @ApiOperation({
     summary: 'HU 1.1.4: Eliminar usuario por su RUT',
     description:
@@ -139,7 +134,6 @@ export class UsuarioController {
   //#endregion
 
   //#region Activar Usuario
-  @ApiTags('Activar Usuario')
   @ApiOperation({
     summary: 'HU 1.1.5: Activar Usuario por su RUT',
     description:

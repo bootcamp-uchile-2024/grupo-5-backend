@@ -43,10 +43,10 @@ import { DescuentosModule } from './descuentos/descuentos.module';
 import { Descuento } from './descuentos/entities/descuento.entity';
 import { DetalleDescuento } from './descuentos/entities/detalle-descuento.entity';
 import { CarroComprasModule } from './carro-compras/carro-compra.module';
-import { DireccionesModule } from './direcciones/direcciones.module';
-import { Direcciones } from './direcciones/entities/direcciones.entity';
 import { ComunaModule } from './comuna/comuna.module';
 import { RegionModule } from './region/region.module';
+import { DireccionModule } from './direccion/direccion.module';
+import { Direccion } from './direccion/entities/direccion.entity';
 
 
 // imports: [
@@ -106,7 +106,7 @@ import { RegionModule } from './region/region.module';
         DetalleDescuento,
         DetalleCarroCompra,
         DetallesPedidos,
-        Direcciones,
+        Direccion,
         Enfermedad_Base,
         Especie,
         Frecuencia,
@@ -137,9 +137,10 @@ import { RegionModule } from './region/region.module';
     MarcaProductoModule,
     CategoriaProductoModule,
     DescuentosModule,
-    DireccionesModule,
+    DireccionModule,
     ComunaModule,
     RegionModule,
+    DireccionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

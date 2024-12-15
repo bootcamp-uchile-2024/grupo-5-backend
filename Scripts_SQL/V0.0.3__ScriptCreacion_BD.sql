@@ -56,9 +56,8 @@ create table calendarios
 /*==============================================================*/
 create table carro_compras
 (
-   idusuario            bigint not null  comment '',
    idcarrocompras       bigint not null auto_increment  comment '',
-   fechacreacion        timestamp not null  comment '',
+   idusuario            bigint not null  comment '',
    primary key (idcarrocompras)
 );
 

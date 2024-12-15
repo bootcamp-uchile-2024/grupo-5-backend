@@ -12,6 +12,7 @@ import { AvatarUsuarios } from './entities/avatarusuarios.entity';
 import { Usuario } from './entities/usuarios.entity';
 import { UsuarioMapper } from './mapper/usuario.mapper';
 import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
+import { CarroCompraMapper } from 'src/carro-compras/mapper/carro-compra.mapper';
 
 @Injectable()
 export class UsuarioService {
@@ -70,34 +71,34 @@ export class UsuarioService {
 
   //#region Registrar un nuevo usuario
   async register(registerUsuarioDto: RegisterUsuarioDto): Promise<Usuario> {
-    // // Verificar si el RUT ya está registrado
-    // const usuarioExiste = await this.usuarioRepository.findOne({  where: { rut: registerUsuarioDto.rutUsuario } });
-    // if (usuarioExiste) {
-    //   throw new BadRequestException(
-    //     `El usuario con RUT ${registerUsuarioDto.rutUsuario} ya está registrado.`,
-    //   );
-    // }
+    // Verificar si el RUT ya está registrado
+    const usuarioExiste = await this.usuarioRepository.findOne({  where: { rut: registerUsuarioDto.rutUsuario } });
+    if (usuarioExiste) {
+      throw new BadRequestException(
+        `El usuario con RUT ${registerUsuarioDto.rutUsuario} ya está registrado.`,
+      );
+    }
     
-    // // Verificar si el correo ya está registrado
-    // const correoExiste = await this.usuarioRepository.findOne({ where: { email: registerUsuarioDto.correoElectronico } });
-    // if (correoExiste) {
-    //   throw new BadRequestException(
-    //     `El correo ${registerUsuarioDto.correoElectronico} ya está registrado.`, 
-    //   );  
-    // }
+    // Verificar si el correo ya está registrado
+    const correoExiste = await this.usuarioRepository.findOne({ where: { email: registerUsuarioDto.correoElectronico } });
+    if (correoExiste) {
+      throw new BadRequestException(
+        `El correo ${registerUsuarioDto.correoElectronico} ya está registrado.`, 
+      );  
+    }
 
     // Mapear el DTO de registro a la entidad Usuario
     const usuario = UsuarioMapper.dtoRegisterUsuarioToEntity(registerUsuarioDto);
     
     // Guardar el usuario en la base de datos
     const usuarioGuardado = await this.usuarioRepository.save(usuario);
-    // Crear Carro de Compras vacio
+    // Crear Carro de Compras vacio y mapearlo
     const carroVacio = new CreateCarroCompraDto();
     carroVacio.idUsuario = usuarioGuardado.idUsuario; 
-    carroVacio.fechaCreacion = new Date();
-
-    // Crear el carro de compras vacio para el usuario recién registrado
-    await this.carroCompraRepository.save(carroVacio);
+    const carroMapeado = CarroCompraMapper.dtoToCarroCompraEntity(carroVacio);
+    
+    // Crear el carro de compras vacio para el usuario recién registrado   
+    await this.carroCompraRepository.save(carroMapeado);
 
     return usuarioGuardado;
   }

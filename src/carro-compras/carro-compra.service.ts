@@ -1,22 +1,19 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import { UpdateCarrocompraDto } from './dto/update-carro-compra.dto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Usuario } from 'src/usuarios/entities/usuarios.entity';
+import { UsuarioService } from 'src/usuarios/usuarios.service';
 import { Repository } from 'typeorm';
 import { CreateCarroCompraDto } from './dto/create-carro-compra.dto';
-import { carroCompraMapper } from './mapper/carro-compra.mapper';
+import { UpdateCarrocompraDto } from './dto/update-carro-compra.dto';
 import { CarroCompra } from './entities/carro-compra.entity';
-import { UsuarioService } from 'src/usuarios/usuarios.service';
+import { CarroCompraMapper } from './mapper/carro-compra.mapper';
 
 @Injectable()
 export class CarroCompraService {
   constructor(
     @InjectRepository(CarroCompra)
     private CarroCompraRepository: Repository<CarroCompra>,
+
     private readonly usuarioService: UsuarioService,
   ) {}
 
@@ -25,6 +22,7 @@ export class CarroCompraService {
     id_usuario: number,
     carroCompra: CreateCarroCompraDto,
   ): Promise<CarroCompra> {
+    // Validar si el usuario existe
     const usuarioExiste = await this.usuarioService.findUsuarioById(id_usuario);
     if (!usuarioExiste) {
       throw new HttpException(
@@ -35,15 +33,24 @@ export class CarroCompraService {
         HttpStatus.NOT_FOUND,
       );
     }
+
+    // Validar si carro de compras ya existe
     const getCarroCompraByIdUsuario =
       await this.getCarroCompraByIdUsuario(id_usuario);
 
+    // Si no existe, crear carro de compras
     if (!getCarroCompraByIdUsuario) {
       const nuevoCarroCompra =
-        carroCompraMapper.dtoToCarroCompraEntity(carroCompra);
-      nuevoCarroCompra.idUsuario = id_usuario;
+      CarroCompraMapper.dtoToCarroCompraEntity(carroCompra);
+
+      const usaurio = new Usuario();
+      usaurio.idUsuario = id_usuario;
+
+      nuevoCarroCompra.usuario = usaurio;
+
       const carroCreado =
         await this.CarroCompraRepository.save(nuevoCarroCompra);
+
       throw new HttpException(
         {
           message: 'Carro de compras creado exitosamente',
@@ -65,11 +72,19 @@ export class CarroCompraService {
 
   //#region Obtener Carro de Compras por Id Usuario
   async getCarroCompraByIdUsuario(idUsuario: number): Promise<CarroCompra> {
+    // Buscar carro de compras por idUsuario
     const carroBuscado = await this.CarroCompraRepository.findOne({
-      where: { idUsuario },
+      where: { usuario: { idUsuario: idUsuario } },
       relations: ['detallesCarro', 'detallesCarro.producto'],
     });
 
+    //Obtner Carro Actual
+    const carroActual = await this.CarroCompraRepository.findOne({
+      where: { usuario: { idUsuario: idUsuario } },
+      relations: ['detallesCarro', 'detallesCarro.producto'],
+    });
+
+    // Si carro de compra no existe, retornar null
     if (!carroBuscado) {
       return null;
     }
@@ -107,4 +122,3 @@ export class CarroCompraService {
     return `This action removes a #${id} carrocompra`;
   }
 }
- 

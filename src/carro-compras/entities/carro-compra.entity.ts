@@ -1,6 +1,13 @@
 import { DetalleCarroCompra } from 'src/detalle-carro-compras/entities/detalle-carro-compra.entity';
 import { Usuario } from 'src/usuarios/entities/usuarios.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('carro_compras')
 export class CarroCompra {
@@ -8,13 +15,9 @@ export class CarroCompra {
   idCarroCompra: number;
 
   @ManyToOne(() => Usuario)
-  @JoinColumn({ name: 'idusuario' })
-  idUsuario: number;
-
-  @Column({ name: 'fechacreacion' })
-  fechaCreacion: Date;
+  @JoinColumn({ name: 'idUsuario' })
+  usuario: Usuario;
 
   @OneToMany(() => DetalleCarroCompra, (dc) => dc.carroCompra)
   detallesCarro: DetalleCarroCompra[];
-
 }

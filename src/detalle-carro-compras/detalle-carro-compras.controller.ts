@@ -10,7 +10,7 @@ import {
 import { DetalleCarroComprasService } from './detalle-carro-compras.service';
 import { CreateDetalleCarroCompraDto } from './dto/create-detalle-carro-compra.dto';
 import { UpdateDetalleCarrocompraDto } from './dto/update-detalle-carro-compra.dto';
-import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('detalle-carro-compras')
 export class DetalleCarroComprasController {
@@ -143,6 +143,11 @@ disminuirProductoEnCarro(
     description:
       '<strong>HU 5.1 - Carrito de Compra:<br></strong> Como "Pet lover" quiero un carrito de compra que permita añadir y editar varios productos, para gestionar mis compras con facilidad.',
   })
+  @ApiResponse({
+    status: 200,
+    description: 'Producto eliminado del carro de compras',
+  })
+  
   @ApiParam({
     name: 'idCarroCompra',
     description: 'Id del carro de compras',
@@ -155,7 +160,7 @@ disminuirProductoEnCarro(
     required: true,
     example: 1,
   })
-  @Delete(':idCarroCompra,:idProducto')
+  @Delete('eliminarProducto/:idCarroCompra,:idProducto')
   quitarProductoDelCarro(
     @Param('idCarroCompra') idCarroCompra: number,
     @Param('idProducto') idProducto: number,

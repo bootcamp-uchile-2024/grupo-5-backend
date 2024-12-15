@@ -78,6 +78,33 @@ export class ComunaController {
   }
   //#endregion
 
+  //#region Buscar comunas por region
+  @ApiOperation({
+    summary: 'Comunas - Buscar Comunas por Región',
+    description:'Buscar comunas por región',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Comunas encontradas.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Comunas no encontradas.',
+  })
+  @UsePipes(new ValidationPipe())
+  @ApiParam({
+    name: 'idRegion',
+    description: 'ID de la región',
+    type: 'number',
+    required: true,
+    example: 13,
+  })
+  @Get('region/:idRegion')
+  findByRegion(@Param('idRegion') idRegion: number) {
+    return this.comunaService.findByRegion(idRegion);
+  }
+  //#endregion
+
   //#region Actualizar una comuna
   @ApiOperation({
     summary: 'Comunas - Actualizar Comuna',

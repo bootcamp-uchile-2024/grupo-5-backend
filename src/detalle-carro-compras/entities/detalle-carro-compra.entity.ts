@@ -7,21 +7,21 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 @Entity('detalles_carro_compra')
 export class DetalleCarroCompra {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name : 'iddetallecarro'})
   idDetalleCarro: number;
 
   @ManyToOne(() => CarroCompra)
-  @JoinColumn({name : 'idcarrocompras'})	
+  @JoinColumn({name : 'idCarroCompras'})	
   carroCompra: CarroCompra;
 
   @ManyToOne(() => Producto)
-  @JoinColumn({name : 'idproducto'})
+  @JoinColumn({name : 'idProducto'})
   producto: Producto;
 
   @Column({name : 'cantidad'})
   cantidad: number;
 
-  @Column({name : 'precioUnitario'})
+  @Column({name : 'preciounitario'})
   precioUnitario: number;
 
 }

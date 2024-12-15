@@ -63,6 +63,21 @@ export class ComunaService {
   }
   //#endregion
 
+  //#Region Buscar una comunas por region
+  async findByRegion(idRegion: number): Promise<Comuna[]> {
+    const comunasEncontradas = await this.comunaRepository.find({
+      where: { region: { idRegion } }, 
+      order: { nombreComuna: 'ASC' },
+    });
+    if (!comunasEncontradas) {
+      throw new NotFoundException(
+        `La comuna con ID ${idRegion} no fue encontrada`,
+      );
+    }
+    return comunasEncontradas;
+  }
+
+
   //#region Actualizar una comuna
   async update(id: number, updateComunaDto: UpdateComunaDto) {
     // Buscar la comuna existente

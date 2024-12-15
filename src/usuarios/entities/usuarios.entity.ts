@@ -60,7 +60,7 @@ export class Usuario {
     @OneToMany(() => Pedido, (pedido) => pedido.usuario)
     pedidos: Pedido[];
 
-    @OneToMany(() => CarroCompra, (carro) => carro.idUsuario)
+    @OneToMany(() => CarroCompra, (cc) => cc.usuario)
     carroCompra: CarroCompra[];
 
     @ManyToMany(() => Mascota, (mascota) => mascota.usuarios)

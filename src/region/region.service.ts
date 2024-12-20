@@ -4,6 +4,7 @@ import { UpdateRegionDto } from './dto/update-region.dto';
 import { In, Not, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Region } from './entities/region.entity';
+import { Comuna } from 'src/comuna/entities/comuna.entity';
 
 @Injectable()
 export class RegionService {
@@ -11,6 +12,8 @@ export class RegionService {
   constructor(
     @InjectRepository(Region)
     private regionRepository: Repository<Region>,
+    @InjectRepository(Comuna)
+    private comunaRepository: Repository<Comuna>
   ) {}
 
   create(createRegionDto: CreateRegionDto) {
@@ -32,6 +35,9 @@ export class RegionService {
     return regionEncontrada
   }
   //#endregion
+
+
+ 
 
   //#region Actualizar una región
   async update(id: number, updateRegionDto: UpdateRegionDto): Promise<Region> {

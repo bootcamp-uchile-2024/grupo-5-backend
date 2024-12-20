@@ -23,7 +23,7 @@ export class Direccion {
     personaContacto: string;
 
     @Column({ name: 'telefonocontacto' })
-    telefonoContacto: number;
+    telefonoContacto: string;
 
     @Column({ name: 'activo'})
     activo: boolean;

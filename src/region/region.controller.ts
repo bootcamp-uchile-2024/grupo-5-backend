@@ -1,8 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, UsePipes } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ValidationPipe,
+  UsePipes,
+} from '@nestjs/common';
 import { RegionService } from './region.service';
 import { CreateRegionDto } from './dto/create-region.dto';
 import { UpdateRegionDto } from './dto/update-region.dto';
-import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('Gestión de Regiones')
 @Controller('region')
@@ -17,8 +33,7 @@ export class RegionController {
   //#region Listar todas las regiones
   @ApiOperation({
     summary: 'Regiones - Listar Regiones',
-    description:
-      'Listar todas las regiones',
+    description: 'Listar todas las regiones',
   })
   @ApiResponse({
     status: 200,
@@ -37,8 +52,7 @@ export class RegionController {
   //#region Buscar una región por ID
   @ApiOperation({
     summary: 'Regiones - Buscar Región por ID',
-    description:
-      'Buscar una región por ID',
+    description: 'Buscar una región por ID',
   })
   @ApiResponse({
     status: 200,
@@ -55,17 +69,16 @@ export class RegionController {
     required: true,
     example: 13,
   })
-  @Get(':idRegion')
+  @Get('region/:idRegion')
   findOne(@Param('idRegion', new ValidationPipe()) idRegion: number) {
-      return this.regionService.findOne(+idRegion);
+    return null; // this.regionService.findOne(+idRegion);
   }
   //#endregion
 
   //#region Actualizar una región
   @ApiOperation({
     summary: 'Regiones - Actualizar Región',
-    description:
-      'Actualizar una región',
+    description: 'Actualizar una región',
   })
   @ApiResponse({
     status: 200,
@@ -84,7 +97,10 @@ export class RegionController {
   })
   @ApiBody({ type: UpdateRegionDto })
   @Patch(':idRegion')
-  update(@Param('idRegion', new ValidationPipe()) idRegion: string, @Body(new ValidationPipe()) updateRegionDto: UpdateRegionDto) {
+  update(
+    @Param('idRegion', new ValidationPipe()) idRegion: string,
+    @Body(new ValidationPipe()) updateRegionDto: UpdateRegionDto,
+  ) {
     return this.regionService.update(+idRegion, updateRegionDto);
   }
   //#endregion

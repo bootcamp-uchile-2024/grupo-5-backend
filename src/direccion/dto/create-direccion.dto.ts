@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreateDireccionDto {
   @ApiProperty({
@@ -76,13 +76,15 @@ export class CreateDireccionDto {
   @ApiProperty({
     name: 'telefonoContacto',
     description: 'Teléfono de contacto',
-    type: 'number',
+    type: 'string',
     nullable: false,
+    maxLength: 11,
     example: 56912345678,
+
   })
-  @IsInt({ message: 'El teléfono de contacto debe ser un entero' })
+  @Length(8, 11, { message: 'El teléfono de contacto debe tener entre 8 y 11 dígitos' })
   @IsNotEmpty({ message: 'Debe ingresar un teléfono de contacto' })
-  telefonoContacto: number;
+  telefonoContacto: string;
 
 
 }

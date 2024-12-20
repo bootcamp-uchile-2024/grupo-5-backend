@@ -3,10 +3,12 @@ import { RegionService } from './region.service';
 import { RegionController } from './region.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Region } from './entities/region.entity';
+import { Comuna } from 'src/comuna/entities/comuna.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
+      Comuna, 
       Region
     ]),
   ],

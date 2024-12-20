@@ -1,17 +1,14 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { DireccionService } from './direccion.service';
-import { CreateDireccionDto } from './dto/create-direccion.dto';
-import { UpdateDireccionDto } from './dto/update-direccion.dto';
 import {
   ApiBody,
   ApiOperation,
@@ -19,6 +16,9 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { DireccionService } from './direccion.service';
+import { CreateDireccionDto } from './dto/create-direccion.dto';
+import { UpdateDireccionDto } from './dto/update-direccion.dto';
 
 @ApiTags('Gestión de Direcciones')
 @Controller('direccion')
@@ -52,7 +52,8 @@ export class DireccionController {
   //#region Listar todas las direcciones
   @ApiOperation({
     summary: 'Direcciones - Listar todas las Direcciones del Usuario',
-    description: 'Listar todas las direcciones del usuario incluyendo las inactivas',
+    description:
+      'Listar todas las direcciones del usuario incluyendo las inactivas',
   })
   @ApiResponse({
     status: 200,
@@ -130,35 +131,36 @@ export class DireccionController {
 
   //#region Actualizar una dirección por ID
   @ApiOperation({
-    summary: 'Direcciones - Actualizar Dirección',
-    description: 'Actualizar una dirección por por su Id',
+    summary: 'Actualizar Dirección',
+    description: 'Permite actualizar una dirección existente utilizando su ID.',
   })
   @ApiResponse({
     status: 200,
-    description: 'Dirección actualizada.',
+    description: 'La dirección fue actualizada correctamente.',
   })
   @ApiResponse({
     status: 404,
-    description: 'Dirección no encontrada.',
+    description: 'No se encontró la dirección con el ID proporcionado.',
   })
   @ApiParam({
     name: 'idDireccion',
-    description: 'ID de la dirección',
-    type: 'number',
+    description: 'ID único de la dirección que se desea actualizar.',
+    type: Number,
     required: true,
     example: 1,
   })
   @ApiBody({
     type: UpdateDireccionDto,
-    description: 'Ingrese los datos de la dirección',
+    description: 'Objeto con los datos actualizados de la dirección.',
   })
   @UsePipes(new ValidationPipe())
   @Patch(':idDireccion')
-  update(
+  async update(
     @Param('idDireccion') idDireccion: number,
     @Body() updateDireccionDto: UpdateDireccionDto,
   ) {
-    return this.direccionService.update(+idDireccion, updateDireccionDto);
+    console.log('Incoming DTO:', updateDireccionDto);
+    return this.direccionService.update(idDireccion, updateDireccionDto);
   }
   //#endregion
 
@@ -169,7 +171,7 @@ export class DireccionController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Dirección eliminada.',
+    description: 'Dirección eliminada satisfactoriamente.',
   })
   @ApiResponse({
     status: 404,

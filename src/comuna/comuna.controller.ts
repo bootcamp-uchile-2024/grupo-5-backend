@@ -148,6 +148,7 @@ export class ComunaController {
     status: 404,
     description: 'Comuna no encontrada.',
   })
+  @UsePipes(new ValidationPipe())
   @ApiParam({
     name: 'idComuna',
     description: 'ID de la comuna',
@@ -155,7 +156,6 @@ export class ComunaController {
     required: true,
     example: 13101,
   })
-  @UsePipes(new ValidationPipe())
   @Delete(':idComuna')
   remove(@Param('idComuna') idComuna: string) {
     return this.comunaService.remove(+idComuna);

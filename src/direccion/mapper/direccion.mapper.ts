@@ -8,17 +8,22 @@ import { UpdateDireccionDto } from "../dto/update-direccion.dto";
 export class direccionMapper{
     static entityToReadDtoDireccion(entity: Direccion): ReadDireccionDto{
         const dto = new ReadDireccionDto();
+
+       
         
+        // console.log('Entity Usuario: ', entity.usuario);
+        // console.log('Entity Usuario: ', entity.usuario.idUsuario);
+        // console.log('Entity: ', entity);
         dto.idDireccion = entity.idDireccion;
+        dto.activo = entity.activo; 
         dto.idUsuario = entity.usuario.idUsuario;
-        dto.idComuna = entity.comuna.idComuna;
         dto.alias = entity.alias;
         dto.calle = entity.calle;
         dto.numero = entity.numero;
         dto.referencias = entity.referencias;
         dto.personaContacto = entity.personaContacto;
         dto.telefonoContacto = entity.telefonoContacto;
-        dto.activo = entity.activo; 
+        dto.comuna = entity.comuna;
         return dto;
     }
 
@@ -45,6 +50,7 @@ export class direccionMapper{
         const entity = new Direccion();
         const comuna = new Comuna();
         comuna.idComuna = dto.idComuna;
+        
 
         entity.comuna = comuna;
         entity.alias = dto.alias;

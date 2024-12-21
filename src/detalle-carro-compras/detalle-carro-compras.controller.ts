@@ -43,7 +43,7 @@ export class DetalleCarroComprasController {
     @Param('idCarroCompra') idCarroCompra: number,
     @Param('idProducto') idProducto: number,
   ) {
-     return this.detalleCarroComprasService.agregarProducto(
+    return this.detalleCarroComprasService.agregarProducto(
       idCarroCompra,
       idProducto,
     );
@@ -98,42 +98,42 @@ export class DetalleCarroComprasController {
   ) {
     return this.detalleCarroComprasService.incrementarProductoEnCarro(
       idCarroCompra,
-      idProducto
+      idProducto,
     );
   }
   //#endregion
 
-//#region Disminuir Cantidad de Producto ya Agregado al Carro de Compras
-@ApiTags('Carro de Compras')
-@ApiOperation({
-  summary:
-    'HU 5.1: Carrito de Compras - Disminuir Cantidad de Producto ya Agregado al Carro de Compras',
-  description:
-    '<strong>HU 5.1 - Carrito de Compra:<br></strong> Como "Pet lover" quiero un carrito de compra que permita añadir y editar varios productos, para gestionar mis compras con facilidad.',
-})
-@ApiParam({
-  name: 'idCarroCompra',
-  description: 'Id del carro de compras',
-  required: true,
-  example: 1,
-})
-@ApiParam({
-  name: 'idProducto',
-  description: 'Id del producto',
-  required: true,
-  example: 1,
-})
-@Patch('disminuirProducto/:idCarroCompra/:idProducto')
-disminuirProductoEnCarro(
-  @Param('idCarroCompra') idCarroCompra: number,
-  @Param('idProducto') idProducto: number,
-) {
-  return this.detalleCarroComprasService.disminuirProductoEnCarro(
-    +idCarroCompra,
-    +idProducto
-  );
-}
-//#endregion
+  //#region Disminuir Cantidad de Producto ya Agregado al Carro de Compras
+  @ApiTags('Carro de Compras')
+  @ApiOperation({
+    summary:
+      'HU 5.1: Carrito de Compras - Disminuir Cantidad de Producto ya Agregado al Carro de Compras',
+    description:
+      '<strong>HU 5.1 - Carrito de Compra:<br></strong> Como "Pet lover" quiero un carrito de compra que permita añadir y editar varios productos, para gestionar mis compras con facilidad.',
+  })
+  @ApiParam({
+    name: 'idCarroCompra',
+    description: 'Id del carro de compras',
+    required: true,
+    example: 1,
+  })
+  @ApiParam({
+    name: 'idProducto',
+    description: 'Id del producto',
+    required: true,
+    example: 1,
+  })
+  @Patch('disminuirProducto/:idCarroCompra/:idProducto')
+  disminuirProductoEnCarro(
+    @Param('idCarroCompra') idCarroCompra: number,
+    @Param('idProducto') idProducto: number,
+  ) {
+    return this.detalleCarroComprasService.disminuirProductoEnCarro(
+      +idCarroCompra,
+      +idProducto,
+    );
+  }
+  //#endregion
 
   //#region Eliminar Producto del Carro de Compras
   @ApiTags('Carro de Compras')
@@ -147,7 +147,6 @@ disminuirProductoEnCarro(
     status: 200,
     description: 'Producto eliminado del carro de compras',
   })
-  
   @ApiParam({
     name: 'idCarroCompra',
     description: 'Id del carro de compras',

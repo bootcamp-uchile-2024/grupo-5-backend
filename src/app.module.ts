@@ -148,11 +148,11 @@ import { Direccion } from './direccion/entities/direccion.entity';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggingMiddleware).forRoutes('*');
-    console.log('DB Type:', process.env.DB_TYPE);
-    console.log('DB Host:', process.env.DB_HOST);
-    console.log('DB Port:', process.env.DB_PORT);
-    console.log('DB Username:', process.env.DB_USER);
-    console.log('DB Password:', process.env.DB_PASS_ROOT);
-    console.log('DB Name:', process.env.DB_NAME);
+    // console.log('DB Type:', process.env.DB_TYPE);
+    // console.log('DB Host:', process.env.DB_HOST);
+    // console.log('DB Port:', process.env.DB_PORT);
+    // console.log('DB Username:', process.env.DB_USER);
+    // console.log('DB Password:', process.env.DB_PASS_ROOT);
+    // console.log('DB Name:', process.env.DB_NAME);
   }
 }

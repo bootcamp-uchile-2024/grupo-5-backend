@@ -12,12 +12,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Direccion } from './entities/direccion.entity';
 import { ReadDireccionDto } from './dto/read-direccion.dto';
 import { direccionMapper } from './mapper/direccion.mapper';
+import { Comuna } from 'src/comuna/entities/comuna.entity';
 
 @Injectable()
 export class DireccionService {
   constructor(
     @InjectRepository(Direccion)
     private direccionRepository: Repository<Direccion>,
+    @InjectRepository(Comuna)
+    private comunaRepository: Repository<Comuna>,
   ) {}
 
   //#region Crear una dirección
@@ -36,10 +39,12 @@ export class DireccionService {
       }
       // validar si la comuna existe
       const idComuna = createDireccionDto.idComuna;
-      const comunaExistente = await this.direccionRepository.findOne({
-        where: { comuna: { idComuna } },
-        relations: ['comuna', 'comuna.region', 'usuario'],
+      const comunaExistente = await this.comunaRepository.findOne({
+        where: { idComuna },
+        relations: ['region'],
       });
+
+      console.log('>>>>>>>>>>>> comunaExistente', comunaExistente);
       if (!comunaExistente) {
         throw new NotFoundException(
           `La comuna con ID ${idComuna} no fue encontrada`,

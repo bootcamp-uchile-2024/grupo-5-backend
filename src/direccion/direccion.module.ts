@@ -3,11 +3,12 @@ import { DireccionService } from './direccion.service';
 import { DireccionController } from './direccion.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Direccion } from './entities/direccion.entity';
+import { Comuna } from 'src/comuna/entities/comuna.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      Direccion
+      Direccion, Comuna
     ]),
   ],
   controllers: [DireccionController],

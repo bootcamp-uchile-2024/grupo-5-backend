@@ -95,6 +95,7 @@ export class CarroCompraService {
 
   //#region Obtener Carro de Compras por Id Carro
   async getCarroByIdCarro(idCarro: number): Promise<CarroCompra> {
+    console.log('ID CARRO >>> ', idCarro);
     const carroBuscado = await this.CarroCompraRepository.findOne({
       where: { idCarroCompra: idCarro },
     });

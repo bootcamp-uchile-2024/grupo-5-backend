@@ -24,7 +24,7 @@ export class Usuario {
     email: string;
 
     @Column({ name: 'telefono', nullable: true })
-    telefono: number;
+    telefono: string;
 
     @Column({ name: 'contrasena',  nullable: true })
     contrasena: string;
@@ -38,17 +38,17 @@ export class Usuario {
     @Column({ name: 'activo', default: true })
     activo: boolean;
 
-    // @ManyToOne(() => Roles, (rol) => rol.usuarios)
-    // @JoinColumn({ name: 'idRol' })
-    // rol: Roles
+    @ManyToOne(() => Roles)
+    @JoinColumn({ name: 'idRol' })
+    rol: Roles;
 
     // @ManyToOne(() => AvatarUsuarios)
     // @JoinColumn({ name: 'idImagenAvatar' })
     // avatar: AvatarUsuarios;
 
-    @ManyToOne(() => Roles, (rol) => rol.idRol)
-    @JoinColumn({ name: 'idrol' })
-    idRol: number;
+    // @ManyToOne(() => Roles, (rol) => rol.idRol)
+    // @JoinColumn({ name: 'idrol' })
+    // idRol: number;
 
     @ManyToOne(() => AvatarUsuarios, (au) => au.idImagenAvatar)
     @JoinColumn({ name: 'idImagenAvatar' })
@@ -61,7 +61,7 @@ export class Usuario {
     pedidos: Pedido[];
 
     @OneToMany(() => CarroCompra, (cc) => cc.usuario)
-    carroCompra: CarroCompra[];
+    carroCompra: CarroCompra;
 
     @ManyToMany(() => Mascota, (mascota) => mascota.usuarios)
     mascotas: Mascota[];

@@ -40,6 +40,7 @@ export class CarroCompraController {
   })
   @Get(':id_usuario')
   getCarroCompraByIdUsuario(@Param('id_usuario') id_usuario: string) {
+    console.log('id_usuario', id_usuario);
     return this.carroComprasService.getCarroCompraByIdUsuario(+id_usuario);
   }
   //#endregion

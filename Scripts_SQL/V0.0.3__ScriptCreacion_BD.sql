@@ -377,7 +377,7 @@ create table usuarios
    nombres              varchar(100) not null  comment '',
    apellidos            varchar(100) not null  comment '',
    email                varchar(100) not null  comment '',
-   telefono             int  comment '',
+   telefono             varchar(11) not null  comment '',
    contrasena           varchar(100)  comment '',
    chkterminos          bool  comment '',
    chkofertas           bool  comment '',

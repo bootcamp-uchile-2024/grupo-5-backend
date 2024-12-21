@@ -5,15 +5,14 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ReadCarroComprasDto } from 'src/carro-compras/dto/read-carro-compra.dto';
 import { CarroCompra } from 'src/carro-compras/entities/carro-compra.entity';
+import { CarroCompraMapper } from 'src/carro-compras/mapper/carro-compra.mapper';
 import { Producto } from 'src/productos/entities/producto.entity';
 import { Repository } from 'typeorm';
 import { CreateDetalleCarroCompraDto } from './dto/create-detalle-carro-compra.dto';
-import { UpdateDetalleCarrocompraDto } from './dto/update-detalle-carro-compra.dto';
 import { DetalleCarroCompra } from './entities/detalle-carro-compra.entity';
 import { detalleCarroCompraMapper } from './mapper/detalle-carro-compra.mapper';
-import { ReadCarroComprasDto } from 'src/carro-compras/dto/read-carro-compra.dto';
-import { CarroCompraMapper } from 'src/carro-compras/mapper/carro-compra.mapper';
 
 @Injectable()
 export class DetalleCarroComprasService {
@@ -105,7 +104,7 @@ export class DetalleCarroComprasService {
         {
           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
           message:
-            'Ha ocurrido un error al intentar eliminar el detalle del carro de compras.',
+            'Ha ocurrido un error al intentar agregar el detalle al carro de compras.',
         },
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
@@ -321,7 +320,7 @@ export class DetalleCarroComprasService {
     carroCompra: CarroCompra,
   ): Promise<ReadCarroComprasDto> {
     const idCarroCompra = carroCompra.idCarroCompra;
-    //Obtner Carro Actualizado
+    //Obtener Carro Actualizado
     const carroActual = await this.carroCompraRepository.findOne({
       where: { idCarroCompra: idCarroCompra },
       relations: ['usuario', 'detallesCarro'],
@@ -338,13 +337,62 @@ export class DetalleCarroComprasService {
   //#endregion
 
   //#region Listar Detalles del Carro de Compras por Id Carro
-  obtenerDetalleCarroPorIdCarro(
-    idCarroCompras: number,
+  async obtenerDetalleCarroPorIdCarro(
+    idCarroCompra: number,
   ): Promise<DetalleCarroCompra[]> {
-    return this.detalleCarroCompraRepository.find({
-      where: { carroCompra: { idCarroCompra: idCarroCompras } },
-      relations: ['idCarroCompra', 'idProducto'],
+    const detallesCarro = await this.detalleCarroCompraRepository.find({
+      where: { carroCompra: { idCarroCompra: idCarroCompra } },
+      relations: ['producto'],
     });
+
+    return detallesCarro;
+  }
+  //#endregion
+
+  //#region Vaciar Carro de Compras
+  async vaciarCarro(idCarroCompra: number): Promise<any> {
+    try {
+      // Obtener Carro de Compras
+      const carroCompra = await this.carroCompraRepository.findOne({
+        where: { idCarroCompra: idCarroCompra },
+        relations: ['usuario', 'detallesCarro'],
+      });
+
+      if (!carroCompra) {
+        throw new NotFoundException('No se encontró el carro de compras xd');
+      }
+
+      // Eliminar los detalles del carro
+      await this.detalleCarroCompraRepository
+        .createQueryBuilder()
+        .delete()
+        .where('idcarrocompras = :id', { id: idCarroCompra })
+        .execute();
+
+      // Calcular el precio total del carro
+      const carroUpdated = await this.getCarroUpdated(carroCompra);
+      return carroUpdated;
+    } catch (error) {
+      if (error instanceof HttpException) {
+        // Lanzar el error con mensaje personalizado y status code
+        throw new HttpException(
+          {
+            statusCode: HttpStatus.NOT_FOUND,
+            message: error.message,
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      // En caso de otros errores, lanzamos un error 500
+      throw new HttpException(
+        {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message:
+            'Ha ocurrido un error al intentar eliminar el detalle del carro de compras.',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
   //#endregion
 }

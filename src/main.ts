@@ -63,7 +63,8 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/usuario', app, document1, {
     customSiteTitle: 'Usuarios - API Petropolis',
-    customfavIcon: 'https://img.icons8.com/?size=48&id=13042&format=png',
+    //customfavIcon: 'https://img.icons8.com/?size=48&id=13042&format=png', // Production
+    customfavIcon: 'https://img.icons8.com/?size=48&id=80837&format=png',   // Development
     customCss: '.swagger-ui .topbar { background-color: #05C7F2; }'
   });
   //#endregion
@@ -91,7 +92,8 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/mascota', app, document2, {
     customSiteTitle: 'Mascotas - API Petropolis',
-    customfavIcon: 'https://img.icons8.com/?size=48&id=16018&format=png',
+    // customfavIcon: 'https://img.icons8.com/?size=48&id=16018&format=png', // Production
+    customfavIcon: 'https://img.icons8.com/?size=48&id=gYAzXGGAG9WE&format=png', // Development
     customCss: '.swagger-ui .topbar { background-color: #05C7F2; }'
   });
   //#endregion
@@ -134,7 +136,8 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/producto', app, document3, {
     customSiteTitle: 'Productos - API Petropolis',
-    customfavIcon: 'https://img.icons8.com/?size=48&id=16045&format=png',
+    // customfavIcon: 'https://img.icons8.com/?size=48&id=16045&format=png', // Production
+    customfavIcon: 'https://img.icons8.com/?size=48&id=jmTjI2aVrpbz&format=png', // Development
     customCss: '.swagger-ui .topbar { background-color: #FFD020; }'
   });
  //#endregion
